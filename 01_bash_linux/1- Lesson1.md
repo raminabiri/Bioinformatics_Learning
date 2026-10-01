@@ -190,7 +190,7 @@ cp /path/to/original.fasta ./seq.fasta
 (Coursera, edX و غیره)
 
 
-Rosalind Platform: پلتفرمی بی‌نظیر برای یادگیری برنامه‌نویسی و بیوانفورماتیک از طریق حل پازل‌های الگوریتمی.
+Rosalind Platform: پلتفرمی بی‌نظیر برای یادگیری برنامه‌نویسی و بیوانفورماتی کبه روش طریق حل پازل‌های الگوریتمی.
 
 کتاب مرجع: Bioinformatics Data Skills نوشته Vince Buffalo (انتشارات O'Reilly) - یکی از بهترین کتاب‌ها برای یادگیری ابزارهای خط فرمان و لینوکس مخصوص زیست‌شناسان.
 کتاب: The Linux Command Line: A Complete Introduction نوشته William Shotts
@@ -198,13 +198,4 @@ Rosalind Platform: پلتفرمی بی‌نظیر برای یادگیری برن
 
 Coursera: دوره The Unix Workbench (دانشگاه جانز هاپکینز)
 edX: دوره Introduction to Linux (بنیاد لینوکس)
-
-
-
-
-
-
-
-
-
 
