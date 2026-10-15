@@ -5,7 +5,7 @@
 | ماژول | عنوان | ابزارهای اصلی | وضعیت |
 | :---: | :--- | :--- | :---: |
 | 01 | [اسمبلی و ارزیابی کیفیت ژنوم](01_Assembly_Quality/) | SPAdes (یا Shovill)، QUAST، CheckM2، seqkit | ✍️ نوشته‌شده |
-| 02 | [آنوتیشن ژنوم](02_Genome_Annotation/) | Bakta (+ دیتابیس Bakta)، Prokka | ⚪ طراحی‌شده |
+| 02 | [آنوتیشن ژنوم (باکتری، فاژ و ویروس، یوکاریوت)](02_Genome_Annotation/) | Bakta، Prokka، Pyrodigal، Pharokka، geNomad، BRAKER4، BUSCO | ✍️ نوشته‌شده |
 | 03 | [تایپینگ مولکولی (MLST)](03_MLST_Molecular_Typing/) | mlst، PubMLST | ⚪ طراحی‌شده |
 | 04 | [ژنومیکس مقایسه‌ای و پن‌ژنوم](04_Comparative_Pan_Genome/) | Panaroo (یا Roary) | ⚪ طراحی‌شده |
 | 05 | [فراخوانی واریانت در باکتری](05_Variant_Calling_Snippy/) | Snippy، bcftools، snpEff (داخل Snippy) | ⚪ طراحی‌شده |

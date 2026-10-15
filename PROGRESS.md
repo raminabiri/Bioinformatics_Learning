@@ -28,6 +28,7 @@ User rules: ask before heavy downloads (state what/size/time); course is introdu
   - Diversity depth 150 seed 42 → 46/71 samples. Faith PD veg p=0.025 (H 5.01), Shannon veg p=0.036, observed p=0.13; transect all ns. UniFrac PERMANOVA veg F=3.77 p=0.001; transect F=1.57 p=0.058; Bray veg/transect p=0.001. PERMDISP veg p=0.842. Faith vs elevation Spearman 0.388 p=0.0077; vs pH −0.099 p=0.51. adonis elevation+vegetation: elevation R² 0.070 p=0.001, vegetation R² 0.030 p=0.092 → CONFOUNDING (vegetated sites all ≥2,687 m).
   - Videos verified live: QIIME 2 XIyZWpfcZ6U, PUsvtJgpNtE; Galaxy ISocxcJZEjw; Brown wV5_z7rR6yw; ISB ZFiZTZXhdJ4. Docs: amplicon-docs.qiime2.org/en/latest/, docs.qiime2.org/2024.10/tutorials/atacama-soils/.
 - ✍️ **04/01 Assembly** (2026-10-15): lesson + 6 exercises (4 on labelled hypothetical data) + solutions + `scripts/repeat_report.py` (real: k-mer repeats 2.83% k21 / 1.79% k127; cutting at 7 rrn + 50 IS → 50 contigs, N50 173,810; IS alone N50 224,159, rRNA alone 2,497,193). SPAdes/Shovill/QUAST/CheckM2 NOT installed and not run; options checked against official READMEs/manuals. Links OK.
+- ✍️ **04/02 Annotation** (2026-10-15): 3 lessons (prokaryote / phage+virus / eukaryote, per user: course is broad with microbial emphasis) + 7 exercises + solutions; scripts `light_annotation.sh`, `compare_genecalls.py`, `virus_demo.sh`, `yeast_demo.sh` (all light, real). Key real facts: Pyrodigal vs RefSeq E. coli 96.0% same stop, 230 start diffs, 171 missed (157 <100 aa), selenoproteins + dnaX slippage; barrnap 22/22 rRNA; tRNAscan 89 vs RefSeq 86 (extras = tRNA remnants at CP4-6/DLP12 borders + ssrA tmRNA); 12 cryptic prophages (GC 47.4%, 14% unknown vs 1.9%, 34/145 pseudogenes, integrases at borders); SARS-CoV-2: pp1ab missed, 284 nt of nsp12 uncovered, E/ORF7b/ORF10 missed; yeast chrI: 159 predicted vs 94 real, all 3 intron genes wrong. BRAKER3 is deprecated → BRAKER4 (Snakemake). PHROGs website unreachable from server (link removed). Not committed yet.
 - ⚠️ **New rule (user, 2026-10-15):** we only teach — do NOT run heavy analyses/downloads ourselves. Write lessons completely and in detail. Light commands on existing small data are OK; heavy steps = commands + explanation, outputs only from cited official docs or clearly labelled as examples (never invented). Status for such modules: ✍️ نوشته‌شده. (The earlier approval to download isolate data for part 04 is no longer needed.)
 - ⚪ Designed only (README with objectives and outline): 02/02, 02/03, 03/04 lesson, parts 04, 05, 06, 07.
 - `_tools/`: `check_links.sh` (retries a 403 without the fake user-agent; sourceforge needs this) (YouTube oEmbed, Crossref, HTTP), `check_internal_links.py`, `yt_search.sh`.
@@ -67,10 +68,10 @@ User rules: ask before heavy downloads (state what/size/time); course is introdu
 - `_tools/check_links.sh` sometimes reports `FAIL 000` for YouTube (timeouts); rerun gives 200.
 - FastQC prints `application/gzip` lines; harmless.
 - 85 empty `README.md` files inside `.git/` (pre-existing since 2026-10-04); untouched.
-- Nothing committed to git yet (user hasn't asked).
+- Git: pushed 2026-10-15 as commit 3c7ead4 to origin/main (repo is PUBLIC). `advanced.odt` and `Bioinformatics_Course_ColorCoded.xlsx` deliberately left untracked (personal files, never tracked before). Harmless warning `ignoring broken ref refs/heads/README.md` (empty file, pre-existing).
 
 ## 6. Next steps (priority order, one session each)
-3. **04/02 Annotation (Bakta/Prokka)**, then 04/03 MLST, 04/04 pan-genome, 04/05 Snippy — write-only per the new rule (light runs only on data already on the server).
+3. **04/03 MLST**, then 04/04 pan-genome, 04/05 Snippy — write-only per the new rule; for each topic add short non-bacterial sections where relevant (scope memory). Consider a short phage/virus/eukaryote note in 04/01 assembly.
 4. **02/02 pandas:** fastp JSON, `cds_table.tsv`, Kraken vs truth plots.
 5. **02/03 R/stats:** ggplot2, FDR simulation, vegan diversity on 16S output.
 6. Then parts 05, 06, 07 (one module per session).

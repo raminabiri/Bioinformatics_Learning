@@ -34,3 +34,4 @@ __pycache__/
 01_Computing_Foundations/01_Bash_Linux/data/ecoli_k12.*
 01_Computing_Foundations/03_Bio_File_Formats/data/
 **/04_16S_Amplicon/data/sample_metadata.tsv
+**/work_light/

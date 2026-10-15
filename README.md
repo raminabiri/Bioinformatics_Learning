@@ -31,7 +31,7 @@ conda activate bioinfo_course
 | 01 | [Computing Foundations](01_Computing_Foundations/) | Bash، Conda، فرمت‌های داده، Git، Workflow | ✅ تست‌شده |
 | 02 | [Programming & Data Analysis](02_Programming_Data_Analysis/) | Python/Biopython، pandas، R/Bioconductor، آمار | 🟢 ماژول ۱ تست‌شده؛ ۲ و ۳ طراحی‌شده |
 | 03 | [Metagenomics](03_Metagenomics/) | QC، حذف میزبان، پروفایل تاکسونومیک/عملکردی، 16S | 🟢 ماژول‌های ۱، ۲ و ۴ تست‌شده؛ ۳ عمدتاً تست‌شده |
-| 04 | [Bacterial Genomics](04_Bacterial_Genomics/) | اسمبلی، آنوتیشن، MLST، پن‌ژنوم، واریانت | ✍️ ماژول ۱ نوشته‌شده؛ بقیه طراحی‌شده |
+| 04 | [Bacterial Genomics](04_Bacterial_Genomics/) | اسمبلی، آنوتیشن، MLST، پن‌ژنوم، واریانت | ✍️ ماژول‌های ۱ و ۲ نوشته‌شده؛ بقیه طراحی‌شده |
 | 05 | [AMR, Virulence & Phylogeny](05_AMR_Virulence_Phylogeny/) | ژن‌های مقاومت، ضراوت، عناصر متحرک، فیلوژنی | ⚪ طراحی‌شده |
 | 06 | [Structural Bioinformatics](06_Structural_Bioinformatics/) | پیش‌بینی ساختار، داکینگ، دینامیک مولکولی | ⚪ طراحی‌شده |
 | 07 | [Advanced (PhD)](07_Advanced/) | Workflow/HPC، Long-read، واریانت انسانی، Single-cell، یادگیری عمیق | ⚪ طراحی‌شده |
