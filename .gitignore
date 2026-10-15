@@ -1,0 +1,36 @@
+# Data payloads (download with data/download.sh)
+*.fastq
+*.fastq.gz
+*.fq.gz
+*.bam
+*.bai
+*.sam
+**/data/raw/
+**/data/host/
+**/data/_archive*/
+**/data/db/
+
+# Work / outputs
+work/
+**/work/
+*_fastqc.zip
+*_fastqc.html
+multiqc_data/
+
+# Indexes
+*.bt2
+*.fai
+
+# Editors / OS / R
+.Rhistory
+.RData
+.Rproj.user/
+.ipynb_checkpoints/
+__pycache__/
+.DS_Store
+*~
+
+# Downloaded reference data (re-create with data/download.sh)
+01_Computing_Foundations/01_Bash_Linux/data/ecoli_k12.*
+01_Computing_Foundations/03_Bio_File_Formats/data/
+**/04_16S_Amplicon/data/sample_metadata.tsv

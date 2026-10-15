@@ -1,0 +1,46 @@
+role	species	accession	organism	strain	taxid
+in_sample_other_strain	Escherichia coli	GCF_000597845.1	Escherichia coli	ST540	562
+in_sample_other_strain	Bacteroides fragilis	GCF_000724795.2	Bacteroides fragilis	DCMOUH0042B	817
+in_sample_other_strain	Acinetobacter baumannii	GCF_009035845.1	Acinetobacter baumannii	ATCC 19606	470
+in_sample_other_strain	Pseudomonas aeruginosa	GCF_000763245.3	Pseudomonas aeruginosa	CCBH4851	287
+in_sample_other_strain	Staphylococcus epidermidis	GCF_006094375.1	Staphylococcus epidermidis	ATCC 14990	1282
+in_sample_other_strain	Staphylococcus aureus	GCF_000418345.1	Staphylococcus aureus	Bmb9393	1280
+in_sample_other_strain	Listeria monocytogenes	GCF_000438585.1	Listeria monocytogenes	R2-502	1639
+in_sample_other_strain	Phocaeicola vulgatus	GCF_008728395.1	Phocaeicola vulgatus	VIC01	821
+in_sample_other_strain	Streptococcus mutans	GCF_019048645.1	Streptococcus mutans	FDAARGOS 1458	1309
+in_sample_other_strain	Helicobacter pylori	GCF_025998455.1	Helicobacter pylori	CHC155	210
+in_sample_other_strain	Clostridium beijerinckii	GCF_018223745.1	Clostridium beijerinckii	DSM 791	1520
+in_sample_other_strain	Methanobrevibacter smithii	GCF_002813085.1	Methanobrevibacter smithii	KB11	2173
+in_sample_other_strain	Cereibacter sphaeroides	GCF_001576595.1	Cereibacter sphaeroides	MBTLJ-8	1063
+in_sample_other_strain	Enterococcus faecalis	GCF_001598635.1	Enterococcus faecalis	LD33	1351
+in_sample_other_strain	Bacillus cereus	GCF_000635895.2	Bacillus cereus	A1	1396
+in_sample_other_strain	Deinococcus radiodurans	GCF_011604805.1	Deinococcus radiodurans	BNK-50	1299
+in_sample_other_strain	Neisseria meningitidis	GCF_022869645.1	Neisseria meningitidis	PartJ-Nmeningitidis-RM8376	487
+in_sample_other_strain	Cutibacterium acnes	GCF_001281065.1	Cutibacterium acnes	KCOM 1861 (= ChDC B594)	1747
+in_sample_other_strain	Streptococcus agalactiae	GCF_000730215.1	Streptococcus agalactiae	NGBS061	1311
+in_sample_other_strain	Streptococcus pneumoniae	GCF_001457635.1	Streptococcus pneumoniae	NCTC7465	1313
+in_sample_other_strain	Lactobacillus gasseri	GCF_002158885.1	Lactobacillus gasseri	4M13	1596
+decoy_relative	Shigella flexneri	GCF_000783735.2	Shigella flexneri	FDAARGOS_74	623
+decoy_relative	Shigella sonnei	GCF_002950395.1	Shigella sonnei	ATCC 29930	624
+decoy_relative	Escherichia fergusonii	GCF_020097475.1	Escherichia fergusonii	FDAARGOS_1499	564
+decoy_relative	Salmonella enterica	GCF_000783815.2	Salmonella enterica	FDAARGOS_70	28901
+decoy_relative	Klebsiella pneumoniae	GCF_000364385.3	Klebsiella pneumoniae	ATCC BAA-2146	573
+decoy_relative	Bacteroides thetaiotaomicron	GCF_014131755.1	Bacteroides thetaiotaomicron	DSM 2079	818
+decoy_relative	Bacteroides ovatus	GCF_001314995.1	Bacteroides ovatus	ATCC 8483	28116
+decoy_relative	Phocaeicola dorei	GCF_013009555.1	Phocaeicola dorei	DSM 17855	357276
+decoy_relative	Staphylococcus haemolyticus	GCF_006094395.1	Staphylococcus haemolyticus	ATCC 29970	1283
+decoy_relative	Staphylococcus capitis	GCF_002356175.1	Staphylococcus capitis	TW2795	29388
+decoy_relative	Streptococcus mitis	GCF_018603625.2	Streptococcus mitis	E651	28037
+decoy_relative	Streptococcus oralis	GCF_007475365.1	Streptococcus mitis bv. 2 str. F0392	F0392	768726
+decoy_relative	Streptococcus pyogenes	GCF_900475035.1	Streptococcus pyogenes	NCTC12064	1314
+decoy_relative	Listeria innocua	GCF_028596125.1	Listeria innocua	ATCC 33090	1642
+decoy_relative	Bacillus thuringiensis	GCF_000008505.1	[Bacillus thuringiensis] serovar konkukian str. 97-27	97-27	281309
+decoy_relative	Bacillus anthracis	GCF_000534935.2	Bacillus anthracis	CZC5	1392
+decoy_relative	Acinetobacter pittii	GCF_001577285.1	Acinetobacter pittii	AP_882	48296
+decoy_relative	Pseudomonas putida	GCF_000691565.1	Pseudomonas putida	DLL-E4	303
+decoy_relative	Neisseria gonorrhoeae	GCF_013030075.1	Neisseria gonorrhoeae	TUM19854	485
+decoy_relative	Enterococcus faecium	GCF_009734005.1	Enterococcus faecium	SRR24	1352
+decoy_relative	Lactobacillus johnsonii	GCF_014058685.1	Lactobacillus johnsonii	NCK2677	33959
+decoy_relative	Clostridium saccharobutylicum	GCF_002003285.1	Clostridium saccharobutylicum	NCP 200	169679
+decoy_relative	Deinococcus geothermalis	GCF_000196275.1	Deinococcus geothermalis DSM 11300	DSM 11300	319795
+decoy_relative	Helicobacter cetorum	GCF_000259255.1	Helicobacter cetorum MIT 00-7128	MIT 00-7128	182217

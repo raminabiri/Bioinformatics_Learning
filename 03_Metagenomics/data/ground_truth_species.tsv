@@ -1,0 +1,24 @@
+sample	species_taxid	species	read_pairs	fraction
+minigut	817	Bacteroides fragilis	28827	0.57833
+minigut	562	Escherichia coli	21018	0.42167
+minigut_sample2	470	Acinetobacter baumannii	16152	0.64639
+minigut_sample2	287	Pseudomonas aeruginosa	1178	0.04714
+minigut_sample2	1282	Staphylococcus epidermidis	964	0.03858
+minigut_sample2	1280	Staphylococcus aureus	920	0.03682
+minigut_sample2	5476	Candida albicans	874	0.03498
+minigut_sample2	1639	Listeria monocytogenes	803	0.03214
+minigut_sample2	821	Phocaeicola vulgatus	645	0.02581
+minigut_sample2	562	Escherichia coli	499	0.01997
+minigut_sample2	1309	Streptococcus mutans	473	0.01893
+minigut_sample2	210	Helicobacter pylori	461	0.01845
+minigut_sample2	1520	Clostridium beijerinckii	398	0.01593
+minigut_sample2	2173	Methanobrevibacter smithii	265	0.01061
+minigut_sample2	1063	Cereibacter sphaeroides	237	0.00948
+minigut_sample2	1351	Enterococcus faecalis	223	0.00892
+minigut_sample2	1396	Bacillus cereus	185	0.0074
+minigut_sample2	1299	Deinococcus radiodurans	176	0.00704
+minigut_sample2	487	Neisseria meningitidis	173	0.00692
+minigut_sample2	1747	Cutibacterium acnes	156	0.00624
+minigut_sample2	1311	Streptococcus agalactiae	113	0.00452
+minigut_sample2	1313	Streptococcus pneumoniae	69	0.00276
+minigut_sample2	1596	Lactobacillus gasseri	24	0.00096

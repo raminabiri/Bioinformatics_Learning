@@ -1,0 +1,20 @@
+# Course environment for parts 00, 01 and 03 (read QC, host removal, profiling)
+# Create:  mamba env create -f envs/bioinfo_course.yml
+name: bioinfo_course
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - fastqc=0.12.1
+  - fastp=0.23.4
+  - multiqc=1.25
+  - seqkit=2.13
+  - bowtie2=2.5.4
+  - samtools=1.20
+  # wgsim ships inside the samtools package (misc/wgsim)
+  - entrez-direct
+  - ncbi-datasets-cli
+  - sra-tools=3.1
+  - jq
+  - wget

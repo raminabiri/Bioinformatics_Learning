@@ -1,0 +1,9 @@
+# Inputs: the part-03 dataset (bash 03_Metagenomics/data/download.sh)
+raw_dir: "../../03_Metagenomics/data/raw"
+samples:
+  - minigut
+  - minigut_sample2
+fastp:
+  cut_mean_quality: 20
+  length_required: 50
+threads: 4
