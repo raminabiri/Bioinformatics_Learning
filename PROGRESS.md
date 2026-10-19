@@ -18,7 +18,7 @@ User rules: ask before heavy downloads (state what/size/time); course is introdu
 - 🟢 **03/03 Profiling**: Kraken2/Bracken with the PRACTICE DB (45 genomes) are tested; `evaluate_profile.py`; `check.sh` 4/4. The MetaPhlAn/HUMAnN section is intro only and untested.
 - ✅ **02/01 Python/Biopython** (2026-10-14): lesson + 5 exercises + solutions; scripts `cds_table.py`, `gc_outliers.py`, `codon_usage.py`, `entrez_tour.py`. Fixed lesson error: `translate(table=11)` alone gives V for GTG starts; only `cds=True` gives M.
 - ✅ **03/04 16S** (2026-10-15): lesson + 6 exercises + solutions + scripts, `check.sh` 14/14, links OK. Facts below kept for reference.
-  - Done files: `README.md` (✅ text already written), `data/download.sh` (md5-checked, incl. SILVA V4 refs, user approved 20 MB), `scripts/{train_classifier.sh,run_16s.sh,check.sh}`. Outputs: `03_Metagenomics/work/04_16s/` (+ exploratory runs in `work/04_16s_explore/`, incl. `variants/`, `taxonomy-vsearch.qza`).
+  - Done files: `README.md` (✅ text already written), `data/download.sh` (md5-checked, incl. SILVA V4 refs, user approved 20 MB), `scripts/{train_classifier.sh,run_16s.sh,check.sh}`. Outputs: `06_Metagenomics/work/04_16s/` (+ exploratory runs in `work/04_16s_explore/`, incl. `variants/`, `taxonomy-vsearch.qza`).
   - Env: `export PATH=/data/MicrobiomePipeline/qiime2_env/bin:$PATH` (QIIME 2 2026.7, framework "rachis", sklearn 1.7.1); `UNIFRAC_USE_GPU=N` needed (else `Accelerator Fatal Error … -acc=gpu` from `ssu`).
   - 2026.7 API changes: dada2 needs `--o-base-transition-stats`; `feature-table summarize` uses `--m-metadata-file` + `--o-feature-frequencies/--o-sample-frequencies/--o-summary`.
   - Old classifiers refused: `The scikit-learn version (1.4.2) used to generate this artifact does not match … (1.7.1)`. Species-level training hit 12.4 GB (killed: user's genomepipe H. pylori job shares RAM) → trained GENUS-level (67,689 → 8,415 classes; 8 min, 5.5 GB) = `data/db/silva-138-99-515-806-genus-nb.qza`.
@@ -36,9 +36,9 @@ User rules: ask before heavy downloads (state what/size/time); course is introdu
 ## 3. Files changed (main)
 - Root: `README.md` (roadmap + status), `STYLE_GUIDE.md`, `.gitignore`, `envs/bioinfo_course.yml`, `envs/README.md`, `_templates/module/*`, `_tools/*`.
 - Every module folder follows: `README.md` + `01_lesson*.md`, `02_exercises.md`, `03_solutions.md` (+ `scripts/`).
-- `03_Metagenomics/data/`: `download.sh` (incl. chr1 region), `ground_truth.tsv`, `ground_truth_species.tsv`, `README.md`.
-- `03_Metagenomics/03_Taxonomic_Functional_Profiling/practice_db_genomes.tsv` + `scripts/{build_practice_db.sh,run_profile.sh,evaluate_profile.py,check.sh}`.
-- `02_Programming_Data_Analysis/01_Python_Biopython/{01_lesson.md,scripts/cds_table.py}`.
+- `06_Metagenomics/data/`: `download.sh` (incl. chr1 region), `ground_truth.tsv`, `ground_truth_species.tsv`, `README.md`.
+- `06_Metagenomics/03_Taxonomic_Functional_Profiling/practice_db_genomes.tsv` + `scripts/{build_practice_db.sh,run_profile.sh,evaluate_profile.py,check.sh}`.
+- `03_Python/02_Biopython/{01_lesson.md,scripts/cds_table.py}`.
 - Removed: superseded `04_scripts.md` in 01/04 and 01/05 (the copy in 01/05 had the wrong content). Original course is in `/data/bioinformatics_learning_backup_2026-10-12.tar.gz`.
 - Outside git (ignored): `work/`, `data/raw/`, `data/host/`, 01/01 `data/ecoli_k12.*`, 01/03 `data/`, 01/05 `results/ logs/ .snakemake/`.
 
@@ -68,8 +68,31 @@ User rules: ask before heavy downloads (state what/size/time); course is introdu
 - `_tools/check_links.sh` sometimes reports `FAIL 000` for YouTube (timeouts); rerun gives 200.
 - FastQC prints `application/gzip` lines; harmless.
 - 85 empty `README.md` files inside `.git/` (pre-existing since 2026-10-04); untouched.
-- Git: pushed 2026-10-15 as commit 3c7ead4 to origin/main (repo is PUBLIC). `advanced.odt` and `Bioinformatics_Course_ColorCoded.xlsx` deliberately left untracked (personal files, never tracked before). Harmless warning `ignoring broken ref refs/heads/README.md` (empty file, pre-existing).
+- Git: pushed 2026-10-15 as commit 3c7ead4 to origin/main (repo is PUBLIC). `advanced.odt` and `Bioinformatics_Course_ColorCoded.xlsx` deliberately left untracked (personal files, never tracked before). FIXED 2026-10-19: empty files `.git/refs/{,heads/,remotes/,tags/,remotes/origin/}README.md` made `git fetch` fail with `fatal: bad object refs/README.md`. They were moved (not deleted) to the session scratchpad. The user had pushed 270d160 (a web edit to old 00/01) on 2026-10-16; the batch-1 commit was rebased on it and pushed as 6834e1c.
 
+- 🔁 **RESTRUCTURE (user-approved, 2026-10-19).** Strict prerequisite rule (STYLE_GUIDE §2.1): nothing is used before it is taught.
+  - New parts: 00 Orientation (browser only) · 01_Linux · 02_BioLinux · 03_Python · 04_R_Statistics · 05_Reproducible_Work · 06_Metagenomics · 07_Bacterial_Genomics · 08_AMR_Virulence_Phylogeny · 09_Structural_Bioinformatics · 10_Advanced.
+  - Old → new mapping:
+    - 01_CF/01_Bash_Linux → 01_Linux/02_Bash
+    - 01_CF/02 → 02_BioLinux/01_Conda_Bioconda
+    - 01_CF/03 → 02_BioLinux/02_Bio_File_Formats
+    - 00/02 lesson 2 + exercises 5–8 → 02_BioLinux/03_Data_Download
+    - 02_PDA/01 → 03_Python/02_Biopython
+    - 02_PDA/02 → 03_Python/03_Pandas
+    - 02_PDA/03 → 04_R_Statistics/01_R_Stats
+    - 01_CF/04 → 05_Reproducible_Work/01_Git_GitHub
+    - 01_CF/05 → 05_Reproducible_Work/02_Workflows_Snakemake
+    - 03..07 → 06..10
+  - Scripts and data are in `<part>/99_scripts_data/<module>/`, because GitHub lists folders first. This is done for parts 00–05; parts 06/07 still keep `scripts/` inside each module, and these move when each module is rewritten.
+  - New modules written:
+    - 00/03_Web_Tools: ExPASy, Needle, Clustal Omega, BLAST, built on the RpoB RRDR story. Needle E. coli vs Mtb: 625/1451 (43.1%), score 2949.5. Biopython PairwiseAligner with BLOSUM62, gap 10/0.5, end gaps 0 reproduces Needle exactly. RRDR 507–533: 21/27 columns identical in 4 species; D516/H526/S531 conserved. Mtb UniProt S456 = clinical S450; S. aureus H481 ↔ E. coli H526.
+    - 01_Linux/01_Setup_Computer: WSL/mac/Ubuntu/ssh, first commands, course ZIP via curl.
+    - 03_Python/01_Python_Basics: README design only.
+  - Bash data download now needs only curl. NCBI FTP + nf-core files have the same md5 as before. FASTQs are in `data/fastq`, with `R=fastq`, and ground_truth.tsv is copied into the Bash data folder.
+  - Tools: `rename_paths.py` was one-off and was not committed (it is in the scratchpad).
+  - Old-part refs ("بخش ۰۳"→"۰۶" etc.) were renumbered. Ambiguous refs to old parts ۰۱/۰۲ in not-yet-rewritten modules are still to be fixed at their rewrite.
+  - Three decimals were wrongly changed by renumbering and were fixed (۴۰٫۰۵٪, ۰٫۰۴, ۱٫۰۵). All decimals in moved files were verified against HEAD.
+  - ⚠️ I sent the user's email to the EBI REST API once (Needle job). Don't do this again; run tools locally or ask.
 - ✅ **New-format rewrite, batch 1 (2026-10-19):**
   - 00/01, 00/02 (split into 01_lesson_browse + 02_lesson_download, 03_exercises, 04_solutions), and 01/01 Bash (split into 01_lesson_files, 02_lesson_text_tools, 03_lesson_scripts, 04_exercises, 05_solutions; new `scripts/count_reads.sh`).
   - All RTL-wrapped, Persian words applied, Coursera/edX/YouTube refs.
@@ -80,7 +103,7 @@ User rules: ask before heavy downloads (state what/size/time); course is introdu
 - 🔄 **FORMAT CHANGE (user, 2026-10-19):** user said lessons are not learnable (dense expert notes, jargon tables, test numbers, no intuition/examples). New audience: knows basic + molecular biology, NOT bioinformatics. New lesson format (pilot = 00/01, rewritten 2026-10-19): «در یک نگاه» goals → story (rifampicin-resistant E. coli, rpoB) → plain concepts + analogy → small worked example → «✋ امتحان کن» <details> boxes after each section → 3 common mistakes → «برای کنجکاوها» optional box → summary → glossary → refs. Exercises: strictly lesson-based, runnable (browser/calc), **راهنمایی right under each exercise title** (user request). Verification numbers go to solutions, not lesson body. WAITING for user feedback on pilot before updating STYLE_GUIDE §1/§3 and rewriting other lessons.
 
 ## 6. Next steps (priority order, one session each)
-0. **Continue new-format rewrite** (user approved 2026-10-19): next batch 01/02 Conda, 01/03 Formats, 01/04 Git → commit+push; then 01/05, 02/01, 03/01; then 03/02–03/04; then 04/01–04/02; then new modules.
+0. **Continue new-format rewrite, in course order, commit+push every 3 modules:** next 02_BioLinux/01_Conda_Bioconda, 02_BioLinux/02_Bio_File_Formats (its make_examples.sh depends on part-06 outputs, so fix the prerequisite), 03_Python/01_Python_Basics (new) → push; then 03_Python/02_Biopython, 03/03 Pandas (new), 04/01 R (new) → push; then 05/01 Git, 05/02 Snakemake (needs Python; workflow uses part-06 QC, so check the prerequisite), 06/01 → push; then 06/02–06/04, 07/01–07/02 (move scripts into 99_scripts_data and retest).
 3. **04/03 MLST**, then 04/04 pan-genome, 04/05 Snippy — write-only per the new rule; for each topic add short non-bacterial sections where relevant (scope memory). Consider a short phage/virus/eukaryote note in 04/01 assembly.
 4. **02/02 pandas:** fastp JSON, `cds_table.tsv`, Kraken vs truth plots.
 5. **02/03 R/stats:** ggplot2, FDR simulation, vegan diversity on 16S output.

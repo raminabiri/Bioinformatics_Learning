@@ -1,0 +1,69 @@
+# Read QC workflow — the Snakemake version of 06_Metagenomics/01_Read_QC_Trimming/scripts/run_qc.sh
+# Run from 05_Reproducible_Work/02_Workflows_Snakemake:
+#   snakemake -s workflow/Snakefile --cores 4 -n      (dry run)
+#   snakemake -s workflow/Snakefile --cores 4
+configfile: "workflow/config.yaml"
+
+RAW = config["raw_dir"]
+SAMPLES = config["samples"]
+READS = ["R1", "R2"]
+OUT = "results"
+
+rule all:
+    input:
+        f"{OUT}/multiqc/multiqc_report.html"
+
+rule fastqc_raw:
+    input:
+        f"{RAW}/{{sample}}_{{read}}.fastq.gz"
+    output:
+        html=f"{OUT}/fastqc_raw/{{sample}}_{{read}}_fastqc.html",
+        zip=f"{OUT}/fastqc_raw/{{sample}}_{{read}}_fastqc.zip"
+    log:
+        "logs/fastqc_raw/{sample}_{read}.log"
+    shell:
+        "fastqc -q -o {OUT}/fastqc_raw {input} > {log} 2>&1"
+
+rule fastp:
+    input:
+        r1=f"{RAW}/{{sample}}_R1.fastq.gz",
+        r2=f"{RAW}/{{sample}}_R2.fastq.gz"
+    output:
+        r1=f"{OUT}/trimmed/{{sample}}_R1.fastq.gz",
+        r2=f"{OUT}/trimmed/{{sample}}_R2.fastq.gz",
+        json=f"{OUT}/fastp/{{sample}}.json",
+        html=f"{OUT}/fastp/{{sample}}.html"
+    params:
+        q=config["fastp"]["cut_mean_quality"],
+        l=config["fastp"]["length_required"]
+    threads: config["threads"]
+    log:
+        "logs/fastp/{sample}.log"
+    shell:
+        "fastp -i {input.r1} -I {input.r2} -o {output.r1} -O {output.r2} "
+        "--detect_adapter_for_pe --cut_front --cut_tail --cut_mean_quality {params.q} "
+        "--length_required {params.l} --thread {threads} "
+        "--json {output.json} --html {output.html} > {log} 2>&1"
+
+rule fastqc_trimmed:
+    input:
+        f"{OUT}/trimmed/{{sample}}_{{read}}.fastq.gz"
+    output:
+        html=f"{OUT}/fastqc_trimmed/{{sample}}_{{read}}_fastqc.html",
+        zip=f"{OUT}/fastqc_trimmed/{{sample}}_{{read}}_fastqc.zip"
+    log:
+        "logs/fastqc_trimmed/{sample}_{read}.log"
+    shell:
+        "fastqc -q -o {OUT}/fastqc_trimmed {input} > {log} 2>&1"
+
+rule multiqc:
+    input:
+        expand(f"{OUT}/fastqc_raw/{{sample}}_{{read}}_fastqc.zip", sample=SAMPLES, read=READS),
+        expand(f"{OUT}/fastqc_trimmed/{{sample}}_{{read}}_fastqc.zip", sample=SAMPLES, read=READS),
+        expand(f"{OUT}/fastp/{{sample}}.json", sample=SAMPLES)
+    output:
+        f"{OUT}/multiqc/multiqc_report.html"
+    log:
+        "logs/multiqc.log"
+    shell:
+        "multiqc -q -f -o {OUT}/multiqc {input} > {log} 2>&1"

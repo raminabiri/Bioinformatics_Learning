@@ -1,0 +1,57 @@
+# Solution workflow for the exercises: QC (as in Snakefile) + QC table + host removal.
+# Run from 05_Reproducible_Work/02_Workflows_Snakemake:
+#   snakemake -s workflow/Snakefile_solution --cores 4
+configfile: "workflow/config.yaml"
+include: "Snakefile"           # reuse fastqc_raw, fastp, fastqc_trimmed, multiqc
+
+HOST = "../../06_Metagenomics/data/host/host_chr21_region.fa"
+
+rule all_solution:
+    default_target: True
+    input:
+        f"{OUT}/multiqc/multiqc_report.html",
+        f"{OUT}/qc_summary.tsv",
+        expand(f"{OUT}/clean/{{sample}}_{{read}}.fastq.gz", sample=SAMPLES, read=READS)
+
+# Exercise 4: one table from all fastp JSON reports
+rule qc_table:
+    input:
+        expand(f"{OUT}/fastp/{{sample}}.json", sample=SAMPLES)
+    output:
+        f"{OUT}/qc_summary.tsv"
+    shell:
+        r"""
+        printf "sample\treads_before\treads_after\tpct_kept\n" > {output}
+        for j in {input}; do
+          jq -r --arg s "$(basename $j .json)" \
+            '[$s, .summary.before_filtering.total_reads, .summary.after_filtering.total_reads,
+              ((.summary.after_filtering.total_reads / .summary.before_filtering.total_reads * 10000 | round) / 100)] | @tsv' $j >> {output}
+        done
+        """
+
+# Exercise 5: host removal (logic of 06_Metagenomics/02_Host_Removal_Alignment)
+rule bowtie2_index:
+    input:
+        HOST
+    output:
+        multiext(f"{OUT}/host_index/host", ".1.bt2", ".2.bt2", ".3.bt2", ".4.bt2", ".rev.1.bt2", ".rev.2.bt2")
+    log:
+        "logs/bowtie2_index.log"
+    shell:
+        "bowtie2-build -q {input} {OUT}/host_index/host > {log} 2>&1"
+
+rule host_removal:
+    input:
+        r1=f"{OUT}/trimmed/{{sample}}_R1.fastq.gz",
+        r2=f"{OUT}/trimmed/{{sample}}_R2.fastq.gz",
+        idx=rules.bowtie2_index.output
+    output:
+        r1=f"{OUT}/clean/{{sample}}_R1.fastq.gz",
+        r2=f"{OUT}/clean/{{sample}}_R2.fastq.gz"
+    threads: config["threads"]
+    log:
+        "logs/host_removal/{sample}.log"
+    shell:
+        "bowtie2 -p {threads} --very-sensitive -x {OUT}/host_index/host -1 {input.r1} -2 {input.r2} 2> {log} "
+        "| samtools view -b -f 12 -F 256 - "
+        "| samtools fastq -1 {output.r1} -2 {output.r2} -0 /dev/null -s /dev/null -n - 2>> {log}"
