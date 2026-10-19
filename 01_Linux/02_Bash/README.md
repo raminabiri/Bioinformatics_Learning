@@ -21,13 +21,14 @@
 
 ## ترتیب مطالعه
 1. ‏[01_lesson_files.md](01_lesson_files.md): ترمینال، پوشه‌ها و نگاه کردن به فایل‌ها.
-2. ‏[02_lesson_text_tools.md](02_lesson_text_tools.md): پرسیدن از فایل‌ها با grep، cut، sort، uniq و awk.
-3. ‏[03_lesson_scripts.md](03_lesson_scripts.md): متغیر، حلقه و اسکریپت.
-4. ‏[04_exercises.md](04_exercises.md): ۱۱ تمرین؛ زیر عنوان هر تمرین راهنمایی آمده است.
-5. ‏[05_solutions.md](05_solutions.md): پاسخ تشریحی.
+2. ‏[02_lesson_text_tools.md](02_lesson_text_tools.md): پرسیدن از فایل‌ها با grep، cut، sort، uniq و sed.
+3. ‏[03_lesson_awk.md](03_lesson_awk.md): حساب کردن روی ستون‌ها با awk.
+4. ‏[04_lesson_scripts.md](04_lesson_scripts.md): متغیر، حلقه و اسکریپت.
+5. ‏[05_exercises.md](05_exercises.md): ۱۱ تمرین؛ زیر عنوان هر تمرین راهنمایی آمده است.
+6. ‏[06_solutions.md](06_solutions.md): پاسخ تشریحی.
 
 ## اسکریپت‌ها و داده
-- ‏[scripts/count_reads.sh](../99_scripts_data/02_Bash/scripts/count_reads.sh): شمار ریدها و میانگین طول در فایل‌های FASTQ (درس ۳).
+- ‏[scripts/count_reads.sh](../99_scripts_data/02_Bash/scripts/count_reads.sh): شمار ریدها و میانگین طول در فایل‌های FASTQ (درس ۴).
 - ‏[scripts/fasta_stats.sh](../99_scripts_data/02_Bash/scripts/fasta_stats.sh): آمار یک فایل FASTA (پاسخ تمرین ۱۱).
 - ‏[data/download.sh](../99_scripts_data/02_Bash/data/download.sh): دانلود داده. `data/sample.fasta` یک فایل پروتئینی کوچک برای تمرین ۱۱ است.
 

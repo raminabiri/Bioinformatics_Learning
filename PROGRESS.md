@@ -70,6 +70,12 @@ User rules: ask before heavy downloads (state what/size/time); course is introdu
 - 85 empty `README.md` files inside `.git/` (pre-existing since 2026-10-04); untouched.
 - Git: pushed 2026-10-15 as commit 3c7ead4 to origin/main (repo is PUBLIC). `advanced.odt` and `Bioinformatics_Course_ColorCoded.xlsx` deliberately left untracked (personal files, never tracked before). FIXED 2026-10-19: empty files `.git/refs/{,heads/,remotes/,tags/,remotes/origin/}README.md` made `git fetch` fail with `fatal: bad object refs/README.md`. They were moved (not deleted) to the session scratchpad. The user had pushed 270d160 (a web edit to old 00/01) on 2026-10-16; the batch-1 commit was rebased on it and pushed as 6834e1c.
 
+- 🧪 **Deep-explanation pilot (2026-10-19), waiting for user verdict.** The user said Linux/BioLinux/Python/Biopython code lacked detailed explanation.
+  - New lesson `01_Linux/02_Bash/03_lesson_awk.md`, with every new command dissected: numbered parts diagram, a table with "what / what if missing", step-by-step build-up, a trace table, real wrong outputs (= vs ==, double quotes, division by zero), a command cheat card, and mini exercises with collapsible answers.
+  - awk was removed from lesson 2. The strand question is now answered with grep|cut|sort|uniq.
+  - Files renumbered: 04_lesson_scripts, 05_exercises, 06_solutions.
+  - If approved: split Linux into ~9 small lessons in this style, then do the same for BioLinux, Python and Biopython.
+- RTL fix (commit ef5011d): GitHub applies dir="auto" per block, so `_tools/rtl_wrap.py` now adds RLM (U+200F) to Persian lines that start with Latin text, and wraps quoted and list-item code fences in div ltr. It was applied to all 114 md files and is idempotent.
 - 🔁 **RESTRUCTURE (user-approved, 2026-10-19).** Strict prerequisite rule (STYLE_GUIDE §2.1): nothing is used before it is taught.
   - New parts: 00 Orientation (browser only) · 01_Linux · 02_BioLinux · 03_Python · 04_R_Statistics · 05_Reproducible_Work · 06_Metagenomics · 07_Bacterial_Genomics · 08_AMR_Virulence_Phylogeny · 09_Structural_Bioinformatics · 10_Advanced.
   - Old → new mapping:
