@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # تمرین‌ها: Conda و Bioconda
 
 > پیش‌نیاز: conda (ترجیحاً Miniforge) نصب و `conda init` اجرا شده باشد.
@@ -34,11 +36,13 @@
 روی یک سرور مشترک ممکن است یک ابزار در چند محیط با نسخه‌های مختلف نصب باشد.
 1. همه‌ی محیط‌هایی را که `samtools` دارند پیدا کنید و نسخه‌ی هر کدام را بنویسید (بدون فعال کردن محیط‌ها؛ راهنمایی: `conda list -n <env> samtools` یا اجرای مستقیم `<env>/bin/samtools`).
 2. اگر یک اسکریپت فقط بنویسد `samtools sort ...`، نتیجه به چه چیزی بستگی دارد؟ چه خطری دارد؟
-3. `conda run -n <env> <command>` چه کاری می‌کند و چرا در اسکریپت‌ها از `conda activate` امن‌تر است؟
+3. ‏`conda run -n <env> <command>` چه کاری می‌کند و چرا در اسکریپت‌ها از `conda activate` امن‌تر است؟
 
 ---
 
 ## تمرین ۵ (نقد): این فایل محیط چه مشکلی دارد؟
+
+<div dir="ltr">
 
 ```yaml
 name: my_analysis
@@ -56,6 +60,9 @@ dependencies:
     - biopython
     - pandas
 ```
+
+</div>
+
 دست‌کم پنج مشکل پیدا کنید و فایل را بازنویسی کنید.
 
 ---
@@ -63,3 +70,5 @@ dependencies:
 ## تمرین ۶ (چالشی): ثبت خودکار نسخه‌ها
 
 اسکریپتی بنویسید (`record_versions.sh`) که نام یک محیط بگیرد و برای فهرستی از ابزارها (مثلاً `fastqc fastp multiqc bowtie2 samtools seqkit`) نسخه‌ی نصب‌شده در آن محیط را از `conda list` بخواند و یک جدول TSV (`tool  version  channel`) بسازد. ابزاری که در محیط نیست باید `NOT_INSTALLED` بگیرد. این جدول مستقیماً به Methods یا ضمیمه‌ی مقاله می‌رود.
+
+</div>

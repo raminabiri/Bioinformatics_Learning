@@ -18,13 +18,13 @@
 4. یک ژن را با یک اسکریپت در هشت پایگاه داده دنبال کنید.
 
 ## ترتیب مطالعه
-1. [01_lesson.md](01_lesson.md): دریافت داده با دستور.
-2. [02_exercises.md](02_exercises.md): ۴ تمرین؛ زیر عنوان هر تمرین راهنمایی آمده است.
-3. [03_solutions.md](03_solutions.md): پاسخ تشریحی.
+1. ‏[01_lesson.md](01_lesson.md): دریافت داده با دستور.
+2. ‏[02_exercises.md](02_exercises.md): ۴ تمرین؛ زیر عنوان هر تمرین راهنمایی آمده است.
+3. ‏[03_solutions.md](03_solutions.md): پاسخ تشریحی.
 
 ## اسکریپت‌ها
 در پوشه‌ی [99_scripts_data/03_Data_Download/scripts](../99_scripts_data/03_Data_Download/scripts/):
-- `gene_tour.sh`: دنبال کردن یک ژن در هشت پایگاه داده.
-- `project_summary.sh`: خلاصه‌ی نمونه‌به‌نمونه‌ی یک پروژه‌ی ENA (تمرین ۴).
+- ‏`gene_tour.sh`: دنبال کردن یک ژن در هشت پایگاه داده.
+- ‏`project_summary.sh`: خلاصه‌ی نمونه‌به‌نمونه‌ی یک پروژه‌ی ENA (تمرین ۴).
 
 </div>

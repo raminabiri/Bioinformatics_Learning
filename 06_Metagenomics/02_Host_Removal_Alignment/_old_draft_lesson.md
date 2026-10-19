@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # 🧬 درس دوم: همترازی ریدها با ژنوم مرجع و آنالیز فایل‌های BAM (Genome Alignment & BAM Processing) — خودآموز جامع و عملی
 
 **بخش:** `02_Metagenomics_Alignment`  
@@ -48,8 +50,8 @@
 ### 1.2. کالبدشکافی فرمت SAM و BAM
 
 نتایج همترازی در دو فرمت ذخیره می‌شوند:
-* **SAM (Sequence Alignment Map):** فایل متنی و قابل خواندن توسط انسان (حجم بالا).
-* **BAM (Binary Alignment Map):** نسخه باینری، فشرده‌شده و بسیار سریعِ فایل SAM (غیرقابل خواندن مستقیم با متنی‌خوان‌ها).
+* ‏**SAM (Sequence Alignment Map):** فایل متنی و قابل خواندن توسط انسان (حجم بالا).
+* ‏**BAM (Binary Alignment Map):** نسخه باینری، فشرده‌شده و بسیار سریعِ فایل SAM (غیرقابل خواندن مستقیم با متنی‌خوان‌ها).
 
 هر خط در فایل SAM/BAM شامل **۱۱ فیلد اجباری** است:
 
@@ -69,6 +71,8 @@
 
 <details>
 <summary>📌 <b>مثال واقعی از یک خط فایل SAM (کلیک کنید)</b></summary>
+
+<div dir="ltr">
 
 ```text
 read_01    99    chr1    10540    60    100M    =    10700    260    GATTACA...    FFF:FFF...
@@ -116,3 +120,5 @@ fastp -i 01_raw_data/gut_sample_R1.fastq.gz -I 01_raw_data/gut_sample_R2.fastq.g
 # ۴. کنترل کیفیت داده پالایش‌شده
 fastqc 04_trimmed_data/*.fastq.gz -o 05_qc_trimmed/ -t 4
 multiqc 05_qc_trimmed/ -o 06_multiqc_trimmed/
+
+</div>

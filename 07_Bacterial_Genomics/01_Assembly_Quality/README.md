@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # ماژول 01: اسمبلی و ارزیابی کیفیت ژنوم (Genome Assembly & QC)
 
 | | |
@@ -19,11 +21,13 @@
 6. تشخیص دهید چه وقت ریدهای بلند (Nanopore/PacBio) لازم است.
 
 ## فایل‌ها
-- [01_lesson.md](01_lesson.md): درس
-- [02_exercises.md](02_exercises.md): تمرین‌ها
-- [03_solutions.md](03_solutions.md): پاسخ تشریحی
-- [scripts/repeat_report.py](scripts/repeat_report.py): k-merهای تکراری و سقف N50 برای یک ژنوم کامل (۸ ثانیه روی *E. coli*)
+- ‏[01_lesson.md](01_lesson.md): درس
+- ‏[02_exercises.md](02_exercises.md): تمرین‌ها
+- ‏[03_solutions.md](03_solutions.md): پاسخ تشریحی
+- ‏[scripts/repeat_report.py](scripts/repeat_report.py): k-merهای تکراری و سقف N50 برای یک ژنوم کامل (۸ ثانیه روی *E. coli*)
 
 ## ورودی و خروجی
 - **ورودی در کار واقعی:** ریدهای Illumina پیرایش‌شده‌ی هر ایزوله
 - **خروجی** (ورودی ماژول ۰۲، آنوتیشن): `contigs.fa` فیلترشده + جدول QUAST/CheckM2 + تصمیم پذیرش
+
+</div>

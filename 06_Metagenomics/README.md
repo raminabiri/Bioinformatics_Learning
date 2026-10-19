@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # بخش ۰۶: متاژنومیکس (Metagenomics)
 
 این بخش مسیر کامل تحلیل **متاژنوم Shotgun** را از ریدهای خام تا پروفایل تاکسونومیک و عملکردی پوشش می‌دهد. **آمپلیکون 16S** هم به‌عنوان یک مسیر موازی با داده‌ی مخصوص خودش آموزش داده می‌شود.
@@ -19,9 +21,8 @@
 | :-: | :--- | :--- | :--- | :--- | :-: |
 | 01 | [کنترل کیفیت و پیرایش ریدها](01_Read_QC_Trimming/) | آیا داده قابل استفاده است؟ چه چیزی باید بریده شود؟ | FastQC، fastp، MultiQC | `data/raw` ← `work/01_qc/trimmed` | ✅ 2026-10-12 |
 | 02 | [حذف DNA میزبان](02_Host_Removal_Alignment/) | چند درصد ریدها انسانی‌اند؟ | Bowtie2، samtools | `trimmed` ← `work/02_host/clean` | ✅ 2026-10-13 |
-| 03 | [پروفایل تاکسونومیک و عملکردی](03_Taxonomic_Functional_Profiling/) | چه کسانی آنجا هستند و چه می‌کنند؟ | Kraken2 + Bracken (+ معرفی MetaPhlAn 4، HUMAnN 3) | `clean` ← جدول‌های فراوانی | 🟢 Kraken2/Bracken تست‌شده 2026-10-13 |
+| 03 | [پروفایل تاکسونومیک و عملکردی](03_Taxonomic_Functional_Profiling/) | چه کسانی آنجا هستند و چه می‌کنند؟ | ‏Kraken2 + Bracken (+ معرفی MetaPhlAn 4، HUMAnN 3) | ‏`clean` ← جدول‌های فراوانی | ‏🟢 Kraken2/Bracken تست‌شده 2026-10-13 |
 | 04 | [آمپلیکون 16S](04_16S_Amplicon/) | ترکیب و تنوع از روی 16S | QIIME 2، DADA2، SILVA | Atacama soils (۱٪)، QIIME 2 2026.7 | ✅ تست‌شده |
-
 
 ### سرفصل‌های طراحی‌شده (برای ماژول‌های بعدی)
 
@@ -29,19 +30,19 @@
 - چرا ریدهای انسانی هم مشکل اخلاقی/حریم خصوصی‌اند و هم آنالیز را آلوده می‌کنند.
 - ساخت ایندکس Bowtie2؛ گزینه‌های `--very-sensitive`؛ برداشتن جفت‌های map‌نشده (`--un-conc-gz`).
 - **آزمایش کنترل‌شده:** ریدهای انسانی شبیه‌سازی‌شده را به داده اضافه می‌کنیم. داده‌ی دوره ذاتاً ۰٪ ریدهای انسانی دارد و این در 2026-10-12 تست شد. سپس نرخ حذف را می‌سنجیم.
-- samtools: flagstat، فیلتر بر اساس FLAG، تبدیل SAM/BAM.
+- ‏samtools: flagstat، فیلتر بر اساس FLAG، تبدیل SAM/BAM.
 - دام: مرجع ناقص (فقط GRCh38 بدون ALT/decoy) و حذف کاذب ریدهای باکتریایی مشابه انسان.
 
 **۰۶ — پروفایل تاکسونومیک و عملکردی**
 - مقایسه‌ی دو رویکرد: k-mer (Kraken2/Bracken) و marker-gene (MetaPhlAn 4).
 - **سنجش دقت با ground truth:** precision/recall در سطح گونه و جنس و خطای فراوانی.
 - اثر نسخه‌ی دیتابیس و آستانه‌ی `--confidence` در Kraken2.
-- HUMAnN 3: خانواده‌های ژنی UniRef90 ← KO و مسیرهای MetaCyc. محدودیت پروفایل «فقط مسیر» (پیوند با تمرین gyrA در بخش ۰۰).
+- ‏HUMAnN 3: خانواده‌های ژنی UniRef90 ← KO و مسیرهای MetaCyc. محدودیت پروفایل «فقط مسیر» (پیوند با تمرین gyrA در بخش ۰۰).
 - تحلیل پایین‌دستی در R/Python: تنوع آلفا/بتا و داده‌ی ترکیبی (CLR).
 
 **۰۷ — آمپلیکون 16S**
 - تفاوت بنیادی با Shotgun (تمرین ۱ ماژول 00/01).
-- QIIME 2: import، حذف پرایمر (cutadapt)، DADA2 (ASV)، طبقه‌بندی با SILVA، درخت فیلوژنی، تنوع.
+- ‏QIIME 2: import، حذف پرایمر (cutadapt)، DADA2 (ASV)، طبقه‌بندی با SILVA، درخت فیلوژنی، تنوع.
 - داده: مجموعه‌ی آموزشی رسمی QIIME 2 (Moving Pictures) یا یک mock community 16S.
 - دام‌ها: رقیق‌سازی (rarefaction)، کنترل منفی و decontam، تفسیر ASV در برابر OTU.
 
@@ -49,6 +50,9 @@
 - بخش‌های ۰۰ و ۰۱ (به‌ویژه Bash، فرمت FASTQ و Conda)؛ برای تحلیل‌های پایین‌دستی ماژول ۰۶: بخش ۰۲ (R/Python).
 
 ## اجرای سریع
+
+<div dir="ltr">
+
 ```bash
 conda activate bioinfo_course
 cd 06_Metagenomics
@@ -56,3 +60,7 @@ bash data/download.sh
 bash 01_Read_QC_Trimming/scripts/run_qc.sh
 bash 01_Read_QC_Trimming/scripts/check.sh
 ```
+
+</div>
+
+</div>

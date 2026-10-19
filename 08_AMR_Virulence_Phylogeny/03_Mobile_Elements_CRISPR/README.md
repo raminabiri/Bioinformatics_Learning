@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # ماژول 03: عناصر ژنتیکی متحرک و CRISPR (Mobile Genetic Elements & CRISPR)
 
 | | |
@@ -11,16 +13,18 @@
 
 ## اهداف یادگیری
 پس از این ماژول می‌توانید:
-1. contigهای پلاسمیدی را شناسایی و replicon type تعیین کنید.
+1. ‏contigهای پلاسمیدی را شناسایی و replicon type تعیین کنید.
 2. ژن مقاومت را به عنصر حامل (پلاسمید، IS، ترانسپوزون) نسبت دهید.
 3. محدودیت اسمبلی short-read در بازسازی پلاسمید را توضیح دهید (پیوند با 10/02).
 
 ## سرفصل درس
 1. پلاسمید، IS، ترانسپوزون، اینتگرون، جزایر ژنومی
-2. PlasmidFinder و MOB-suite (typing و reconstruction)
-3. MobileElementFinder و ISfinder
-4. CRISPR-Cas و spacerها به‌عنوان سابقه‌ی آلودگی فاژی
+2. ‏PlasmidFinder و MOB-suite (typing و reconstruction)
+3. ‏MobileElementFinder و ISfinder
+4. ‏CRISPR-Cas و spacerها به‌عنوان سابقه‌ی آلودگی فاژی
 
 ## تمرین‌های برنامه‌ریزی‌شده
 - تعیین محل ژن کارباپنماز (پلاسمید یا کروموزوم) در هر ایزوله
 - (چالشی) آیا یک پلاسمید مشترک بین ایزوله‌های نامرتبط وجود دارد؟
+
+</div>

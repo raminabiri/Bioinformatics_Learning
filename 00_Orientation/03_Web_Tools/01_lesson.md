@@ -134,10 +134,10 @@ M  V  Y  S  Y  T  E  K  K  R  I  R  K  D  F  G  K  R  P  Q
 </div>
 
 **این خروجی یعنی:**
-- **Length:** هم‌ترازی ۱٬۴۵۱ ستون دارد (بیشتر از هر دو پروتئین، چون شکاف‌ها هم ستون‌اند).
-- **Identity:** در **۴۳٪** ستون‌ها دو اسیدآمینه یکسان‌اند.
-- **Similarity:** با افزودن جفت‌های «همانند»، به **۵۶٪** می‌رسیم.
-- **Gaps:** ۲۶٪ ستون‌ها شکاف دارند؛ یعنی بخش‌هایی در یکی هست که در دیگری نیست.
+- ‏**Length:** هم‌ترازی ۱٬۴۵۱ ستون دارد (بیشتر از هر دو پروتئین، چون شکاف‌ها هم ستون‌اند).
+- ‏**Identity:** در **۴۳٪** ستون‌ها دو اسیدآمینه یکسان‌اند.
+- ‏**Similarity:** با افزودن جفت‌های «همانند»، به **۵۶٪** می‌رسیم.
+- ‏**Gaps:** ۲۶٪ ستون‌ها شکاف دارند؛ یعنی بخش‌هایی در یکی هست که در دیگری نیست.
 
 پس دو پروتئین **همتای هم‌اند** (۴۳٪ یکسانی برای دو باکتری این‌قدر دور، زیاد است)، ولی بسیار هم فرق دارند. حالا به RRDR نگاه کنیم. در پایین خروجی، تکه‌ای را پیدا کنید که *E. coli* از ۴۹۲ شروع می‌شود:
 
@@ -176,7 +176,7 @@ RPOB_MYCTU       417 LINIRPVVAAIKEFFGTSQLSQFMDQNNPLSGLTHKRRLSALGPGGLSRE    466
    | *Mycobacterium tuberculosis* H37Rv | `P9WGY9` | ۱٬۱۷۸ |
    | *Staphylococcus aureus* NCTC 8325 | `P47768` | ۱٬۱۸۳ |
 
-3. **Submit** را بزنید.
+3. ‏**Submit** را بزنید.
 
 خروجی یک هم‌ترازی بلند است. این تکه‌ی آن، دقیقاً RRDR *E. coli* (۵۰۷ تا ۵۳۳) است:
 
@@ -198,9 +198,9 @@ sp|P47768|RPOB_STAA8   GSSQLSQFMDQANPLAELTHKRRLSAL
 
 | جایگاه در *E. coli* | ستون | در هر چهار باکتری |
 | :--- | :-: | :--- |
-| D516 | دهم | **D** در همه |
-| H526 | بیستم | **H** در همه |
-| S531 | بیست‌وپنجم | **S** در همه |
+| D516 | دهم | ‏**D** در همه |
+| H526 | بیستم | ‏**H** در همه |
+| S531 | بیست‌وپنجم | ‏**S** در همه |
 
 **پاسخ پرسش داستان:** RRDR از باکتری روده‌ای (*E. coli*، *Salmonella*) تا عامل سل و *S. aureus* بسیار حفاظت‌شده است، و سه جایگاه کلیدی در همه یکسان‌اند. برای همین جهش‌های مقاومت در این باکتری‌ها در **همین ناحیه** رخ می‌دهند. برای نمونه، رایج‌ترین جهش مقاومت به ریفامپیسین در سل، همتای S531 *E. coli* است.
 
@@ -208,22 +208,22 @@ sp|P47768|RPOB_STAA8   GSSQLSQFMDQANPLAELTHKRRLSAL
 
 ---
 
-## ۶. BLAST، از نزدیک
+## ‏۶. BLAST، از نزدیک
 
 در تمرین ۴ ماژول [بیوانفورماتیک چیست؟](../01_Bioinformatics_Landscape/02_exercises.md) با BLAST یک توالی ناشناس را شناسایی کردید. حالا که هم‌ترازی را می‌شناسید، BLAST ساده‌تر فهمیده می‌شود:
 
-**BLAST یک هم‌ترازی محلی سریع است** میان توالی شما و **میلیون‌ها** توالی پایگاه داده. به جای هم‌تراز کردن کامل با تک‌تک توالی‌ها (که سال‌ها طول می‌کشید)، نخست تکه‌های کوتاه یکسان را پیدا می‌کند و تنها پیرامون آن‌ها هم‌ترازی کامل می‌سازد.
+‏**BLAST یک هم‌ترازی محلی سریع است** میان توالی شما و **میلیون‌ها** توالی پایگاه داده. به جای هم‌تراز کردن کامل با تک‌تک توالی‌ها (که سال‌ها طول می‌کشید)، نخست تکه‌های کوتاه یکسان را پیدا می‌کند و تنها پیرامون آن‌ها هم‌ترازی کامل می‌سازد.
 
 | گونه‌ی BLAST | توالی شما | پایگاه داده |
 | :--- | :--- | :--- |
 | `blastn` | DNA | DNA |
 | `blastp` | پروتئین | پروتئین |
-| `blastx` | DNA (ترجمه در شش قاب) | پروتئین |
+| `blastx` | ‏DNA (ترجمه در شش قاب) | پروتئین |
 
 **ستون‌های مهم خروجی:**
-- **Per. Ident:** درصد یکسانی در تکه‌ی هم‌ترازشده.
-- **Query Cover:** چند درصد از توالی شما در هم‌ترازی آمده است. یکسانی ۱۰۰٪ با پوشش ۱۰٪ یعنی تنها تکه‌ی کوچکی همانند است.
-- **E value:** شمار نتیجه‌هایی به همین خوبی که **از روی شانس** در این پایگاه انتظار می‌رود. هرچه **کوچک‌تر**، بهتر. عددی مانند `1e-40` یعنی شانس کمابیش صفر است؛ عددی نزدیک ۱ یا بزرگ‌تر یعنی همانندی ممکن است تصادفی باشد.
+- ‏**Per. Ident:** درصد یکسانی در تکه‌ی هم‌ترازشده.
+- ‏**Query Cover:** چند درصد از توالی شما در هم‌ترازی آمده است. یکسانی ۱۰۰٪ با پوشش ۱۰٪ یعنی تنها تکه‌ی کوچکی همانند است.
+- ‏**E value:** شمار نتیجه‌هایی به همین خوبی که **از روی شانس** در این پایگاه انتظار می‌رود. هرچه **کوچک‌تر**، بهتر. عددی مانند `1e-40` یعنی شانس کمابیش صفر است؛ عددی نزدیک ۱ یا بزرگ‌تر یعنی همانندی ممکن است تصادفی باشد.
 
 <details>
 <summary>✋ <b>امتحان کن:</b> یک نتیجه‌ی BLAST یکسانی ۹۸٪ و Query Cover برابر ۱۵٪ دارد. می‌شود گفت توالی شما همان ژن است؟</summary>
@@ -239,16 +239,16 @@ sp|P47768|RPOB_STAA8   GSSQLSQFMDQANPLAELTHKRRLSAL
 | :--- | :--- | :--- |
 | نگاه تنها به درصد یکسانی کل پروتئین | ناحیه‌های مهم (جایگاه فعال، جای دارو) می‌توانند بسیار حفاظت‌شده‌تر از بقیه باشند | ناحیه‌ی مورد نظر را جداگانه در هم‌ترازی ببینید |
 | برداشتن قاب ترجمه‌ی نادرست | پروتئین ساختگی و بی‌معنی به دست می‌آید | قابی که با M شروع می‌شود و کدون پایان میانی ندارد |
-| یکی گرفتن شماره‌ی جایگاه در دو باکتری | S531 در *E. coli* در باکتری دیگر شماره‌ی دیگری دارد | جایگاه همتا را از هم‌ترازی بخوانید |
+| یکی گرفتن شماره‌ی جایگاه در دو باکتری | ‏S531 در *E. coli* در باکتری دیگر شماره‌ی دیگری دارد | جایگاه همتا را از هم‌ترازی بخوانید |
 
 ---
 
 ## ۸. جمع‌بندی
 
-- DNA را در **شش قاب** می‌شود ترجمه کرد؛ قاب درست با M شروع می‌شود و کدون پایان میانی ندارد.
+- ‏DNA را در **شش قاب** می‌شود ترجمه کرد؛ قاب درست با M شروع می‌شود و کدون پایان میانی ندارد.
 - **هم‌ترازی** توالی‌ها را طوری زیر هم می‌گذارد که بخش‌های همانند روبه‌روی هم بیفتند: یکسان (`|`)، همانند (`:`)، نایکسان، شکاف (`-`).
-- **Needle** دو توالی را سراسری هم‌تراز می‌کند؛ **Clustal Omega** چند توالی را؛ **BLAST** یک توالی را در برابر کل پایگاه، به شکل محلی.
-- RpoB *E. coli* و *M. tuberculosis* تنها ۴۳٪ یکسان‌اند، ولی RRDR در چهار باکتری بسیار حفاظت‌شده است و D516، H526 و S531 در همه یکسان‌اند.
+- ‏**Needle** دو توالی را سراسری هم‌تراز می‌کند؛ **Clustal Omega** چند توالی را؛ **BLAST** یک توالی را در برابر کل پایگاه، به شکل محلی.
+- ‏RpoB *E. coli* و *M. tuberculosis* تنها ۴۳٪ یکسان‌اند، ولی RRDR در چهار باکتری بسیار حفاظت‌شده است و D516، H526 و S531 در همه یکسان‌اند.
 
 ---
 
@@ -285,7 +285,7 @@ sp|P47768|RPOB_STAA8   GSSQLSQFMDQANPLAELTHKRRLSAL
 
 ### راهنمای ابزارها و مقاله‌ها
 - ExPASy Translate: https://web.expasy.org/translate/
-- EMBL-EBI Job Dispatcher (Needle، Clustal Omega و ابزارهای دیگر): https://www.ebi.ac.uk/jdispatcher/
+- ‏EMBL-EBI Job Dispatcher (Needle، Clustal Omega و ابزارهای دیگر): https://www.ebi.ac.uk/jdispatcher/
 - Madeira F, et al. (2024). The EMBL-EBI Job Dispatcher sequence analysis tools framework in 2024. *Nucleic Acids Res.* https://doi.org/10.1093/nar/gkae241
 - Sievers F, et al. (2011). Fast, scalable generation of high-quality protein multiple sequence alignments using Clustal Omega. *Mol Syst Biol* 7:539. https://doi.org/10.1038/msb.2011.75
 - NCBI BLAST: https://blast.ncbi.nlm.nih.gov/Blast.cgi
@@ -294,11 +294,11 @@ sp|P47768|RPOB_STAA8   GSSQLSQFMDQANPLAELTHKRRLSAL
 ### فیلم‌های آموزشی
 
 **Coursera:**
-- UC San Diego — *Comparing Genes, Proteins, and Genomes (Bioinformatics III)*. نیمه‌ی یکم آن هم‌ترازی و BLAST است: https://www.coursera.org/learn/comparing-genomes
-- Peking University — *Bioinformatics: Introduction and Methods*. بخش‌های هم‌ترازی توالی: https://www.coursera.org/learn/bioinformatics-pku
+- ‏UC San Diego — *Comparing Genes, Proteins, and Genomes (Bioinformatics III)*. نیمه‌ی یکم آن هم‌ترازی و BLAST است: https://www.coursera.org/learn/comparing-genomes
+- ‏Peking University — *Bioinformatics: Introduction and Methods*. بخش‌های هم‌ترازی توالی: https://www.coursera.org/learn/bioinformatics-pku
 
 **edX:**
-- IsraelX — *Essentials of Genomics and Biomedical Informatics*. بخش هم‌ترازی و BLAST: https://www.edx.org/learn/medicine/israelx-essentials-of-genomics-and-biomedical-informatics
+- ‏IsraelX — *Essentials of Genomics and Biomedical Informatics*. بخش هم‌ترازی و BLAST: https://www.edx.org/learn/medicine/israelx-essentials-of-genomics-and-biomedical-informatics
 
 **YouTube:**
 - NCBI — *Webinar: A Practical Guide to NCBI BLAST*: https://www.youtube.com/watch?v=KLBE0AuH-Sk

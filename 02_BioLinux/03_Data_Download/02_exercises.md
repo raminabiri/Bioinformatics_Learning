@@ -22,7 +22,7 @@ bash ../scripts/gene_tour.sh gyrA 511145 "fluoroquinolone resistance"
 
 </div>
 
-1. Gene ID، شناسه‌ی UniProt و طول پروتئین را با پاسخ‌های [تمرین ۲ ماژول پایگاه‌های داده](../../00_Orientation/02_Biological_Databases/02_exercises.md) بسنجید. یکی‌اند؟
+1. ‏Gene ID، شناسه‌ی UniProt و طول پروتئین را با پاسخ‌های [تمرین ۲ ماژول پایگاه‌های داده](../../00_Orientation/02_Biological_Databases/02_exercises.md) بسنجید. یکی‌اند؟
 2. شمار ساختارهای PDB برای gyrA چند است؟ با rpoB (۳۹۱) بسنجید.
 3. در خروجی KEGG برای rpoB یک خط `PATHWAY` بود. برای gyrA هست؟
 

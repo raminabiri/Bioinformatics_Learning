@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # ماژول 03: فراخوانی و تفسیر واریانت انسانی (Human Variant Calling)
 
 | | |
@@ -17,9 +19,11 @@
 
 ## سرفصل درس
 1. mapping، mark duplicates، BQSR
-2. HaplotypeCaller و genotyping
+2. ‏HaplotypeCaller و genotyping
 3. فیلتر و ارزیابی با GIAB
 4. آنوتیشن و طبقه‌بندی ACMG (مفاهیم)
 
 ## تمرین‌های برنامه‌ریزی‌شده
 - فراخوانی روی یک ناحیه‌ی کوچک و محاسبه‌ی precision/recall با GIAB
+
+</div>

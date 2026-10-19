@@ -68,8 +68,8 @@ bash download.sh
 
 </div>
 
-- `cd` یعنی «به این پوشه برو».
-- `bash download.sh` یعنی «دستورهای درون این فایل را اجرا کن». این همان دانلود دوباره‌پذیری است که در بخش ۰۰ گفتیم.
+- ‏`cd` یعنی «به این پوشه برو».
+- ‏`bash download.sh` یعنی «دستورهای درون این فایل را اجرا کن». این همان دانلود دوباره‌پذیری است که در بخش ۰۰ گفتیم.
 
 ---
 
@@ -136,7 +136,7 @@ rm -r project                         # پاک کن (-r: پوشه و هر چه �
 
 </div>
 
-⚠️ **`rm` سطل زباله ندارد.** چیزی که پاک شد، برنمی‌گردد. پیش از `rm` با `ls` ببینید دقیقاً چه چیزی را پاک می‌کنید.
+‏⚠️ **`rm` سطل زباله ندارد.** چیزی که پاک شد، برنمی‌گردد. پیش از `rm` با `ls` ببینید دقیقاً چه چیزی را پاک می‌کنید.
 
 <details>
 <summary>✋ <b>امتحان کن:</b> اگر در پوشه‌ی <code>data</code> باشید، <code>cd ../..</code> شما را کجا می‌برد؟</summary>
@@ -207,7 +207,7 @@ less -S ecoli_k12.gff
 
 </div>
 
-`less` فایل را صفحه‌به‌صفحه نشان می‌دهد، بی‌آنکه کل آن را در حافظه بریزد. با فاصله (Space) پایین بروید، با `/` جستجو کنید و با `q` بیرون بیایید. گزینه‌ی `-S` خط‌های بلند را نمی‌شکند.
+‏`less` فایل را صفحه‌به‌صفحه نشان می‌دهد، بی‌آنکه کل آن را در حافظه بریزد. با فاصله (Space) پایین بروید، با `/` جستجو کنید و با `q` بیرون بیایید. گزینه‌ی `-S` خط‌های بلند را نمی‌شکند.
 
 ### خواندن فایل فشرده
 فایل‌های FASTQ در بسیاری از موارد فشرده‌اند (پسوند `.gz`). **آن‌ها را روی دیسک باز نکنید؛** دستور `zcat` محتوا را بی‌باز کردن نشان می‌دهد:
@@ -234,7 +234,7 @@ BBBBBFFFFFFFFFFFFFFFFFF/FFFFFFFFFFFFFFFFFFFFFFFFFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
 
 نخستین رید این نمونه، با چهار خطی که در بخش ۰۰ دیدیم: نام، توالی، `+`، کیفیت.
 
-- `R=fastq` یک **متغیر** می‌سازد: نامی کوتاه برای یک نشانی. پس از آن `$R` جای آن نشانی را می‌گیرد. اگر روزی FASTQها جای دیگری بودند، تنها همین یک خط را عوض می‌کنید.
+- ‏`R=fastq` یک **متغیر** می‌سازد: نامی کوتاه برای یک نشانی. پس از آن `$R` جای آن نشانی را می‌گیرد. اگر روزی FASTQها جای دیگری بودند، تنها همین یک خط را عوض می‌کنید.
 
 <details>
 <summary>✋ <b>امتحان کن:</b> چرا خروجی <code>head -n 4</code> روی یک FASTQ دقیقاً یک رید است؟</summary>
@@ -317,16 +317,16 @@ head -n 1 ecoli_k12.fna > header.txt
 | اشتباه | چرا مشکل است | به جایش چه کنیم |
 | :--- | :--- | :--- |
 | باز کردن فایل بزرگ در ویرایشگر | کامپیوتر کند می‌شود یا برنامه بسته می‌شود | `head`، `tail`، `less`، `wc` |
-| `gunzip` کردن فایل `.gz` تنها برای دیدن آن | چندین برابر فضای دیسک می‌گیرد | `zcat file.gz \| head` |
-| `rm` یا `>` بی‌نگاه کردن | پاک شدن یا بازنویسی بی‌بازگشت | پیش از آن `ls` کنید؛ نام‌ها را با Tab کامل کنید |
+| ‏`gunzip` کردن فایل `.gz` تنها برای دیدن آن | چندین برابر فضای دیسک می‌گیرد | `zcat file.gz \| head` |
+| ‏`rm` یا `>` بی‌نگاه کردن | پاک شدن یا بازنویسی بی‌بازگشت | پیش از آن `ls` کنید؛ نام‌ها را با Tab کامل کنید |
 
 ---
 
 ## ۸. جمع‌بندی
 
 - ترمینال جایی است که به کامپیوتر نوشته فرمان می‌دهید. هر دستور = **نام + گزینه + ورودی**.
-- `pwd`، `ls`، `cd` برای جابه‌جایی؛ `mkdir`، `cp`، `mv`، `rm` برای مدیریت فایل.
-- `head`، `tail`، `wc -l`، `less` و `zcat` برای نگاه کردن به فایل بزرگ بی‌باز کردنش.
+- ‏`pwd`، `ls`، `cd` برای جابه‌جایی؛ `mkdir`، `cp`، `mv`، `rm` برای مدیریت فایل.
+- ‏`head`، `tail`، `wc -l`، `less` و `zcat` برای نگاه کردن به فایل بزرگ بی‌باز کردنش.
 - **لوله** (`|`) خروجی یک دستور را به دستور بعدی می‌دهد، و `>` آن را در فایل می‌ریزد.
 
 ---
@@ -334,7 +334,7 @@ head -n 1 ecoli_k12.fna > header.txt
 <details>
 <summary>📘 <b>برای کنجکاوها (اختیاری):</b> لینوکس، یونیکس و Bash چه نسبتی با هم دارند؟</summary>
 
-**Unix** یک سیستم‌عامل است که در دهه‌ی ۱۹۷۰ در آزمایشگاه Bell ساخته شد. **Linux** (۱۹۹۱) یک سیستم‌عامل آزاد «همانند یونیکس» است که امروز بیشتر سرورهای پژوهشی روی آن اجرا می‌شوند. macOS هم همانند یونیکس است. **Bash** (Bourne Again SHell) یکی از shellهاست. shellهای دیگری مانند zsh (پیش‌فرض macOS) هم هستند که دستورهای پایه‌شان یکی است.
+‏**Unix** یک سیستم‌عامل است که در دهه‌ی ۱۹۷۰ در آزمایشگاه Bell ساخته شد. **Linux** (۱۹۹۱) یک سیستم‌عامل آزاد «همانند یونیکس» است که امروز بیشتر سرورهای پژوهشی روی آن اجرا می‌شوند. macOS هم همانند یونیکس است. **Bash** (Bourne Again SHell) یکی از shellهاست. shellهای دیگری مانند zsh (پیش‌فرض macOS) هم هستند که دستورهای پایه‌شان یکی است.
 
 ستون اول `ls -l` (مانند `-rw-r--r--`) دسترسی‌ها را نشان می‌دهد: سه حرف نخست برای صاحب فایل (r = خواندن، w = نوشتن، x = اجرا)، سه حرف بعدی برای گروه، و سه حرف آخر برای دیگران. اسکریپتی که می‌خواهید مستقیم اجرا کنید باید `x` داشته باشد (`chmod +x script.sh`)، وگرنه آن را با `bash script.sh` اجرا کنید.
 </details>
@@ -359,18 +359,18 @@ head -n 1 ecoli_k12.fna > header.txt
 ## منابع
 
 ### کتاب و درس رایگان
-- Software Carpentry — *The Unix Shell* (درس رایگان، گام‌به‌گام): https://swcarpentry.github.io/shell-novice/
-- Shotts W. *The Linux Command Line* (نسخه‌ی رایگان آنلاین): https://linuxcommand.org/tlcl.php
-- Buffalo V. *Bioinformatics Data Skills*. O'Reilly, 2015 (فصل ۳): https://vincebuffalo.com/book/
+- ‏Software Carpentry — *The Unix Shell* (درس رایگان، گام‌به‌گام): https://swcarpentry.github.io/shell-novice/
+- ‏Shotts W. *The Linux Command Line* (نسخه‌ی رایگان آنلاین): https://linuxcommand.org/tlcl.php
+- ‏Buffalo V. *Bioinformatics Data Skills*. O'Reilly, 2015 (فصل ۳): https://vincebuffalo.com/book/
 
 ### فیلم‌های آموزشی
 
 **Coursera:**
-- Johns Hopkins University — *Command Line Tools for Genomic Data Science*. هفته‌ی یکم پایه‌های Unix است: https://www.coursera.org/learn/genomic-tools
+- ‏Johns Hopkins University — *Command Line Tools for Genomic Data Science*. هفته‌ی یکم پایه‌های Unix است: https://www.coursera.org/learn/genomic-tools
 
 **edX:**
-- edX — *Try It: Learn Linux Command Line*. دوره‌ی کوتاه و رایگان برای آغاز کار با ترمینال: https://www.edx.org/learn/linux/edx-try-it-learn-linux-command-line
-- The Linux Foundation — *Introduction to Linux*. دوره‌ی کامل‌تر: https://www.edx.org/learn/computer-programming/the-linux-foundation-introduction-to-linux
+- ‏edX — *Try It: Learn Linux Command Line*. دوره‌ی کوتاه و رایگان برای آغاز کار با ترمینال: https://www.edx.org/learn/linux/edx-try-it-learn-linux-command-line
+- ‏The Linux Foundation — *Introduction to Linux*. دوره‌ی کامل‌تر: https://www.edx.org/learn/computer-programming/the-linux-foundation-introduction-to-linux
 
 **YouTube:**
 - Software Carpentry — *The Shell, Episode 1: Introduction*: https://www.youtube.com/watch?v=U3iNcBtycaQ

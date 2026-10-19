@@ -1,16 +1,24 @@
+<div dir="rtl">
+
 # تمرین‌ها: پایپلاین با Snakemake
 
 > پیش‌نیاز: داده‌ی بخش ۰۶ (`bash 06_Metagenomics/data/download.sh`)، و `snakemake`، `fastp`، `fastqc` و `multiqc` در PATH.
+>
+> <div dir="ltr">
+>
 > ```bash
 > cd 05_Reproducible_Work/02_Workflows_Snakemake
 > ```
+>
+> </div>
+>
 
 ---
 
 ## تمرین ۱ (اجرا و خواندن خروجی)
 
-1. dry run بگیرید. چند job ساخته می‌شود؟ چرا `fastqc_raw` چهار بار و `fastp` دو بار؟
-2. workflow را با ۴ هسته اجرا کنید. جدول نهایی `jq .summary.after_filtering.total_reads results/fastp/*.json` را با درس 06/01 مقایسه کنید.
+1. ‏dry run بگیرید. چند job ساخته می‌شود؟ چرا `fastqc_raw` چهار بار و `fastp` دو بار؟
+2. ‏workflow را با ۴ هسته اجرا کنید. جدول نهایی `jq .summary.after_filtering.total_reads results/fastp/*.json` را با درس 06/01 مقایسه کنید.
 3. دوباره اجرا کنید. چه پیامی می‌گیرید و چرا؟
 
 ---
@@ -29,9 +37,15 @@
 ## تمرین ۳ (خطا): ورودی‌ای که وجود ندارد
 
 از Snakemake بخواهید خروجی fastp نمونه‌ای را بسازد که داده‌اش وجود ندارد:
+
+<div dir="ltr">
+
 ```bash
 snakemake -s workflow/Snakefile --cores 4 -n results/fastp/sample3.json
 ```
+
+</div>
+
 پیام خطا چیست؟ Snakemake از کجا فهمید به کدام فایل‌ها نیاز دارد؟
 
 ---
@@ -45,8 +59,8 @@ snakemake -s workflow/Snakefile --cores 4 -n results/fastp/sample3.json
 ## تمرین ۵ (چالشی): افزودن حذف میزبان
 
 منطق ماژول 06/02 را به workflow اضافه کنید:
-- rule `bowtie2_index` روی `../../06_Metagenomics/data/host/host_chr21_region.fa`
-- rule `host_removal` با ورودی `results/trimmed/{sample}_R{1,2}.fastq.gz` و خروجی `results/clean/{sample}_R{1,2}.fastq.gz`، با منطق `samtools view -f 12 -F 256`
+- ‏rule `bowtie2_index` روی `../../06_Metagenomics/data/host/host_chr21_region.fa`
+- ‏rule `host_removal` با ورودی `results/trimmed/{sample}_R{1,2}.fastq.gz` و خروجی `results/clean/{sample}_R{1,2}.fastq.gz`، با منطق `samtools view -f 12 -F 256`
 
 تعداد جفت‌رید `results/clean/` را با ماژول 06/02 مقایسه کنید.
 راهنمایی: می‌توانید Snakefile درس را با `include:` در یک Snakefile جدید وارد کنید.
@@ -59,3 +73,5 @@ snakemake -s workflow/Snakefile --cores 4 -n results/fastp/sample3.json
 1. شمارش یک‌باره‌ی ژن‌های یک فایل GFF.
 2. تحلیل متاژنومی ۳۰۰ نمونه روی کلاستر دانشگاه، با پایپلاین استاندارد و قابل دفاع برای داور.
 3. پایان‌نامه‌ای با ۵ مرحله‌ی تحلیل اختصاصی که ابزار آماده ندارد.
+
+</div>

@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # ماژول ۰۷: کنترل نسخه با Git و GitHub (Version Control with Git & GitHub)
 
 | | |
@@ -16,7 +18,9 @@
 4. خطرهای واقعی (رمز یا داده‌ی حساس در تاریخچه) را بشناسید و درست واکنش نشان دهید.
 
 ## فایل‌ها
-- [01_lesson.md](01_lesson.md) — متن درس
-- [02_exercises.md](02_exercises.md) — تمرین‌ها
-- [03_solutions.md](03_solutions.md) — پاسخ تشریحی
-- [scripts/git_demo.sh](../99_scripts_data/01_Git_GitHub/scripts/git_demo.sh) — بازسازی کامل جلسه‌ی درس (hashها در هر کامپیوتری یکسان‌اند)
+- ‏[01_lesson.md](01_lesson.md) — متن درس
+- ‏[02_exercises.md](02_exercises.md) — تمرین‌ها
+- ‏[03_solutions.md](03_solutions.md) — پاسخ تشریحی
+- ‏[scripts/git_demo.sh](../99_scripts_data/01_Git_GitHub/scripts/git_demo.sh) — بازسازی کامل جلسه‌ی درس (hashها در هر کامپیوتری یکسان‌اند)
+
+</div>

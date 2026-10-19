@@ -1,11 +1,19 @@
+<div dir="rtl">
+
 # تمرین‌ها: پروفایل تاکسونومیک
 
 > پیش‌نیاز: ماژول‌های ۰۱ و ۰۲ اجرا شده باشند و دیتابیس تمرینی ساخته شده باشد:
+>
+> <div dir="ltr">
+>
 > ```bash
 > cd 06_Metagenomics
-> bash 03_Taxonomic_Functional_Profiling/scripts/build_practice_db.sh   # یک‌بار، حدود ۱۳۰ MB دانلود
+> ‏bash 03_Taxonomic_Functional_Profiling/scripts/build_practice_db.sh   # یک‌بار، حدود ۱۳۰ MB دانلود
 > bash 03_Taxonomic_Functional_Profiling/scripts/run_profile.sh
 > ```
+>
+> </div>
+>
 > یادآوری: دیتابیس **تمرینی** است. اعداد این تمرین‌ها درباره‌ی رفتار ابزار است، نه درباره‌ی دقت Kraken2 در کار واقعی.
 
 ---
@@ -30,7 +38,7 @@
 
 ## تمرین ۳ (آزمایش پارامتر): جاروب confidence
 
-Kraken2 و Bracken را روی `minigut_sample2` با `--confidence` برابر 0، 0.05، 0.1، 0.2 و 0.5 اجرا کنید (`CONF=0.2 bash .../run_profile.sh minigut_sample2`) و جدول زیر را پر کنید:
+‏Kraken2 و Bracken را روی `minigut_sample2` با `--confidence` برابر 0، 0.05، 0.1، 0.2 و 0.5 اجرا کنید (`CONF=0.2 bash .../run_profile.sh minigut_sample2`) و جدول زیر را پر کنید:
 
 | confidence | % طبقه‌بندی‌شده | گونه‌ی پیش‌بینی‌شده | FP | FN | precision | recall | Bray-Curtis |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -41,7 +49,7 @@ Kraken2 و Bracken را روی `minigut_sample2` با `--confidence` برابر 
 
 ## تمرین ۴ (تفسیری): سطح جنس
 
-1. Bracken را برای `minigut` (confidence 0.1) در سطح **جنس** (`-l G`) اجرا کنید.
+1. ‏Bracken را برای `minigut` (confidence 0.1) در سطح **جنس** (`-l G`) اجرا کنید.
 2. آیا گزارش در سطح جنس مشکل *E. coli/Shigella* را حل می‌کند؟ چرا؟
 3. برای گزارش این نمونه در یک مقاله چه پیشنهادی دارید؟
 
@@ -49,9 +57,9 @@ Kraken2 و Bracken را روی `minigut_sample2` با `--confidence` برابر 
 
 ## تمرین ۵ (مفهومی): فراوانی رید در برابر فراوانی سلول
 
-ground truth `minigut` بر حسب **رید** است: *B. fragilis* ۵۷٫۸٪ و *E. coli* ۴۲٫۲٪. اندازه‌ی ژنوم *B. fragilis* YCH46 برابر 5,277,274 bp و *E. coli* K-12 برابر 4,641,652 bp است.
+‏ground truth `minigut` بر حسب **رید** است: *B. fragilis* ۵۷٫۸٪ و *E. coli* ۴۲٫۲٪. اندازه‌ی ژنوم *B. fragilis* YCH46 برابر 5,277,274 bp و *E. coli* K-12 برابر 4,641,652 bp است.
 1. با فرض پوشش یکنواخت، نسبت **سلول‌ها** را حساب کنید.
-2. Kraken2/Bracken کدام را برآورد می‌کند؟ MetaPhlAn چطور؟
+2. ‏Kraken2/Bracken کدام را برآورد می‌کند؟ MetaPhlAn چطور؟
 3. یک مثال بزنید که این تفاوت نتیجه‌ی زیستی را عوض کند.
 
 ---
@@ -62,3 +70,5 @@ ground truth `minigut` بر حسب **رید** است: *B. fragilis* ۵۷٫۸٪ �
 1. با `.kreport` نشان دهید ریدهای *Acinetobacter* در کدام سطوح طبقه‌بندی شده‌اند (راهنمایی: به ردیف `G1` نگاه کنید).
 2. این false positive از کجا می‌آید؟
 3. یک قاعده‌ی گزارش‌دهی برای گروه‌های گونه‌ای بسیار نزدیک پیشنهاد دهید که هم برای *Acinetobacter* و هم برای *E. coli/Shigella* کار کند.
+
+</div>

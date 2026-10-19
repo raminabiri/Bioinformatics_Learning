@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # ماژول 01: ژن‌ها و جهش‌های مقاومت آنتی‌بیوتیکی (Antimicrobial Resistance)
 
 | | |
@@ -17,11 +19,13 @@
 
 ## سرفصل درس
 1. هستی‌شناسی ARO در CARD؛ مدل‌های homolog و variant
-2. AMRFinderPlus (NCBI) و حالت `--organism` برای جهش‌ها
-3. ABRicate و دیتابیس‌های چندگانه (ResFinder، CARD، NCBI)
+2. ‏AMRFinderPlus (NCBI) و حالت `--organism` برای جهش‌ها
+3. ‏ABRicate و دیتابیس‌های چندگانه (ResFinder، CARD، NCBI)
 4. آستانه‌های identity/coverage و ژن‌های ناقص
 5. گزارش‌دهی: نسخه‌ی ابزار و دیتابیس
 
 ## تمرین‌های برنامه‌ریزی‌شده
 - جدول ژن‌های مقاومت همه‌ی ایزوله‌ها با سه ابزار و تحلیل اختلاف
 - تفسیر جهش‌های rpoB با CARD
+
+</div>

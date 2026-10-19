@@ -1,11 +1,19 @@
+<div dir="rtl">
+
 # تمرین‌ها: فرمت‌های داده‌ی زیستی
 
 > پیش از شروع:
+>
+> <div dir="ltr">
+>
 > ```bash
 > cd 02_BioLinux/02_Bio_File_Formats
 > bash scripts/make_examples.sh
 > G=../01_Bash_Linux/data/ecoli_k12.fna
 > ```
+>
+> </div>
+>
 > ابزارها: `samtools`، `bcftools`، `seqkit` (در محیط دوره یا `~/opt/course_tools/bin`).
 
 ---
@@ -60,3 +68,5 @@
 3. موقعیت‌های فراخوانی‌شده را با `data/chr21_true_mutations.txt` (ستون ۲ = موقعیت) مقایسه کنید و precision و recall را برای «همه» و «QUAL≥20» حساب کنید.
 4. میانگین عمق و درصد ناحیه‌ی پوشش‌داده‌شده را با `samtools depth -a` حساب کنید و recall پایین را توضیح دهید.
 5. چرا تطبیق «فقط با موقعیت» برای indelها ممکن است کمی خطا داشته باشد؟
+
+</div>

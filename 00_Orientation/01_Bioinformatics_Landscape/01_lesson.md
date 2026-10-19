@@ -69,7 +69,7 @@ M  V  Y  S  Y  T  E  K  K  R  I  R  K  D  F  G  K  R  P  Q
 <details>
 <summary>✋ <b>امتحان کن:</b> سه کدون اول rpoB (<code>ATG GTT TAC</code>) را با جدول کد ژنتیکی ترجمه کنید. با سه حرف اول پروتئین بالا یکی است؟</summary>
 
-`ATG` = متیونین (M)، `GTT` = والین (V)، `TAC` = تیروزین (Y). بله، همان `M V Y` است. یعنی کاری که کامپیوتر برای ۱٬۳۴۲ اسیدآمینه‌ی این پروتئین انجام می‌دهد، دقیقاً همان کاری است که شما با جدول کد ژنتیکی می‌کنید.
+‏`ATG` = متیونین (M)، `GTT` = والین (V)، `TAC` = تیروزین (Y). بله، همان `M V Y` است. یعنی کاری که کامپیوتر برای ۱٬۳۴۲ اسیدآمینه‌ی این پروتئین انجام می‌دهد، دقیقاً همان کاری است که شما با جدول کد ژنتیکی می‌کنید.
 </details>
 
 ---
@@ -89,7 +89,7 @@ M  V  Y  S  Y  T  E  K  K  R  I  R  K  D  F  G  K  R  P  Q
 
 ### ۳.۲ دستگاه توالی‌یابی ژنوم را تکه‌تکه می‌خواند
 مشکل دوم این است که دستگاه‌های رایج (مانند Illumina) نمی‌توانند ژنوم را از اول تا آخر یکجا بخوانند. فرایند این‌طور است:
-1. DNA را به **قطعه‌های کوچک** می‌شکنند.
+1. ‏DNA را به **قطعه‌های کوچک** می‌شکنند.
 2. دستگاه از هر قطعه تنها حدود **۱۵۰ باز** را می‌خواند. به هر خوانش یک **رید (read)** می‌گویند.
 3. چون قطعه‌ها تصادفی‌اند و از DNA میلیون‌ها سلول آمده‌اند، هر نقطه‌ی ژنوم در **چندین رید** دیده می‌شود. به این تعداد **پوشش (coverage)** یا **عمق** می‌گویند.
 
@@ -97,11 +97,11 @@ M  V  Y  S  Y  T  E  K  K  R  I  R  K  D  F  G  K  R  P  Q
 
 **چند رید لازم است؟** یک حساب ساده:
 
-$$\text{تعداد رید} = \frac{\text{اندازه‌ی ژنوم} \times \text{پوشش}}{\text{طول رید}}$$
+‏$$\text{تعداد رید} = \frac{\text{اندازه‌ی ژنوم} \times \text{پوشش}}{\text{طول رید}}$$
 
 برای *E. coli* با پوشش ۳۰ برابر و رید ۱۵۰ بازی:
 
-$$\frac{4{,}641{,}652 \times 30}{150} \approx 928{,}000 \text{ رید}$$
+‏$$\frac{4{,}641{,}652 \times 30}{150} \approx 928{,}000 \text{ رید}$$
 
 برای ژنوم انسان با همین پوشش حدود **۶۲۰ میلیون رید** لازم است. هیچ انسانی این تعداد تکه را با دست کنار هم نمی‌گذارد.
 
@@ -114,7 +114,7 @@ $$\frac{4{,}641{,}652 \times 30}{150} \approx 928{,}000 \text{ رید}$$
 ### ۳.۳ داده‌ها چه شکلی‌اند؟ (تنها یک نگاه)
 در این دوره بیشتر با دو نوع فایل متنی کار می‌کنیم. جزئیات آن‌ها در درس [فرمت‌های داده](../../02_BioLinux/02_Bio_File_Formats/) می‌آید. این‌جا تنها ظاهرشان را ببینید.
 
-**FASTA: توالی خالص.** یک خط عنوان که با `>` شروع می‌شود، و بعد خود توالی:
+‏**FASTA: توالی خالص.** یک خط عنوان که با `>` شروع می‌شود، و بعد خود توالی:
 
 <div dir="ltr">
 
@@ -126,7 +126,7 @@ AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGCTTCTGAACTG
 
 </div>
 
-**FASTQ: ریدهای دستگاه، به‌همراه کیفیت هر باز.** هر رید چهار خط دارد. این یک رید واقعی از داده‌ی دوره است (کوتاه‌شده):
+‏**FASTQ: ریدهای دستگاه، به‌همراه کیفیت هر باز.** هر رید چهار خط دارد. این یک رید واقعی از داده‌ی دوره است (کوتاه‌شده):
 
 <div dir="ltr">
 
@@ -219,10 +219,10 @@ BBBBBFFFFFFFFFFFFFFFFFF/FFFFFFF...  ← کیفیت هر باز (هر کاراک�
 
 | چه چیزی | نمونه‌ی ناقص | نمونه‌ی کامل |
 | :--- | :--- | :--- |
-| داده | «ژنوم از NCBI گرفته شد» | `NC_000913.3` (شناسه، همراه با شماره‌ی نسخه بعد از نقطه) |
-| ابزار | «با fastp پالایش شد» | fastp نسخه‌ی 0.23.4 |
+| داده | «ژنوم از NCBI گرفته شد» | ‏`NC_000913.3` (شناسه، همراه با شماره‌ی نسخه بعد از نقطه) |
+| ابزار | «با fastp پالایش شد» | ‏fastp نسخه‌ی 0.23.4 |
 | تنظیمات | «با تنظیمات پیش‌فرض» | `--cut_tail --cut_mean_quality 20` |
-| پایگاه داده | «با دیتابیس CARD» | CARD نسخه‌ی 4.0.0 |
+| پایگاه داده | «با دیتابیس CARD» | ‏CARD نسخه‌ی 4.0.0 |
 | کد | «در صورت درخواست ارائه می‌شود» | لینک مخزن کد (برای نمونه GitHub) |
 
 **چرا شماره‌ی نسخه مهم است؟** ابزارها و پایگاه‌های داده مرتب به‌روز می‌شوند. ممکن است همان دستور با نسخه‌ی جدید عدد دیگری بدهد. شماره‌ی `.3` در `NC_000913.3` هم یعنی این توالی تا حالا دو بار اصلاح شده و این نسخه‌ی سوم است.
@@ -279,7 +279,7 @@ BBBBBFFFFFFFFFFFFFFFFFF/FFFFFFF...  ← کیفیت هر باز (هر کاراک�
 | ژنوم مرجع (reference genome) | ژنوم کامل و شناخته‌شده‌ای از همان گونه که ریدها را با آن مقایسه می‌کنیم |
 | FASTA | فرمت فایل متنی برای توالی |
 | FASTQ | فرمت فایل متنی برای ریدها، همراه با کیفیت هر باز |
-| QC (کنترل کیفیت) | بررسی اینکه داده سالم و کافی است |
+| ‏QC (کنترل کیفیت) | بررسی اینکه داده سالم و کافی است |
 | شناسه (accession) | کد یکتای یک رکورد در پایگاه داده، برای نمونه `NC_000913.3` |
 | تکرارپذیری (reproducibility) | اینکه دیگران با همان داده و روش به همان نتیجه برسند |
 
@@ -289,22 +289,22 @@ BBBBBFFFFFFFFFFFFFFFFFF/FFFFFFF...  ← کیفیت هر باز (هر کاراک�
 
 ### مقالات (برای مطالعه‌ی بیشتر)
 - Wilkinson MD, et al. (2016). The FAIR Guiding Principles for scientific data management and stewardship. *Scientific Data* 3:160018. https://doi.org/10.1038/sdata.2016.18
-- Sandve GK, et al. (2013). Ten Simple Rules for Reproducible Computational Research. *PLoS Comput Biol* 9(10):e1003285. https://doi.org/10.1371/journal.pcbi.1003285. یک مقاله‌ی کوتاه و ساده؛ خواندنش را توصیه می‌کنیم.
+- ‏Sandve GK, et al. (2013). Ten Simple Rules for Reproducible Computational Research. *PLoS Comput Biol* 9(10):e1003285. https://doi.org/10.1371/journal.pcbi.1003285. یک مقاله‌ی کوتاه و ساده؛ خواندنش را توصیه می‌کنیم.
 - Noble WS (2009). A Quick Guide to Organizing Computational Biology Projects. *PLoS Comput Biol* 5(7):e1000424. https://doi.org/10.1371/journal.pcbi.1000424
 
 ### منابع آموزشی آنلاین
-- EMBL-EBI Training (دوره‌های رایگان آنلاین): https://www.ebi.ac.uk/training/
+- ‏EMBL-EBI Training (دوره‌های رایگان آنلاین): https://www.ebi.ac.uk/training/
 - Galaxy Training Network: https://training.galaxyproject.org/
-- Rosalind (تمرین‌های برنامه‌نویسی بیوانفورماتیک، از ساده به سخت): https://rosalind.info/
+- ‏Rosalind (تمرین‌های برنامه‌نویسی بیوانفورماتیک، از ساده به سخت): https://rosalind.info/
 
 ### فیلم‌های آموزشی
 
-**Coursera** (دوره‌ها رایگان دیده می‌شوند، گواهی‌نامه پولی است):
-- Peking University — *Bioinformatics: Introduction and Methods*. هفته‌های اول تاریخچه و پایگاه‌های داده‌ی NCBI و EBI را می‌گوید: https://www.coursera.org/learn/bioinformatics-pku
-- UC San Diego — *Biology Meets Programming: Bioinformatics for Beginners*. برای وقتی که به برنامه‌نویسی رسیدید: https://www.coursera.org/learn/bioinformatics
+‏**Coursera** (دوره‌ها رایگان دیده می‌شوند، گواهی‌نامه پولی است):
+- ‏Peking University — *Bioinformatics: Introduction and Methods*. هفته‌های اول تاریخچه و پایگاه‌های داده‌ی NCBI و EBI را می‌گوید: https://www.coursera.org/learn/bioinformatics-pku
+- ‏UC San Diego — *Biology Meets Programming: Bioinformatics for Beginners*. برای وقتی که به برنامه‌نویسی رسیدید: https://www.coursera.org/learn/bioinformatics
 
 **edX:**
-- IsraelX — *Essentials of Genomics and Biomedical Informatics*. یک درآمد گسترده بر ژنومیکس، توالی‌یابی و BLAST برای زیست‌شناس‌ها و پزشکان: https://www.edx.org/learn/medicine/israelx-essentials-of-genomics-and-biomedical-informatics
+- ‏IsraelX — *Essentials of Genomics and Biomedical Informatics*. یک درآمد گسترده بر ژنومیکس، توالی‌یابی و BLAST برای زیست‌شناس‌ها و پزشکان: https://www.edx.org/learn/medicine/israelx-essentials-of-genomics-and-biomedical-informatics
 
 **YouTube:**
 - Rob Edwards (San Diego State University) — *Different layers and levels of bioinformatics*: https://www.youtube.com/watch?v=rTXR5_dyxQA

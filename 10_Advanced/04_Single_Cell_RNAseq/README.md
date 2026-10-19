@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # ماژول 04: ترنسکریپتومیکس تک‌سلولی (Single-cell RNA-seq)
 
 | | |
@@ -5,7 +7,7 @@
 | **بخش** | `10_Advanced` |
 | **پیش‌نیاز** | 02_Programming_Data_Analysis/03 |
 | **زمان تقریبی** | ۱۰ ساعت |
-| **ابزارها** | Cell Ranger (مفاهیم)، Seurat، Scanpy |
+| **ابزارها** | ‏Cell Ranger (مفاهیم)، Seurat، Scanpy |
 | **داده (پیشنهادی)** | دیتاست عمومی 10x (مثلاً PBMC 3k) |
 | **وضعیت** | ⚪ طراحی‌شده — سرفصل و اهداف مشخص است؛ درس طبق [STYLE_GUIDE](../../STYLE_GUIDE.md) نوشته و تست خواهد شد |
 
@@ -17,9 +19,11 @@
 
 ## سرفصل درس
 1. از FASTQ تا ماتریس (Cell Ranger، مفاهیم)
-2. QC: ژن‌ها، UMI، درصد میتوکندری؛ doublet
+2. ‏QC: ژن‌ها، UMI، درصد میتوکندری؛ doublet
 3. نرمال‌سازی، PCA، همسایگی، Leiden، UMAP
-4. annotation نوع سلول و نشانگرها
+4. ‏annotation نوع سلول و نشانگرها
 
 ## تمرین‌های برنامه‌ریزی‌شده
 - تحلیل کامل PBMC 3k در Seurat یا Scanpy
+
+</div>

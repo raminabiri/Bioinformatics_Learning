@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # پاسخ تشریحی: پروفایل تاکسونومیک
 
 > اجرا شده در 2026-10-13 با Kraken2 2.17.1، Bracken 3.0.1 و دیتابیس تمرینی (۴۵ ژنوم). داده و دیتابیس ثابت‌اند، پس اعداد شما باید همین‌ها باشند. **این اعداد درباره‌ی دیتابیس تمرینی‌اند، نه دقت Kraken2 با دیتابیس کامل.**
@@ -6,17 +8,22 @@
 
 ## تمرین ۱: ریدهای *B. fragilis*
 
+<div dir="ltr">
+
 ```bash
 awk -F'\t' '$2 ~ /^NC_006347/ {print $3}' work/03_profile/kraken/minigut_c0.kraken | sort | uniq -c | sort -rn
 grep -P "\t(817|357276|815|909656|818)\t" work/03_profile/kraken/minigut_c0.kreport
 ```
+
+</div>
+
 | مقصد | taxid | جفت‌رید | % از 28,827 |
 | :--- | :-: | ---: | ---: |
 | *Bacteroides fragilis* | 817 | 25,605 | 88.8 |
 | طبقه‌بندی‌نشده | 0 | 1,652 | 5.7 |
 | *Phocaeicola dorei* | 357276 | 1,503 | 5.2 |
-| Bacteroidaceae (خانواده) | 815 | 28 | 0.1 |
-| *Phocaeicola* (جنس) | 909656 | 17 | 0.1 |
+| ‏Bacteroidaceae (خانواده) | 815 | 28 | 0.1 |
+| ‏*Phocaeicola* (جنس) | 909656 | 17 | 0.1 |
 | *B. thetaiotaomicron* | 818 | 13 | <0.1 |
 
 1. ۸۸٫۸٪ درست طبقه‌بندی شدند.
@@ -27,10 +34,17 @@ grep -P "\t(817|357276|815|909656|818)\t" work/03_profile/kraken/minigut_c0.krep
 
 ## تمرین ۲: ریدهای طبقه‌بندی‌نشده
 
+<div dir="ltr">
+
 ```bash
 awk -F'\t' '$1=="U" {print $2}' work/03_profile/kraken/minigut_sample2_c0.kraken \
   | sed -E 's/^([A-Z]+_?[0-9]+\.[0-9]+).*/\1/' | sort | uniq -c | sort -rn | head
 ```
+
+</div>
+
+<div dir="ltr">
+
 ```text
    2261 CP009257.1      ← Acinetobacter baumannii
     873 CP017623.1      ← Candida albicans
@@ -39,11 +53,14 @@ awk -F'\t' '$1=="U" {print $2}' work/03_profile/kraken/minigut_sample2_c0.kraken
      44 NC_003210.1     ← Listeria monocytogenes
     ...
 ```
+
+</div>
+
 1–2. از ۳٬۶۲۴ رید طبقه‌بندی‌نشده، **۸۷۳ (۲۴٪) از *Candida*** هستند، تقریباً همه‌ی ریدهای آن. بیشترین سهم (**۲٬۲۶۱، یعنی ۶۲٪**) از ***A. baumannii*** است: ۱۴٪ ریدهای این گونه به ژن‌هایی تعلق دارند که در سویه‌ی دیتابیس (ATCC 19606) نیستند. *A. baumannii* به داشتن ژنوم جانبی بزرگ و متغیر (جزایر مقاومت و پروفاژها) معروف است.
 
    **درس:** «طبقه‌بندی‌نشده» فقط «ارگانیسم ناشناخته» نیست. بخش بزرگی از آن **DNA جانبی ارگانیسم‌های شناخته‌شده** است.
 3. راه‌ها در نمونه‌ی واقعی:
-   - **BLAST** روی زیرنمونه‌ای از ریدهای طبقه‌بندی‌نشده (مثلاً ۱۰۰ رید) در برابر nt.
+   - ‏**BLAST** روی زیرنمونه‌ای از ریدهای طبقه‌بندی‌نشده (مثلاً ۱۰۰ رید) در برابر nt.
    - طبقه‌بندی با **دیتابیس گسترده‌تر**: PlusPF برای قارچ و پروتوزوآ؛ Viral برای ویروس‌ها.
    - **اسمبلی** ریدهای طبقه‌بندی‌نشده و بررسی contigها (طول، GC، ژن‌ها). یک قله‌ی GC جداگانه در ریدهای طبقه‌بندی‌نشده می‌تواند نشانه‌ی یک ارگانیسم کامل غایب باشد.
    - مقایسه با **کنترل منفی**: آیا همین ریدها در blank هم هستند (آلودگی کیت)؟
@@ -52,12 +69,16 @@ awk -F'\t' '$1=="U" {print $2}' work/03_profile/kraken/minigut_sample2_c0.kraken
 
 ## تمرین ۳: جاروب confidence
 
+<div dir="ltr">
+
 ```bash
 for c in 0.05 0.2 0.5; do CONF=$c bash 03_Taxonomic_Functional_Profiling/scripts/run_profile.sh minigut_sample2; done
 for c in 0 0.05 0.1 0.2 0.5; do
   python3 03_Taxonomic_Functional_Profiling/scripts/evaluate_profile.py work/03_profile/bracken/minigut_sample2_c$c.bracken minigut_sample2 | tail -2
 done
 ```
+
+</div>
 
 | confidence | % طبقه‌بندی‌شده | پیش‌بینی | FP | FN | precision | recall | Bray-Curtis |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -75,11 +96,18 @@ done
 
 ## تمرین ۴: سطح جنس
 
+<div dir="ltr">
+
 ```bash
 bracken -d work/03_profile/kraken2_practice_db -i work/03_profile/kraken/minigut_c0.1.kreport \
         -o work/03_profile/bracken/minigut_c0.1.genus.bracken -r 125 -l G -t 10
 cut -f1,2,6,7 work/03_profile/bracken/minigut_c0.1.genus.bracken | column -t
 ```
+
+</div>
+
+<div dir="ltr">
+
 ```text
 name         taxonomy_id  new_est_reads  fraction_total_reads
 Bacteroides  816          25576          0.54159
@@ -87,6 +115,9 @@ Phocaeicola  909656       1491           0.03157
 Escherichia  561          14579          0.30872
 Shigella     620          5576           0.11808
 ```
+
+</div>
+
 2. **خیر.** *Shigella* در تاکسونومی NCBI **جنس جداگانه** است، پس در سطح جنس هم ۱۱٫۸٪ *Shigella* کاذب داریم. در مقابل، *Escherichia* در سطح جنس (۳۰٫۹٪) به واقعیت (۴۲٫۲٪) نزدیک‌تر از سطح گونه (۲۷٫۲٪) است، چون *E. fergusonii* و ریدهای سطح جنس هم جمع شده‌اند.
 3. پیشنهاد: *E. coli* و *Shigella* را به‌صورت یک واحد «***Escherichia/Shigella***» گزارش کنید. این کار در مطالعات میکروبیوم رایج است و SILVA در 16S هم آن را با همین نام نشان می‌دهد. با این ادغام در سطح گونه (confidence 0.1)، سهم برآوردشده 30.25 + 7.38 + 4.43 + 0.63 = ۴۲٫۷٪ (شامل *E. fergusonii*) در برابر ۴۲٫۲٪ واقعی می‌شود. در Methods هم صریحاً بنویسید که این دو با ریدهای کوتاه قابل تفکیک نیستند.
 
@@ -95,31 +126,49 @@ Shigella     620          5576           0.11808
 ## تمرین ۵: رید در برابر سلول
 
 نسبت سلول ∝ تعداد رید ÷ طول ژنوم:
+
+<div dir="ltr">
+
 ```text
 B. fragilis:  28827 / 5.277 Mb = 5463 ;   E. coli: 21018 / 4.642 Mb = 4528
 سهم سلول:   B. fragilis = 5463/(5463+4528) = 54.7%   ;   E. coli = 45.3%
 ```
+
+</div>
+
 | | سهم رید | سهم سلول |
 | :--- | :-: | :-: |
 | *B. fragilis* | 57.8% | 54.7% |
 | *E. coli* | 42.2% | 45.3% |
 
-2. **Kraken2/Bracken** «سهم رید» را برآورد می‌کند. **MetaPhlAn** با نرمال‌سازی بر اساس طول ژن‌های نشانگر به «سهم سلول» (فراوانی نسبی ارگانیسم) نزدیک‌تر است.
+2. ‏**Kraken2/Bracken** «سهم رید» را برآورد می‌کند. **MetaPhlAn** با نرمال‌سازی بر اساس طول ژن‌های نشانگر به «سهم سلول» (فراوانی نسبی ارگانیسم) نزدیک‌تر است.
 3. مثال: در مقایسه‌ی یک باکتری با ژنوم بزرگ (مثلاً *Streptomyces*، حدود ۸ تا ۱۰ Mb) با یک باکتری با ژنوم کوچک (مثلاً *Mycoplasma*، حدود ۱ Mb)، سهم رید ممکن است ۱۰ برابر با سهم سلول فرق کند. این برای ادعایی مثل «گونه‌ی غالب جامعه X است» تعیین‌کننده است. اگر دو گروه بیمار و سالم در ترکیب ژنوم‌ها فرق داشته باشند، مقایسه‌ی سهم رید می‌تواند تفاوت کاذب نشان دهد.
 
 ---
 
 ## تمرین ۶ (چالشی): *Acinetobacter pittii*
 
+<div dir="ltr">
+
 ```bash
 grep -P "\tG1\t|Acinetobacter" work/03_profile/kraken/minigut_sample2_c0.1.kreport
 ```
+
+</div>
+
+<div dir="ltr">
+
 ```text
  54.39	13591	0	G	469	        Acinetobacter
  54.39	13591	272	G1	909768	          Acinetobacter calcoaceticus/baumannii complex
  49.14	12279	12279	S	470	            Acinetobacter baumannii
   4.16	1040	1040	S	48296	            Acinetobacter pittii
 ```
+
+</div>
+
 1. ریدها زیر گره‌ی میانی NCBI به نام «*A. calcoaceticus/baumannii* complex» (رتبه‌ی `G1`) هستند. ۲۷۲ رید در خود این گره ماندند (LCA)، ۱۲٬۲۷۹ به *A. baumannii* و ۱٬۰۴۰ به *A. pittii* رسیدند.
-2. *A. baumannii* و *A. pittii* اعضای یک **کمپلکس گونه‌ای** هستند و بخش بزرگی از ژنومشان مشترک است. ریدهای *A. baumannii* سویه‌ی AB030 از نواحی‌ای که در سویه‌ی دیتابیس *A. baumannii* (ATCC 19606) نیست ولی در سویه‌ی *A. pittii* دیتابیس هست، به *A. pittii* رسیده‌اند. Bracken بعد سهم ریدهای سطح complex را **به نسبت** بین دو گونه تقسیم می‌کند و FP بزرگ‌تر می‌شود (۵٪).
+2. ‏*A. baumannii* و *A. pittii* اعضای یک **کمپلکس گونه‌ای** هستند و بخش بزرگی از ژنومشان مشترک است. ریدهای *A. baumannii* سویه‌ی AB030 از نواحی‌ای که در سویه‌ی دیتابیس *A. baumannii* (ATCC 19606) نیست ولی در سویه‌ی *A. pittii* دیتابیس هست، به *A. pittii* رسیده‌اند. Bracken بعد سهم ریدهای سطح complex را **به نسبت** بین دو گونه تقسیم می‌کند و FP بزرگ‌تر می‌شود (۵٪).
 3. قاعده‌ی پیشنهادی: **وقتی گونه‌ها در یک «complex» یا «group» تعریف‌شده در NCBI هستند (رتبه‌ی `G1` در kreport)، فراوانی را در سطح همان گروه گزارش کنید**، مگر اینکه روش تفکیک‌کننده‌ی دیگری داشته باشید (مثلاً اسمبلی و ANI). در داده‌ی ما گروه‌های مربوط این‌ها هستند: *A. calcoaceticus/baumannii* complex، *Bacillus cereus* group، *Pseudomonas aeruginosa* group و *Streptococcus mitis* group. برای *E. coli/Shigella* که NCBI گروه رسمی برایش ندارد، ادغام دستی لازم است (تمرین ۴).
+
+</div>

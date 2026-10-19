@@ -1,9 +1,11 @@
+<div dir="rtl">
+
 # ماژول 03: R، Bioconductor و آمار (R, Bioconductor & Statistics)
 
 | | |
 | :--- | :--- |
 | **بخش** | `04_R_Statistics` |
-| **پیش‌نیاز** | 02_Pandas_NumPy (یا آشنایی با R) |
+| **پیش‌نیاز** | ‏02_Pandas_NumPy (یا آشنایی با R) |
 | **زمان تقریبی** | ۱۰ ساعت |
 | **ابزارها** | R 4.x، tidyverse، ggplot2، phyloseq، vegan، DESeq2 |
 | **داده (پیشنهادی)** | جدول‌های پروفایل بخش ۰۶؛ داده‌ی نمونه‌ی بسته‌ها |
@@ -17,14 +19,16 @@
 4. تنوع آلفا و بتا را با phyloseq/vegan محاسبه و PERMANOVA اجرا کنید.
 
 ## سرفصل درس
-1. R و tidyverse برای کاربر Python
-2. ggplot2: دستور زبان گرافیک
+1. ‏R و tidyverse برای کاربر Python
+2. ‏ggplot2: دستور زبان گرافیک
 3. آمار پایه: توزیع‌ها، آزمون‌های پارامتری و ناپارامتری، زوجی در برابر مستقل
 4. آزمون‌های چندگانه و FDR (Benjamini–Hochberg)
 5. داده‌ی ترکیبی، CLR و چرا فراوانی نسبی گمراه‌کننده است
-6. Bioconductor: phyloseq، vegan (تنوع، PCoA، PERMANOVA)؛ معرفی DESeq2
+6. ‏Bioconductor: phyloseq، vegan (تنوع، PCoA، PERMANOVA)؛ معرفی DESeq2
 
 ## تمرین‌های برنامه‌ریزی‌شده
 - شبیه‌سازی: ۳۰۰ taxon بدون تفاوت واقعی، Wilcoxon بدون و با FDR، شمارش کشف‌های کاذب (پیوند با تمرین ۲ ماژول 00/01)
 - تنوع آلفا/بتا روی داده‌ی نمونه‌ی phyloseq
 - (چالشی) اثر rarefaction در برابر CLR روی نتیجه‌ی PERMANOVA
+
+</div>

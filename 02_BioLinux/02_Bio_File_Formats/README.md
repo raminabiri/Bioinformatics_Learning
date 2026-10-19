@@ -1,9 +1,11 @@
+<div dir="rtl">
+
 # ماژول ۰۶: فرمت‌های داده‌ی زیستی (Biological File Formats)
 
 | | |
 | :--- | :--- |
 | **بخش** | `02_BioLinux` |
-| **پیش‌نیاز** | 01_Bash_Linux؛ برای ساخت فایل‌های نمونه: ماژول‌های 06/01 و 06/02 |
+| **پیش‌نیاز** | ‏01_Bash_Linux؛ برای ساخت فایل‌های نمونه: ماژول‌های 06/01 و 06/02 |
 | **زمان تقریبی** | ۴ ساعت (۲ ساعت درس + ۲ ساعت تمرین) |
 | **ابزارها** | samtools 1.20، bcftools 1.21، seqkit 2.13، wgsim |
 | **داده** | فایل‌های نمونه‌ی واقعی با `bash scripts/make_examples.sh` (فقط یک رکورد GenBank حدود ۱۵ KB دانلود می‌شود) |
@@ -17,10 +19,12 @@
 4. یک فایل VCF را با «حقیقت» مقایسه کنید و نقش عمق پوشش را بفهمید.
 
 ## فایل‌ها
-- [01_lesson.md](01_lesson.md) — متن درس
-- [02_exercises.md](02_exercises.md) — تمرین‌ها
-- [03_solutions.md](03_solutions.md) — پاسخ تشریحی
-- [scripts/make_examples.sh](../99_scripts_data/02_Bio_File_Formats/scripts/make_examples.sh) — ساخت فایل‌های نمونه از داده‌ی دوره
+- ‏[01_lesson.md](01_lesson.md) — متن درس
+- ‏[02_exercises.md](02_exercises.md) — تمرین‌ها
+- ‏[03_solutions.md](03_solutions.md) — پاسخ تشریحی
+- ‏[scripts/make_examples.sh](../99_scripts_data/02_Bio_File_Formats/scripts/make_examples.sh) — ساخت فایل‌های نمونه از داده‌ی دوره
 
 ## پیوند با ماژول‌های دیگر
 فایل‌های نمونه از داده‌ی واقعی ماژول‌های قبلی ساخته می‌شوند: ژنوم *E. coli* (01/01)، FASTQ (06/01)، و BAM حذف میزبان (06/02). VCF از جهش‌هایی ساخته می‌شود که `wgsim` در ریدهای انسانی شبیه‌سازی‌شده گذاشته است، پس «حقیقت» برای مقایسه موجود است.
+
+</div>

@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # ماژول 02: دیتابیس‌های ترکیبات شیمیایی (Chemical Databases)
 
 | | |
@@ -16,8 +18,10 @@
 
 ## سرفصل درس
 1. فرمت‌های شیمیایی (SMILES، SDF، MOL2)
-2. ZINC، ChEMBL (فعالیت زیستی)، PubChem
-3. RDKit: توصیفگرها، fingerprint، شباهت Tanimoto
+2. ‏ZINC، ChEMBL (فعالیت زیستی)، PubChem
+3. ‏RDKit: توصیفگرها، fingerprint، شباهت Tanimoto
 
 ## تمرین‌های برنامه‌ریزی‌شده
 - ساخت کتابخانه‌ی کوچک آنالوگ‌های ریفامپیسین و فیلتر دارو-مانندی
+
+</div>

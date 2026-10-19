@@ -46,9 +46,9 @@ sample: minigut
 
 </div>
 
-- `name="minigut"` مقدار را در متغیر `name` می‌گذارد. **دو سوی `=` فاصله نگذارید**؛ `name = "minigut"` خطا می‌دهد.
-- `$name` جای مقدار را می‌گیرد.
-- `echo` متن را چاپ می‌کند.
+- ‏`name="minigut"` مقدار را در متغیر `name` می‌گذارد. **دو سوی `=` فاصله نگذارید**؛ `name = "minigut"` خطا می‌دهد.
+- ‏`$name` جای مقدار را می‌گیرد.
+- ‏`echo` متن را چاپ می‌کند.
 
 ### ریختن خروجی یک دستور در متغیر
 `$( … )` دستور درونش را اجرا می‌کند و خروجی را به جای خودش می‌گذارد:
@@ -112,10 +112,10 @@ fastq/minigut_sample2_R1.fastq.gz
 
 </div>
 
-`*_R1.fastq.gz` یعنی «هر فایلی که نامش به `_R1.fastq.gz` پایان می‌یابد». دو فایل یافت شد، پس حلقه دو بار اجرا شد.
+‏`*_R1.fastq.gz` یعنی «هر فایلی که نامش به `_R1.fastq.gz` پایان می‌یابد». دو فایل یافت شد، پس حلقه دو بار اجرا شد.
 
 ### گرفتن نام نمونه از نام فایل
-`basename` نشانی پوشه را برمی‌دارد و اگر پسوندی به آن بدهید، آن را هم برمی‌دارد:
+‏`basename` نشانی پوشه را برمی‌دارد و اگر پسوندی به آن بدهید، آن را هم برمی‌دارد:
 
 <div dir="ltr">
 
@@ -212,14 +212,14 @@ done
 </div>
 
 **خط‌به‌خط:**
-- `#!/usr/bin/env bash`: خط یکم می‌گوید این فایل را با Bash اجرا کن.
+- ‏`#!/usr/bin/env bash`: خط یکم می‌گوید این فایل را با Bash اجرا کن.
 - خط‌هایی که با `#` آغاز می‌شوند **یادداشت**‌اند و اجرا نمی‌شوند. بنویسید اسکریپت چه می‌کند و چطور اجرا می‌شود؛ شش ماه بعد خودتان سپاسگزار خواهید بود.
-- `set -euo pipefail`: سپر ایمنی (بخش ۵).
+- ‏`set -euo pipefail`: سپر ایمنی (بخش ۵).
 - `$#` شمار ورودی‌هاست. `if [ $# -eq 0 ]` یعنی «اگر هیچ ورودی ندادند»، پیام راهنما را چاپ کن و با کد خطا (`exit 1`) بیرون برو.
 - `"$@"` همه‌ی ورودی‌هایی است که به اسکریپت داده‌اید. حلقه روی آن‌ها می‌گردد.
-- `[ ! -s "$f" ]` یعنی «اگر فایل نیست یا خالی است».
+- ‏`[ ! -s "$f" ]` یعنی «اگر فایل نیست یا خالی است».
 - `>&2` پیام را در **خروجی خطا** (stderr) می‌نویسد، نه در خروجی اصلی؛ پس اگر خروجی را در فایلی بریزید، پیام خطا در آن نمی‌رود.
-- `awk -v s="$name"` مقدار متغیر Bash را به `awk` می‌دهد.
+- ‏`awk -v s="$name"` مقدار متغیر Bash را به `awk` می‌دهد.
 
 ### اجرای اسکریپت
 
@@ -276,7 +276,7 @@ bash my_script.sh      # اجرا
 
 </div>
 
-VS Code و ویرایشگرهای دیگر هم برای نوشتن اسکریپت خوب‌اند. تنها Word یا برنامه‌های همانند را به کار نبرید، چون نویسه‌های پنهان به متن می‌افزایند.
+‏VS Code و ویرایشگرهای دیگر هم برای نوشتن اسکریپت خوب‌اند. تنها Word یا برنامه‌های همانند را به کار نبرید، چون نویسه‌های پنهان به متن می‌افزایند.
 
 ---
 
@@ -316,8 +316,8 @@ nohup bash long_job.sh > job.log 2>&1 &     # در پس‌زمینه؛ با بس
 
 </div>
 
-- `nohup` یعنی «با بسته شدن ترمینال کار را نکش».
-- `> job.log 2>&1` خروجی و پیام‌های خطا را با هم در `job.log` می‌ریزد.
+- ‏`nohup` یعنی «با بسته شدن ترمینال کار را نکش».
+- ‏`> job.log 2>&1` خروجی و پیام‌های خطا را با هم در `job.log` می‌ریزد.
 - `&` در پایان یعنی «در پس‌زمینه اجرا کن و ترمینال را آزاد بگذار».
 
 راه دوم **tmux** است: یک «نشست» پایدار که می‌توانید از آن جدا شوید و بعداً برگردید:
@@ -340,7 +340,7 @@ tmux attach -t analysis  # بازگشت به نشست
 
 | اشتباه | چرا مشکل است | به جایش چه کنیم |
 | :--- | :--- | :--- |
-| `name = "x"` (فاصله دو سوی `=`) | Bash گمان می‌کند `name` یک دستور است | `name="x"` |
+| ‏`name = "x"` (فاصله دو سوی `=`) | ‏Bash گمان می‌کند `name` یک دستور است | `name="x"` |
 | متغیر بی نقل‌قول (`$f`) | نام‌های دارای فاصله می‌شکنند | `"$f"` |
 | اسکریپت بی `set -euo pipefail` | خطا بی‌صدا نادیده گرفته می‌شود و خروجی ناقص می‌ماند | همیشه در خط دوم اسکریپت |
 
@@ -358,7 +358,7 @@ tmux attach -t analysis  # بازگشت به نشست
 <details>
 <summary>📘 <b>برای کنجکاوها (اختیاری):</b> چرا <code>zcat file | head</code> با <code>pipefail</code> گاهی خطای 141 می‌دهد؟</summary>
 
-`head` پس از خواندن چند خط، لوله را می‌بندد. `zcat` که هنوز می‌خواهد بنویسد، پیام «لوله بسته شد» (SIGPIPE) می‌گیرد و با کد ۱۴۱ می‌ایستد. بی `pipefail` این دیده نمی‌شود، ولی با `pipefail` کل لوله «خطا» حساب می‌شود و `-e` اسکریپت را می‌ایستاند، در حالی که هیچ اشتباهی رخ نداده است. در اسکریپت‌های این دوره، برای همان یک خط `set +o pipefail` گذاشته‌ایم (نمونه: [run_profile.sh](../../06_Metagenomics/03_Taxonomic_Functional_Profiling/scripts/run_profile.sh)). در کار روزمره در ترمینال، این مشکلی نیست، چون `pipefail` روشن نیست.
+‏`head` پس از خواندن چند خط، لوله را می‌بندد. `zcat` که هنوز می‌خواهد بنویسد، پیام «لوله بسته شد» (SIGPIPE) می‌گیرد و با کد ۱۴۱ می‌ایستد. بی `pipefail` این دیده نمی‌شود، ولی با `pipefail` کل لوله «خطا» حساب می‌شود و `-e` اسکریپت را می‌ایستاند، در حالی که هیچ اشتباهی رخ نداده است. در اسکریپت‌های این دوره، برای همان یک خط `set +o pipefail` گذاشته‌ایم (نمونه: [run_profile.sh](../../06_Metagenomics/03_Taxonomic_Functional_Profiling/scripts/run_profile.sh)). در کار روزمره در ترمینال، این مشکلی نیست، چون `pipefail` روشن نیست.
 </details>
 
 ---
@@ -381,8 +381,8 @@ tmux attach -t analysis  # بازگشت به نشست
 ## منابع
 
 ### کتاب و درس رایگان
-- Software Carpentry — *The Unix Shell*، درس‌های «Loops» و «Shell Scripts»: https://swcarpentry.github.io/shell-novice/
-- Shotts W. *The Linux Command Line*، بخش ۴ (نوشتن اسکریپت): https://linuxcommand.org/tlcl.php
+- ‏Software Carpentry — *The Unix Shell*، درس‌های «Loops» و «Shell Scripts»: https://swcarpentry.github.io/shell-novice/
+- ‏Shotts W. *The Linux Command Line*، بخش ۴ (نوشتن اسکریپت): https://linuxcommand.org/tlcl.php
 
 ### فیلم‌های آموزشی
 
@@ -390,7 +390,7 @@ tmux attach -t analysis  # بازگشت به نشست
 - Johns Hopkins University — *Command Line Tools for Genomic Data Science*: https://www.coursera.org/learn/genomic-tools
 
 **edX:**
-- IBM — *Linux Commands & Shell Scripting*. بخش نوشتن اسکریپت Bash: https://www.edx.org/learn/linux/ibm-linux-commands-shell-scripting
+- ‏IBM — *Linux Commands & Shell Scripting*. بخش نوشتن اسکریپت Bash: https://www.edx.org/learn/linux/ibm-linux-commands-shell-scripting
 
 **YouTube:**
 - Software Carpentry — *The Shell, Episode 2: Files and Directories*: https://www.youtube.com/watch?v=qrkvcX4HmYo

@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # ماژول 04: ژنومیکس مقایسه‌ای و پن‌ژنوم (Comparative & Pan-genomics)
 
 | | |
@@ -5,7 +7,7 @@
 | **بخش** | `07_Bacterial_Genomics` |
 | **پیش‌نیاز** | 02_Genome_Annotation |
 | **زمان تقریبی** | ۵ ساعت |
-| **ابزارها** | Panaroo (یا Roary) |
+| **ابزارها** | ‏Panaroo (یا Roary) |
 | **داده (پیشنهادی)** | فایل‌های GFF3 ماژول ۰۲ |
 | **وضعیت** | ⚪ طراحی‌شده — سرفصل و اهداف مشخص است؛ درس طبق [STYLE_GUIDE](../../STYLE_GUIDE.md) نوشته و تست خواهد شد |
 
@@ -17,10 +19,12 @@
 
 ## سرفصل درس
 1. مفاهیم: core/soft-core/shell/cloud، پن‌ژنوم باز و بسته
-2. Panaroo: حالت strict/moderate، اصلاح خطای آنوتیشن
+2. ‏Panaroo: حالت strict/moderate، اصلاح خطای آنوتیشن
 3. خروجی‌ها: gene_presence_absence، core_gene_alignment
 4. تحلیل در R/Python: heatmap حضور/غیاب
 
 ## تمرین‌های برنامه‌ریزی‌شده
 - اجرای Panaroo و گزارش اندازه‌ی هسته و پن‌ژنوم
 - ژن‌های اختصاصی ایزوله‌های مقاوم
+
+</div>

@@ -1,12 +1,20 @@
+<div dir="rtl">
+
 # تمرین‌ها: حذف DNA میزبان و مبانی همترازی
 
 > پیش از شروع:
+>
+> <div dir="ltr">
+>
 > ```bash
 > cd 06_Metagenomics
 > bash data/download.sh
-> bash 01_Read_QC_Trimming/scripts/run_qc.sh          # اگر ماژول ۰۱ را اجرا نکرده‌اید
+> ‏bash 01_Read_QC_Trimming/scripts/run_qc.sh          # اگر ماژول ۰۱ را اجرا نکرده‌اید
 > bash 02_Host_Removal_Alignment/scripts/make_spiked_sample.sh
 > ```
+>
+> </div>
+>
 
 ---
 
@@ -22,11 +30,17 @@
 ## تمرین ۲ (مقایسه): `--un-conc` در برابر `samtools -f 12`
 
 1. همان نمونه را با روش رایج `--un-conc-gz` اجرا کنید:
+
+   <div dir="ltr">
+
    ```bash
    bowtie2 -p 4 --very-sensitive -x work/02_host/index/host \
      -1 work/02_host/spiked/minigut_spiked_R1.fastq.gz -2 work/02_host/spiked/minigut_spiked_R2.fastq.gz \
      --un-conc-gz work/02_host/unconc_R%.fastq.gz -S /dev/null
    ```
+
+   </div>
+
 2. تعداد جفت‌های باقی‌مانده به تفکیک منشأ را با روش درس مقایسه کنید.
 3. نام جفت‌های chr21 را که با `--un-conc` باقی مانده‌اند پیدا کنید. FLAG و موقعیت دو mate آن‌ها را از BAM درآورید و توضیح دهید چرا `--un-conc` نگهشان داشته است.
 4. با کدام گزینه‌ی Bowtie2 می‌شد این دو جفت را با `--un-conc` هم حذف کرد؟ آیا این راه‌حل کلی است؟
@@ -60,3 +74,5 @@
 ## تمرین ۶ (Methods)
 
 یک پاراگراف Methods (انگلیسی) برای این مرحله بنویسید که برای داور قابل ارزیابی و قابل تکرار باشد.
+
+</div>

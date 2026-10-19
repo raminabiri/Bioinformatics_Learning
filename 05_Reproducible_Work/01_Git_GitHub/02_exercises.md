@@ -1,18 +1,26 @@
+<div dir="rtl">
+
 # تمرین‌ها: Git و GitHub
 
 > پیش از شروع، مخزن تمرینی درس را بسازید:
+>
+> <div dir="ltr">
+>
 > ```bash
 > cd 05_Reproducible_Work/01_Git_GitHub
 > bash scripts/git_demo.sh ../01_Bash_Linux/data/ecoli_k12.gff ~/git_practice
 > cd ~/git_practice/ecoli_project
 > ```
+>
+> </div>
+>
 
 ---
 
 ## تمرین ۱ (تاریخچه): والدهای یک merge
 
-1. `git log --oneline --graph --all` را اجرا کنید. hashها با درس یکسان‌اند؟ چرا؟
-2. commit ادغام (merge) دو والد دارد. `HEAD~1`، `HEAD^2` و `HEAD~2` هر کدام به کدام commit اشاره می‌کنند؟
+1. ‏`git log --oneline --graph --all` را اجرا کنید. hashها با درس یکسان‌اند؟ چرا؟
+2. ‏commit ادغام (merge) دو والد دارد. `HEAD~1`، `HEAD^2` و `HEAD~2` هر کدام به کدام commit اشاره می‌کنند؟
 3. با `git diff --stat cc62ffa HEAD` بگویید از اولین commit تا الان چند فایل و چند خط تغییر کرده است.
 
 ---
@@ -54,10 +62,12 @@
 ## تمرین ۶ (چالشی): پروژه‌ی خودتان
 
 پوشه‌ی `ecoli_project` تمرین ۱ ماژول 01/01 (یا هر پروژه‌ی واقعی خودتان) را به یک مخزن git تبدیل کنید:
-- `.gitignore` مناسب (داده، نتایج قابل بازتولید، فایل‌های موقت)
-- `README.md` کوتاه: هدف، نحوه‌ی اجرا، نحوه‌ی دریافت داده
-- `environment.yml` (ماژول ۰۲)
+- ‏`.gitignore` مناسب (داده، نتایج قابل بازتولید، فایل‌های موقت)
+- ‏`README.md` کوتاه: هدف، نحوه‌ی اجرا، نحوه‌ی دریافت داده
+- ‏`environment.yml` (ماژول ۰۲)
 - دست‌کم سه commit معنادار و یک tag
 - (اختیاری) push به GitHub و ساخت یک Release
 
 فهرست بررسی خود را در قالب پاسخ بنویسید.
+
+</div>

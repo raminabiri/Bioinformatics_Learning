@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # ماژول ۰۸: پایپلاین و مدیریت جریان کار (Workflows & Pipelines)
 
 | | |
@@ -13,11 +15,13 @@
 1. تفاوت اسکریپت خطی Bash و مدیر جریان کار را توضیح دهید و ابزار مناسب (Bash، Snakemake، Nextflow/nf-core) را انتخاب کنید.
 2. یک Snakefile با wildcard، `config.yaml`، `params`، `threads` و `log` بنویسید.
 3. با dry run پیش‌بینی کنید بعد از تغییر ورودی، پارامتر یا فایل میانی چه چیزی دوباره اجرا می‌شود.
-4. workflow را با rule‌های جدید گسترش دهید (جدول QC و حذف میزبان).
+4. ‏workflow را با rule‌های جدید گسترش دهید (جدول QC و حذف میزبان).
 
 ## فایل‌ها
-- [01_lesson.md](01_lesson.md) — متن درس
-- [02_exercises.md](02_exercises.md) — تمرین‌ها
-- [03_solutions.md](03_solutions.md) — پاسخ تشریحی
-- [workflow/Snakefile](../99_scripts_data/02_Workflows_Snakemake/workflow/Snakefile) و [workflow/config.yaml](../99_scripts_data/02_Workflows_Snakemake/workflow/config.yaml) — نسخه‌ی Snakemake پایپلاین QC بخش ۰۶
-- [workflow/Snakefile_solution](../99_scripts_data/02_Workflows_Snakemake/workflow/Snakefile_solution) — پاسخ تمرین‌های ۴ و ۵ (جدول QC + حذف میزبان)
+- ‏[01_lesson.md](01_lesson.md) — متن درس
+- ‏[02_exercises.md](02_exercises.md) — تمرین‌ها
+- ‏[03_solutions.md](03_solutions.md) — پاسخ تشریحی
+- ‏[workflow/Snakefile](../99_scripts_data/02_Workflows_Snakemake/workflow/Snakefile) و [workflow/config.yaml](../99_scripts_data/02_Workflows_Snakemake/workflow/config.yaml) — نسخه‌ی Snakemake پایپلاین QC بخش ۰۶
+- ‏[workflow/Snakefile_solution](../99_scripts_data/02_Workflows_Snakemake/workflow/Snakefile_solution) — پاسخ تمرین‌های ۴ و ۵ (جدول QC + حذف میزبان)
+
+</div>

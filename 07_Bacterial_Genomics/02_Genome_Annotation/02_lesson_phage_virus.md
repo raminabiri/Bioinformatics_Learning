@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # درس ۲: آنوتیشن فاژ، پروفاژ و ویروس
 
 **بخش:** `07_Bacterial_Genomics` · **ماژول:** `02_Genome_Annotation` · **پیش‌نیاز:** درس ۱ همین ماژول · **زمان:** ۱٫۵ ساعت · **ابزار (مستندات‌شده):** Pharokka 1.10، Phold، geNomad، CheckV، VADR، pyrodigal-gv · **آخرین بازبینی:** 2026-10-15
@@ -34,11 +36,17 @@
 ## ۳. پروفاژهای *E. coli* K-12 (اجراشده)
 
 آنوتیشن RefSeq این ژنوم ۱۲ ناحیه را با `Note=cryptic prophage` مشخص کرده است (ویژگی `sequence_feature` در GFF):
+
+<div dir="ltr">
+
 ```bash
 G=../../01_Linux/99_scripts_data/02_Bash/data
 grep -P '\tsequence_feature\t' $G/ecoli_k12.gff | grep 'cryptic prophage' \
   | awk -F'\t' '{match($9,/Note=[^;]+/); print $4, $5, $5-$4+1, substr($9,RSTART+5,RLENGTH-5)}'
 ```
+
+</div>
+
 | پروفاژ | شروع | پایان | طول (باز) |
 | :--- | ---: | ---: | ---: |
 | CP4-6 | 262,898 | 297,205 | 34,308 |
@@ -59,7 +67,7 @@ grep -P '\tsequence_feature\t' $G/ecoli_k12.gff | grep 'cryptic prophage' \
 | | پروفاژها | بقیه‌ی ژنوم |
 | :--- | ---: | ---: |
 | GC | **۴۷٫۴٪** | ۵۰٫۸٪ (کل ژنوم) |
-| CDS با محصول `uncharacterized`/`hypothetical` | **۳۰ از ۲۱۵ (۱۴٫۰٪)** | ۷۷ از ۴٬۰۸۸ (۱٫۹٪) |
+| ‏CDS با محصول `uncharacterized`/`hypothetical` | **۳۰ از ۲۱۵ (۱۴٫۰٪)** | ۷۷ از ۴٬۰۸۸ (۱٫۹٪) |
 | ژن کاذب | **۳۴ از ۱۴۵** کل ژن‌های کاذب ژنوم (۲۳٪، در ۳٫۶٪ ژنوم) | ۱۱۱ |
 
 پروفاژها: GC کمتر (منشأ بیرونی، مثل ژن‌های کم‌GC ماژول 02/01)، **هفت برابر** پروتئین ناشناخته، و **شش برابر** تراکم ژن کاذب (خفته = در حال فرسایش).
@@ -71,19 +79,31 @@ grep -P '\tsequence_feature\t' $G/ecoli_k12.gff | grep 'cryptic prophage' \
 ## ۴. ابزارها
 
 ### ۴.۱ پیدا کردن فاژ و پروفاژ: geNomad
-geNomad (Camargo et al. 2024) هر توالی را به **کروموزوم، پلاسمید یا ویروس** طبقه‌بندی می‌کند، با ترکیب یک شبکه‌ی عصبی (بدون نیاز به همترازی) و **ژن‌های نشانگر**. **پروویروس**ها را هم درون کروموزوم پیدا می‌کند و تاکسونومی ویروسی (ICTV) می‌دهد.
+‏geNomad (Camargo et al. 2024) هر توالی را به **کروموزوم، پلاسمید یا ویروس** طبقه‌بندی می‌کند، با ترکیب یک شبکه‌ی عصبی (بدون نیاز به همترازی) و **ژن‌های نشانگر**. **پروویروس**ها را هم درون کروموزوم پیدا می‌کند و تاکسونومی ویروسی (ICTV) می‌دهد.
+
+<div dir="ltr">
+
 ```bash
 genomad download-database .                                       # once
 genomad end-to-end --cleanup --splits 8 contigs.fa genomad_out genomad_db
 ```
-`--splits 8` جستجو را تکه‌تکه می‌کند تا حافظه کمتری مصرف شود. نمونه‌ی خروجی `*_virus_summary.tsv` (**از مستندات**: README رسمی geNomad، روی یک ژنوم باکتری نمونه):
+
+</div>
+
+‏`--splits 8` جستجو را تکه‌تکه می‌کند تا حافظه کمتری مصرف شود. نمونه‌ی خروجی `*_virus_summary.tsv` (**از مستندات**: README رسمی geNomad، روی یک ژنوم باکتری نمونه):
+
+<div dir="ltr">
+
 ```text
 seq_name                                 length  topology  coordinates      n_genes  genetic_code  virus_score  fdr  n_hallmarks  marker_enrichment  taxonomy
 NZ_CP045015.1|provirus_3855947_3906705   50759   Provirus  3855947-3906705  79       11            0.9772       NA   16           73.7974            Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;;
 ```
-- `topology`: `Provirus` (درون میزبان)، `DTR` (تکرار مستقیم انتهایی، نشانه‌ی ژنوم کامل یا دایره‌ای)، `ITR` (تکرار معکوس) یا `No terminal repeats`.
-- `virus_score`: ۰ تا ۱. پیش‌فرض: حداقل ۰٫۷، و توالی‌های کوتاه‌تر از ۲٬۵۰۰ باز باید **حداقل یک ژن نشانگر** داشته باشند.
-- `n_hallmarks`: تعداد ژن‌های نشانگر ویروسی.
+
+</div>
+
+- ‏`topology`: `Provirus` (درون میزبان)، `DTR` (تکرار مستقیم انتهایی، نشانه‌ی ژنوم کامل یا دایره‌ای)، `ITR` (تکرار معکوس) یا `No terminal repeats`.
+- ‏`virus_score`: ۰ تا ۱. پیش‌فرض: حداقل ۰٫۷، و توالی‌های کوتاه‌تر از ۲٬۵۰۰ باز باید **حداقل یک ژن نشانگر** داشته باشند.
+- ‏`n_hallmarks`: تعداد ژن‌های نشانگر ویروسی.
 
 جایگزین‌ها و مکمل‌ها: **PHASTEST** (وب‌سرور، مخصوص پروفاژ در ژنوم باکتری)، VIBRANT، VirSorter2.
 
@@ -93,39 +113,52 @@ NZ_CP045015.1|provirus_3855947_3906705   50759   Provirus  3855947-3906705  79  
 2. **کامل بودن**: مقایسه‌ی پروتئین‌ها (AAI) با دیتابیس ژنوم‌های ویروسی کامل و **نسبت طول**. اگر مرجع نزدیکی نباشد، بازه‌ای بر اساس HMMها.
 3. **ژنوم بسته**: DTR، ITR یا پروویروس کامل.
 
+<div dir="ltr">
+
 ```bash
 checkv end_to_end genomad_out/contigs_summary/contigs_virus.fna checkv_out -t 16
 ```
+
+</div>
+
 پنج سطح کیفیت در `quality_summary.tsv` (منطبق با استاندارد **MIUViG**): **Complete**، **High-quality** (کامل بودن > ۹۰٪)، **Medium-quality** (۵۰ تا ۹۰٪)، **Low-quality** (< ۵۰٪) و Not-determined.
 
 ### ۴.۳ آنوتیشن فاژ: Pharokka و Phold
-**Pharokka** (Bouras et al. 2023) خط لوله‌ی استاندارد آنوتیشن فاژ است:
+‏**Pharokka** (Bouras et al. 2023) خط لوله‌ی استاندارد آنوتیشن فاژ است:
 - **پیش‌بینی ژن:** پیش‌فرض **PHANOTATE**، تنها ابزار پیش‌بینی ژن مخصوص فاژ (ژن‌های فشرده و همپوشان را بهتر پیدا می‌کند). در حالت متاژنوم (`-m`) پیش‌فرض **prodigal-gv** است، که **کدهای ژنتیکی جایگزین** فاژها (مثلاً ۱۵ و ۴) را هم امتحان می‌کند. برای فاژهای RNA: `pyrodigal-rv`.
 - **آنوتیشن عملکردی:** MMseqs2 در برابر **PHROGs**، **CARD** (مقاومت) و **VFDB** (ضراوت)، و از نسخه‌ی 1.4 جستجوی حساس‌تر HMM روی PHROGs با PyHMMER.
 - **بقیه:** tRNA (tRNAscan-SE)، tmRNA (ARAGORN)، CRISPR (MinCED)، و نزدیک‌ترین فاژ شناخته‌شده در دیتابیس **INPHARED** (با Mash).
+
+<div dir="ltr">
 
 ```bash
 pharokka install -o pharokka_db                                       # once (v1.10+; older: install_databases.py)
 pharokka run -i phage.fasta -o pharokka_out -d pharokka_db -t 8 --dnaapler
 pharokka run -i metavirome_contigs.fasta -o pharokka_meta -d pharokka_db -t 8 -m    # many contigs
 ```
+
+</div>
+
 از نسخه‌ی 1.10، دستور اصلی `pharokka run` است (`pharokka.py` قدیمی منسوخ شده). خروجی‌ها: `pharokka.gff`، `pharokka.gbk`، و `pharokka_cds_functions.tsv` (تعداد CDS، tRNA، tmRNA، CRISPR و تعداد ژن در هر دسته‌ی PHROG).
 
-**Phold** (همان نویسندگان) برای ژن‌هایی که Pharokka «unknown function» گذاشته، از **شباهت ساختاری** استفاده می‌کند: ساختار سه‌بعدی پروتئین را پیش‌بینی و با Foldseek در دیتابیس ساختارها جستجو می‌کند. طبق README، Phold آنوتیشن را «به‌شدت» بهتر می‌کند، به‌خصوص برای فاژهای متاژنومی. ولی tRNA، tmRNA، CRISPR و جستجوی INPHARED را ندارد. پس روال توصیه‌شده: **اول Pharokka، بعد Phold روی خروجی GenBank آن**.
+‏**Phold** (همان نویسندگان) برای ژن‌هایی که Pharokka «unknown function» گذاشته، از **شباهت ساختاری** استفاده می‌کند: ساختار سه‌بعدی پروتئین را پیش‌بینی و با Foldseek در دیتابیس ساختارها جستجو می‌کند. طبق README، Phold آنوتیشن را «به‌شدت» بهتر می‌کند، به‌خصوص برای فاژهای متاژنومی. ولی tRNA، tmRNA، CRISPR و جستجوی INPHARED را ندارد. پس روال توصیه‌شده: **اول Pharokka، بعد Phold روی خروجی GenBank آن**.
 
 ### ۴.۴ ویروس‌های یوکاریوتی: آنوتیشن بر اساس مرجع
 برای ویروس‌های یوکاریوتی، پیش‌بینی ab initio اغلب کار نمی‌کند. دلیلش مکانیسم‌هایی است که یک ORF ساده نمی‌بیند:
 
 | مکانیسم | مثال |
 | :--- | :--- |
-| **جابه‌جایی چارچوب برنامه‌ریزی‌شده (−۱)** | SARS-CoV-2: پلی‌پروتئین pp1ab از ORF1a و ORF1b با یک لغزش ریبوزومی؛ HIV-1: gag-pol |
+| **جابه‌جایی چارچوب برنامه‌ریزی‌شده (−۱)** | ‏SARS-CoV-2: پلی‌پروتئین pp1ab از ORF1a و ORF1b با یک لغزش ریبوزومی؛ HIV-1: gag-pol |
 | **پلی‌پروتئین** که با پروتئاز بریده می‌شود | فلاوی‌ویروس‌ها (دنگی، زیکا)، پیکورناویروس‌ها، کروناویروس‌ها (ویژگی `mat_peptide` در GenBank) |
-| **ORF همپوشان** در قاب دیگر | ژن‌های کوچک درون ژن‌های بزرگ در ویروس‌های کوچک |
+| ‏**ORF همپوشان** در قاب دیگر | ژن‌های کوچک درون ژن‌های بزرگ در ویروس‌های کوچک |
 | **پیرایش (splicing)** | آدنوویروس، هرپس‌ویروس، HIV؛ M2 و NS2 در آنفلوآنزا |
 | **ویرایش RNA** | پروتئین‌های P/V/W در پارامیکسوویروس‌ها |
 | **ژنوم قطعه‌قطعه** | آنفلوآنزا (۸ قطعه)، روتاویروس |
 
 **نمایش (اجراشده):** Pyrodigal در حالت meta روی ژنوم مرجع SARS-CoV-2 (`NC_045512.2`، ۲۹٫۹ کیلوباز). دستور: `bash scripts/virus_demo.sh`، با دانلود ۴۵ کیلوبایت و ۲ ثانیه اجرا. خلاصه‌ی خروجی (فلش‌ها توضیح ماست):
+
+<div dir="ltr">
+
 ```text
 == reference CDS: 12 (ORF1ab has 2 segments: 266-13468 and 13468-21555, "translated by -1 ribosomal frameshift")
 mature peptides (nsp1-16 etc.): 27
@@ -136,16 +169,24 @@ mature peptides (nsp1-16 etc.): 27
 ...
 reference CDS: 12   predicted CDS: 9   same stop: 9   missed: 3 (all < 100 aa)
 ```
-- ORF1a و همه‌ی ژن‌های ساختاری بزرگ (S، M، N و غیره) درست پیدا شدند.
+
+</div>
+
+- ‏ORF1a و همه‌ی ژن‌های ساختاری بزرگ (S، M، N و غیره) درست پیدا شدند.
 - **پلی‌پروتئین pp1ab (۷٬۰۹۶ اسیدآمینه)** وجود ندارد. به‌جایش یک ORF جدا از یک ATG داخلی در 13,768 آمده است. ۳۰۰ نوکلئوتید بین محل لغزش (13,468) و آن ATG، یعنی حدود ۱۰۰ اسیدآمینه از nsp12 (RNA پلیمراز)، در هیچ پروتئینی نیست.
 - سه ژن کوتاه، **E**، **ORF7b** و **ORF10**، از دست رفتند.
 - **۲۷ پپتید بالغ** (nsp1 تا nsp16 و غیره) که پروتئاز ویروسی از پلی‌پروتئین‌ها می‌بُرد، در خروجی یک ابزار ORF اصلاً قابل نمایش نیستند.
 
 راه استاندارد: **انتقال آنوتیشن از یک ژنوم مرجع نزدیک**. ابزار NCBI برای این کار **VADR** (Viral Annotation DefineR) است. طبق README، مدل‌های آماده برای نوروویروس، دنگی، SARS-CoV-2 و دیگر فلاوی‌ویروس‌ها، کالیسی‌ویروس‌ها و کروناویروس‌ها، آنفلوآنزا، mpox و RSV دارد. GenBank ارسال‌های این ویروس‌ها را با همین ابزار **بررسی و آنوتیت** می‌کند. `v-annotate.pl` ویژگی‌های غیرمنتظره (مثلاً کدون پایان زودرس، frameshift، یا حذف) را به‌شکل **هشدار (alert)** گزارش می‌کند. توالی با هشدار جدی **رد** می‌شود.
 
+<div dir="ltr">
+
 ```bash
 v-annotate.pl --mkey sarscov2 --mdir /path/to/vadr-models-sarscov2 sequences.fasta vadr_out
 ```
+
+</div>
+
 مدل و پارامترهای دقیق برای هر ویروس در مستندات VADR آمده است (مثلاً برای SARS-CoV-2 گزینه‌های اضافی برای توالی‌های پر از N).
 
 برای ویروس‌های **بدون مدل VADR**: آنوتیشن مرجع نزدیک‌ترین ژنوم RefSeq را با همترازی منتقل کنید، یا Prokka با `--kingdom Viruses` برای پیش‌بینی ساده، یا وب‌سرویس‌هایی مثل Genome Detective و BV-BRC.
@@ -154,12 +195,12 @@ v-annotate.pl --mkey sarscov2 --mdir /path/to/vadr-models-sarscov2 sequences.fas
 
 | دام | چرا مشکل است | راه درست |
 | :--- | :--- | :--- |
-| Prodigal حالت `single` روی فاژ تنها | ژنوم برای آموزش کوتاه است | PHANOTATE یا `-p meta` / prodigal-gv |
-| فرض کد ۱۱ برای همه‌ی فاژها | فاژهای با تغییر کدون پایان (مثلاً crAss-like) پروتئین‌های بریده می‌گیرند | prodigal-gv (چند کد را امتحان می‌کند) |
+| ‏Prodigal حالت `single` روی فاژ تنها | ژنوم برای آموزش کوتاه است | ‏PHANOTATE یا `-p meta` / prodigal-gv |
+| فرض کد ۱۱ برای همه‌ی فاژها | فاژهای با تغییر کدون پایان (مثلاً crAss-like) پروتئین‌های بریده می‌گیرند | ‏prodigal-gv (چند کد را امتحان می‌کند) |
 | «پروفاژ ندارد» چون ابزار چیزی پیدا نکرد | پروفاژهای فرسوده نشانگر کافی ندارند | دنبال اینتگراز، tRNA مرزی و GC غیرعادی بگردید |
-| اعتماد به مرز پروویروس | مرز دقیق با ابزار خودکار ±چند کیلوباز است | CheckV (حذف میزبان) + att/tRNA |
-| «hypothetical» = بی‌اهمیت | ۶۰ تا ۸۰٪ ژن‌های فاژ | Phold (ساختار)، بافت ماژول ژنی |
-| ab initio برای ویروس RNA یوکاریوتی | پلی‌پروتئین، frameshift و پیرایش دیده نمی‌شوند | آنوتیشن بر اساس مرجع (VADR) |
+| اعتماد به مرز پروویروس | مرز دقیق با ابزار خودکار ±چند کیلوباز است | ‏CheckV (حذف میزبان) + att/tRNA |
+| ‏«hypothetical» = بی‌اهمیت | ۶۰ تا ۸۰٪ ژن‌های فاژ | ‏Phold (ساختار)، بافت ماژول ژنی |
+| ‏ab initio برای ویروس RNA یوکاریوتی | پلی‌پروتئین، frameshift و پیرایش دیده نمی‌شوند | آنوتیشن بر اساس مرجع (VADR) |
 | ژن مقاومت یا سم روی کانتیگ فاژی | ممکن است روی پروفاژ قابل انتقال باشد | گزارش «پروفاژی»؛ بخش ۰۸ |
 | ژنوم فاژ از نقطه‌ی دلخواه | مقایسه‌ی بین ژنوم‌ها سخت | چرخاندن به TerL (`--dnaapler`) |
 
@@ -195,3 +236,5 @@ v-annotate.pl --mkey sarscov2 --mdir /path/to/vadr-models-sarscov2 sequences.fas
 - Center for Phage Technology, Texas A&M University — *CPT functional workflow for phage genome annotation*: https://www.youtube.com/watch?v=33Nw1egzYPg
 
 > لینک‌ها در تاریخ 2026-10-15 بررسی شدند (`_tools/check_links.sh`).
+
+</div>

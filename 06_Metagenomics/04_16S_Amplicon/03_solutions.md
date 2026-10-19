@@ -1,6 +1,10 @@
+<div dir="rtl">
+
 # پاسخ تشریحی: تحلیل آمپلیکون 16S با QIIME 2
 
 > اجرا شده در 2026-10-14 و 2026-10-15 با QIIME 2 2026.7 (scikit-learn 1.7.1) و vsearch روی سرور دوره. اعداد demux، DADA2 و طبقه‌بندی برای شما هم دقیقاً همین‌اند. اعداد تنوع با `--p-random-seed 42` همین‌اند. p-valueهای PERMANOVA و adonis از جایگشت تصادفی می‌آیند (بدون seed در QIIME 2) و ممکن است کمی فرق کنند.
+
+<div dir="ltr">
 
 ```bash
 cd 06_Metagenomics/work/04_16s
@@ -8,31 +12,50 @@ export PATH=/data/MicrobiomePipeline/qiime2_env/bin:$PATH UNIFRAC_USE_GPU=N
 M=../../04_16S_Amplicon/data/sample_metadata.tsv
 ```
 
+</div>
+
 ---
 
 ## تمرین ۱: کجا رفتند ریدها؟
 
 ### ۱.۱ بدون `--p-rev-comp-mapping-barcodes`
+
+<div dir="ltr">
+
 ```bash
 qiime demux emp-paired --i-seqs emp-paired-end-sequences.qza \
   --m-barcodes-file $M --m-barcodes-column barcode-sequence \
   --o-per-sample-sequences demux_norc.qza --o-error-correction-details dd_norc.qza
 ```
+
+</div>
+
+<div dir="ltr">
+
 ```text
 No sequences were mapped to samples. Check that your barcodes are in the correct orientation
 (see the rev_comp_barcodes and/or rev_comp_mapping_barcodes options).
 ```
+
+</div>
+
 **صفر رید.** وقتی هیچ نمونه‌ای حتی یک رید نمی‌گیرد، مشکل تصادفی نیست، **جهت** است. در این پروتکل، بارکد در کتابخانه طوری قرار گرفته که رید `barcodes` آن را به شکل **مکمل معکوس** آنچه در فایل metadata نوشته شده می‌خواند. دو گزینه‌ی QIIME 2 برای دو حالت ممکن‌اند:
-- `--p-rev-comp-mapping-barcodes`: بارکدهای **metadata** را برعکس کن.
-- `--p-rev-comp-barcodes`: بارکدهای خوانده‌شده در **رید** را برعکس کن.
+- ‏`--p-rev-comp-mapping-barcodes`: بارکدهای **metadata** را برعکس کن.
+- ‏`--p-rev-comp-barcodes`: بارکدهای خوانده‌شده در **رید** را برعکس کن.
 
 از نظر ریاضی هر دو یک مقایسه را انجام می‌دهند. ولی تصحیح خطای Golay روی رید انجام می‌شود، پس باید گزینه‌ای را انتخاب کنید که با پروتکل مرکز توالی‌یابی می‌خواند. در عمل از مرکز بپرسید یا هر دو را امتحان کنید و ببینید کدام ریدها را به نمونه‌ها می‌رساند.
 
 ### ۱.۲ چهار گروه
+
+<div dir="ltr">
+
 ```bash
 qiime tools export --input-path demux-details.qza --output-path dd
 awk -F'\t' 'NR>1{a=($2=="None")?"unassigned":"assigned"; e=($6==0)?"no_error":"error"; print a"\t"e}' dd/details.tsv | sort | uniq -c
 ```
+
+</div>
+
 | | جفت رید | ٪ |
 | :--- | ---: | ---: |
 | به نمونه رسید، بدون خطا | 42,332 | ۳۱٫۲ |
@@ -44,28 +67,50 @@ awk -F'\t' 'NR>1{a=($2=="None")?"unassigned":"assigned"; e=($6==0)?"no_error":"e
 ۴٬۳۸۰ رید فقط به لطف **تصحیح خطای Golay** نجات یافتند. بارکدهای Golay ۱۲ بازی طوری طراحی شده‌اند که فاصله‌ی همینگ بین هر دو بارکد زیاد است. پس یک بارکد با چند خطا هنوز به یک بارکد معتبر نزدیک‌تر است تا به بقیه.
 
 ### ۱.۳ بارکدهای بی‌صاحب
+
+<div dir="ltr">
+
 ```bash
 awk -F'\t' 'NR>1 && $2=="None" && $6==0' dd/details.tsv | cut -f4 | sort | uniq -c | sort -nr | head -3
 ```
+
+</div>
+
+<div dir="ltr">
+
 ```text
    1907 CCGTAAGACCAG
    1762 TGGTACAGTACC
    1745 GGTTACGGTGGT
 ```
+
+</div>
+
 هر کدام نزدیک به ۲٬۰۰۰ رید دارند، یعنی **در حد یک نمونه‌ی کامل** (پرریدترین نمونه‌ی ما ۱٬۴۴۲ رید دارد). بارکد بی‌خطا و با فراوانی بالا یعنی یک نمونه‌ی واقعی، ولی نمونه‌ی **یک مطالعه‌ی دیگر** که در همان ران MiSeq بوده است. پروژه‌های EMP معمولاً چند مطالعه را در یک ران چندگانه می‌کنند. اگر ریدهای بی‌صاحب کیفیت بد داشتند، بارکدشان پراکنده و پرخطا بود، نه چند بارکد تمیز با هزاران رید.
 
 ### ۱.۴ نمونه‌های بدون رید
+
+<div dir="ltr">
+
 ```bash
 awk -F'\t' 'NR>2{print $1}' $M | sort > meta_ids
 qiime tools export --input-path demux.qzv --output-path demux_export
 awk -F'\t' 'NR>1{print $1}' demux_export/per-sample-fastq-counts.tsv | sort | comm -23 meta_ids -
 ```
+
+</div>
+
+<div dir="ltr">
+
 ```text
 BAQ1370.1.2
 YUN1005.2
 YUN3008.2
 YUN3184.1
 ```
+
+</div>
+
 در این زیرنمونه‌ی ۱٪، صفر رید فقط یعنی «شانس نیاورد» (این نمونه‌ها در داده‌ی کامل هم کم‌رید بوده‌اند). اگر این‌ها **کنترل منفی** بودند، صفر رید خبر خوبی بود ولی کافی نیست: کنترل منفی‌ای که در داده‌ی کامل صفر رید دارد، ممکن است فقط زیر عمق کتابخانه رفته باشد. چیزی که اهمیت دارد، **ترکیب** ریدهای کنترل منفی در مقایسه با نمونه‌هاست (تمرین ۶).
 
 ---
@@ -73,11 +118,19 @@ YUN3184.1
 ## تمرین ۲: همپوشانی و طول آمپلیکون
 
 ### ۲.۱ ادغام با vsearch
+
+<div dir="ltr">
+
 ```bash
 qiime tools export --input-path demux.qza --output-path demux_fq
 cat demux_fq/*_R1_001.fastq.gz > all_R1.fq.gz ; cat demux_fq/*_R2_001.fastq.gz > all_R2.fq.gz
 vsearch --fastq_mergepairs all_R1.fq.gz --reverse all_R2.fq.gz --fastqout merged.fq --threads 4
 ```
+
+</div>
+
+<div dir="ltr">
+
 ```text
      46712  Pairs
      42961  Merged (92.0%)
@@ -86,14 +139,27 @@ vsearch --fastq_mergepairs all_R1.fq.gz --reverse all_R2.fq.gz --fastqout merged
       0.56  Mean observed errors in merged region of forward sequences
       1.27  Mean observed errors in merged region of reverse sequences
 ```
+
+</div>
+
+<div dir="ltr">
+
 ```bash
 awk 'NR%4==2{print length($0)}' merged.fq | sort -n | uniq -c | sort -nr | head -3
 ```
+
+</div>
+
+<div dir="ltr">
+
 ```text
   38516 253
    3091 254
     829 252
 ```
+
+</div>
+
 طول قطعه **۲۵۳ باز** است. نکته‌ی مهم دیگر: ریدهای reverse **بیش از دو برابر** forward خطا دارند (۱٫۲۷ در برابر ۰٫۵۶ خطا در ناحیه‌ی همپوشانی). این در تمرین ۳ مهم می‌شود.
 
 ### ۲.۲ پیش‌بینی همپوشانی
@@ -110,27 +176,49 @@ awk 'NR%4==2{print length($0)}' merged.fq | sort -n | uniq -c | sort -nr | head 
 در عمل یک **حاشیه‌ی اطمینان** هم لازم است، چون طول قطعه بین تاکسون‌ها فرق می‌کند (۲.۴). قطعه‌ی ۲۵۵ بازی با `trunc` (150, 130) فقط ۲۵ باز همپوشانی دارد.
 
 ### ۲.۳ آزمون (120, 120)
+
+<div dir="ltr">
+
 ```bash
 qiime dada2 denoise-paired --i-demultiplexed-seqs demux.qza --p-trim-left-f 13 --p-trim-left-r 13 \
   --p-trunc-len-f 120 --p-trunc-len-r 120 --o-table t120.qza --o-representative-sequences r120.qza \
   --o-denoising-stats s120.qza --o-base-transition-stats b120.qza
 ```
+
+</div>
+
+<div dir="ltr">
+
 ```text
 No features remain after denoising. Try adjusting your truncation and trim parameter settings.
 ```
+
+</div>
+
 پیش‌بینی درست بود. پیام خطا گمراه‌کننده است: می‌گوید «بعد از denoise»، ولی denoise درست انجام شده و **ادغام** شکست خورده است.
 
 ### ۲.۴ طول ASVها
+
+<div dir="ltr">
+
 ```bash
 qiime tools export --input-path rep-seqs.qza --output-path rs
 awk '!/^>/{print length($0)}' rs/dna-sequences.fasta | sort -n | uniq -c | sort -nr | head -3
 ```
+
+</div>
+
+<div dir="ltr">
+
 ```text
     372 227
      26 228
       9 226
 ```
-۲۵۳ − ۱۳ (`trim-left-f`) − ۱۳ (`trim-left-r`) = **۲۲۷**. هفت ASV طول غیرعادی دارند. طبقه‌بندی آن‌ها:
+
+</div>
+
+‏۲۵۳ − ۱۳ (`trim-left-f`) − ۱۳ (`trim-left-r`) = **۲۲۷**. هفت ASV طول غیرعادی دارند. طبقه‌بندی آن‌ها:
 
 | طول | تعداد رید | طبقه‌بندی |
 | ---: | ---: | :--- |
@@ -148,6 +236,8 @@ awk '!/^>/{print length($0)}' rs/dna-sequences.fasta | sort -n | uniq -c | sort 
 
 ## تمرین ۳: پارامترهای DADA2
 
+<div dir="ltr">
+
 ```bash
 run(){ name=$1; shift
   qiime dada2 denoise-paired --i-demultiplexed-seqs demux.qza --p-trim-left-f 13 --p-trim-left-r 13 \
@@ -160,6 +250,9 @@ run pseudo_mm2 --p-trunc-len-f 150 --p-trunc-len-r 150 --p-pooling-method pseudo
 run r130       --p-trunc-len-f 150 --p-trunc-len-r 130
 run t0         --p-trunc-len-f 0   --p-trunc-len-r 0
 ```
+
+</div>
+
 (جمع ستون‌ها از `denoising-stats` export‌شده؛ ورودی همه ۴۶٬۷۱۲.)
 
 | تنظیم | filtered | denoised | merged | non-chimeric | ASV |
@@ -193,6 +286,9 @@ run t0         --p-trunc-len-f 0   --p-trunc-len-r 0
 ## تمرین ۴: طبقه‌بندی
 
 ### ۴.۱ Naive Bayes
+
+<div dir="ltr">
+
 ```bash
 qiime tools export --input-path taxonomy.qza --output-path tx
 T=tx/taxonomy.tsv
@@ -200,19 +296,28 @@ awk -F'\t' 'NR>1{print split($2,a,"; ")}' $T | sort | uniq -c        # depth rea
 awk -F'\t' 'NR>1{split($2,a,"; "); print a[2]}' $T | sort | uniq -c | sort -nr | head -5
 grep -c 'd__Archaea' $T
 ```
+
+</div>
+
 - **۳۶۸ از ۴۱۴ ASV** (۸۹٪) تا سطح جنس رفتند (با Confidence ≥ ۰٫۷).
 - پنج شاخه‌ی پرتعداد: Actinobacteriota ۱۷۰، Proteobacteria ۶۵، Chloroflexi ۳۹، Acidobacteriota ۲۸، Gemmatimonadota ۲۵.
-- **۱۳ ASV آرکی**: ۱۲ تا Nitrososphaeraceae (Thaumarchaeota یا Crenarchaeota، اکسیدکننده‌های آمونیاک خاک) و ۱ Marine Group II.
+- ‏**۱۳ ASV آرکی**: ۱۲ تا Nitrososphaeraceae (Thaumarchaeota یا Crenarchaeota، اکسیدکننده‌های آمونیاک خاک) و ۱ Marine Group II.
 
 چرا آرکی؟ «16S» نام ژن است، نه «باکتری». آرکی‌ها هم 16S rRNA دارند. پرایمرهای 515F/806R در نواحی‌ای می‌چسبند که بین باکتری‌ها و آرکی‌ها حفاظت‌شده است. پس این پرایمرها **پروکاریوت‌ها** را تکثیر می‌کنند. اگر می‌خواهید فقط باکتری را گزارش کنید، باید صریحاً فیلتر کنید (`qiime taxa filter-table --p-include d__Bacteria`) و این را بنویسید.
 
-### ۴.۲ vsearch در برابر Naive Bayes
+### ‏۴.۲ vsearch در برابر Naive Bayes
+
+<div dir="ltr">
+
 ```bash
 qiime feature-classifier classify-consensus-vsearch --i-query rep-seqs.qza \
   --i-reference-reads ../../04_16S_Amplicon/data/db/silva-138-99-seqs-515-806.qza \
   --i-reference-taxonomy ../../04_16S_Amplicon/data/db/silva-138-99-tax-515-806.qza \
   --p-threads 4 --o-classification taxonomy-vsearch.qza --o-search-results vsearch-hits.qza
 ```
+
+</div>
+
 (برای مقایسه، هر دو جدول را export کنید و با Python روی `Feature ID` به هم وصل کنید.)
 - **شاخه:** ۴۱۰ از ۴۱۴ یکسان (۹۹٪).
 - **جنس:** ۳۴۰ ASV در هر دو روش تا جنس رفتند، ۳۱۶ یکسان (۹۳٪).
@@ -227,10 +332,13 @@ qiime feature-classifier classify-consensus-vsearch --i-query rep-seqs.qza \
 
 تفسیر:
 - دو مورد اول عملاً «اختلاف بر سر یک نام جای‌خالی» است. هر دو روش می‌گویند «یک دودمان بی‌نام اکتینوباکتری»، فقط با برچسب متفاوت.
-- *Falsibacillus* در برابر *Bacillus* یک اختلاف واقعی است. ناحیه‌ی V4 بین جنس‌های Bacillaceae تفاوت کمی دارد.
-- Confidence (NB) و Consensus (vsearch) **یک مقیاس نیستند**. Confidence احتمال بوت‌استرپ است. Consensus سهم بهترین نتیجه‌های جستجو با همان برچسب است (پیش‌فرض: ۱۰ نتیجه، حداقل ۵۱٪).
+- ‏*Falsibacillus* در برابر *Bacillus* یک اختلاف واقعی است. ناحیه‌ی V4 بین جنس‌های Bacillaceae تفاوت کمی دارد.
+- ‏Confidence (NB) و Consensus (vsearch) **یک مقیاس نیستند**. Confidence احتمال بوت‌استرپ است. Consensus سهم بهترین نتیجه‌های جستجو با همان برچسب است (پیش‌فرض: ۱۰ نتیجه، حداقل ۵۱٪).
 
 ### ۴.۳ `g__uncultured`
+
+<div dir="ltr">
+
 ```bash
 qiime taxa collapse --i-table table.qza --i-taxonomy taxonomy.qza --p-level 6 --o-collapsed-table genus.qza
 qiime tools export --input-path genus.qza --output-path genus
@@ -238,6 +346,11 @@ biom convert -i genus/feature-table.biom -o genus.tsv --to-tsv
 grep -c 'g__uncultured' genus.tsv ; awk -F'\t' 'NR>2' genus.tsv | wc -l
 grep 'g__uncultured' genus.tsv | cut -f1 | head -3
 ```
+
+</div>
+
+<div dir="ltr">
+
 ```text
 20
 142
@@ -245,9 +358,12 @@ d__Bacteria;p__Planctomycetota;c__Planctomycetes;o__Pirellulales;f__Pirellulacea
 d__Bacteria;p__Planctomycetota;c__Planctomycetes;o__Gemmatales;f__Gemmataceae;g__uncultured
 d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Burkholderiales;f__uncultured;g__uncultured
 ```
-`g__uncultured` در **۲۰ دودمان مختلف** هست. `taxa collapse` آن‌ها را یکی **نمی‌کند**: جدول ۱۴۲ سطر دارد و شناسه‌ی هر سطر کل دودمان است. خطر وقتی است که خودتان در pandas یا R فقط با «نام جنس» گروه‌بندی کنید: این ۲۰ سطر یک «جنس» ۱۵٫۶ درصدی می‌سازند که دومین تاکسون فراوان داده به نظر می‌رسد (درس، بخش ۴.۵).
 
-### ۴.۴ «*Rubrobacter radiotolerans* گونه‌ی غالب بود»
+</div>
+
+‏`g__uncultured` در **۲۰ دودمان مختلف** هست. `taxa collapse` آن‌ها را یکی **نمی‌کند**: جدول ۱۴۲ سطر دارد و شناسه‌ی هر سطر کل دودمان است. خطر وقتی است که خودتان در pandas یا R فقط با «نام جنس» گروه‌بندی کنید: این ۲۰ سطر یک «جنس» ۱۵٫۶ درصدی می‌سازند که دومین تاکسون فراوان داده به نظر می‌رسد (درس، بخش ۴.۵).
+
+### ‏۴.۴ «*Rubrobacter radiotolerans* گونه‌ی غالب بود»
 1. **گونه از V4 قابل ادعا نیست.** طبقه‌بند ما اصلاً سطح گونه ندارد. حتی با طبقه‌بند گونه‌ای، یک قطعه‌ی ۲۲۷ بازی معمولاً گونه‌های یک جنس را از هم جدا نمی‌کند. حداکثر می‌توان گفت «جنس *Rubrobacter*».
 2. **«غالب» نیست.** *Rubrobacter* با ۵٫۹٪ ریدها پنجمین برچسب است (بعد از wb1-P19 با ۱۶٫۹٪). به‌علاوه درصد ریدها برابر درصد سلول‌ها نیست: تعداد نسخه‌ی ژن 16S و سوگیری PCR آن را تغییر می‌دهند. باید بنویسد «فراوانی **نسبی** ریدهای *Rubrobacter*…».
 
@@ -256,25 +372,37 @@ d__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Burkholderiales;f__uncul
 ## تمرین ۵: پوشش گیاهی یا ارتفاع؟
 
 ### ۵.۱ دو ترتیب
+
+<div dir="ltr">
+
 ```bash
 qiime diversity adonis --i-distance-matrix core-metrics-results/unweighted_unifrac_distance_matrix.qza \
   --m-metadata-file $M --p-formula "elevation+vegetation" --o-visualization adonis_ev.qzv
 qiime diversity adonis ... --p-formula "vegetation+elevation" --o-visualization adonis_ve.qzv
 ```
+
+</div>
+
 | ترتیب | جمله‌ی اول: R²، p | جمله‌ی دوم: R²، p |
 | :--- | :--- | :--- |
 | `elevation+vegetation` | elevation: 0.070، **0.001** | vegetation: 0.030، 0.092 |
 | `vegetation+elevation` | vegetation: 0.079، **0.001** | elevation: 0.021، 0.385 |
 
-`adonis` در QIIME 2 جمع مربعات **ترتیبی (type I)** می‌دهد. جمله‌ی اول همه‌ی تغییراتی را که توضیح می‌دهد برمی‌دارد، **از جمله سهم مشترک** دو متغیر. جمله‌ی دوم فقط با «باقی‌مانده» سنجیده می‌شود. چون دو متغیر شدیداً همبسته‌اند، سهم مشترک بزرگ است و به هر کدام که اول بیاید می‌رسد. Residual در هر دو مدل یکسان است (R² = 0.90)، چون مدل کامل یکی است. فقط **تقسیم** آن عوض شده است.
+‏`adonis` در QIIME 2 جمع مربعات **ترتیبی (type I)** می‌دهد. جمله‌ی اول همه‌ی تغییراتی را که توضیح می‌دهد برمی‌دارد، **از جمله سهم مشترک** دو متغیر. جمله‌ی دوم فقط با «باقی‌مانده» سنجیده می‌شود. چون دو متغیر شدیداً همبسته‌اند، سهم مشترک بزرگ است و به هر کدام که اول بیاید می‌رسد. Residual در هر دو مدل یکسان است (R² = 0.90)، چون مدل کامل یکی است. فقط **تقسیم** آن عوض شده است.
 
 برای آزمون **حاشیه‌ای** (type III: «سهم هر متغیر با فرض حضور بقیه») در QIIME 2 2026.7 گزینه‌ای نیست. در R: `vegan::adonis2(d ~ elevation + vegetation, data = md, by = "margin")`. در مدل دو متغیره، **جمله‌ی دوم هر ترتیب همان آزمون حاشیه‌ای آن متغیر است**. پس از جدول بالا می‌دانیم: سهم اختصاصی پوشش گیاهی p = 0.092 و سهم اختصاصی ارتفاع p = 0.385. هیچ‌کدام به‌تنهایی معنی‌دار نیست، ولی با هم (سهم مشترک) قوی‌اند.
 
 ### ۵.۲ جدول متقاطع
+
+<div dir="ltr">
+
 ```bash
 awk -F'\t' 'NR>2{print $20, $3}' $M | sort -k1,1 -k2n | awk '{print $1}' | uniq -c
 awk -F'\t' 'NR>2{print $20, $3}' $M | sort -k1,1 -k2n | awk '{a[$1]=a[$1]" "$2} END{for(k in a) print k":"a[k]}'
 ```
+
+</div>
+
 - بدون گیاه: ۸۹۵ تا ۳٬۱۸۴ متر
 - با گیاه: ۲٬۶۸۷ تا ۴٬۶۹۷ متر
 - **همپوشانی فقط بین ۲٬۶۸۷ و ۳٬۱۸۴ متر** است: سایت‌های ۲٬۶۸۷ (با گیاه)، ۲٬۸۳۸ (بدون)، ۳٬۰۰۸، ۳٬۱۵۳ و ۳٬۱۸۴ (بدون). زیر ۲٬۶۸۷ متر هیچ سایت گیاه‌داری نیست و بالای ۳٬۱۸۴ متر هیچ سایت بی‌گیاهی.
@@ -285,12 +413,21 @@ awk -F'\t' 'NR>2{print $20, $3}' $M | sort -k1,1 -k2n | awk '{a[$1]=a[$1]" "$2} 
 - ❌ «ارتفاع عامل اصلی است و پوشش گیاهی اثری ندارد.» (فقط از یک ترتیب adonis)
 
 ### ۵.۴ PERMDISP
+
+<div dir="ltr">
+
 ```text
 PERMDISP  F = 0.042  p = 0.842
 ```
+
+</div>
+
 پراکندگی دو گروه برابر است، پس معنی‌داری PERMANOVA از تفاوت **مرکز** (ترکیب) می‌آید. اگر PERMDISP معنی‌دار بود (مثلاً 0.001)، PERMANOVA معنی‌دار دیگر به‌تنهایی قابل تفسیر نبود: تفاوت می‌توانست از پراکندگی، مرکز یا هر دو باشد. آن وقت باید نمودار PCoA را ببینید و نتیجه را محتاطانه بنویسید («گروه‌ها در ترکیب و/یا پراکندگی متفاوت بودند»). PERMANOVA به عدم تعادل حجم گروه‌ها (این‌جا ۱۵ در برابر ۳۱) همراه با پراکندگی نابرابر به‌خصوص حساس است.
 
 ### ۵.۵ عمق rarefaction
+
+<div dir="ltr">
+
 ```bash
 for d in 100 300; do
   qiime diversity core-metrics-phylogenetic --i-phylogeny rooted-tree.qza --i-table table.qza \
@@ -299,6 +436,9 @@ for d in 100 300; do
     --m-metadata-file $M --o-visualization ag$d.qzv
 done
 ```
+
+</div>
+
 | عمق | نمونه (بدون / با گیاه) | Kruskal-Wallis H | p |
 | ---: | :--- | ---: | ---: |
 | 100 | 49 (17 / 32) | 10.60 | 0.0011 |
@@ -330,20 +470,20 @@ done
 
 ### ۶.۳ عمق توالی‌یابی
 هدف معمول برای 16S خاک: **حداقل ۱۰٬۰۰۰ تا ۳۰٬۰۰۰ رید** پس از DADA2 در هر نمونه (خاک از متنوع‌ترین محیط‌هاست). میانه‌ی ۲۴۳ رید این داده کافی نیست، چون:
-- DADA2 در عمق کم، توالی‌های نادر را از خطا تشخیص نمی‌دهد و ریدهای reverse را کامل تصحیح نمی‌کند. نتیجه: **۵۱٪ افت در ادغام** (تمرین ۳)، که در عمق کافی به چند درصد می‌رسد.
+- ‏DADA2 در عمق کم، توالی‌های نادر را از خطا تشخیص نمی‌دهد و ریدهای reverse را کامل تصحیح نمی‌کند. نتیجه: **۵۱٪ افت در ادغام** (تمرین ۳)، که در عمق کافی به چند درصد می‌رسد.
 - تشخیص chimera عملاً غیرممکن است (صفر chimera).
-- rarefaction به ۱۵۰ رید یعنی کنار گذاشتن یک‌سوم نمونه‌ها و تخمین پرخطای تنوع.
+- ‏rarefaction به ۱۵۰ رید یعنی کنار گذاشتن یک‌سوم نمونه‌ها و تخمین پرخطای تنوع.
 - قبل از تعیین عمق، **منحنی rarefaction** یک ران آزمایشی را ببینید: عمقی که منحنی در آن صاف می‌شود.
 
 ### ۶.۴ مرجع طبقه‌بندی
-- **SILVA 138.2** (یا آخرین نسخه) یا **GTDB** (برای نام‌گذاری مبتنی بر ژنوم) یا **Greengenes2** (اگر می‌خواهید با داده‌ی shotgun در یک درخت ادغام کنید).
+- ‏**SILVA 138.2** (یا آخرین نسخه) یا **GTDB** (برای نام‌گذاری مبتنی بر ژنوم) یا **Greengenes2** (اگر می‌خواهید با داده‌ی shotgun در یک درخت ادغام کنید).
 - آماده‌سازی با **RESCRIPt** (Robeson et al. 2021): دانلود، حذف توالی‌های کم‌کیفیت و کوتاه، **dereplicate** با حل اختلاف تاکسونومی، استخراج ناحیه‌ی **پرایمرهای خودتان** (`feature-classifier extract-reads`)، و آموزش Naive Bayes **با همان نسخه‌ی scikit-learn** محیط تحلیل.
 - نسخه‌ی مرجع، تاریخ و پارامترهای آماده‌سازی را در روش‌ها بنویسید. اگر حافظه کم است (مثل این درس)، می‌توانید مثل ما سطح گونه را حذف کنید یا با dereplicate تعداد کلاس‌ها را کم کنید.
 
 ### ۶.۵ پاسخ به داور درباره‌ی rarefy
 نمونه‌ی پاسخ:
 
-> McMurdie & Holmes (2014) نشان دادند rarefy برای **آزمون فراوانی تفاضلی** تک‌تک تاکسون‌ها، داده را دور می‌ریزد و توان آماری را کم می‌کند. ما برای این هدف از rarefy استفاده **نکردیم**. برای فراوانی تفاضلی از روش‌های مبتنی بر لگاریتم نسبت (ANCOM-BC2 / ALDEx2) روی جدول کامل استفاده کردیم. rarefy فقط برای **معیارهای تنوع آلفا و بتا** به کار رفت، که به عمق نمونه حساس‌اند. Weiss et al. (2017) نشان دادند rarefy برای این هدف، به‌ویژه با عمق کتابخانه‌ی بسیار نابرابر، رفتار خوبی دارد. عمق ۱۵۰ را از منحنی rarefaction انتخاب کردیم و نتایج را در عمق‌های ۱۰۰ و ۳۰۰ هم گزارش کردیم (جدول S…). seed تصادفی ثابت (۴۲) بود.
+> ‏McMurdie & Holmes (2014) نشان دادند rarefy برای **آزمون فراوانی تفاضلی** تک‌تک تاکسون‌ها، داده را دور می‌ریزد و توان آماری را کم می‌کند. ما برای این هدف از rarefy استفاده **نکردیم**. برای فراوانی تفاضلی از روش‌های مبتنی بر لگاریتم نسبت (ANCOM-BC2 / ALDEx2) روی جدول کامل استفاده کردیم. rarefy فقط برای **معیارهای تنوع آلفا و بتا** به کار رفت، که به عمق نمونه حساس‌اند. Weiss et al. (2017) نشان دادند rarefy برای این هدف، به‌ویژه با عمق کتابخانه‌ی بسیار نابرابر، رفتار خوبی دارد. عمق ۱۵۰ را از منحنی rarefaction انتخاب کردیم و نتایج را در عمق‌های ۱۰۰ و ۳۰۰ هم گزارش کردیم (جدول S…). seed تصادفی ثابت (۴۲) بود.
 
 جایگزین‌ها: فاصله‌ی **Aitchison** (اقلیدسی روی CLR، از `DEICODE`/`gemelli` با robust Aitchison PCA در QIIME 2) برای بتا، و برای آلفا تخمین‌گرهایی مثل **breakaway** (q2-breakaway) که تعداد گونه‌های دیده‌نشده را هم تخمین می‌زنند.
 
@@ -354,3 +494,5 @@ done
 - Weiss S, et al. (2017). Normalization and microbial differential abundance strategies depend upon data characteristics. *Microbiome* 5:27. https://doi.org/10.1186/s40168-017-0237-y
 - Lin H, Peddada SD (2020). Analysis of compositions of microbiomes with bias correction (ANCOM-BC). *Nature Communications* 11:3514. https://doi.org/10.1038/s41467-020-17041-7
 - سایر منابع: انتهای [01_lesson.md](01_lesson.md).
+
+</div>

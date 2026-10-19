@@ -1,3 +1,5 @@
+<div dir="rtl">
+
 # ماژول 02: توالی‌یابی long-read و اسمبلی هیبرید (Long-read & Hybrid Assembly)
 
 | | |
@@ -17,9 +19,11 @@
 
 ## سرفصل درس
 1. فناوری Nanopore/PacBio و پروفایل خطا
-2. QC و فیلتر (Filtlong)؛ برش آداپتور (Porechop_ABI)
-3. Flye، polishing با Medaka و Polypolish
+2. ‏QC و فیلتر (Filtlong)؛ برش آداپتور (Porechop_ABI)
+3. ‏Flye، polishing با Medaka و Polypolish
 4. ارزیابی: circularity، CheckM2، مقایسه با short-read
 
 ## تمرین‌های برنامه‌ریزی‌شده
 - بستن ژنوم یک ایزوله و تعیین پلاسمید حامل ژن مقاومت (پیوند با 08/03)
+
+</div>
