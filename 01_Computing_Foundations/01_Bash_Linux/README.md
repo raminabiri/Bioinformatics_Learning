@@ -1,25 +1,34 @@
-# ماژول ۰۱: خط فرمان لینوکس (Bash Command Line)
+<div dir="rtl">
+
+# ماژول ۰۱: خط فرمان لینوکس (Bash)
 
 | | |
 | :--- | :--- |
 | **بخش** | `01_Computing_Foundations` |
+| **برای چه کسی** | کسی که تا حالا با ترمینال کار نکرده است |
 | **پیش‌نیاز** | ندارد |
-| **زمان تقریبی** | ۶ ساعت (۳ ساعت درس + ۳ ساعت تمرین) |
-| **ابزارها** | bash 5، GNU coreutils، grep، awk، sed |
-| **داده** | ژنوم و GFF مرجع *E. coli* K-12 (`bash data/download.sh`، حدود ۳ MB)؛ برای تمرین‌های ۴ و ۵: FASTQهای بخش ۰۳ |
-| **وضعیت** | ✅ تست‌شده — 2026-10-13 |
+| **زمان تقریبی** | ۵ ساعت (۳ درس، روی هم نزدیک به ۲٫۵ ساعت + ۲٫۵ ساعت تمرین) |
+| **ابزار** | bash 5، دستورهای پایه‌ی لینوکس (GNU coreutils)، grep، awk، sed |
+| **داده** | ژنوم و GFF *E. coli* K-12 (`bash data/download.sh`، نزدیک به ۳ مگابایت)؛ FASTQهای بخش ۰۳ (`bash 03_Metagenomics/data/download.sh`، نزدیک به ۱۰ مگابایت) |
+| **وضعیت** | ✅ بازنویسی در قالب تازه (2026-10-19) |
 
 ## اهداف یادگیری
 پس از این ماژول می‌توانید:
-1. در سیستم فایل لینوکس جابه‌جا شوید و فایل‌ها و مجوزها را مدیریت کنید.
-2. فایل‌های بزرگ (و فشرده) را بدون باز کردن کامل بررسی کنید.
-3. با pipe و `grep`، `cut`، `sort`، `uniq`، `awk` و `sed` فایل‌های FASTA، FASTQ و GFF را خلاصه و فیلتر کنید.
-4. یک اسکریپت امن (`set -euo pipefail`) با حلقه و آرگومان بنویسید.
-5. خطاهای بی‌صدای رایج را تشخیص دهید، مثل شمارش الگو در FASTA چندخطی.
+1. در ترمینال میان پوشه‌ها جابه‌جا شوید و فایل‌ها را بسازید، کپی کنید و جابه‌جا کنید.
+2. به فایل‌های بزرگ و فشرده نگاه کنید، بی‌آنکه بازشان کنید (`head`، `wc`، `less`، `zcat`).
+3. با لوله (`|`) و `grep`، `cut`، `sort`، `uniq` و `awk` از فایل‌های GFF و FASTQ پرسش کنید.
+4. با حلقه یک کار را روی چندین فایل تکرار کنید و یک اسکریپت ایمن (`set -euo pipefail`) بنویسید.
 
-## فایل‌ها
-- [01_lesson.md](01_lesson.md) — متن درس
-- [02_exercises.md](02_exercises.md) — تمرین‌ها
-- [03_solutions.md](03_solutions.md) — پاسخ تشریحی
-- [scripts/fasta_stats.sh](scripts/fasta_stats.sh) — پاسخ تمرین چالشی
-- [data/download.sh](data/download.sh) — دانلود داده؛ `data/sample.fasta` فایل نمونه‌ی کوچک پروتئینی است
+## ترتیب مطالعه
+1. [01_lesson_files.md](01_lesson_files.md): ترمینال، پوشه‌ها و نگاه کردن به فایل‌ها.
+2. [02_lesson_text_tools.md](02_lesson_text_tools.md): پرسیدن از فایل‌ها با grep، cut، sort، uniq و awk.
+3. [03_lesson_scripts.md](03_lesson_scripts.md): متغیر، حلقه و اسکریپت.
+4. [04_exercises.md](04_exercises.md): ۱۱ تمرین؛ زیر عنوان هر تمرین راهنمایی آمده است.
+5. [05_solutions.md](05_solutions.md): پاسخ تشریحی.
+
+## اسکریپت‌ها و داده
+- [scripts/count_reads.sh](scripts/count_reads.sh): شمار ریدها و میانگین طول در فایل‌های FASTQ (درس ۳).
+- [scripts/fasta_stats.sh](scripts/fasta_stats.sh): آمار یک فایل FASTA (پاسخ تمرین ۱۱).
+- [data/download.sh](data/download.sh): دانلود داده. `data/sample.fasta` یک فایل پروتئینی کوچک برای تمرین ۱۱ است.
+
+</div>

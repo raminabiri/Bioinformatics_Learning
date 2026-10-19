@@ -1,33 +1,32 @@
-# ماژول ۰۲: دیتابیس‌های زیستی و دریافت داده (Biological Databases & Data Retrieval)
+<div dir="rtl">
+
+# ماژول ۰۲: پایگاه‌های داده‌ی زیستی (Biological Databases)
 
 | | |
 | :--- | :--- |
 | **بخش** | `00_Orientation` |
-| **پیش‌نیاز** | ماژول ۰۱؛ برای بخش عملی: آشنایی اولیه با ترمینال ([01_Bash_Linux](../../01_Computing_Foundations/01_Bash_Linux/)) |
-| **زمان تقریبی** | ۵ ساعت (۲٫۵ ساعت درس + ۲٫۵ ساعت تمرین) |
-| **ابزارها (نسخه‌ی تست‌شده)** | NCBI Datasets CLI 18.38.0، curl، jq 1.7، awk |
-| **داده** | از دیتابیس‌های عمومی و با اسکریپت‌های `scripts/` دریافت می‌شود |
-| **وضعیت** | ✅ تست‌شده — 2026-10-12 |
+| **برای چه کسی** | کسی که زیست‌شناسی مولکولی می‌داند ولی بیوانفورماتیک کار نکرده است |
+| **پیش‌نیاز** | ماژول ۰۱. برای درس ۲: درس [خط فرمان لینوکس](../../01_Computing_Foundations/01_Bash_Linux/) |
+| **زمان تقریبی** | ۴ ساعت (۲ درس، هر کدام ۱ ساعت + ۲ ساعت تمرین) |
+| **ابزار** | درس ۱: تنها مرورگر · درس ۲: NCBI Datasets CLI 18.38، curl، jq |
+| **وضعیت** | ✅ بازنویسی در قالب تازه (2026-10-19) |
 
 ## اهداف یادگیری
 پس از این ماژول می‌توانید:
-1. دیتابیس‌های اولیه و ثانویه را از هم تشخیص دهید و برای هر نوع داده منبع درست را انتخاب کنید.
-2. نوع و منشأ هر شناسه (PRJ/SAM/SRX/SRR، GCA/GCF، NC/NP/WP، UniProt، PDB) را از روی پیشوندش بخوانید.
-3. با `datasets`، ENA Portal API، UniProt REST، RCSB، KEGG و AlphaFold API داده را به‌صورت تکرارپذیر دریافت کنید.
-4. با cross-referenceها یک ژن را بین دیتابیس‌ها دنبال کنید.
-5. جدول Run↔Sample یک پروژه را بسازید و تله‌ی «هر Run یک نمونه» را تشخیص دهید.
+1. بگویید هر نوع داده‌ی زیستی کجا نگه‌داری می‌شود، و فرق بایگانی (GenBank، ENA، SRA) و پایگاه گزینش‌شده (RefSeq، Swiss-Prot) را بدانید.
+2. از روی پیشوند و نسخه‌ی یک شناسه بفهمید با چه رکوردی سروکار دارید.
+3. یک ژن را از NCBI Gene تا UniProt، AlphaFold، PDB و PubMed دنبال کنید.
+4. چهار لایه‌ی داده‌ی خام (پروژه، نمونه، آزمایش، اجرا) را بشناسید و اجرا را با نمونه اشتباه نگیرید.
+5. داده را با دستور (`datasets`، API با `curl`) به شکلی دوباره‌پذیر بگیرید و درستی‌اش را با md5 بسنجید.
 
-## فایل‌ها
-- [01_lesson.md](01_lesson.md) — متن درس
-- [02_exercises.md](02_exercises.md) — تمرین‌ها
-- [03_solutions.md](03_solutions.md) — پاسخ تشریحی
-- [scripts/gene_tour.sh](scripts/gene_tour.sh) — دنبال‌کردن یک ژن در ۸ دیتابیس
-- [scripts/project_summary.sh](scripts/project_summary.sh) — خلاصه‌ی Run/Sample یک پروژه‌ی ENA (پاسخ تمرین چالشی)
+## ترتیب مطالعه
+1. [01_lesson_browse.md](01_lesson_browse.md): پایگاه‌های داده با مرورگر.
+2. [02_lesson_download.md](02_lesson_download.md): دریافت داده با دستور (پس از درس Bash).
+3. [03_exercises.md](03_exercises.md): ۸ تمرین؛ زیر عنوان هر تمرین راهنمایی آمده است.
+4. [04_solutions.md](04_solutions.md): پاسخ تشریحی.
 
-## اجرا
-```bash
-conda activate bioinfo_course
-cd 00_Orientation/02_Biological_Databases
-bash scripts/gene_tour.sh                       # rpoB
-bash scripts/gene_tour.sh gyrA 511145 "fluoroquinolone resistance"
-```
+## اسکریپت‌ها
+- [scripts/gene_tour.sh](scripts/gene_tour.sh): دنبال کردن یک ژن در هشت پایگاه داده.
+- [scripts/project_summary.sh](scripts/project_summary.sh): خلاصه‌ی نمونه‌به‌نمونه‌ی یک پروژه‌ی ENA (تمرین ۸).
+
+</div>

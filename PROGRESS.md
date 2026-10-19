@@ -70,7 +70,17 @@ User rules: ask before heavy downloads (state what/size/time); course is introdu
 - 85 empty `README.md` files inside `.git/` (pre-existing since 2026-10-04); untouched.
 - Git: pushed 2026-10-15 as commit 3c7ead4 to origin/main (repo is PUBLIC). `advanced.odt` and `Bioinformatics_Course_ColorCoded.xlsx` deliberately left untracked (personal files, never tracked before). Harmless warning `ignoring broken ref refs/heads/README.md` (empty file, pre-existing).
 
+- ✅ **New-format rewrite, batch 1 (2026-10-19):**
+  - 00/01, 00/02 (split into 01_lesson_browse + 02_lesson_download, 03_exercises, 04_solutions), and 01/01 Bash (split into 01_lesson_files, 02_lesson_text_tools, 03_lesson_scripts, 04_exercises, 05_solutions; new `scripts/count_reads.sh`).
+  - All RTL-wrapped, Persian words applied, Coursera/edX/YouTube refs.
+  - Tools added: `_tools/rtl_wrap.py` (idempotent; wraps file in div rtl and code fences in div ltr), `_tools/persian_words.py` (safe replacements + lists manual ones).
+  - STYLE_GUIDE §1, §3, §4, §7 (RTL), §8 (word list) and checklist rewritten.
+  - User rules: commit+push after every 3 modules. Technical/biological terms (بیوانفورماتیک، کامپیوتر، ژن، رید…) stay; معمولاً → در بسیاری از موارد.
+  - Link facts: Coursera returns 451 from this server and from WebFetch, so its URLs are verified via WebSearch index. YouTube is unreachable 2026-10-19, so old oEmbed dates are kept. alphafold.ebi.ac.uk now gives 403 to curl/WebFetch. vincebuffalo.com timed out.
+- 🔄 **FORMAT CHANGE (user, 2026-10-19):** user said lessons are not learnable (dense expert notes, jargon tables, test numbers, no intuition/examples). New audience: knows basic + molecular biology, NOT bioinformatics. New lesson format (pilot = 00/01, rewritten 2026-10-19): «در یک نگاه» goals → story (rifampicin-resistant E. coli, rpoB) → plain concepts + analogy → small worked example → «✋ امتحان کن» <details> boxes after each section → 3 common mistakes → «برای کنجکاوها» optional box → summary → glossary → refs. Exercises: strictly lesson-based, runnable (browser/calc), **راهنمایی right under each exercise title** (user request). Verification numbers go to solutions, not lesson body. WAITING for user feedback on pilot before updating STYLE_GUIDE §1/§3 and rewriting other lessons.
+
 ## 6. Next steps (priority order, one session each)
+0. **Continue new-format rewrite** (user approved 2026-10-19): next batch 01/02 Conda, 01/03 Formats, 01/04 Git → commit+push; then 01/05, 02/01, 03/01; then 03/02–03/04; then 04/01–04/02; then new modules.
 3. **04/03 MLST**, then 04/04 pan-genome, 04/05 Snippy — write-only per the new rule; for each topic add short non-bacterial sections where relevant (scope memory). Consider a short phage/virus/eukaryote note in 04/01 assembly.
 4. **02/02 pandas:** fastp JSON, `cds_table.tsv`, Kraken vs truth plots.
 5. **02/03 R/stats:** ggplot2, FDR simulation, vegan diversity on 16S output.
