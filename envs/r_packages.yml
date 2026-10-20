@@ -1,0 +1,21 @@
+# Environment for part 04 (running bioinformatics R packages).
+# Create once:   conda env create -f envs/r_packages.yml
+# Then:          conda activate r_packages
+# R itself comes in automatically as a dependency (r-base); the course does not teach R or RStudio.
+# Lesson outputs were produced with R 4.6.1, DESeq2 1.52.0, ggtree 4.2.0, vegan 2.7.6, ggplot2 4.0.3, ape 5.8.1.
+# Bioconda lags behind Bioconductor (2026-10-20: bioconductor-deseq2 1.50.2, ggtree 4.0.x), so numbers can
+# differ in the last digits. Without the >= pins the solver picked bioconductor-ggtree 1.2.12 (from 2016).
+# Status: a dry-run with an offline cache found every package except r-aplot (missing from the local cache;
+# it exists on conda-forge). The full solve still has to be checked online.
+name: r_packages
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - r-base=4.5
+  - r-biocmanager
+  - r-ggplot2>=4.0
+  - r-vegan>=2.7
+  - r-ape>=5.8
+  - bioconductor-deseq2>=1.50
+  - bioconductor-ggtree>=4.0

@@ -566,7 +566,7 @@ KeyError: 'lenght'
 
 ‏`df.to_csv("out.tsv", sep="\t")` شماره‌ی سطرها (ایندکس) را هم ستون یکم می‌نویسد؛ برای جدولی مانند `genes.tsv` که ایندکسش تنها شماره است، `index=False` آن را کنار می‌گذارد. در `composition.py` ایندکس، **نام جنس** است و باید نوشته شود.
 
-‏**seaborn** (در محیط `bioinfo_course` نصب است) روی matplotlib ساخته شده و نمودارهای آماری (جعبه‌ای، ویولنی، heatmap) را با یک خط می‌کشد؛ نمونه: `sns.boxplot(data=df, x="strand", y="length", ax=ax)`. در بخش ۰۴ (R و آمار) و بخش‌های بعد، از این نمودارها بیشتر خواهید دید.
+‏**seaborn** (در محیط `bioinfo_course` نصب است) روی matplotlib ساخته شده و نمودارهای آماری (جعبه‌ای، ویولنی، heatmap) را با یک خط می‌کشد؛ نمونه: `sns.boxplot(data=df, x="strand", y="length", ax=ax)`. در بخش‌های بعد از این نمودارها بیشتر خواهید دید.
 </details>
 
 ---

@@ -229,7 +229,7 @@ ls Bioinformatics_Learning-main
 01_Linux
 02_BioLinux
 03_Python
-04_R_Statistics
+04_R_Packages
 05_Reproducible_Work
 06_Metagenomics
 07_Bacterial_Genomics
