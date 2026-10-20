@@ -8,7 +8,7 @@
 >
 > ```bash
 > cd 07_Bacterial_Genomics/01_Assembly_Quality
-> G=../../01_Linux/99_scripts_data/02_Bash/data      # if empty: bash $G/download.sh
+> G=../../01_Linux/99_scripts_data/data      # if empty: bash $G/download.sh
 > ```
 >
 > </div>

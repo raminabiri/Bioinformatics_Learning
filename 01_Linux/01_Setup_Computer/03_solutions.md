@@ -99,7 +99,15 @@ STYLE_GUIDE.md
 _templates
 _tools
 01_Setup_Computer
-02_Bash
+02_Files_Folders
+03_Looking_at_Files
+04_Pipes_Redirection
+05_grep
+06_Cut_Sort_Uniq
+07_awk
+08_Sed_Tr
+09_Variables_Loops
+10_Scripts
 99_scripts_data
 README.md
 ```
@@ -110,7 +118,7 @@ README.md
 
 1. دو فایل یا پوشه در پوشه‌ی خانه پیدا می‌شود: `course.zip` و پوشه‌ی `Bioinformatics_Learning-main`.
 2. **۱۱ بخش**، از `00_Orientation` تا `10_Advanced`. (`envs`، `_templates` و `_tools` بخش درسی نیستند؛ ابزارهای نویسندگان دوره‌اند.)
-3. در `01_Linux` دو ماژول (`01_Setup_Computer` و `02_Bash`)، یک `README.md` و پوشه‌ی **`99_scripts_data`** هست که اسکریپت‌ها و داده‌ی این بخش را دارد.
+3. در `01_Linux` ده ماژول (`01_Setup_Computer` تا `10_Scripts`)، یک `README.md` و پوشه‌ی **`99_scripts_data`** هست که اسکریپت‌ها و داده‌ی این بخش را دارد.
 
 **اشتباه رایج:** اجرای `unzip` در پوشه‌ای که پیش‌تر نسخه‌ی کهنه‌ی دوره را دارد. `unzip` می‌پرسد آیا فایل‌ها را بازنویسی کند. اگر کارهای خودتان را در آن پوشه دارید، نخست نام پوشه‌ی کهنه را عوض کنید.
 

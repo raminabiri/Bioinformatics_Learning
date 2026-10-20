@@ -8,7 +8,7 @@
 >
 > ```bash
 > cd 03_Python/02_Biopython
-> ‏G=../../01_Linux/99_scripts_data/02_Bash/data      # اگر خالی است: bash $G/download.sh
+> ‏G=../../01_Linux/99_scripts_data/data      # اگر خالی است: bash $G/download.sh
 > python3 scripts/cds_table.py $G/ecoli_k12.fna $G/ecoli_k12.gff -o cds_table.tsv
 > ```
 >

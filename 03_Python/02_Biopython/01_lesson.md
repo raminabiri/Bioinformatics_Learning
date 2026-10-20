@@ -20,7 +20,7 @@
 cd 03_Python/02_Biopython
 # محیط: Python 3.11+ با biopython (در سرور دوره: محیط genomepipe_tools)
 python3 -c "import Bio; print(Bio.__version__)"      # 1.88
-G=../../01_Linux/99_scripts_data/02_Bash/data   # ژنوم و GFF مرجع E. coli (ماژول 01/01)
+G=../../01_Linux/99_scripts_data/data   # ژنوم و GFF مرجع E. coli (ماژول 01/01)
 ```
 
 </div>

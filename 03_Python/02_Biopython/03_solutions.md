@@ -8,7 +8,7 @@
 
 ```bash
 cd 03_Python/02_Biopython
-G=../../01_Linux/99_scripts_data/02_Bash/data
+G=../../01_Linux/99_scripts_data/data
 ```
 
 </div>
@@ -175,7 +175,7 @@ f = lambda rs: sum("uncharacterized" in r["product"].lower() for r in rs)
 ```python
 from collections import Counter
 from codon_usage import cds_sequences      # run with PYTHONPATH=scripts
-G = "../../01_Linux/99_scripts_data/02_Bash/data"
+G = "../../01_Linux/99_scripts_data/data"
 seqs = list(cds_sequences(f"{G}/ecoli_k12.fna", f"{G}/ecoli_k12.gff"))
 print(Counter(s[:3] for _, s in seqs).most_common())
 print(Counter(s[-3:] for _, s in seqs).most_common())

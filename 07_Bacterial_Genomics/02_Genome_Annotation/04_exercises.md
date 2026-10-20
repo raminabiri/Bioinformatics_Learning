@@ -8,7 +8,7 @@
 >
 > ```bash
 > cd 07_Bacterial_Genomics/02_Genome_Annotation
-> G=../../01_Linux/99_scripts_data/02_Bash/data       # E. coli genome + GFF (module 01/01)
+> G=../../01_Linux/99_scripts_data/data       # E. coli genome + GFF (module 01/01)
 > # tools: pyrodigal, barrnap, aragorn, tRNAscan-SE (Bioconda); on the course server:
 > export PATH=~/miniforge3/envs/genomepipe_tools/bin:$PATH
 > ```

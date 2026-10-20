@@ -70,6 +70,11 @@ User rules: ask before heavy downloads (state what/size/time); course is introdu
 - 85 empty `README.md` files inside `.git/` (pre-existing since 2026-10-04); untouched.
 - Git: pushed 2026-10-15 as commit 3c7ead4 to origin/main (repo is PUBLIC). `advanced.odt` and `Bioinformatics_Course_ColorCoded.xlsx` deliberately left untracked (personal files, never tracked before). FIXED 2026-10-19: empty files `.git/refs/{,heads/,remotes/,tags/,remotes/origin/}README.md` made `git fetch` fail with `fatal: bad object refs/README.md`. They were moved (not deleted) to the session scratchpad. The user had pushed 270d160 (a web edit to old 00/01) on 2026-10-16; the batch-1 commit was rebased on it and pushed as 6834e1c.
 
+- ✅ **Linux split into small modules (2026-10-20).** The user approved the awk pilot style ("ادامه بده").
+  - New layout of 01_Linux: 01_Setup_Computer · 02_Files_Folders ✅ · 03_Looking_at_Files ✅ · 04_Pipes_Redirection ✅ · 05_grep ⏳ · 06_Cut_Sort_Uniq ⏳ · 07_awk ✅ (pilot lesson moved here; its inline exercises became 02_exercises with 8 exercises) · 08_Sed_Tr ⏳ · 09_Variables_Loops ⏳ · 10_Scripts ⏳.
+  - The old 02_Bash module was removed. A backup of its text is in the scratchpad at `old_bash/`, and git history (commit 3c54372) keeps it too. Reuse it for 05/06/08/09/10.
+  - Data and scripts now live in `01_Linux/99_scripts_data/{data,scripts}`, shared by all modules.
+  - Prerequisite notes: zless is taught in 03 (no pipe yet), zcat|head in 04; grep -oE in 05; sort|uniq in 06.
 - 🧪 **Deep-explanation pilot (2026-10-19), waiting for user verdict.** The user said Linux/BioLinux/Python/Biopython code lacked detailed explanation.
   - New lesson `01_Linux/02_Bash/03_lesson_awk.md`, with every new command dissected: numbered parts diagram, a table with "what / what if missing", step-by-step build-up, a trace table, real wrong outputs (= vs ==, double quotes, division by zero), a command cheat card, and mini exercises with collapsible answers.
   - awk was removed from lesson 2. The strand question is now answered with grep|cut|sort|uniq.

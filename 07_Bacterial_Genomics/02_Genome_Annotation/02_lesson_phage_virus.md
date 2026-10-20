@@ -40,7 +40,7 @@
 <div dir="ltr">
 
 ```bash
-G=../../01_Linux/99_scripts_data/02_Bash/data
+G=../../01_Linux/99_scripts_data/data
 grep -P '\tsequence_feature\t' $G/ecoli_k12.gff | grep 'cryptic prophage' \
   | awk -F'\t' '{match($9,/Note=[^;]+/); print $4, $5, $5-$4+1, substr($9,RSTART+5,RLENGTH-5)}'
 ```

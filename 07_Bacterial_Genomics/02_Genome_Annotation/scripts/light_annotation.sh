@@ -4,7 +4,7 @@
 # Run from the module folder:  cd 07_Bacterial_Genomics/02_Genome_Annotation && bash scripts/light_annotation.sh
 # Needs: pyrodigal, barrnap, aragorn, tRNAscan-SE (Bioconda); Python 3.
 set -euo pipefail
-G=../../01_Linux/99_scripts_data/02_Bash/data
+G=../../01_Linux/99_scripts_data/data
 OUT=work_light
 [ -s $G/ecoli_k12.fna ] || { echo "Genome missing: bash $G/download.sh"; exit 1; }
 mkdir -p $OUT

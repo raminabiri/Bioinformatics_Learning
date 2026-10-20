@@ -108,7 +108,7 @@ grep -P '\tCDS\t' $G/ecoli_k12.gff | grep -E 'gene=(fdnG|fdoG|fdhF);' | grep -oE
 
 ```bash
 python3 - <<'EOF'
-G = "../../01_Linux/99_scripts_data/02_Bash/data/ecoli_k12.gff"
+G = "../../01_Linux/99_scripts_data/data/ecoli_k12.gff"
 ref = [l.split("\t") for l in open(G) if not l.startswith("#")]
 ref = [(int(f[3]), int(f[4]), f[2], f[8][:90]) for f in ref if len(f) > 8]
 for l in open("work_light/trnascan.txt").readlines()[3:]:
@@ -169,7 +169,7 @@ awk 'NR>3{print $5}' work_light/trnascan.txt | sort | uniq -c | sort -nr | head 
 ```bash
 python3 - <<'EOF'
 from Bio import SeqIO
-D = "../../01_Linux/99_scripts_data/02_Bash/data/"
+D = "../../01_Linux/99_scripts_data/data/"
 s = str(next(SeqIO.parse(D + "ecoli_k12.fna", "fasta")).seq)
 pro, cds, pseudo = [], [], []
 for l in open(D + "ecoli_k12.gff"):

@@ -8,7 +8,7 @@
 | **پیش‌نیاز** | ‏01_Computing_Foundations (Bash، فرمت‌ها) |
 | **زمان تقریبی** | ۶ ساعت (درس ۳ ساعت + تمرین ۳ ساعت) |
 | **ابزارها (نسخه‌ی تست‌شده)** | Python 3.13، Biopython 1.88 |
-| **داده** | ژنوم و GFF *E. coli* K-12 (`NC_000913.3`) از ماژول 01/01: `bash ../../01_Linux/99_scripts_data/02_Bash/data/download.sh` |
+| **داده** | ژنوم و GFF *E. coli* K-12 (`NC_000913.3`) از ماژول 01/01: `bash ../../01_Linux/99_scripts_data/data/download.sh` |
 | **وضعیت** | ✅ تست‌شده — 2026-10-14 |
 
 ## اهداف یادگیری

@@ -67,7 +67,7 @@
 <div dir="ltr">
 
 ```bash
-G=../../01_Linux/99_scripts_data/02_Bash/data
+G=../../01_Linux/99_scripts_data/data
 python3 scripts/repeat_report.py $G/ecoli_k12.fna $G/ecoli_k12.gff
 ```
 

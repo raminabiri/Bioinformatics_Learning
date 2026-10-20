@@ -311,6 +311,6 @@ BBBBBFFFFFFFFFFFFFFFFFF/FFFFFFF...  ← کیفیت هر باز (هر کاراک�
 - Stanford Deep Data Research Center — *Intro to Genomics & Bioinformatics: Experimenting with Genomic Data*: https://www.youtube.com/watch?v=r5OQ-4Zmo50
 - Maastricht University — *The FAIR principles explained*: https://www.youtube.com/watch?v=5OeCrQE3HhE
 
-> **وارسی نشانی‌ها (2026-10-19):** مقاله‌ها با Crossref و صفحه‌های edX با درخواست مستقیم وارسی شدند. Coursera از سرور دوره خطای **451** (دسترسی محدودشده برای این منطقه) می‌دهد. پس نشانی‌های Coursera با موتور جستجو وارسی شدند (نشانی و عنوان دقیق در نمایه‌ی جستجو). اگر Coursera برای شما هم باز نشد، دلیلش همین محدودیت منطقه‌ای است. ویدیوهای YouTube آخرین بار در 2026-10-12 با YouTube oEmbed وارسی شدند؛ در 2026-10-19 YouTube از سرور در دسترس نبود. توالی‌ها و اعداد این درس از ژنوم `NC_000913.3` (دریافت‌شده با `01_Linux/99_scripts_data/02_Bash/data/download.sh`) و رکورد UniProt `P0A8V2` استخراج شده‌اند.
+> **وارسی نشانی‌ها (2026-10-19):** مقاله‌ها با Crossref و صفحه‌های edX با درخواست مستقیم وارسی شدند. Coursera از سرور دوره خطای **451** (دسترسی محدودشده برای این منطقه) می‌دهد. پس نشانی‌های Coursera با موتور جستجو وارسی شدند (نشانی و عنوان دقیق در نمایه‌ی جستجو). اگر Coursera برای شما هم باز نشد، دلیلش همین محدودیت منطقه‌ای است. ویدیوهای YouTube آخرین بار در 2026-10-12 با YouTube oEmbed وارسی شدند؛ در 2026-10-19 YouTube از سرور در دسترس نبود. توالی‌ها و اعداد این درس از ژنوم `NC_000913.3` (دریافت‌شده با `01_Linux/99_scripts_data/data/download.sh`) و رکورد UniProt `P0A8V2` استخراج شده‌اند.
 
 </div>
