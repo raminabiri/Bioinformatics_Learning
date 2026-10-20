@@ -1,53 +1,78 @@
 <div dir="rtl">
 
-# درس: مدیریت نرم‌افزار و محیط با Conda و Bioconda
+# درس: نصب ابزارهای زیستی با Conda و Bioconda
 
-**بخش:** `02_BioLinux` · **ماژول:** `01_Conda_Bioconda` · **پیش‌نیاز:** 01_Bash_Linux · **زمان:** ۱٫۵ ساعت · **ابزار:** conda 26.7.2 (Miniforge)، libmamba 2.5.0 · **آخرین تست:** 2026-10-13
+**بخش:** `02_BioLinux` · **ماژول:** `01_Conda_Bioconda` · **پیش‌نیاز:** بخش [لینوکس](../../01_Linux/) (به‌ویژه ماژول [اسکریپت](../../01_Linux/10_Scripts/)) · **زمان:** حدود ۷۵ دقیقه · **ابزار:** conda 26.7 (Miniforge) · **آخرین اجرا:** 2026-10-20
 
 ---
 
-## ۱. مسئله
+## در یک نگاه
 
-یک پروژه‌ی بیوانفورماتیک ده‌ها ابزار دارد. هر کدام به نسخه‌ی خاصی از Python، R، کتابخانه‌های C و ابزارهای دیگر وابسته‌اند. سه مشکل پیش می‌آید:
-1. **نصب:** بسیاری از ابزارها با `apt` یا `pip` به‌سختی نصب می‌شوند (کامپایل، وابستگی‌های سیستمی).
-2. **تعارض:** ابزار A با Python 3.8 کار می‌کند و ابزار B با 3.12.
-3. **تکرارپذیری:** شش ماه بعد، یا روی کامپیوتر داور، همان نسخه‌ها باید دوباره نصب شوند. «با FastQC تحلیل شد» کافی نیست، باید «FastQC 0.12.1» باشد.
+**در پایان این درس می‌توانید:**
+1. بگویید چرا ابزارهای بیوانفورماتیک را با Conda نصب می‌کنیم و «محیط» چیست.
+2. ‏Miniforge را نصب و کانال‌های conda-forge و bioconda را تنظیم کنید.
+3. یک محیط را از یک **فایل YAML** بسازید، فعال کنید و بسنجید که ابزار از کجا اجرا می‌شود.
+4. نسخه‌ی ابزارهای یک محیط را برای گزارش (Methods) ثبت کنید.
+5. محیط کامل این دوره (`bioinfo_course`) را بسازید.
 
-‏**Conda** مدیر بسته و محیط است و هر سه را حل می‌کند. **Bioconda** کانال تخصصی آن برای ابزارهای زیستی است و بیش از ۱۰٬۰۰۰ بسته دارد.
+---
 
-## ۲. مفاهیم
+## ۱. داستان: «روی کامپیوتر من کار می‌کرد!»
 
-| مفهوم | معنی |
-| :--- | :--- |
-| **بسته (package)** | یک ابزار یا کتابخانه‌ی کامپایل‌شده، با نسخه و build مشخص (مثلاً `seqkit-2.13.0-he881be0_0`) |
-| **کانال (channel)** | مخزنی که بسته‌ها از آن دانلود می‌شوند: `conda-forge` (عمومی، جامعه‌محور)، `bioconda` (زیستی) |
-| **محیط (environment)** | پوشه‌ای ایزوله با مجموعه‌ای از بسته‌ها و Python/R مخصوص خودش. هر پروژه یا گروه ابزار یک محیط |
-| **حل‌کننده (solver)** | الگوریتمی که نسخه‌های سازگار همه‌ی بسته‌ها را پیدا می‌کند. از conda 23.10 پیش‌فرض **libmamba** است |
+در بخش لینوکس تنها ابزارهایی را به کار بردیم که در هر لینوکسی هستند (`grep`، `awk`…). از این‌جا به بعد ابزارهای **ویژه‌ی بیوانفورماتیک** لازم داریم: `seqkit` برای توالی‌ها، `samtools` برای فایل‌های هم‌ترازی، و ده‌ها ابزار دیگر. سه دردسر پیش می‌آید:
 
-### کدام نصب‌کننده؟ Miniforge
-- ‏**Miniforge** (توزیع conda-forge) را نصب کنید: سبک است، به‌طور پیش‌فرض از کانال `conda-forge` استفاده می‌کند و `mamba` را هم دارد.
-- ‏**Anaconda/Miniconda** به‌طور پیش‌فرض از کانال `defaults` شرکت Anaconda استفاده می‌کنند. استفاده از این کانال تابع **شرایط خدمات Anaconda** است و برای برخی سازمان‌ها مجوز تجاری لازم دارد. Bioconda هم از اوت ۲۰۲۴ `defaults` را از کانال‌های توصیه‌شده‌اش حذف کرده است.
+1. **نصب:** بسیاری از این ابزارها با `apt` نصب نمی‌شوند یا نسخه‌ی کهنه دارند، و ساختن‌شان از کد منبع کار متخصص است.
+2. **تعارض:** ابزار A پایتون ۳٫۸ می‌خواهد و ابزار B پایتون ۳٫۱۳. نمی‌شود هر دو را در یک جا داشت.
+3. **دوباره‌پذیری:** شش ماه بعد، یا روی کامپیوتر داور مقاله، باید **همان نسخه‌ها** نصب شوند. «با samtools تحلیل شد» کافی نیست؛ باید «samtools 1.20» باشد.
+
+‏**Conda** هر سه را حل می‌کند. **Bioconda** «فروشگاه» ویژه‌ی آن برای ابزارهای زیستی است، با هزاران بسته.
+
+---
+
+## ۲. مفهوم‌ها با یک تشبیه
+
+یک **آزمایشگاه** را تصور کنید با چند **میز کار** جداگانه. روی هر میز، تنها مواد و دستگاه‌های یک آزمایش است، با نسخه و غلظت معین. اگر روی یک میز ماده‌ای عوض شود، میزهای دیگر دست نمی‌خورند.
+
+| مفهوم | در آزمایشگاه | در Conda |
+| :--- | :--- | :--- |
+| **بسته** (package) | یک ماده یا دستگاه، با شماره‌ی بچ | یک ابزار یا کتابخانه، با نسخه (برای نمونه `seqkit 2.13.0`) |
+| **کانال** (channel) | شرکت فروشنده | مخزن بسته‌ها: `conda-forge` (عمومی) و `bioconda` (زیستی) |
+| **محیط** (environment) | یک میز کار جدا | یک پوشه‌ی جدا با بسته‌های خودش؛ هر پروژه یا گروه ابزار یک محیط |
+| **فعال کردن** (activate) | رفتن پشت یک میز | ‏`conda activate نام`: از این پس، ابزارهای همین محیط به کار می‌روند |
+| **فایل محیط** (YAML) | فهرست مواد آزمایش | فایل متنی که می‌گوید محیط چه بسته‌هایی با چه نسخه‌ای دارد |
+
+---
+
+## ۳. نصب Miniforge (یک بار)
+
+‏**Miniforge** نسخه‌ی سبک و رایگان Conda است که به‌طور پیش‌فرض از کانال `conda-forge` بسته می‌گیرد. دستورها از راهنمای رسمی Miniforge‌اند:
 
 <div dir="ltr">
 
 ```bash
-# نصب Miniforge (یک‌بار؛ حدود ۹۰ مگابایت دانلود)
+cd ~
 curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
 bash Miniforge3-$(uname)-$(uname -m).sh -b -p ~/miniforge3
-~/miniforge3/bin/conda init bash     # بعد ترمینال را ببندید و باز کنید
+~/miniforge3/bin/conda init bash
 ```
 
 </div>
 
-### تنظیم کانال‌ها (طبق مستندات فعلی Bioconda)
+### کالبدشکافی
+
+| دستور | کار |
+| :--- | :--- |
+| `curl -L -O "…"` | فایل نصب را دانلود کن (`-O`: با همان نام فایل در نشانی؛ نزدیک به ۹۰ مگابایت) |
+| ‏`$(uname)` و `$(uname -m)` | جایگزینی دستور (ماژول ۰۹ لینوکس): نام سیستم‌عامل (`Linux`) و نوع پردازنده (`x86_64`)، تا فایل درست دانلود شود |
+| `bash Miniforge3-….sh -b -p ~/miniforge3` | نصب‌کننده را اجرا کن؛ `-b` بی پرسش، `-p` جای نصب |
+| `conda init bash` | تنظیم Bash تا `conda` همیشه در دسترس باشد |
+
+**پس از `conda init`، ترمینال را ببندید و دوباره باز کنید.** اعلان شما اکنون با `(base)` آغاز می‌شود: نام محیط فعال.
 
 <div dir="ltr">
 
 ```bash
-conda config --add channels bioconda
-conda config --add channels conda-forge
-conda config --set channel_priority strict
-conda config --show channels channel_priority
+conda --version
 ```
 
 </div>
@@ -55,27 +80,43 @@ conda config --show channels channel_priority
 <div dir="ltr">
 
 ```text
-channel_priority: strict
-channels:
-  - conda-forge
-  - bioconda
+conda 26.7.2
 ```
 
 </div>
 
-‏`--add` کانال را به **بالای** فهرست اضافه می‌کند. پس آخرین `--add` (conda-forge) بالاترین اولویت را می‌گیرد. `strict` یعنی اگر بسته‌ای در کانال با اولویت بالاتر هست، از کانال پایین‌تر برداشته نشود. این جلوی ترکیب ناسازگار کتابخانه‌ها را می‌گیرد.
+(نسخه‌ی شما ممکن است تازه‌تر باشد.)
 
-> **فایل محیط اولویت را تعیین می‌کند.** وقتی محیط را از فایل YAML می‌سازید، ترتیب `channels:` **در خود فایل** اعمال می‌شود. فایل‌های این دوره conda-forge را بالای bioconda می‌گذارند.
+### تنظیم کانال‌ها
 
-## ۳. کار عملی
+<div dir="ltr">
 
-### گام ۱: محیط از فایل، نه با دستورهای پراکنده
-روش تکرارپذیر این است که محیط را از یک **فایل YAML** بسازید که در git نگه‌داری می‌شود:
+```bash
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+```
+
+</div>
+
+| تکه | یعنی |
+| :--- | :--- |
+| `--add channels X` | کانال X را به **بالای** فهرست بیفزا. پس کانالی که **آخر** افزوده شود (conda-forge) بالاترین اولویت را دارد |
+| `channel_priority strict` | اگر بسته‌ای در کانال بالاتر هست، از کانال پایین‌تر برداشته نشود؛ جلوی ترکیب کتابخانه‌های ناسازگار را می‌گیرد |
+
+این همان تنظیمی است که راهنمای رسمی Bioconda می‌گوید.
+
+⚠️ **اگر `conda` نمی‌تواند به مخزن وصل شود** (خطاهایی مانند `Could not resolve host: conda.anaconda.org` یا `SSL connect error`)، دسترسی شبکه به مخزن بسته است. روی سرور همین دوره در ۲۰۲۶ چنین شد. راه‌ها: آینه‌ی (mirror) محلی دانشگاه، یا اینترنت دیگری. بخش «کنجکاوها» را ببینید.
+
+---
+
+## ۴. نخستین محیط، از یک فایل
+
+روش دوباره‌پذیر این است که محیط را از یک **فایل YAML** بسازید. فایل `demo_env.yml` را با `nano` بنویسید:
 
 <div dir="ltr">
 
 ```yaml
-# demo_env.yml
 name: course_demo
 channels:
   - conda-forge
@@ -87,12 +128,75 @@ dependencies:
 
 </div>
 
+### کالبدشکافی فایل YAML
+
+| خط | یعنی |
+| :--- | :--- |
+| `name: course_demo` | نام محیط |
+| `channels:` | فهرست کانال‌ها، به ترتیب اولویت. هر ردیف فهرست با `- ` (خط تیره و فاصله) آغاز می‌شود |
+| `dependencies:` | فهرست بسته‌ها |
+| `- seqkit=2.13.0` | ‏`seqkit` **دقیقاً** با نسخه‌ی 2.13.0 (یک `=`) |
+| `- jq` | ‏`jq` با هر نسخه‌ای که سازگار باشد |
+
+**فرورفتگی (فاصله‌ی آغاز خط) در YAML معنا دارد.** ردیف‌های فهرست باید زیر عنوانشان، با فاصله‌ی یکسان بیایند. Tab را به جای فاصله به کار نبرید.
+
+### ساختن محیط
+
 <div dir="ltr">
 
 ```bash
 conda env create -f demo_env.yml
+```
+
+</div>
+
+پایان خروجی:
+
+<div dir="ltr">
+
+```text
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+#
+# To activate this environment, use
+#
+#     $ conda activate course_demo
+```
+
+</div>
+
+‏Conda نسخه‌های سازگار همه‌ی بسته‌ها را پیدا کرد (به این کار **حل وابستگی** می‌گویند)، دانلودشان کرد و در یک پوشه‌ی جدا نصب کرد.
+
+### پیش و پس از فعال کردن
+
+پیش از فعال کردن محیط:
+
+<div dir="ltr">
+
+```bash
+seqkit version
+```
+
+</div>
+
+<div dir="ltr">
+
+```text
+bash: seqkit: command not found
+```
+
+</div>
+
+پس از فعال کردن:
+
+<div dir="ltr">
+
+```bash
 conda activate course_demo
-seqkit version ; jq --version ; which seqkit
+seqkit version
+jq --version
+which seqkit
 ```
 
 </div>
@@ -107,16 +211,74 @@ jq-1.8.2
 
 </div>
 
-‏`which` نشان می‌دهد ابزار از **پوشه‌ی محیط** اجرا می‌شود. اگر محیط فعال نباشد، یا ابزار پیدا نمی‌شود یا نسخه‌ی دیگری اجرا می‌شود.
+**این خروجی یعنی:**
+- ‏`seqkit` تنها **درون** محیط پیدا می‌شود.
+- ‏`which` (کجاست؟) نشان می‌دهد ابزار از پوشه‌ی **محیط** (`envs/course_demo/bin/`) اجرا می‌شود.
+- اعلان ترمینال اکنون با `(course_demo)` آغاز می‌شود. برای بیرون آمدن: `conda deactivate`.
 
-فایل محیط کامل دوره: [`envs/bioinfo_course.yml`](../../envs/bioinfo_course.yml).
-
-### گام ۲: سه شکل خروجی گرفتن از محیط
+<details>
+<summary>✋ <b>امتحان کن:</b> یک فرمان بنویسید که همه‌ی محیط‌های شما را فهرست کند. محیط فعال چگونه نشان داده می‌شود؟</summary>
 
 <div dir="ltr">
 
 ```bash
-conda env export -n course_demo --from-history   # فقط چیزهایی که خودتان خواستید
+conda env list
+```
+
+</div>
+
+خروجی کمابیش این است (نشانی‌ها برای شما فرق دارند):
+
+<div dir="ltr">
+
+```text
+base                 *   /home/ubuntu/miniforge3
+course_demo              /home/ubuntu/miniforge3/envs/course_demo
+```
+
+</div>
+
+`*` کنار محیط **فعال** است. هر محیط یک پوشه در `~/miniforge3/envs/` است.
+</details>
+
+---
+
+## ۵. ثبت نسخه‌ها برای گزارش
+
+### ‏`conda list`: همه‌ی بسته‌های محیط
+
+<div dir="ltr">
+
+```bash
+conda list -n course_demo
+```
+
+</div>
+
+<div dir="ltr">
+
+```text
+# packages in environment at /home/ubuntu/miniforge3/envs/course_demo:
+#
+# Name                     Version          Build            Channel
+_openmp_mutex              4.5              20_gnu           conda-forge
+jq                         1.8.2            h280c20c_1       conda-forge
+libgcc                     16.2.0           ha9f2e26_7       conda-forge
+libgomp                    16.2.0           he0feb66_7       conda-forge
+oniguruma                  6.9.10           hebe6cf0_1       conda-forge
+seqkit                     2.13.0           he881be0_0       bioconda
+```
+
+</div>
+
+**این خروجی یعنی:** ما تنها دو بسته خواستیم، ولی شش بسته نصب شد. چهار تای دیگر **وابستگی**‌اند: کتابخانه‌هایی که `jq` و `seqkit` برای کار کردن لازم دارند. Conda آن‌ها را خودش پیدا و نصب کرد. ستون آخر می‌گوید هر بسته از کدام کانال آمده است.
+
+### ‏`env export`: فایل محیط را از خود محیط بسازید
+
+<div dir="ltr">
+
+```bash
+conda env export -n course_demo --from-history
 ```
 
 </div>
@@ -131,14 +293,21 @@ channels:
 dependencies:
   - jq
   - seqkit=2.13.0
+prefix: /home/ubuntu/miniforge3/envs/course_demo
 ```
 
 </div>
 
+‏`--from-history` تنها چیزهایی را می‌آورد که **خودتان خواستید**. این برای اشتراک با دیگران بهترین است: کوتاه است و روی هر سیستم‌عاملی کار می‌کند. بی `--from-history`، همه‌ی بسته‌ها با نسخه و build دقیق می‌آیند (مانند `seqkit=2.13.0=he881be0_0`)، که برای آرشیو دقیق همراه مقاله خوب است.
+
+### اسکریپت ثبت نسخه‌ها
+
+اسکریپت آماده‌ی این ماژول ([record_versions.sh](../99_scripts_data/01_Conda_Bioconda/scripts/record_versions.sh)) نسخه‌ی ابزارهای دلخواه را در یک جدول می‌نویسد:
+
 <div dir="ltr">
 
 ```bash
-conda env export -n course_demo                  # همه‌ی بسته‌ها با نسخه و build دقیق
+bash ~/Bioinformatics_Learning-main/02_BioLinux/99_scripts_data/01_Conda_Bioconda/scripts/record_versions.sh course_demo seqkit jq samtools
 ```
 
 </div>
@@ -146,99 +315,164 @@ conda env export -n course_demo                  # همه‌ی بسته‌ها �
 <div dir="ltr">
 
 ```text
-dependencies:
-  - _openmp_mutex=4.5=20_gnu
-  - jq=1.8.2=h280c20c_1
-  - libgcc=16.2.0=ha9f2e26_7
-  - libgomp=16.2.0=he0feb66_7
-  - oniguruma=6.9.10=hebe6cf0_1
-  - seqkit=2.13.0=he881be0_0
+tool	version	channel
+seqkit	2.13.0	bioconda
+jq	1.8.2	conda-forge
+samtools	NOT_INSTALLED	-
+# environment=course_demo  conda=26.7.2  date=2026-10-20
+```
+
+</div>
+
+**این خروجی یعنی:** یک جدول آماده برای پیوست مقاله یا پایان‌نامه: نسخه و کانال هر ابزار، و تاریخ. `samtools` در این محیط نصب نیست، و اسکریپت این را آشکارا می‌گوید. (درون اسکریپت همان `if`، `for` و `awk` بخش لینوکس است.)
+
+---
+
+## ۶. محیط کامل دوره
+
+همه‌ی ابزارهای بخش‌های ۰۲ و ۰۳ در فایل [`envs/bioinfo_course.yml`](../../envs/bioinfo_course.yml) آمده‌اند: `seqkit`، `samtools`، `bcftools`، `jq`، `ncbi-datasets-cli` (برای دانلود از NCBI)، و Python با Biopython و pandas.
+
+<div dir="ltr">
+
+```bash
+cd ~/Bioinformatics_Learning-main
+conda env create -f envs/bioinfo_course.yml
+conda activate bioinfo_course
+```
+
+</div>
+
+ساختن این محیط چند دقیقه طول می‌کشد و نزدیک به یک گیگابایت جا می‌گیرد. **از این پس، پیش از هر درس بخش‌های ۰۲ و ۰۳، `conda activate bioinfo_course` بزنید.**
+
+### کارهای روزمره
+
+| می‌خواهم… | دستور |
+| :--- | :--- |
+| همه‌ی محیط‌ها را ببینم | `conda env list` |
+| بسته‌ای بیفزایم (بهتر: به YAML بیفزایید و `update`) | ‏`conda install -n نام بسته` |
+| محیط را با فایل همگام کنم | `conda env update -f file.yml --prune` |
+| از محیط بیرون بیایم | `conda deactivate` |
+| محیطی را پاک کنم | ‏`conda env remove -n نام` |
+| فضای دیسک را آزاد کنم (کش بسته‌ها) | `conda clean --all` |
+
+---
+
+## ۷. سه اشتباه رایج
+
+### اشتباه ۱: فراموش کردن `conda activate`
+
+<div dir="ltr">
+
+```text
+bash: seqkit: command not found
+```
+
+</div>
+
+ابزار نصب است، ولی در محیطی که فعال نیست. اعلان ترمینال را ببینید: نام محیط فعال در پرانتز آغاز آن است.
+
+### اشتباه ۲: نام نادرست محیط
+
+<div dir="ltr">
+
+```bash
+conda activate no_such_env
 ```
 
 </div>
 
 <div dir="ltr">
 
-```bash
-conda list -n course_demo --explicit > course_demo.lock.txt   # آدرس دقیق هر فایل بسته
+```text
+EnvironmentNameNotFound: Could not find conda environment: no_such_env
+You can list all discoverable environments with `conda info --envs`.
 ```
 
 </div>
 
-| روش | قابل‌حمل بین سیستم‌عامل‌ها؟ | دقت بازتولید | کاربرد |
-| :--- | :-: | :-: | :--- |
-| `--from-history` | ✅ | کم (نسخه‌ی وابستگی‌ها آزاد است) | اشتراک با دیگران، بلندمدت |
-| ‏`env export` کامل | ‏❌ (build وابسته به پلتفرم) | بالا | بازتولید روی همان نوع سیستم |
-| `list --explicit` | ❌ | **دقیق** (همان فایل‌ها) | آرشیو همراه مقاله |
+با `conda env list` نام درست را ببینید.
 
-**توصیه:** فایل `--from-history` با نسخه‌ی ابزارهای اصلی پین‌شده (مثل `seqkit=2.13.0`) را در git نگه دارید. هنگام انتشار مقاله، خروجی `--explicit` را هم آرشیو کنید.
+### اشتباه ۳: نصب همه چیز در `base`
 
-### گام ۳: مدیریت روزمره
+محیط `base` خود Conda را نگه می‌دارد. اگر صدها بسته در آن نصب کنید، دیر یا زود تعارضی پیش می‌آید که **خود Conda** را از کار می‌اندازد. **`base` را تنها برای Conda نگه دارید؛ برای هر پروژه یا گروه ابزار، محیط جدا بسازید.**
 
-<div dir="ltr">
+---
 
-```bash
-conda env list                       # همه‌ی محیط‌ها؛ * جلوی محیط فعال
-conda install -n course_demo seqtk   # افزودن بسته به محیط (بهتر: افزودن به YAML و conda env update)
-conda env update -f demo_env.yml --prune   # همگام‌سازی محیط با فایل (--prune: حذف بسته‌های اضافه)
-conda deactivate
-conda env remove -n course_demo      # حذف کامل
-conda clean --all                    # پاک کردن کش بسته‌ها و آزاد کردن فضا
-```
+## ۸. جمع‌بندی
 
-</div>
+- ‏Conda بسته‌ها را با همه‌ی وابستگی‌هایشان نصب می‌کند؛ Bioconda کانال ابزارهای زیستی است.
+- **محیط** یک «میز کار» جداست؛ با `conda activate` واردش و با `conda deactivate` بیرون می‌آیید.
+- محیط را **از فایل YAML** بسازید (`conda env create -f`) و فایل را نگه دارید.
+- نسخه‌ها را با `conda list`، `conda env export --from-history` یا `record_versions.sh` ثبت کنید.
+- محیط دوره: `conda env create -f envs/bioinfo_course.yml` و سپس `conda activate bioinfo_course`.
 
-‏`mamba` همان دستورها را با همان گزینه‌ها دارد (`mamba env create -f ...`). از conda 23.10 که libmamba حل‌کننده‌ی پیش‌فرض conda شد، فاصله‌ی سرعت این دو کم شده است.
+---
 
-### گام ۴: وقتی اینترنت یا مخزن در دسترس نیست
-این وضعیت در همین دوره پیش آمد: در 2026-10-12 مخزن `conda.anaconda.org` از سرور دوره در دسترس نبود و ساخت محیط با خطای `Could not resolve host` و `SSL connect error` شکست خورد. سه راه:
+## کارت دستورهای این درس
 
-1. **کش محلی:** اگر بسته‌ها قبلاً دانلود شده باشند (`~/miniforge3/pkgs/`)، conda می‌تواند بدون اینترنت محیط بسازد:
+| می‌خواهم… | دستور |
+| :--- | :--- |
+| نسخه‌ی conda | `conda --version` |
+| محیط از فایل | `conda env create -f env.yml` |
+| فعال کردن | ‏`conda activate نام` |
+| بیرون آمدن | `conda deactivate` |
+| ابزار از کجا اجرا می‌شود؟ | `which seqkit` |
+| فهرست محیط‌ها | `conda env list` |
+| بسته‌های یک محیط | ‏`conda list -n نام` |
+| فایل محیط (کوتاه) | ‏`conda env export -n نام --from-history > env.yml` |
+| ثبت نسخه‌ها | ‏`bash record_versions.sh نام ابزار1 ابزار2` |
+| پاک کردن محیط | ‏`conda env remove -n نام` |
 
-   <div dir="ltr">
+---
 
-   ```bash
-   conda env create --offline -f demo_env.yml     # روی سرور دوره: ۳ ثانیه
-   ```
+<details>
+<summary>📘 <b>برای کنجکاوها (اختیاری):</b> چرا Miniforge و نه Anaconda؟ و وقتی مخزن در دسترس نیست</summary>
 
-   </div>
+‏**Anaconda و Miniconda** به‌طور پیش‌فرض از کانال `defaults` شرکت Anaconda بسته می‌گیرند. به‌کارگیری این کانال تابع شرایط خدمات آن شرکت است و برای برخی سازمان‌ها مجوز تجاری می‌خواهد. Bioconda هم `defaults` را از کانال‌های پیشنهادی‌اش برداشته است. Miniforge تنها `conda-forge` را به کار می‌برد و این دردسر را ندارد.
 
-2. ‏**mirror:** بعضی دانشگاه‌ها و کشورها mirror محلی conda-forge دارند (`conda config --add channels <mirror-url>`).
-3. **نصب از منبع رسمی ابزار:** باینری یا کد منبع از GitHub یا سایت سازنده. راه آخر است، چون ثبت نسخه دستی می‌شود ([envs/README.md](../../envs/README.md)).
+‏**mamba** همان conda است با حل‌کننده‌ی تندتر (`mamba env create -f …`). از conda 23.10، conda هم همان حل‌کننده (libmamba) را به‌طور پیش‌فرض دارد، پس تفاوت سرعت کم شده است.
 
-## ۴. دام‌ها (Pitfalls)
+**بی اینترنت:** اگر بسته‌ها پیش‌تر دانلود شده باشند (در `~/miniforge3/pkgs/`)، `conda env create --offline -f file.yml` محیط را بی اینترنت می‌سازد. خروجی‌های همین درس روی سرور دوره به این روش گرفته شد، چون مخزن در دسترس نبود.
 
-| دام | چرا مشکل است | راه درست |
-| :--- | :--- | :--- |
-| نصب همه‌چیز در `base` | ‏base خراب می‌شود و conda از کار می‌افتد | ‏base فقط برای conda/mamba؛ هر پروژه یک محیط |
-| یک محیط غول‌پیکر برای همه‌ی ابزارها | حل وابستگی ناممکن یا خیلی کند می‌شود | محیط برای هر گروه ابزار (مثلاً QIIME 2 جدا) |
-| کانال `defaults` + `conda-forge` + `bioconda` با هم | ترکیب کتابخانه‌های ناسازگار؛ مسائل مجوز | فقط conda-forge و bioconda، با `strict` |
-| ‏`pip install` داخل محیط conda بدون فکر | ‏conda از بسته‌های pip خبر ندارد و تعارض پیش می‌آید | اول conda؛ pip فقط برای بسته‌ای که در conda نیست، آن هم در بخش `pip:` فایل YAML |
-| نصب تعاملی و فراموش کردن نسخه‌ها | محیط قابل بازتولید نیست | ‏YAML در git + `export --from-history` |
-| ثبت نکردن نسخه در Methods | داور نمی‌تواند تکرار کند | نسخه‌ی هر ابزار (و لینک فایل محیط) در Methods |
+‏**pip در محیط Conda:** اگر بسته‌ای در conda نیست، می‌شود آن را با `pip` نصب کرد، ولی Conda از آن خبر ندارد و ممکن است تعارض پیش آید. نخست conda؛ pip تنها برای چیزی که در conda نیست، آن هم در بخش `- pip:` فایل YAML.
+</details>
 
-## ۵. جمع‌بندی
-- ‏Miniforge نصب کنید. کانال‌ها conda-forge و bioconda باشند، با `strict`.
-- هر پروژه محیط خودش را دارد و آن محیط **از یک فایل YAML** ساخته می‌شود که در git است.
-- برای اشتراک از `--from-history` استفاده کنید و برای آرشیو دقیق از `--explicit`.
-- برای بازتولید کامل‌تر، حتی از سیستم‌عامل مستقل، کانتینرها (Docker/Apptainer) را در بخش ۱۰ می‌بینیم.
+---
+
+## واژه‌نامه‌ی این درس
+
+| اصطلاح | معنی |
+| :--- | :--- |
+| مدیر بسته (package manager) | برنامه‌ای که نرم‌افزار را با وابستگی‌هایش نصب و به‌روز می‌کند |
+| بسته (package) | یک ابزار یا کتابخانه‌ی آماده‌ی نصب، با نسخه‌ی معین |
+| وابستگی (dependency) | بسته‌ای که بسته‌ی دیگر برای کار کردن لازم دارد |
+| کانال (channel) | مخزن بسته‌ها (conda-forge، bioconda) |
+| محیط (environment) | پوشه‌ای جدا با بسته‌های خودش |
+| YAML | قالب متنی ساده برای فایل‌های تنظیم؛ فرورفتگی در آن معنا دارد |
+| حل وابستگی (solving) | پیدا کردن نسخه‌هایی از همه‌ی بسته‌ها که با هم سازگارند |
 
 ---
 
 ## منابع
 
-### مقاله و مستندات
+### مقاله و راهنمای رسمی
 - Grüning B, et al. (2018). Bioconda: sustainable and comprehensive software distribution for the life sciences. *Nature Methods* 15:475–476. https://doi.org/10.1038/s41592-018-0046-7
-- مستندات Bioconda (شامل تنظیم کانال‌ها): https://bioconda.github.io/
-- Miniforge: https://github.com/conda-forge/miniforge · conda-forge: https://conda-forge.org/
-- مستندات conda، مدیریت محیط‌ها: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
-- اعلام پیش‌فرض شدن libmamba در conda 23.10: https://discuss.python.org/t/announcement-conda-23-10-0-release-libmamba-is-now-the-default-dependency-solver/38096
-- Buffalo V. *Bioinformatics Data Skills*. O'Reilly, 2015: https://vincebuffalo.com/book/
+- ‏Bioconda (راهنمای رسمی، شامل تنظیم کانال‌ها): https://bioconda.github.io/
+- Miniforge: https://github.com/conda-forge/miniforge
+- conda — Managing environments: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
 
-### ویدیوهای آموزشی
+### فیلم‌های آموزشی
+
+**Coursera:**
+- ‏KAUST — *Fundamental Skills in Bioinformatics*. بخش‌های نصب ابزارها و کار در Unix: https://www.coursera.org/learn/fundamental-skills-in-bioinformatics
+
+**edX:**
+- ‏The Linux Foundation — *Introduction to Linux*، بخش مدیریت بسته‌ها: https://www.edx.org/learn/computer-programming/the-linux-foundation-introduction-to-linux
+
+**YouTube:**
 - ISCB / BIOINFO-CORE (ISMB/ECCB 2019) — Devon Ryan, *Conda and Bioconda, the best thing since sliced bread*: https://www.youtube.com/watch?v=x4IghzGI_6Y
 - Bioinformagician — *Demystifying Conda (Anaconda, Miniconda and Bioconda) and Virtual Environments*: https://www.youtube.com/watch?v=2bXGm0ZnJ38
 
-> لینک‌ها در تاریخ 2026-10-13 بررسی شدند (`_tools/check_links.sh`).
+> **وارسی نشانی‌ها:** همه‌ی نشانی‌ها در پایان کار دوره یک‌جا وارسی می‌شوند. خروجی‌های این درس در 2026-10-20 با conda 26.7.2 گرفته شد. محیط‌ها با `--offline` و از کش محلی بسته‌ها ساخته شدند، چون مخزن Conda از سرور دوره در دسترس نبود. خروجی روی کامپیوتر شما همان است، جز نشانی‌ها و نسخه‌ی conda.
 
 </div>

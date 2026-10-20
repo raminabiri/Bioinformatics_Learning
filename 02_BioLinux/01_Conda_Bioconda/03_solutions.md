@@ -1,63 +1,29 @@
 <div dir="rtl">
 
-# پاسخ تشریحی: Conda و Bioconda
+# پاسخ تشریحی: نصب ابزارهای زیستی با Conda و Bioconda
 
-> اجرا شده در 2026-10-13 با conda 26.7.2 (Miniforge) روی سرور دوره.
+> خروجی‌ها در 2026-10-20 روی سرور دوره (conda 26.7.2) گرفته شدند. نشانی‌ها (`/home/ubuntu/…`) روی کامپیوتر شما نام کاربری خودتان را دارند.
 
 ---
 
-## تمرین ۱
+## تمرین ۱: نصب و تنظیم
+
+1. ‏`conda --version` چیزی مانند `conda 26.7.2` می‌دهد؛ نسخه‌ی شما ممکن است تازه‌تر باشد و این مشکلی نیست.
+2. پس از سه دستور بخش ۳، `conda config --show channels channel_priority` باید `channel_priority: strict` و فهرست کانال‌ها را با **`conda-forge` در بالا** و `bioconda` پس از آن نشان دهد. چون `--add` هر کانال را به **بالای** فهرست می‌افزاید و `conda-forge` آخر افزوده شد. Bioconda خودش این ترتیب را می‌خواهد: بسیاری از بسته‌های Bioconda به کتابخانه‌های conda-forge وابسته‌اند.
+
+**اشتباه رایج:** جابه‌جا نوشتن دو دستور `--add`. آن‌گاه bioconda بالاتر می‌رود. اگر چنین شد، دوباره `conda config --add channels conda-forge` بزنید تا conda-forge بالا بیاید.
+
+---
+
+## تمرین ۲: نخستین محیط
 
 <div dir="ltr">
 
 ```bash
-conda --version
-conda config --show channels channel_priority solver
-conda env list
-```
-
-</div>
-
-<div dir="ltr">
-
-```text
-conda 26.7.2
-channel_priority: strict
-channels:
-  - bioconda
-  - conda-forge
-solver: libmamba
-```
-
-</div>
-
-- حل‌کننده **libmamba** است (پیش‌فرض از conda 23.10).
-- ‏`conda env list` همه‌ی محیط‌ها را نشان می‌دهد و جلوی محیط فعال `*` می‌گذارد.
-- **سازگاری با توصیه:** `strict` هست و `defaults` نیست، ولی **ترتیب برعکس است**: bioconda بالای conda-forge قرار گرفته. در عمل برای کتابخانه‌هایی که در هر دو کانال هستند، نسخه‌ی bioconda ترجیح داده می‌شود. اصلاح:
-
-  <div dir="ltr">
-
-  ```bash
-  conda config --remove channels conda-forge
-  conda config --add channels conda-forge      # حالا بالای فهرست است
-  conda config --show channels
-  ```
-
-  </div>
-
-  این‌ها فقط تنظیم پیش‌فرض‌اند. محیط‌هایی که از فایل YAML ساخته می‌شوند ترتیب `channels:` خود فایل را به کار می‌برند.
-
----
-
-## تمرین ۲
-
-<div dir="ltr">
-
-```bash
-conda env create -f demo_env.yml          # یا با --offline اگر مخزن در دسترس نیست
+conda env create -f demo_env.yml
 conda activate course_demo
-which seqkit ; seqkit version ; jq --version
-conda deactivate
+seqkit version
+jq --version
 which seqkit
 ```
 
@@ -66,48 +32,56 @@ which seqkit
 <div dir="ltr">
 
 ```text
-/home/ubuntu/miniforge3/envs/course_demo/bin/seqkit
 seqkit v2.13.0
 jq-1.8.2
+/home/ubuntu/miniforge3/envs/course_demo/bin/seqkit
 ```
 
 </div>
 
-بعد از `conda deactivate`، `which seqkit` یا **چیزی پیدا نمی‌کند**، یا **نسخه‌ی دیگری** را از جای دیگری در `PATH` نشان می‌دهد، مثلاً اگر seqkit در base یا در `~/opt/...` باشد.
+3. ‏`seqkit` از پوشه‌ی `envs/course_demo/bin/` اجرا می‌شود: یعنی از **همین محیط**، نه از جای دیگری در سیستم. اگر روزی دو نسخه از یک ابزار داشتید، `which` می‌گوید کدام اجرا می‌شود.
 
-‏`conda activate` فقط **پوشه‌ی `bin` محیط را به ابتدای `PATH` اضافه می‌کند**. «کدام نسخه اجرا می‌شود» همیشه به `PATH` بستگی دارد. `which` اولین ابزار برای اشکال‌یابی است.
+**اشتباه رایج:** فرورفتگی نادرست در YAML (برای نمونه `- seqkit` بی فاصله در آغاز). Conda خطای خواندن فایل می‌دهد. ردیف‌های فهرست باید با دو فاصله فرورفته باشند.
 
 ---
 
-## تمرین ۳
+## تمرین ۳: درون و بیرون محیط
 
 <div dir="ltr">
 
 ```bash
-conda env export -n course_demo --from-history | wc -l     # 8 خط: ۲ بسته
-conda env export -n course_demo | wc -l                    # 12 خط: ۶ بسته با build
-conda list -n course_demo --explicit | grep -c '^https'    # 6 آدرس فایل
+conda deactivate
+seqkit version
+conda env list
+conda activate course_demo
 ```
 
 </div>
 
-- ‏`--from-history`: فقط **۲ بسته** (`jq` و `seqkit=2.13.0`)، یعنی همان چیزهایی که خواسته شد.
-- ‏`export` کامل: **۶ بسته** با build، که وابستگی‌های `libgcc`، `libgomp`، `oniguruma` و `_openmp_mutex` را هم دارد.
-- ‏`--explicit`: **۶ URL** دقیق فایل بسته‌ها، برای `linux-64`.
+1. ‏`bash: seqkit: command not found`؛ بیرون از محیط، `seqkit` نیست.
+2. `*` کنار **`base`** است، چون پس از `deactivate` به `base` برگشتید:
 
-**همراه مقاله:** `--explicit` (و/یا export کامل). این‌ها دقیق‌ترین ثبت‌اند: داور روی Linux دقیقاً همان فایل‌ها را نصب می‌کند.
-**برای همکار با macOS:** `--from-history`. build‌های `linux-64` (مثل `libgcc`) روی macOS وجود ندارند و export کامل شکست می‌خورد. فایل `--from-history` به حل‌کننده اجازه می‌دهد معادل‌های macOS را پیدا کند. نسخه‌ی ابزار اصلی پین شده است، پس نتیجه‌ی علمی باید یکسان باشد.
+<div dir="ltr">
+
+```text
+base                 *   /home/ubuntu/miniforge3
+course_demo              /home/ubuntu/miniforge3/envs/course_demo
+```
+
+</div>
+
+3. اعلان از `(base)` به `(course_demo)` تغییر کرد. **همیشه پیش از اجرای ابزار، به این پرانتز نگاه کنید.**
 
 ---
 
-## تمرین ۴
+## تمرین ۴: چه چیزی واقعاً نصب شد؟
 
 <div dir="ltr">
 
 ```bash
-for e in ~/miniforge3/envs/*; do
-  [ -x "$e/bin/samtools" ] && printf "%s\t%s\n" "$(basename $e)" "$(conda list -n $(basename $e) samtools | tail -1 | awk '{print $2}')"
-done
+conda list -n course_demo | grep -v '^#' | wc -l
+conda env export -n course_demo --from-history > my_env.yml
+cat my_env.yml
 ```
 
 </div>
@@ -115,98 +89,58 @@ done
 <div dir="ltr">
 
 ```text
-genomepipe_tools	0.1.19
-snippy_env	1.20
-```
-
-</div>
-
-1. روی سرور دوره دو نسخه‌ی کاملاً متفاوت وجود دارد: **samtools 0.1.19** (سال ۲۰۱۳) و **1.20**. (در `genomepipe_tools`، `samtools --version` اصلاً وجود ندارد؛ نسخه با اجرای `samtools` بدون آرگومان چاپ می‌شود.)
-2. نتیجه‌ی `samtools sort` به این بستگی دارد که **کدام محیط فعال است**، یعنی چه چیزی در `PATH` جلوتر است. سینتکس `sort` بین 0.1.x و 1.x **تغییر کرده** است: در 0.1.19 پیشوند خروجی آرگومان است، در 1.x با `-o` داده می‌شود. پس یا خطا می‌گیرید، یا بدتر، فایل با نام غیرمنتظره ساخته می‌شود. و در Methods نسخه‌ی اشتباه گزارش می‌شود.
-3. ‏`conda run -n snippy_env samtools ...` فرمان را **در آن محیط** اجرا می‌کند، بدون اینکه محیط shell فعلی را تغییر دهد. در اسکریپت‌های غیرتعاملی، `conda activate` به `conda init` و `source` شدن `.bashrc` وابسته است و ممکن است کار نکند. `conda run` صریح است و به وضعیت ترمینال وابسته نیست.
-
-   <div dir="ltr">
-
-   ```bash
-   conda run -n snippy_env samtools --version | head -1     # samtools 1.20
-   ```
-
-   </div>
-
----
-
-## تمرین ۵
-
-مشکلات:
-1. **کانال `defaults`**: مسائل مجوز Anaconda، و ترکیب ناسازگار با conda-forge.
-2. **ترتیب کانال‌ها**: `defaults` بالاترین اولویت را دارد و conda-forge پایین‌ترین. عکس توصیه است.
-3. **هیچ نسخه‌ای پین نشده**: شش ماه بعد محیط دیگری ساخته می‌شود.
-4. ‏**QIIME 2 در همان محیط**: QIIME 2 توزیع و محیط اختصاصی خودش را دارد و با ابزارهای دیگر تعارض وابستگی ایجاد می‌کند.
-5. ‏**biopython و pandas از pip**: هر دو در conda-forge موجودند. نصب با pip وابستگی‌ها (مثل numpy) را خارج از کنترل conda عوض می‌کند.
-6. نام کلی `my_analysis`: نام باید پروژه یا هدف را بگوید.
-
-بازنویسی:
-
-<div dir="ltr">
-
-```yaml
-name: gut_qc_2026
+6
+name: course_demo
 channels:
-  - conda-forge
   - bioconda
+  - conda-forge
 dependencies:
-  - python=3.11
-  - fastqc=0.12.1
-  - samtools=1.20
-  - biopython=1.84
-  - pandas=2.2
-# QIIME 2 → محیط جداگانه طبق دستور نصب رسمی QIIME 2
+  - jq
+  - seqkit=2.13.0
+prefix: /home/ubuntu/miniforge3/envs/course_demo
 ```
 
 </div>
 
-(نسخه‌های biopython و pandas را با نسخه‌ای که واقعاً تست کرده‌اید جایگزین کنید.)
+1. **۶ بسته**؛ شما **۲** خواستید (`seqkit` و `jq`). چهار تای دیگر (`_openmp_mutex`، `libgcc`، `libgomp`، `oniguruma`) **وابستگی**‌اند، کتابخانه‌هایی که این دو ابزار برای کار کردن لازم دارند.
+2. همان دو بسته با همان نسخه‌ی `seqkit`. دو تفاوت: (الف) خط `prefix:`، نشانی محیط روی **همین** کامپیوتر. هنگام اشتراک فایل آن را پاک کنید، چون روی کامپیوتر دیگر معنا ندارد. (ب) ترتیب کانال‌ها در خروجی ممکن است با فایل شما فرق کند؛ هنگام اشتراک، ترتیب درست (conda-forge بالا) را خودتان بنویسید.
 
 ---
 
-## تمرین ۶ (چالشی)
-
-پاسخ: [scripts/record_versions.sh](../99_scripts_data/01_Conda_Bioconda/scripts/record_versions.sh)
+## تمرین ۵: محیط دوره و جدول نسخه‌ها
 
 <div dir="ltr">
 
 ```bash
-bash scripts/record_versions.sh snippy_env
-bash scripts/record_versions.sh course_demo seqkit jq samtools
+cd ~/Bioinformatics_Learning-main
+conda env create -f envs/bioinfo_course.yml
+conda activate bioinfo_course
+bash 02_BioLinux/99_scripts_data/01_Conda_Bioconda/scripts/record_versions.sh bioinfo_course seqkit samtools bcftools jq python biopython pandas > versions.tsv
+cat versions.tsv
 ```
 
 </div>
 
+نمونه‌ی خروجی همین اسکریپت (روی محیط `course_demo` در سرور دوره):
+
 <div dir="ltr">
 
 ```text
-tool	version	channel
-fastqc	NOT_INSTALLED	-
-fastp	NOT_INSTALLED	-
-multiqc	NOT_INSTALLED	-
-bowtie2	NOT_INSTALLED	-
-samtools	1.20	bioconda
-seqkit	NOT_INSTALLED	-
-# environment=snippy_env  conda=26.7.2  date=2026-10-13
 tool	version	channel
 seqkit	2.13.0	bioconda
 jq	1.8.2	conda-forge
 samtools	NOT_INSTALLED	-
-# environment=course_demo  conda=26.7.2  date=2026-10-13
+# environment=course_demo  conda=26.7.2  date=2026-10-20
 ```
 
 </div>
 
-نکته‌ها:
-- ‏`conda list` خروجی را **یک‌بار** می‌گیرد و برای هر ابزار جستجو می‌کند. هر بار صدا زدن `conda list` چند ثانیه طول می‌کشد.
-- در `conda list`، ستون کانال برای بسته‌های کانال پیش‌فرض (در Miniforge، conda-forge) **خالی** است. اسکریپت آن را `conda-forge` می‌نویسد. این فرض را در توضیح جدول ذکر کنید.
-- اگر نام محیط اشتباه باشد، پیام خطا در stderr چاپ می‌شود و اسکریپت با کد ۱ خارج می‌شود.
+1 و 2. در `bioinfo_course` همه‌ی هفت ابزار نصب‌اند. نسخه‌هایی که فایل محیط **پین** کرده (seqkit 2.13.0، samtools 1.20، bcftools 1.21، biopython 1.88، pandas 3.0.5، python 3.13) باید در جدول شما همین‌ها باشند. نسخه‌ی `jq` و شماره‌ی آخر Python (مانند `3.13.x`) ممکن است فرق کند، چون پین نشده یا تنها تا دو رقم پین شده‌اند. (محیط کامل دوره روی سرور دوره ساخته نشد، چون مخزن Conda در دسترس نبود؛ حل‌پذیری فایل با `conda create --dry-run` وارسی شد.)
 
-**پاک‌سازی بعد از تمرین‌ها:** `conda env remove -n course_demo`
+3. نمونه‌ی جمله‌ی Methods:
+
+> «ریدها با seqkit v2.13.0 خلاصه شدند و فایل‌های هم‌ترازی با samtools v1.20 و bcftools v1.21 پردازش شدند. تحلیل‌های پایتون با Python 3.13، Biopython 1.88 و pandas 3.0.5 انجام شد. همه‌ی ابزارها از کانال‌های conda-forge و bioconda نصب شدند؛ فایل محیط Conda در مخزن کد پیوست آمده است.»
+
+**نکته:** «فایل محیط پیوست است» از هر جمله‌ای قوی‌تر است، چون هر کس می‌تواند با یک دستور همان محیط را بسازد.
 
 </div>

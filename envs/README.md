@@ -7,13 +7,13 @@
 <div dir="ltr">
 
 ```bash
-mamba env create -f envs/bioinfo_course.yml     # یا conda env create
+conda env create -f envs/bioinfo_course.yml
 conda activate bioinfo_course
 ```
 
 </div>
 
-‏`bioinfo_course.yml` ابزارهای بخش‌های ۰۰، ۰۱ و ۰۳ (ماژول‌های ۰۱ و ۰۲) را با نسخه‌ی تست‌شده دارد. برای بخش‌های بعدی، هر بخش فایل محیط خودش را می‌گیرد، چون مثلاً QIIME 2 و GROMACS با بقیه سازگار نیستند و نباید در یک محیط باشند.
+‏`bioinfo_course.yml` ابزارهای بخش‌های ۰۲ (بایولینوکس) و ۰۳ (پایتون) را با نسخه‌ی آزموده دارد. بخش‌های ۰۰ و ۰۱ هیچ محیطی لازم ندارند. ساختن این محیط در ماژول [Conda و Bioconda](../02_BioLinux/01_Conda_Bioconda/) آموزش داده می‌شود. برای بخش‌های بعدی، هر بخش فایل محیط خودش را می‌گیرد، چون برای نمونه QIIME 2 و GROMACS با بقیه سازگار نیستند و نباید در یک محیط باشند.
 
 تنظیم پیشنهادی کانال‌ها (طبق مستندات Bioconda):
 

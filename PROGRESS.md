@@ -60,6 +60,13 @@ User rules: ask before heavy downloads (state what/size/time); course is introdu
   - QIIME 2 2026.7: `/data/MicrobiomePipeline/qiime2_env`
   - SILVA 138 and GG2 classifiers: `/data/MicrobiomePipeline/database/`
 
+- ✅ **BioLinux + Python rewritten in the new format (2026-10-20), one commit.** User: «بایولینوکس، پایتون و بایوپایتون را کامل کن، بعد کامیت و پوش»; link checks deferred until the whole course is done (user turns on VPN then; don't ask before).
+  - 02_BioLinux: 01_Conda_Bioconda · 02_Sequence_Formats · 03_Annotation_Formats (data rpoB.gb/.gff3/.bed) · 04_Align_Variant_Formats (resistant-strain BAM/VCF tracked; provenance `make_examples.sh`; rpoB H526Y C→T 4,182,820; tyrU 4175500; thiF 4193210; 1-bp del rpoC 4,189,000) · 05_Data_Download (moved from 03). Old 02_Bio_File_Formats removed.
+  - 03_Python: 01_Python_Start · 02_Python_Lists_Loops · 03_Python_Functions_Files · 04_Biopython_Seq · 05_Biopython_GenBank (data `rpo_region.gb` = NC_000913.3:4175000-4190000 via Entrez, placeholder email) · 06_Pandas (3 PNGs in `99_scripts_data/06_Pandas/images`). Old 01_Python_Basics, 02_Biopython, 03_Pandas and their scripts removed (git history keeps them).
+  - Facts found by running (old lesson was wrong): rpoB translate(table=11) ends `DE*` (not `IE*`); `Seq("GTGAAAAAGATGCAG").translate(table=11, cds=True)` raises `Final codon 'CAG' is not a stop codon` (needs a stop: `…CAGTAA` → MKKMQ). cds_check: 4300 CDS, starts ATG/GTG/TTG/ATT/CTG = 3876/338/80/4/2, stops TAA/TGA/TAG = 2753/1242/305, internal stop = fdnG, fdoG, fdhF (Sec); ATT starts incl. infC. genes.tsv: 146 genes length%3≠0 = 145 RNA genes + prfB; 1319 y-genes (29.3%); longest yeeJ 7020.
+  - envs/bioinfo_course.yml pins samtools=1.20 (lesson outputs) and matplotlib-base=3.11.1; dry-run solve OK offline.
+  - `_tools/check_internal_links.py` now skips fenced code. Render check (gh api /markdown): pre == ltr in all 56 changed files.
+
 ## 5. Known bugs / caveats (exact messages)
 - `mamba env create -f envs/bioinfo_course.yml` fails: `Could not resolve host: conda.anaconda.org` / `SSL connect error … Operation too slow`.
 - With `set -o pipefail`, `zcat … | head` exits **141** (SIGPIPE); fixed in `run_profile.sh` with `set +o pipefail` on that line.
@@ -114,10 +121,8 @@ User rules: ask before heavy downloads (state what/size/time); course is introdu
   - Link facts: Coursera returns 451 from this server and from WebFetch, so its URLs are verified via WebSearch index. YouTube is unreachable 2026-10-19, so old oEmbed dates are kept. alphafold.ebi.ac.uk now gives 403 to curl/WebFetch. vincebuffalo.com timed out.
 - 🔄 **FORMAT CHANGE (user, 2026-10-19):** user said lessons are not learnable (dense expert notes, jargon tables, test numbers, no intuition/examples). New audience: knows basic + molecular biology, NOT bioinformatics. New lesson format (pilot = 00/01, rewritten 2026-10-19): «در یک نگاه» goals → story (rifampicin-resistant E. coli, rpoB) → plain concepts + analogy → small worked example → «✋ امتحان کن» <details> boxes after each section → 3 common mistakes → «برای کنجکاوها» optional box → summary → glossary → refs. Exercises: strictly lesson-based, runnable (browser/calc), **راهنمایی right under each exercise title** (user request). Verification numbers go to solutions, not lesson body. WAITING for user feedback on pilot before updating STYLE_GUIDE §1/§3 and rewriting other lessons.
 
-## 6. Next steps (priority order, one session each)
-0. **Continue new-format rewrite, in course order, commit+push every 3 modules (dissection style, check prerequisites, use /usr/bin/grep and /usr/bin/mawk for outputs):** next 02_BioLinux/01_Conda_Bioconda, 02_BioLinux/02_Bio_File_Formats (its make_examples.sh depends on part-06 outputs, so fix the prerequisite), 03_Python/01_Python_Basics (new) → push; then 03_Python/02_Biopython, 03/03 Pandas (new), 04/01 R (new) → push; then 05/01 Git, 05/02 Snakemake (needs Python; workflow uses part-06 QC, so check the prerequisite), 06/01 → push; then 06/02–06/04, 07/01–07/02 (move scripts into 99_scripts_data and retest).
-3. **04/03 MLST**, then 04/04 pan-genome, 04/05 Snippy — write-only per the new rule; for each topic add short non-bacterial sections where relevant (scope memory). Consider a short phage/virus/eukaryote note in 04/01 assembly.
-4. **02/02 pandas:** fastp JSON, `cds_table.tsv`, Kraken vs truth plots.
-5. **02/03 R/stats:** ggplot2, FDR simulation, vegan diversity on 16S output.
-6. Then parts 05, 06, 07 (one module per session).
-7. After each module: update the root `README.md` status table and run `_tools/check_links.sh` + `python3 _tools/check_internal_links.py`.
+## 6. Next steps (priority order)
+0. **Continue new-format rewrite in course order** (dissection style, strict prerequisites, real outputs only, /usr/bin/grep + /usr/bin/mawk for outputs; commit+push every 3 modules unless the user says otherwise): 04_R_Statistics (new R basics → stats), then 05/01 Git, 05/02 Snakemake (check prerequisites), then 06/01–06/04, 07/01–07/02 (move scripts into 99_scripts_data and retest).
+1. 07/03 MLST, 07/04 pan-genome, 07/05 Snippy — write-only per the new rule; short non-bacterial notes where relevant.
+2. When the user says the whole course is done: full link check with the user's VPN on (`_tools/check_links.sh`), incl. Coursera/YouTube.
+3. After each module: update root `README.md` status, run `python3 _tools/check_internal_links.py` and the gh-api render check.

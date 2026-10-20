@@ -1,0 +1,6 @@
+##gff-version 3
+##sequence-region NC_000913.3 1 4641652
+##species https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=511145
+NC_000913.3	RefSeq	region	1	4641652	.	+	.	ID=NC_000913.3:1..4641652;Dbxref=taxon:511145;Is_circular=true;Name=ANONYMOUS;gbkey=Src;genome=chromosome;mol_type=genomic DNA;strain=K-12;substrain=MG1655
+NC_000913.3	RefSeq	gene	4181245	4185273	.	+	.	ID=gene-b3987;Dbxref=ECOCYC:EG10894,GeneID:948488;Name=rpoB;gbkey=Gene;gene=rpoB;gene_biotype=protein_coding;gene_synonym=ECK3978,ftsR,groN,nitB,rif,ron,sdgB,stl,stv,tabD;locus_tag=b3987
+NC_000913.3	RefSeq	CDS	4181245	4185273	.	+	0	ID=cds-NP_418414.1;Parent=gene-b3987;Dbxref=UniProtKB/Swiss-Prot:P0A8V2,GenBank:NP_418414.1,ECOCYC:EG10894,GeneID:948488;Name=NP_418414.1;gbkey=CDS;gene=rpoB;locus_tag=b3987;product=RNA polymerase subunit beta;protein_id=NP_418414.1;transl_table=11

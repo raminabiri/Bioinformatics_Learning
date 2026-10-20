@@ -33,6 +33,9 @@ __pycache__/
 # Downloaded reference data (re-create with data/download.sh)
 01_Linux/99_scripts_data/data/ecoli_k12.*
 01_Linux/99_scripts_data/data/host_chr21_region.fa
-02_BioLinux/99_scripts_data/02_Bio_File_Formats/data/
 **/04_16S_Amplicon/data/sample_metadata.tsv
 **/work_light/
+
+# Small tracked teaching examples (exceptions to the rules above)
+!02_BioLinux/99_scripts_data/04_Align_Variant_Formats/data/resistant.bam
+!02_BioLinux/99_scripts_data/04_Align_Variant_Formats/data/resistant.bam.bai

@@ -1,20 +1,23 @@
-# Course environment for parts 00, 01 and 03 (read QC, host removal, profiling)
-# Create:  mamba env create -f envs/bioinfo_course.yml
+# Course environment for parts 02 (BioLinux) and 03 (Python).
+# Create once:   conda env create -f envs/bioinfo_course.yml
+# Then:          conda activate bioinfo_course
+# Versions are the ones the lessons were tested with (2026-10-20). The solve was checked with
+# `conda create --dry-run`.
 name: bioinfo_course
 channels:
   - conda-forge
   - bioconda
 dependencies:
-  - python=3.11
-  - fastqc=0.12.1
-  - fastp=0.23.4
-  - multiqc=1.25
-  - seqkit=2.13
-  - bowtie2=2.5.4
+  # part 02: command-line bioinformatics tools
+  - seqkit=2.13.0
   - samtools=1.20
-  # wgsim ships inside the samtools package (misc/wgsim)
-  - entrez-direct
-  - ncbi-datasets-cli
-  - sra-tools=3.1
+  - bcftools=1.21
   - jq
+  - ncbi-datasets-cli=18.38.0
   - wget
+  # part 03: Python and libraries
+  - python=3.13
+  - biopython=1.88
+  - pandas=3.0.5
+  - matplotlib-base=3.11.1
+  - seaborn-base=0.13.2
