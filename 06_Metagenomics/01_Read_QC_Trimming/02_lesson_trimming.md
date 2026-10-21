@@ -1,126 +1,335 @@
 <div dir="rtl">
 
-# درس ۲: پیرایش آداپتور، پیرایش کیفیت و فیلتر ریدها با fastp
+# درس ۲: بریدن و پالایش ریدها با fastp
 
-**بخش:** `06_Metagenomics` · **ماژول:** `01_Read_QC_Trimming` · **پیش‌نیاز:** درس ۱ · **زمان:** ۱٫۵ ساعت · **ابزار:** fastp 0.23.4، FastQC 0.12.1، MultiQC 1.25.1 · **آخرین تست:** 2026-10-12
+**بخش:** `06_Metagenomics` · **ماژول:** `01_Read_QC_Trimming` · **پیش‌نیاز:** [درس ۱](01_lesson_fastqc.md) · **زمان:** حدود ۶۰ دقیقه · **ابزار:** fastp 0.23.4، FastQC 0.12.1، MultiQC 1.25.1، Python 3 · **خروجی‌ها از اجرای:** 2026-10-12
 
 ---
 
-## ۱. مسئله
+## در یک نگاه
 
-درس ۱ نشان داد کجا مشکل هست. حالا باید تصمیم بگیریم **چه چیزی را حذف کنیم**. هر حذفی دو طرف دارد:
-- **کم حذف کردن:** آداپتور و بازهای پرخطا وارد mapping و طبقه‌بندی می‌شوند. نتیجه mapping کمتر، k-mer کاذب در Kraken2 و آلل کاذب در فراخوانی واریانت است.
-- **زیاد حذف کردن:** داده از دست می‌رود، ریدها کوتاه می‌شوند (طبقه‌بندی k-mer و mapping دقیق‌تر با رید بلند بهتر است)، و چون حذف یکنواخت نیست، **فراوانی گونه‌ها هم مخدوش می‌شود**. مثلاً اگر کیفیت به GC وابسته باشد، گونه‌های GC بالا بیشتر حذف می‌شوند.
+**در پایان این درس می‌توانید:**
+1. سه کار جدای fastp را از هم بشناسید: بریدن آداپتور، **بریدن** بازهای بد (*trimming*) و **دور ریختن** ریدهای بد (*filtering*).
+2. یک دستور fastp برای ریدهای جفتی بنویسید و گزارش آن را بخوانید.
+3. با سنجیدن چند راهبرد روی داده‌ی خودتان، پارامتر را **با دلیل** برگزینید.
+4. بسنجید که R1 و R2 پس از بریدن هنوز جفت‌اند.
+5. عددهای گزارش JSON را با پایتون بیرون بکشید.
 
-پس هدف «تمیزترین داده‌ی ممکن» نیست، بلکه **حذف آنچه واقعاً آسیب می‌زند با کمترین هزینه** است.
-
-## ۲. سه عملیات متفاوت در fastp
-
-بیشتر سردرگمی‌ها از اینجاست که این سه را یکی فرض می‌کنیم:
-
-| عملیات | چه می‌کند | گزینه‌های fastp | پیش‌فرض |
-| :--- | :--- | :--- | :--- |
-| **پیرایش آداپتور** | توالی آداپتور را از انتهای 3' می‌بُرد | ‏`--detect_adapter_for_pe` یا `--adapter_sequence` | برای SE فعال است. برای PE، تشخیص با هم‌پوشانی جفت‌ها فعال است و `--detect_adapter_for_pe` تشخیص توالی را هم اضافه می‌کند |
-| **پیرایش کیفیت** (trimming) | **بازها** را از سر یا ته رید می‌بُرد | `--cut_front`، `--cut_tail`، `--cut_right` (+ `--cut_mean_quality`، `--cut_window_size`) | **غیرفعال** |
-| **فیلتر کیفیت** (filtering) | **کل رید** (و جفتش) را دور می‌اندازد | ‏`-q` (حد کیفیت هر باز، پیش‌فرض 15)، `-u` (حداکثر درصد باز زیر حد، پیش‌فرض 40)، `-n` (حداکثر N، پیش‌فرض 5)، `-e` (میانگین کیفیت)، `-l` (حداقل طول، پیش‌فرض 15) | فعال |
-
-> **اشتباه رایج:** «`fastp -q 20` بازهای زیر Q20 را می‌بُرد.» **نادرست است.** `-q` فقط تعریف می‌کند چه بازی «باکیفیت» حساب شود. سپس رید فقط وقتی **کامل** حذف می‌شود که بیش از `-u` درصد بازهایش زیر این حد باشند. هیچ بازی بریده نمی‌شود. برای بریدن باید یکی از گزینه‌های `--cut_*` را فعال کنید. متن راهنمای خود fastp (`fastp --help`) را بخوانید.
-
-### سه حالت پیرایش کیفیت
-همه با یک پنجره‌ی لغزان (پیش‌فرض ۴ باز) و حد میانگین (پیش‌فرض Q20) کار می‌کنند:
-
-<div dir="ltr">
-
-```text
-رید:        5' ██████████▓▓░██████████████████▓▓░░░ 3'
-                         ↑ یک افت کیفیت در وسط            ↑ افت کیفیت در انتها
-
---cut_front : از 5' جلو می‌رود و تا جایی که پنجره بد است می‌بُرد؛ به اولین پنجره‌ی خوب که رسید، می‌ایستد.
---cut_tail  : از 3' عقب می‌آید و تا جایی که پنجره بد است می‌بُرد؛ به اولین پنجره‌ی خوب که رسید، می‌ایستد.
-              → فقط انتهای بد بریده می‌شود: ██████████▓▓░██████████████████
---cut_right : از 5' جلو می‌رود و به **اولین** پنجره‌ی بد که رسید، آن پنجره و **همه‌ی بقیه‌ی رید** را می‌بُرد.
-              → ██████████   (افت وسط رید باعث از دست رفتن بیش از نیمی از رید شد)
-```
-
-</div>
-
-‏`--cut_right` همان منطق `SLIDINGWINDOW` در Trimmomatic است. خود fastp آن را جایگزین گزینه‌ی قدیمی `--cut_by_quality_aggressive` («تهاجمی») معرفی می‌کند.
-
-## ۳. کار عملی: مقایسه‌ی سه راهبرد روی داده‌ی واقعی
+**پیش از آغاز:** در پوشه‌ی پروژه‌ی درس ۱ باشید:
 
 <div dir="ltr">
 
 ```bash
-cd 06_Metagenomics
-mkdir -p work/01_qc/compare
-R=data/raw; s=minigut
+conda activate metagenomics
+cd ~/meta
+fastp --version
+```
 
-# A) فقط فیلتر کیفیت (مثل دستور رایج «fastp -q 20»)
-fastp -i $R/${s}_R1.fastq.gz -I $R/${s}_R2.fastq.gz \
-      -o work/01_qc/compare/A_R1.fq.gz -O work/01_qc/compare/A_R2.fq.gz \
-      -q 20 -l 36 -j work/01_qc/compare/A.json -h work/01_qc/compare/A.html
+</div>
 
-# B) پنجره‌ی لغزان «تهاجمی» (معادل SLIDINGWINDOW:4:20 در Trimmomatic)
-fastp -i $R/${s}_R1.fastq.gz -I $R/${s}_R2.fastq.gz \
-      -o work/01_qc/compare/B_R1.fq.gz -O work/01_qc/compare/B_R2.fq.gz \
+<div dir="ltr">
+
+```text
+fastp 0.23.4
+```
+
+</div>
+
+---
+
+## ۱. داستان
+
+درس ۱ گفت داده سالم است، ولی بازهای کم‌کیفیتی هم دارد، در انتها و گاهی در میانه‌ی ریدها. اکنون باید **تصمیم** بگیرید چه چیزی بریده شود. هر برش دو سو دارد:
+
+- **کم بریدن:** آداپتور و بازهای پرخطا به گام‌های بعد می‌روند: همترازی کمتر، k-mer ساختگی در Kraken2 (ماژول ۰۳)، جهش ساختگی در فراخوانی واریانت (بخش ۰۷).
+- **زیاد بریدن:** داده از دست می‌رود، ریدها کوتاه می‌شوند، و چون برش یکنواخت نیست، **فراوانی گونه‌ها** هم کج می‌شود (اگر کیفیت به GC وابسته باشد، گونه‌های پر-GC بیشتر بریده می‌شوند).
+
+پس هدف «تمیزترین داده‌ی شدنی» نیست، بلکه **برداشتن آنچه واقعاً آسیب می‌زند، با کمترین هزینه**.
+
+---
+
+## ۲. مفهوم: سه کار جدا
+
+بیشتر سردرگمی‌ها از یکی دانستن این سه است:
+
+| کار | چه می‌کند | گزینه‌ی fastp | پیش‌فرض |
+| :--- | :--- | :--- | :--- |
+| **بریدن آداپتور** | توالی آداپتور را از انتهای ۳' برمی‌دارد | `--detect_adapter_for_pe` | برای ریدهای جفتی، یافتن آداپتور از راه **هم‌پوشانی** دو رید روشن است؛ این گزینه جست‌وجوی **توالی** آداپتور را هم می‌افزاید |
+| **بریدن کیفیت** (*trimming*) | **بازهای** بد را از سر یا ته رید می‌بُرد | `--cut_front`، `--cut_tail`، `--cut_right` | **خاموش** |
+| **پالایش کیفیت** (*filtering*) | **کل رید** (و جفتش) را دور می‌اندازد | ‏`-q`، `-u`، `-n`، `-l` | روشن |
+
+### ‏۲.۱ ‏`-q` هیچ بازی نمی‌بُرد
+
+گزینه‌های پالایش، با پیش‌فرض‌هایشان:
+
+| گزینه | معنی | پیش‌فرض |
+| :--- | :--- | :---: |
+| ‏`-q` | بازی با کیفیت کمتر از این «بد» شمرده می‌شود | 15 |
+| ‏`-u` | اگر بیش از این درصد بازهای رید «بد» باشند، رید دور ریخته می‌شود | 40 |
+| ‏`-n` | اگر بیش از این شمار `N` داشت، دور ریخته می‌شود | 5 |
+| ‏`-l` | اگر پس از برش کوتاه‌تر از این شد، دور ریخته می‌شود | 15 |
+
+پس `fastp -q 20` تنها می‌گوید «زیر Q20 بد است»؛ رید **تنها وقتی** دور ریخته می‌شود که بیش از ۴۰٪ بازهایش بد باشند. **هیچ بازی بریده نمی‌شود.** برای بریدن، یکی از گزینه‌های `--cut_*` لازم است.
+
+### ۲.۲ سه گونه بریدن کیفیت
+
+هر سه با یک **پنجره‌ی لغزان** کار می‌کنند: پنجره‌ای به پهنای ۴ باز (`--cut_window_size`) روی رید جلو می‌رود؛ اگر **میانگین** کیفیت درون پنجره کمتر از ۲۰ (`--cut_mean_quality`) باشد، پنجره «بد» است.
+
+<div dir="ltr">
+
+```text
+read:        5' ██████████▓▓░██████████████████▓▓░░░ 3'
+                         ↑ a dip in the middle       ↑ low quality at the end
+
+--cut_front : walk from 5'; cut bad windows; stop at the first good window
+--cut_tail  : walk from 3'; cut bad windows; stop at the first good window
+              -> only the bad end goes:   ██████████▓▓░██████████████████
+--cut_right : walk from 5'; at the FIRST bad window, cut it AND EVERYTHING after it
+              -> ██████████     (a dip in the middle cost more than half the read)
+```
+
+</div>
+
+‏`--cut_right` همان منطق `SLIDINGWINDOW:4:20` در ابزار قدیمی‌تر Trimmomatic است که در بسیاری از مقاله‌ها می‌بینید.
+
+---
+
+## ۳. گام ۱: نخستین دستور fastp
+
+راهبرد این دوره (چرایی‌اش در گام ۲):
+
+<div dir="ltr">
+
+```bash
+mkdir -p qc/trimmed qc/fastp
+fastp -i raw/minigut_R1.fastq.gz -I raw/minigut_R2.fastq.gz \
+      -o qc/trimmed/minigut_R1.fastq.gz -O qc/trimmed/minigut_R2.fastq.gz \
+      --detect_adapter_for_pe \
+      --cut_front --cut_tail --cut_mean_quality 20 \
+      --length_required 50 \
+      -j qc/fastp/minigut.json -h qc/fastp/minigut.html
+```
+
+</div>
+
+| بخش | چیست | بی آن چه می‌شود |
+| :--- | :--- | :--- |
+| ① `-i` / `-I` | ورودی R1 / R2 (`I` بزرگ = دومی) | با تنها `-i`، fastp ریدها را تکی (*single-end*) می‌پندارد |
+| ② `-o` / `-O` | خروجی R1 / R2 | بی `-o`، ریدهای پالوده **نوشته نمی‌شوند**؛ تنها گزارش ساخته می‌شود |
+| ③ `--detect_adapter_for_pe` | جست‌وجوی توالی آداپتور هم | تنها از راه هم‌پوشانی دو رید |
+| ④ `--cut_front --cut_tail` | بریدن بازهای بد از دو سر | هیچ بازی بریده نمی‌شود |
+| ⑤ `--cut_mean_quality 20` | مرز میانگین پنجره | پیش‌فرض هم ۲۰ است؛ نوشتنش دستور را خواناتر می‌کند |
+| ⑥ `--length_required 50` | همان `-l`: ریدهای کوتاه‌تر از ۵۰ دور ریخته شوند | مرز ۱۵: ریدهای بسیار کوتاه که جای درستشان را پیدا نمی‌کنند |
+| ⑦ `-j` / `-h` | گزارش JSON (برای ماشین) و HTML (برای چشم) | به نام `fastp.json` و `fastp.html` در پوشه‌ی کنونی نوشته می‌شوند و اجرای بعدی رویشان می‌نویسد |
+
+‏fastp گزارش را روی صفحه (در stderr) هم چاپ می‌کند:
+
+<div dir="ltr">
+
+```text
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+Read1 before filtering:
+total reads: 50000
+total bases: 6300000
+Q20 bases: 6054456(96.1025%)
+Q30 bases: 5814382(92.2918%)
+
+Read2 before filtering:
+total reads: 50000
+total bases: 6300000
+Q20 bases: 5974343(94.8308%)
+Q30 bases: 5688358(90.2914%)
+
+Read1 after filtering:
+total reads: 49845
+total bases: 6274526
+Q20 bases: 6034120(96.1685%)
+Q30 bases: 5795987(92.3733%)
+
+Read2 after filtering:
+total reads: 49845
+total bases: 6271089
+Q20 bases: 5960613(95.0491%)
+Q30 bases: 5679945(90.5735%)
+
+Filtering result:
+reads passed filter: 99690
+reads failed due to low quality: 308
+reads failed due to too many N: 0
+reads failed due to too short: 2
+reads with adapter trimmed: 12
+bases trimmed due to adapters: 606
+
+Duplication rate: 0.002%
+
+Insert size peak (evaluated by paired-end reads): 143
+...
+```
+
+</div>
+
+خواندن گزارش، از بالا:
+- **آداپتور:** توالی آداپتوری یافت نشد (داده شبیه‌سازی‌شده است)؛ ولی ۱۲ رید از راه هم‌پوشانی بریده شدند.
+- ‏**Q30:** ‏R1 ‏۹۲٫۳٪ و R2 ‏۹۰٫۳٪؛ R2 کمی بدتر است، چنان‌که در درس ۱ دیدیم.
+- **پس از پالایش:** ۴۹٬۸۴۵ رید در **هر دو** فایل: جفت‌ها با هم مانده‌اند.
+- ‏**Filtering result:** شمارش ریدهای **تکی** (R1 + R2): ۹۹٬۶۹۰ ماند، ۳۰۸ به‌خاطر کیفیت و ۲ به‌خاطر کوتاهی رفتند. 308 + 2 = 310 رید = ۱۵۵ جفت؛ 50000 − 155 = 49845. ✓
+- ‏**Insert size peak 143:** درازای رایج قطعه‌ی DNA؛ از روی هم‌پوشانی دو رید ۱۲۶ بازی برآورد شده است.
+
+---
+
+## ۴. گام ۲: چرا این راهبرد؟ سه راهبرد را بسنجید
+
+همان ریدها، سه دستور:
+
+<div dir="ltr">
+
+```bash
+mkdir -p qc/compare
+R=raw; s=minigut; T=qc/compare
+
+# A) filtering only (the common "fastp -q 20")
+fastp -i $R/${s}_R1.fastq.gz -I $R/${s}_R2.fastq.gz -o $T/A_R1.fq.gz -O $T/A_R2.fq.gz \
+      -q 20 -l 36 -j $T/A.json -h $T/A.html 2> $T/A.log
+
+# B) sliding window from 5' (= Trimmomatic SLIDINGWINDOW:4:20)
+fastp -i $R/${s}_R1.fastq.gz -I $R/${s}_R2.fastq.gz -o $T/B_R1.fq.gz -O $T/B_R2.fq.gz \
       --detect_adapter_for_pe --cut_right --cut_mean_quality 20 -l 50 \
-      -j work/01_qc/compare/B.json -h work/01_qc/compare/B.html
+      -j $T/B.json -h $T/B.html 2> $T/B.log
 
-# C) پیرایش دو سر (راهبرد انتخابی این دوره)
-fastp -i $R/${s}_R1.fastq.gz -I $R/${s}_R2.fastq.gz \
-      -o work/01_qc/compare/C_R1.fq.gz -O work/01_qc/compare/C_R2.fq.gz \
+# C) trim both ends (the course choice, as in step 1)
+fastp -i $R/${s}_R1.fastq.gz -I $R/${s}_R2.fastq.gz -o $T/C_R1.fq.gz -O $T/C_R2.fq.gz \
       --detect_adapter_for_pe --cut_front --cut_tail --cut_mean_quality 20 -l 50 \
-      -j work/01_qc/compare/C.json -h work/01_qc/compare/C.html
+      -j $T/C.json -h $T/C.html 2> $T/C.log
 
-# خلاصه از گزارش‌های JSON
-for x in A B C; do
-  jq -r --arg x $x '[$x, .summary.after_filtering.total_reads, .summary.after_filtering.total_bases,
-     .summary.after_filtering.q30_rate, .filtering_result.too_short_reads, .filtering_result.low_quality_reads] | @tsv' \
-     work/01_qc/compare/$x.json
+grep -H 'reads passed filter\|too short' $T/*.log
+```
+
+</div>
+
+- ‏`R=raw; s=minigut; T=qc/compare`: متغیرها (بخش ۰۱، ماژول ۰۹) دستورها را کوتاه می‌کنند.
+- ‏`2> $T/A.log`: گزارش صفحه‌ی fastp (که در stderr است) به فایل می‌رود.
+- ‏`grep -H`: نام فایل را هم پیش از هر خط یافته‌شده چاپ کن؛ `\|` یعنی «یا».
+
+<div dir="ltr">
+
+```text
+qc/compare/A.log:reads passed filter: 99594
+qc/compare/A.log:reads failed due to too short: 0
+qc/compare/B.log:reads passed filter: 89176
+qc/compare/B.log:reads failed due to too short: 10734
+qc/compare/C.log:reads passed filter: 99690
+qc/compare/C.log:reads failed due to too short: 2
+```
+
+</div>
+
+با عددهای دیگر گزارش JSON (گام ۴)، روی هم (ورودی: ۱۰۰٬۰۰۰ رید تکی، ۱۲٫۶ میلیون باز، Q30 ‏۹۱٫۲۹٪):
+
+| راهبرد | ریدهای مانده | بازهای مانده | ‏Q30 پس از آن | رفته: کوتاه | رفته: کیفیت |
+| :--- | ---: | ---: | :-: | ---: | ---: |
+| ‏A: `-q 20` (تنها پالایش) | 99,594 (99.6%) | 12,548,238 | 91.40% | 0 | 406 |
+| ‏B: `--cut_right` | **89,176 (89.2%)** | **11,110,072 (88.2%)** | 94.47% | **10,734** | 90 |
+| ‏C: `--cut_front --cut_tail` | 99,690 (99.7%) | 12,545,615 | 91.47% | 2 | 308 |
+
+### تفسیر
+
+- ‏**A** هیچ بازی را نبرید. ۴۰۶ رید رفتند چون بیش از ۴۰٪ بازهایشان زیر Q20 بود؛ Q30 کمابیش همان ماند. اگر می‌خواستید انتهای بد بریده شود، **این دستور آن کار را نمی‌کند**.
+- ‏**B** بالاترین Q30 را دارد، ولی به بهای **۱۰٫۸٪ ریدها و ۱۱٫۸٪ بازها**. چرا؟ در گام ۳ درس ۱ دیدید که بازهای کم‌کیفیت این داده **پراکنده در میانه‌ی ریدها**یند. شمارش با awk (بخش ۰۱):
+
+  <div dir="ltr">
+
+  ```bash
+  zcat raw/minigut_R1.fastq.gz | awk 'NR%4==0 {q=substr($0,1,60); if (q ~ /[!-4]/) c++; n++} END {print c, n, c/n}'
+  ```
+
+  </div>
+
+  <div dir="ltr">
+
+  ```text
+  27602 50000 0.55204
+  ```
+
+  </div>
+
+  ‏`substr($0,1,60)` = شصت باز نخست خط کیفیت؛ `/[!-4]/` = هر نویسه از `!` تا `4`، یعنی Q0 تا Q19. **۵۵٪ ریدها** در ۶۰ باز نخستشان دست‌کم یک باز زیر Q20 دارند. `--cut_right` با هر افت موضعی که میانگین پنجره‌ی ۴تایی را زیر ۲۰ ببرد، **همه‌ی باقی رید** را می‌بُرد؛ بسیاری از ریدها زیر ۵۰ باز می‌روند و با `-l 50` دور ریخته می‌شوند. **بالا رفتن Q30 ساختگی است:** داده را بهتر نکردیم، بخش بزرگی از آن را دور ریختیم.
+- ‏**C** دو انتهای بد را می‌بُرد، بازهای بد پراکنده‌ی میانه را نگه می‌دارد (ابزارهای همترازی و طبقه‌بندی با یک باز Q14 در میانه‌ی رید مشکلی ندارند) و ۹۹٫۷٪ داده را نگه می‌دارد.
+
+**تصمیم این دوره:** راهبرد C، با `-l 50`. چرا ۵۰؟ ریدهای بسیار کوتاه در طبقه‌بندی k-mer (Kraken2 با k=35، ماژول ۰۳) و همترازی، جاهای نادرست بسیاری پیدا می‌کنند.
+
+> این یک قانون همگانی نیست. روی داده‌ای که تنها انتهای ۳' بدی دارد، B و C نتیجه‌ی نزدیکی می‌دهند (تمرین ۳). **درس اصلی:** پارامتر را با داده‌ی خودتان و گزارش fastp برگزینید، نه با رونویسی از یک مقاله.
+
+<details>
+<summary>✋ امتحان کن: پنجره‌ی ۴تایی <code>F F / F</code> (۳۷، ۳۷، ۱۴، ۳۷) را <code>--cut_right</code> می‌بُرد؟ و <code>/ / 7 &lt;</code> (۱۴، ۱۴، ۲۲، ۲۷)؟</summary>
+
+- ‏(37 + 37 + 14 + 37) / 4 = **31.25**؛ بالای ۲۰، پس نه.
+- ‏(14 + 14 + 22 + 27) / 4 = **19.25**؛ زیر ۲۰، پس از همین‌جا تا پایان رید بریده می‌شود.
+
+یک `/` تنها کاری نمی‌کند؛ یک خوشه‌ی کوچک بازهای متوسط کافی است. تمرین ۴ اثر پهن‌تر کردن پنجره را می‌سنجد.
+
+</details>
+
+---
+
+## ۵. گام ۳: جفت‌ها هنوز جفت‌اند؟
+
+ابزارهای بعدی (Bowtie2 در ماژول ۰۲) فرض می‌کنند رید شماره‌ی n در R1 با رید شماره‌ی n در R2 جفت است. در حالت جفتی، fastp اگر یکی از دو رید را دور بیندازد، **جفتش را هم** دور می‌اندازد:
+
+<div dir="ltr">
+
+```bash
+for r in R1 R2; do
+  printf "%s: " $r
+  zcat qc/trimmed/minigut_${r}.fastq.gz | awk 'END {print NR/4}'
 done
 ```
 
 </div>
 
-نتیجه‌ی واقعی (ورودی: ۱۰۰٬۰۰۰ رید = ۵۰٬۰۰۰ جفت، ۱۲٫۶ میلیون باز، Q30 = 91.29%):
+<div dir="ltr">
 
-| راهبرد | ریدهای باقی‌مانده | بازهای باقی‌مانده | ‏Q30 بعد | حذف: کوتاه | حذف: کیفیت پایین |
-| :--- | ---: | ---: | :-: | ---: | ---: |
-| ‏A: `-q 20` (فقط فیلتر) | 99,594 (99.6%) | 12,548,238 | 91.40% | 0 | 406 |
-| B: `--cut_right` | **89,176 (89.2%)** | **11,110,072 (88.2%)** | 94.47% | **10,734** | 90 |
-| C: `--cut_front --cut_tail` | 99,690 (99.7%) | 12,545,615 | 91.47% | 2 | 308 |
+```text
+R1: 49845
+R2: 49845
+```
 
-برای `minigut_sample2` (ریدهای 151 bp) همین الگو با شدت کمتر تکرار می‌شود: B ۹۸٫۴٪ ریدها را نگه می‌دارد و C ۹۹٫۹۸٪.
+</div>
 
-### تفسیر
-- ‏**A** عملاً هیچ بازی را نبرید. ۴۰۶ رید حذف شدند، چون بیش از ۴۰٪ بازهایشان زیر Q20 بود. Q30 تقریباً تغییری نکرد. اگر هدف حذف انتهای بی‌کیفیت بود، **این دستور آن کار را نمی‌کند.**
-- ‏**B** بالاترین Q30 را دارد، ولی به قیمت **۱۰٫۸٪ ریدها و ۱۱٫۸٪ بازها**. علت را از گام ۱ درس ۱ می‌دانیم: در این داده بازهای کم‌کیفیت **پراکنده در وسط ریدها** هستند، مثل `/` (Q14) در موقعیت ۲۴ رید اول. شمارش ساده نشان می‌دهد:
+برابرند. اگر R1 و R2 را با **دو دستور جدا** می‌بریدید، رید دورریخته‌شده‌ی R1 در R2 می‌ماند و از آن نقطه همه‌ی جفت‌ها جابه‌جا می‌شدند (اشتباه رایج ۲).
 
-  <div dir="ltr">
+---
 
-  ```bash
-  zcat data/raw/minigut_R1.fastq.gz | awk 'NR%4==0{q=substr($0,1,60); if (q ~ /[!-4]/) c++; n++} END{print c, n, c/n}'
-  # 27602 50000 0.55204   ← ۵۵٪ ریدها در ۶۰ باز اول دست‌کم یک باز زیر Q20 دارند
-  ```
+## ۶. گام ۴: خواندن گزارش JSON با پایتون
 
-  </div>
+گزارش HTML برای چشم است؛ برای جدول یک مقاله با ۲۰۰ نمونه، عددها را از **JSON** برمی‌داریم. JSON (بخش ۰۲، ماژول ۰۵) همان **دیکشنری‌های تودرتوی** پایتون (بخش ۰۳) است، و ماژول `json` پایتون آن را مستقیم به دیکشنری تبدیل می‌کند:
 
-  ‏`--cut_right` با هر افت موضعی که میانگین یک پنجره‌ی ۴تایی را زیر ۲۰ ببرد، کل ادامه‌ی رید را می‌بُرد. بعد بسیاری از ریدها زیر ۵۰ باز می‌روند و با `-l 50` حذف می‌شوند. **افزایش Q30 مصنوعی است:** داده را «بهتر» نکرده‌ایم، بخش بزرگی از آن را دور ریخته‌ایم.
-- ‏**C** انتهاهای بد را می‌بُرد، بازهای پراکنده‌ی کم‌کیفیت وسط رید را نگه می‌دارد (mapper و طبقه‌بند با یک باز Q14 در وسط رید مشکلی ندارند) و ۹۹٫۷٪ داده را حفظ می‌کند.
+<div dir="ltr">
 
-**تصمیم این دوره:** راهبرد C (`--cut_front --cut_tail --cut_mean_quality 20`) با `--detect_adapter_for_pe` و `-l 50`. دلیل `-l 50`: ریدهای خیلی کوتاه در طبقه‌بندی k-mer (Kraken2 با k=35) و mapping چندجایی مشکل‌سازند.
+```python
+# fastp_summary.py: a few numbers from one fastp JSON report
+import json
 
-> این نتیجه یک قانون جهانی نیست. روی داده‌ای با افت شدید کیفیت فقط در انتهای 3'، B و C نتیجه‌ی نزدیک به هم می‌دهند. **درس اصلی این است که پارامتر را با داده‌ی خودتان و با نگاه به گزارش fastp انتخاب کنید**، نه با کپی از یک مقاله.
+with open("qc/fastp/minigut.json") as f:
+    report = json.load(f)                       # ①
 
-## ۴. اجرای نهایی برای همه‌ی نمونه‌ها
+print(report.keys())                            # ②
+before = report["summary"]["before_filtering"]["total_reads"]   # ③
+after = report["summary"]["after_filtering"]["total_reads"]
+print(before, after, round(after / before * 100, 2))
+print(report["filtering_result"])               # ④
+```
 
-اسکریپت [scripts/run_qc.sh](scripts/run_qc.sh) همین راهبرد را روی هر دو نمونه اجرا می‌کند و FastQC و MultiQC را قبل و بعد اجرا می‌کند:
+</div>
 
 <div dir="ltr">
 
 ```bash
-bash 01_Read_QC_Trimming/scripts/run_qc.sh
-bash 01_Read_QC_Trimming/scripts/check.sh
+python3 fastp_summary.py
 ```
 
 </div>
@@ -128,62 +337,224 @@ bash 01_Read_QC_Trimming/scripts/check.sh
 <div dir="ltr">
 
 ```text
-  [OK]   minigut: R1 and R2 still paired (49845 reads each)
-  [OK]   minigut: 99.69% reads kept (>=95% expected for this dataset)
-  [OK]   minigut_sample2: R1 and R2 still paired (24988 reads each)
-  [OK]   minigut_sample2: 99.98% reads kept (>=95% expected for this dataset)
-  ...
-Result: 18 passed, 0 failed
+dict_keys(['summary', 'filtering_result', 'duplication', 'insert_size', 'adapter_cutting', 'read1_before_filtering', 'read2_before_filtering', 'read1_after_filtering', 'read2_after_filtering', 'command'])
+100000 99690 99.69
+{'passed_filter_reads': 99690, 'low_quality_reads': 308, 'too_many_N_reads': 0, 'too_short_reads': 2, 'too_long_reads': 0}
 ```
 
 </div>
 
-**جفت‌بودن ریدها:** fastp در حالت PE اگر یکی از دو رید حذف شود، **جفتش را هم حذف می‌کند**. به همین دلیل R1 و R2 همیشه تعداد مساوی دارند. ابزارهای پایین‌دستی (Bowtie2، MetaPhlAn، HUMAnN) فرض می‌کنند رید n‌ام R1 با رید n‌ام R2 جفت است. اگر R1 و R2 را جدا پیرایش کنید، این ترتیب به هم می‌ریزد. (fastp می‌تواند ریدهای بی‌جفت را با `--unpaired1/--unpaired2` جداگانه نگه دارد.)
+| نشانه | کار |
+| :---: | :--- |
+| ① | ‏`json.load(f)` همه‌ی فایل را می‌خواند و یک **دیکشنری** برمی‌گرداند. |
+| ② | کلیدهای سطح بالا: نقشه‌ی گزارش. `summary` و `filtering_result` همان بخش‌های گزارش صفحه‌اند. |
+| ③ | دو کلید پشت سر هم = یک سطح پایین‌تر: «در `summary`، در `before_filtering`، `total_reads`». |
+| ④ | یک دیکشنری درونی، کامل؛ همان «Filtering result» صفحه. |
 
-‏**FastQC بعد از پیرایش:**
+تمرین ۶ همین را برای همه‌ی نمونه‌ها در یک جدول TSV می‌خواهد.
+
+---
+
+## ۷. گام ۵: همه‌ی نمونه‌ها، و QC دوباره
+
+### ۷.۱ یک اسکریپت
+
+برای هر دو نمونه، همان دستور گام ۱ در یک حلقه، و سپس FastQC و MultiQC **پس از** بریدن. اسکریپت کامل: [`99_scripts_data/01_Read_QC_Trimming/scripts/run_qc.sh`](../99_scripts_data/01_Read_QC_Trimming/scripts/run_qc.sh). هسته‌ی آن:
+
+<div dir="ltr">
+
+```bash
+for r1 in raw/*_R1.fastq.gz; do
+  s=$(basename $r1 _R1.fastq.gz)
+  fastp -i $r1 -I raw/${s}_R2.fastq.gz \
+        -o qc/trimmed/${s}_R1.fastq.gz -O qc/trimmed/${s}_R2.fastq.gz \
+        --detect_adapter_for_pe --cut_front --cut_tail --cut_mean_quality 20 \
+        --length_required 50 --thread 4 \
+        -j qc/fastp/${s}.json -h qc/fastp/${s}.html 2> qc/fastp/${s}.log
+done
+fastqc -q -t 4 -o qc/fastqc_trimmed qc/trimmed/*.fastq.gz
+multiqc qc/fastqc_trimmed qc/fastp -o qc/multiqc_trimmed
+```
+
+</div>
+
+- ‏`basename $r1 _R1.fastq.gz`: ‏`raw/minigut_R1.fastq.gz` ← `minigut` (نام نمونه).
+- حلقه **روی R1** می‌چرخد و نام R2 را از نام نمونه می‌سازد، تا هر نمونه یک بار پردازش شود.
+- ‏MultiQC اکنون **دو** پوشه می‌گردد: گزارش‌های FastQC و fastp در یک صفحه.
+
+### ‏۷.۲ ‏FastQC پس از بریدن
+
+با حلقه‌ی بخش ۵.۳ درس ۱، این بار روی `qc/fastqc_trimmed`:
 
 <div dir="ltr">
 
 ```text
-minigut_R1_fastqc:          WARN  Sequence Length Distribution
-minigut_sample2_R1_fastqc:  FAIL  Per sequence GC content   WARN  Sequence Length Distribution
+== minigut_R1_fastqc
+WARN	Sequence Length Distribution	minigut_R1.fastq.gz
+== minigut_R2_fastqc
+WARN	Sequence Length Distribution	minigut_R2.fastq.gz
+== minigut_sample2_R1_fastqc
+FAIL	Per sequence GC content	minigut_sample2_R1.fastq.gz
+WARN	Sequence Length Distribution	minigut_sample2_R1.fastq.gz
+== minigut_sample2_R2_fastqc
+FAIL	Per sequence GC content	minigut_sample2_R2.fastq.gz
+WARN	Sequence Length Distribution	minigut_sample2_R2.fastq.gz
 ```
 
 </div>
 
-‏WARN طول **انتظار می‌رود**، چون ریدها دیگر طول یکسان ندارند. FAIL مربوط به GC هم همان FAIL «خوب» درس ۱ است: ترکیب جامعه با پیرایش عوض نشده است.
+- ‏**‏WARN طول، منتظره است:** پس از بریدن، ریدها دیگر یک طول ندارند. FastQC این را «غیرعادی» می‌شمارد.
+- ‏**‏FAIL در GC همان FAIL خوب درس ۱ است:** ترکیب جامعه با بریدن عوض نشده است.
 
-## ۵. دام‌ها (Pitfalls)
+### ۷.۳ همان کار با Snakemake
 
-| دام | چرا مشکل است | راه درست |
-| :--- | :--- | :--- |
-| ‏`-q 20` به‌عنوان «trimming» | هیچ بازی بریده نمی‌شود | ‏`--cut_tail` (و در صورت نیاز `--cut_front`) |
-| کپی کردن `SLIDINGWINDOW:4:20` یا `--cut_right` از مقالات | با افت‌های موضعی کیفیت، بخش بزرگی از داده دور ریخته می‌شود | چند راهبرد را روی داده‌ی خودتان مقایسه کنید |
-| ‏`-l` خیلی کم (مثلاً پیش‌فرض 15) | ریدهای کوتاه طبقه‌بندی و map کاذب می‌گیرند | ۳۶ تا ۵۰ برای Illumina 2×150 |
-| پیرایش جداگانه‌ی R1 و R2 | جفت‌ها به هم می‌ریزند | همیشه PE را با هم پردازش کنید |
-| ‏`--dedup` در متاژنوم | فراوانی گونه‌های غالب کم برآورد می‌شود | بدون دلیل مشخص استفاده نکنید |
-| گزارش «X٪ ریدها حذف شد» بدون دلیل | قابل ارزیابی نیست | دلیل حذف را از `filtering_result` گزارش fastp بیاورید |
-| ندیدن گزارش fastp | ‏fastp آداپتور، اندازه‌ی insert و duplication را هم گزارش می‌کند | ‏HTML هر نمونه یا MultiQC تجمیعی را ببینید |
+این ماژول سه گام دارد که برای هر نمونه تکرار می‌شوند: همان چیزی که Snakemake (بخش ۰۵) برایش ساخته شده است. Snakefile آماده: [`99_scripts_data/01_Read_QC_Trimming/workflow/`](../99_scripts_data/01_Read_QC_Trimming/workflow/). قاعده‌ی fastp آن:
 
-## ۶. جمع‌بندی
-- در fastp سه عملیات جدا داریم: پیرایش آداپتور، **پیرایش** کیفیت (`--cut_*`) و **فیلتر** کیفیت (`-q/-u/-l`). `-q` بازی را نمی‌بُرد.
-- ‏`--cut_right` (معادل SLIDINGWINDOW) با افت‌های موضعی کیفیت تهاجمی است. روی داده‌ی ما ۱۰٫۸٪ ریدها را بی‌دلیل حذف کرد.
-- راهبرد این دوره `--cut_front --cut_tail --cut_mean_quality 20 -l 50 --detect_adapter_for_pe` است که ۹۹٫۷٪ داده را نگه می‌دارد و جفت‌ها را حفظ می‌کند.
-- همیشه بعد از پیرایش دوباره QC کنید و تعداد و دلیل حذف را گزارش دهید.
+<div dir="ltr">
 
-## ۷. منابع
+```python
+rule fastp:
+    input:
+        r1="raw/{sample}_R1.fastq.gz",
+        r2="raw/{sample}_R2.fastq.gz",
+    output:
+        r1="qc/trimmed/{sample}_R1.fastq.gz",
+        r2="qc/trimmed/{sample}_R2.fastq.gz",
+        json="qc/fastp/{sample}.json",
+        html="qc/fastp/{sample}.html",
+    params:
+        q=config["cut_mean_quality"],
+        l=config["length_required"],
+    threads: 4
+    log:
+        "logs/fastp/{sample}.log",
+    shell:
+        "fastp -i {input.r1} -I {input.r2} -o {output.r1} -O {output.r2} "
+        "--detect_adapter_for_pe --cut_front --cut_tail --cut_mean_quality {params.q} "
+        "--length_required {params.l} --thread {threads} "
+        "-j {output.json} -h {output.html} > {log} 2>&1"
+```
 
-### مستندات و مقالات
-- Chen S, et al. (2018). fastp: an ultra-fast all-in-one FASTQ preprocessor. *Bioinformatics* 34(17):i884–i890. https://doi.org/10.1093/bioinformatics/bty560
-- Chen S (2023). Ultrafast one-pass FASTQ data preprocessing, quality control, and deduplication using fastp. *iMeta* 2:e107. https://doi.org/10.1002/imt2.107
-- مستندات و کد fastp: https://github.com/OpenGene/fastp
-- Ewels P, et al. (2016). MultiQC. *Bioinformatics* 32(19):3047–3048. https://doi.org/10.1093/bioinformatics/btw354
+</div>
 
-### ویدیوهای آموزشی
-- profbiot — *How to run fastp for trimming, filtering, and reports*: https://www.youtube.com/watch?v=zgQ6b0AerKQ
-- Galaxy Project — *GTN Training: Intro to NGS – Quality Control (Tutorial)*: https://www.youtube.com/watch?v=QJRlX2hWDKM
-- Phil Ewels — *Using MultiQC Reports*: https://www.youtube.com/watch?v=qPbIlO_KWN0
+همه‌ی ابزارهای این قاعده را در بخش ۰۵ دیده‌اید: ورودی و خروجی نام‌دار، `params` از `config.yaml`، `log`. تنها تازه‌اش `threads: 4` است که `{threads}` را در دستور پر می‌کند (کادر کنجکاوهای ماژول 05/04). با دو نمونه، `snakemake -n` این کارها را نشان می‌دهد:
 
-> لینک‌ها در تاریخ 2026-10-12 بررسی شدند (ویدیوها با YouTube oEmbed، DOIها با Crossref، صفحات با درخواست HTTP).
+<div dir="ltr">
+
+```text
+Job stats:
+job               count
+--------------  -------
+fastp                 2
+fastqc_raw            4
+fastqc_trimmed        4
+multiqc               1
+all                   1
+total                12
+```
+
+</div>
+
+‏(این جدول از اجرای 2026-10-14 همین گردش کار است.) `fastqc_raw` ۴ بار: ۲ نمونه × ۲ رید، با دو wildcard `{sample}` و `{read}`.
+
+---
+
+## ۸. سه اشتباه رایج
+
+‏**۱. ‏`-q 20` را «بریدن» پنداشتن.** دیدید (راهبرد A) که هیچ بازی بریده نشد و Q30 تنها ۹۱٫۲۹ ← ۹۱٫۴۰ شد. برای بریدن: `--cut_tail` (و اگر لازم بود `--cut_front`).
+
+**۲. بریدن R1 و R2 با دو دستور جدا.** شمار ریدها نابرابر می‌شود و جفت‌ها به هم می‌ریزند. Bowtie2 (ماژول ۰۲) با شمار نابرابر می‌ایستد:
+
+<div dir="ltr">
+
+```text
+Error, fewer reads in file specified with -2 than in file specified with -1
+```
+
+</div>
+
+بدتر: اگر شمارها از بخت بد برابر بمانند ولی ترتیب به هم بخورد، **هیچ پیام خطایی** نمی‌آید و ریدهای بی‌ربط جفت پنداشته می‌شوند. همیشه R1 و R2 را با هم به fastp بدهید (`-i` و `-I`).
+
+**۳. رونویسی `SLIDINGWINDOW:4:20` یا `--cut_right` از یک مقاله.** روی این داده، ۱۰٫۸٪ ریدها را بی‌دلیل دور ریخت. پیش از برگزیدن، دست‌کم دو راهبرد را روی داده‌ی خودتان بسنجید و درصد مانده را گزارش کنید.
+
+---
+
+## 📘 برای کنجکاوها
+
+- ‏**‏`--dedup`:** ‏fastp می‌تواند ریدهای تکراری را بردارد؛ در متاژنوم Shotgun بی دلیل روشن این کار را نکنید (فراوانی گونه‌های غالب کم برآورد می‌شود).
+- **ریدهای بی‌جفت:** ‏`--unpaired1` / `--unpaired2` ریدهایی را که جفتشان دور ریخته شده، در فایل جدا نگه می‌دارند.
+- **آداپتور معلوم:** اگر توالی آداپتور کیت را می‌دانید، `--adapter_sequence` و `--adapter_sequence_r2` از حدس زدن مطمئن‌ترند.
+- **پوشش در MultiQC:** گزارش MultiQC این ماژول ستون `fastp-pct_surviving` (درصد ریدهای مانده) را هم در جدول کلی دارد؛ همان عدد `99.69`.
+
+---
+
+## جمع‌بندی
+
+- ‏fastp سه کار جدا دارد: بریدن آداپتور، **بریدن** کیفیت (`--cut_*`) و **پالایش** کیفیت (`-q/-u/-n/-l`). `-q` هیچ بازی نمی‌بُرد.
+- ‏`--cut_right` با افت‌های موضعی کیفیت تند است؛ روی داده‌ی ما ۱۰٫۸٪ ریدها را دور ریخت.
+- راهبرد این دوره: `--detect_adapter_for_pe --cut_front --cut_tail --cut_mean_quality 20 -l 50`؛ ۹۹٫۷٪ داده می‌ماند و جفت‌ها جفت می‌مانند.
+- گزارش JSON = دیکشنری تودرتو؛ با `json.load` در پایتون.
+- پس از بریدن دوباره QC کنید و شمار و **دلیل** حذف را گزارش دهید.
+
+---
+
+## کارت دستورهای این درس
+
+<div dir="ltr">
+
+```bash
+fastp -i R1.fq.gz -I R2.fq.gz -o out_R1.fq.gz -O out_R2.fq.gz \
+      --detect_adapter_for_pe --cut_front --cut_tail --cut_mean_quality 20 \
+      --length_required 50 --thread 4 -j s.json -h s.html 2> s.log
+grep -H 'reads passed filter\|too short' qc/compare/*.log
+zcat out_R1.fq.gz | awk 'END {print NR/4}'          # read count; R1 must equal R2
+multiqc qc/fastqc_trimmed qc/fastp -o qc/multiqc_trimmed
+```
+
+</div>
+
+<div dir="ltr">
+
+```python
+import json
+with open("qc/fastp/minigut.json") as f:
+    report = json.load(f)
+report["summary"]["after_filtering"]["total_reads"]
+report["filtering_result"]["too_short_reads"]
+```
+
+</div>
+
+---
+
+## واژه‌نامه‌ی درس
+
+| واژه | معنی |
+| :--- | :--- |
+| بریدن (*trimming*) | برداشتن **بازهای** بد از سر یا ته رید |
+| پالایش (*filtering*) | دور ریختن **کل رید** (و جفتش) |
+| پنجره‌ی لغزان | چند باز پشت سر هم که میانگین کیفیتشان سنجیده می‌شود |
+| ‏Q30 rate | سهم بازهایی که کیفیت ۳۰ یا بیشتر دارند |
+| ‏Insert size | درازای قطعه‌ی DNA میان دو آداپتور |
+| ‏JSON | قالب متنی داده‌ی تودرتو؛ در پایتون = دیکشنری |
+
+---
+
+## منابع
+
+**مستند و مقاله**
+- Chen S, et al. (2018). *fastp: an ultra-fast all-in-one FASTQ preprocessor.* Bioinformatics 34(17):i884–i890. https://doi.org/10.1093/bioinformatics/bty560
+- Chen S (2023). *Ultrafast one-pass FASTQ data preprocessing, quality control, and deduplication using fastp.* iMeta 2:e107. https://doi.org/10.1002/imt2.107
+- fastp documentation and code: https://github.com/OpenGene/fastp
+- Python documentation, *json — JSON encoder and decoder*: https://docs.python.org/3/library/json.html
+
+**فیلم و دوره‌ی آموزشی**
+- Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University): https://www.coursera.org/learn/genomic-tools
+- ‏edX: *Introduction to Linux* (The Linux Foundation). دوره‌ای ویژه‌ی بریدن ریدها در edX نیافتیم؛ نزدیک‌ترین: https://www.edx.org/learn/computer-programming/the-linux-foundation-introduction-to-linux
+- YouTube: *How to run fastp for trimming, filtering, and reports* (profbiot): https://www.youtube.com/watch?v=zgQ6b0AerKQ
+- YouTube: *GTN Training: Intro to NGS – Quality Control (Tutorial)* (Galaxy Project): https://www.youtube.com/watch?v=QJRlX2hWDKM
+- YouTube: *Using MultiQC Reports* (Phil Ewels): https://www.youtube.com/watch?v=qPbIlO_KWN0
+
+<sub>نشانی‌های YouTube و DOIها در 2026-10-12 وارسی شدند. وارسی دوباره‌ی همه‌ی نشانی‌ها در پایان دوره انجام می‌شود.</sub>
 
 </div>

@@ -1,0 +1,7 @@
+# config.yaml (part 06, module 01): samples and fastp parameters
+samples:
+  - minigut
+  - minigut_sample2
+
+cut_mean_quality: 20          # fastp --cut_mean_quality (sliding-window mean, both ends)
+length_required: 50           # fastp --length_required (drop shorter reads, and their mates)

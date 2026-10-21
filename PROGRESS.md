@@ -2,7 +2,7 @@
 
 ## 1. Current goal
 Rewrite the course part by part in the new step-by-step format (STYLE_GUIDE.md; memory: deep-explanation-style): dissect every command, real outputs only, strict prerequisites (nothing used before taught), exercises with a hint under each title + detailed solutions, refs (docs + Coursera + edX + YouTube), RTL. User says "ادامه" to continue. Commit+push every 3 modules.
-**Now:** part 05 done & pushed (2026-10-21). Next: part 06/01 Read QC rewrite.
+**Now:** part 06 done & pushed (2026-10-21); writing part 07 (user: write 06+07 fully, run as little code as possible, do not touch genomepipe / genomepipe_tools).
 
 ## 2. Done so far
 - ✅ 00 Orientation, 01 Linux (10 modules), 02 BioLinux (5), 03 Python (6) — new format, pushed (b5afb1b and earlier).
@@ -10,6 +10,7 @@ Rewrite the course part by part in the new step-by-step format (STYLE_GUIDE.md; 
 - ✅ **05_Reproducible_Work** (2026-10-21, pushed): 01_Git_Basics · 02_Git_Branches_GitHub (local bare repo as fake GitHub) · 03_Snakemake_First (count reads per accession = ground_truth.tsv) · 04_Snakemake_Pipeline (config.yaml, params/log, Python+R scripts, merge, check_truth; 7 exercises all run for real in scratchpad `p4/` and `doctor/`).
   - Real Snakemake 9 behavior found: inputs < 1 MB are checksummed (`--max-checksum-file-size`, default 1MB), so `touch names.tsv` triggers nothing; FASTQ (~3 MB) still follows mtime. Lesson 04 table + exercise 1 explain it.
   - `diversity.R` (part 04) silently treats any level ≠ genus as organism; exercise 04/4 teaches a `sys.exit` config check in the Snakefile instead of changing the part-04 script.
+- ✅ **06_Metagenomics** (2026-10-21, pushed): rewritten in new format WITHOUT new runs; all outputs reused from the 2026-10-12..15 runs (work/ folder, gitignored) and verified by reading those files. Project layout for learners: ~/meta/{raw,qc,host,profile} (modules 01-03), ~/amplicon (module 04). Scripts moved to 06_Metagenomics/99_scripts_data/<module>/; shared data tables in 99_scripts_data/data. New env file envs/metagenomics.yml (not solved online). jq removed (not taught): fastp JSON read with Python json; DB build takes taxid from practice_db_genomes.tsv (verified identical to assembly reports). 06/01 has a Snakefile (workflow/) — not dry-run (no running); same structure as the 12-job workflow run on 2026-10-14. Module 03 and 04 split into 2 lessons each.
 - Old part-05 content (Snakemake QC workflow with fastp/FastQC/bowtie2, old Git lesson) backed up in scratchpad `old_part05/` and in git history; reuse QC workflow when rewriting 06/01.
 
 ## 3. Files changed

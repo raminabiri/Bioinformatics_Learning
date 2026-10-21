@@ -1,37 +1,47 @@
 <div dir="rtl">
 
-# ماژول ۰۶: پروفایل تاکسونومیک و عملکردی (Taxonomic & Functional Profiling)
+# ماژول ۰۳: پروفایل تاکسونومیک (Kraken2 و Bracken) و معرفی پروفایل عملکردی
 
 | | |
 | :--- | :--- |
 | **بخش** | `06_Metagenomics` |
-| **پیش‌نیاز** | ماژول ۰۲ (ریدهای پاک از میزبان)؛ برای تحلیل‌های بعدی: بخش ۰۲ (Python/R) |
-| **زمان تقریبی** | ۶ ساعت (۲٫۵ ساعت درس + ۳٫۵ ساعت تمرین) |
-| **ابزارها (نسخه‌ی تست‌شده)** | ‏Kraken2 2.17.1، Bracken 3.0.1؛ MetaPhlAn 4 و HUMAnN 3 فقط معرفی (اجرا نشده) |
-| **داده** | ‏`work/02_host/clean/` + `data/ground_truth_species.tsv` + **دیتابیس تمرینی** (حدود ۱۳۰ MB دانلود) |
-| **وضعیت** | 🟢 بخش Kraken2/Bracken تست‌شده (2026-10-13)؛ بخش MetaPhlAn/HUMAnN معرفی و تست‌نشده |
+| **پیش‌نیاز** | ماژول [برداشتن میزبان](../02_Host_Removal_Alignment/) (ریدهای پاک)؛ [پایتون](../../03_Python/)؛ [Bray–Curtis در vegan](../../04_R_Packages/03_Bioc_Examples/) |
+| **زمان تقریبی** | ۵ ساعت (۲ درس × ۱ ساعت + ۳ ساعت تمرین) |
+| **ابزار** | ‏Kraken2 2.17.1، Bracken 3.0.1؛ MetaPhlAn 4 و HUMAnN 3 تنها معرفی (اجرا نشده)؛ محیط [`envs/metagenomics.yml`](../../envs/metagenomics.yml) |
+| **داده** | ‏`~/meta/host/clean/` + `ground_truth_species.tsv` + **پایگاه داده‌ی تمرینی** (کمابیش ۱۳۰ مگابایت دانلود) |
+| **وضعیت** | ✅ قالب تازه (2026-10-21)؛ خروجی‌های Kraken2/Bracken از اجرای 2026-10-13؛ بخش MetaPhlAn/HUMAnN ✍️ تنها نوشته‌شده |
 
-> ⚠️ **دیتابیس این ماژول فقط برای تمرین است** (۴۵ ژنوم، ۲۶۳ MB). برای کار پژوهشی دیتابیس کامل لازم است، مثلاً Kraken2 Standard (79.6 GB) یا PlusPF (84.8 GB) از https://benlangmead.github.io/aws-indexes/k2. جزئیات در درس آمده است.
+> ⚠️ **پایگاه داده‌ی این ماژول تنها برای تمرین است** (۴۵ ژنوم، ۲۶۳ مگابایت). برای کار پژوهشی پایگاه کامل لازم است، برای نمونه Kraken2 Standard (۷۹٫۶ گیگابایت) یا PlusPF (۸۴٫۸ گیگابایت) از https://benlangmead.github.io/aws-indexes/k2.
 
 ## اهداف یادگیری
 پس از این ماژول می‌توانید:
-1. منطق طبقه‌بندی k-mer/LCA در Kraken2 و بازتوزیع Bracken را توضیح دهید و تفاوتش را با رویکرد ژن نشانگر (MetaPhlAn) بگویید.
-2. پروفایل تاکسونومیک بسازید و **دقت آن را با ترکیب واقعی بسنجید** (precision، recall، Bray-Curtis).
-3. اثر confidence، آستانه‌ی فراوانی و سطح تاکسونومیک را روی نتیجه آزمایش و انتخاب خود را توجیه کنید.
-4. محدودیت‌های اساسی را تشخیص دهید: گونه‌ی غایب از دیتابیس، کمپلکس‌های گونه‌ای، و فراوانی رید در برابر سلول.
+1. منطق k-mer و LCA در Kraken2 و پخش دوباره‌ی ریدها در Bracken را بگویید، و فرقش را با رویکرد ژن نشانگر (MetaPhlAn).
+2. خروجی‌های `.kraken`، `.kreport` و `.bracken` را بخوانید.
+3. یک پروفایل را با ترکیب واقعی بسنجید (درستی، بازیابی، Bray–Curtis).
+4. اثر `--confidence`، آستانه‌ی فراوانی و سطح تاکسونومی را بیازمایید و انتخابتان را توجیه کنید.
+5. محدودیت‌های بنیادی را بشناسید: گونه‌ی غایب از پایگاه، گروه‌های گونه‌ای، رید در برابر سلول.
 
-## فایل‌ها
-- ‏[01_lesson.md](01_lesson.md) — متن درس
-- ‏[02_exercises.md](02_exercises.md) — تمرین‌ها
-- ‏[03_solutions.md](03_solutions.md) — پاسخ تشریحی
-- ‏[practice_db_genomes.tsv](practice_db_genomes.tsv) — فهرست ۴۵ ژنوم دیتابیس تمرینی
-- ‏[scripts/build_practice_db.sh](scripts/build_practice_db.sh) — ساخت دیتابیس تمرینی (دانلود حدود ۱۳۰ MB؛ یک‌بار)
-- ‏[scripts/run_profile.sh](scripts/run_profile.sh) — Kraken2 + Bracken برای نمونه‌ها
-- ‏[scripts/evaluate_profile.py](scripts/evaluate_profile.py) — مقایسه با ground truth
-- ‏[scripts/check.sh](scripts/check.sh) — خودسنجی
+## ترتیب مطالعه
+1. ‏[01_lesson_kraken.md](01_lesson_kraken.md): چه کسانی در نمونه‌اند؟ Kraken2 و Bracken.
+2. ‏[02_lesson_evaluation.md](02_lesson_evaluation.md): پروفایل چقدر درست است؟ و معرفی پروفایل عملکردی.
+3. ‏[03_exercises.md](03_exercises.md): تمرین‌ها؛ زیر عنوان هر تمرین راهنمایی آمده است.
+4. ‏[04_solutions.md](04_solutions.md): پاسخ تشریحی.
+5. اسکریپت‌ها و فهرست ژنوم‌های پایگاه: [99_scripts_data/03_Taxonomic_Functional_Profiling](../99_scripts_data/03_Taxonomic_Functional_Profiling/) (`build_practice_db.sh`، `run_profile.sh`، `evaluate_profile.py`، `check.sh`).
 
 ## ورودی و خروجی
-- **ورودی:** `work/02_host/clean/<sample>_R{1,2}.fastq.gz`
-- **خروجی:** `work/03_profile/kraken/*.kreport`، `work/03_profile/bracken/*.bracken`. جدول‌های فراوانی برای تحلیل در R/Python (بخش ۰۲).
+
+<div dir="ltr">
+
+```text
+~/meta/
+├── host/clean/                 input (module 02)
+├── ground_truth_species.tsv    known composition (copied in lesson 1)
+└── profile/
+    ├── kraken2_practice_db/    practice database (hash.k2d + Bracken models)
+    ├── kraken/                 <sample>_c<conf>.kraken / .kreport / .log
+    └── bracken/                <sample>_c<conf>.bracken / .breport / .log
+```
+
+</div>
 
 </div>
