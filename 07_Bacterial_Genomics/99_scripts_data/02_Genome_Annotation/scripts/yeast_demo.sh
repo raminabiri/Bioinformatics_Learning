@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Module 04/02, lesson 3 — what a prokaryote gene caller does to a eukaryote chromosome.
+# part 07, module 02, lesson 3 — what a prokaryote gene caller does to a eukaryote chromosome.
 # Downloads S. cerevisiae S288C chromosome I (NC_001133.9, ~230 kb FASTA + ~200 kb GFF3) from NCBI,
 # runs Pyrodigal (standard code 1) and compares with the reference annotation. ~5 s after download.
-# Run from the module folder:  cd 07_Bacterial_Genomics/02_Genome_Annotation && bash scripts/yeast_demo.sh
+# Run inside the project folder:  cd ~/genomes && bash <course>/07_Bacterial_Genomics/99_scripts_data/02_Genome_Annotation/scripts/yeast_demo.sh
 set -euo pipefail
-OUT=work_light/yeast
+OUT=annotation/yeast
 mkdir -p $OUT
 [ -s $OUT/chrI.fna ] || curl -s -o $OUT/chrI.fna \
   "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_001133.9&rettype=fasta&retmode=text"
@@ -18,7 +18,7 @@ awk -F'\t' '$3=="CDS"{split($9,a,";"); c[a[1]]++; if (match($9,/gene=[^;]+/)) g[
 
 echo "== Pyrodigal (single mode, genetic code 1) vs reference"
 pyrodigal -i $OUT/chrI.fna -g 1 -f gff -o $OUT/pyrodigal.gff
-python3 scripts/compare_genecalls.py $OUT/chrI.gff3 $OUT/pyrodigal.gff | head -9
+python3 "$(dirname "$0")/compare_genecalls.py" $OUT/chrI.gff3 $OUT/pyrodigal.gff | head -9
 
 echo "== the three intron-containing genes: reference CDS segments vs Pyrodigal"
 for g in EFB1 SNC1 TFC3; do

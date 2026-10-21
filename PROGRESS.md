@@ -2,7 +2,7 @@
 
 ## 1. Current goal
 Rewrite the course part by part in the new step-by-step format (STYLE_GUIDE.md; memory: deep-explanation-style): dissect every command, real outputs only, strict prerequisites (nothing used before taught), exercises with a hint under each title + detailed solutions, refs (docs + Coursera + edX + YouTube), RTL. User says "ادامه" to continue. Commit+push every 3 modules.
-**Now:** part 06 done & pushed (2026-10-21); writing part 07 (user: write 06+07 fully, run as little code as possible, do not touch genomepipe / genomepipe_tools).
+**Now:** parts 06 and 07 rewritten & pushed (2026-10-21). Next: part 08 (plan it with the user first).
 
 ## 2. Done so far
 - ✅ 00 Orientation, 01 Linux (10 modules), 02 BioLinux (5), 03 Python (6) — new format, pushed (b5afb1b and earlier).
@@ -11,6 +11,7 @@ Rewrite the course part by part in the new step-by-step format (STYLE_GUIDE.md; 
   - Real Snakemake 9 behavior found: inputs < 1 MB are checksummed (`--max-checksum-file-size`, default 1MB), so `touch names.tsv` triggers nothing; FASTQ (~3 MB) still follows mtime. Lesson 04 table + exercise 1 explain it.
   - `diversity.R` (part 04) silently treats any level ≠ genus as organism; exercise 04/4 teaches a `sys.exit` config check in the Snakefile instead of changing the part-04 script.
 - ✅ **06_Metagenomics** (2026-10-21, pushed): rewritten in new format WITHOUT new runs; all outputs reused from the 2026-10-12..15 runs (work/ folder, gitignored) and verified by reading those files. Project layout for learners: ~/meta/{raw,qc,host,profile} (modules 01-03), ~/amplicon (module 04). Scripts moved to 06_Metagenomics/99_scripts_data/<module>/; shared data tables in 99_scripts_data/data. New env file envs/metagenomics.yml (not solved online). jq removed (not taught): fastp JSON read with Python json; DB build takes taxid from practice_db_genomes.tsv (verified identical to assembly reports). 06/01 has a Snakefile (workflow/) — not dry-run (no running); same structure as the 12-job workflow run on 2026-10-14. Module 03 and 04 split into 2 lessons each.
+- ✍️ **07_Bacterial_Genomics** (2026-10-21, pushed): all 5 modules in new format, NOTHING run (user: no code, don't touch genomepipe/genomepipe_tools; removed the old `export PATH=…genomepipe_tools` line). 01 split into 2 lessons; 02 kept 3 lessons (restructured), files renamed 05_exercises/06_solutions; 03 MLST, 04 Panaroo, 05 Snippy written new from official docs (mlst README, Panaroo repo docs/, Snippy README fetched 2026-10-21); exercise tables labelled فرضی. ST10 (10-11-4-8-8-8-2) and ST131 (53-40-47-13-36-28-29) profiles verified via PubMLST REST API. Project folder ~/genomes; scripts in 07_Bacterial_Genomics/99_scripts_data/<module>/scripts (annotation scripts now write ./annotation and find part-01 data relative to the script). New envs/bacterial_genomics.yml (light tools; not solved online).
 - Old part-05 content (Snakemake QC workflow with fastp/FastQC/bowtie2, old Git lesson) backed up in scratchpad `old_part05/` and in git history; reuse QC workflow when rewriting 06/01.
 
 ## 3. Files changed
@@ -35,7 +36,7 @@ Rewrite the course part by part in the new step-by-step format (STYLE_GUIDE.md; 
 - In my shell grep=ugrep, awk=gawk, find=bfs: use /usr/bin/grep and /usr/bin/mawk for lesson outputs.
 
 ## 6. Next steps (priority order)
-1. Part 06/01 Read QC rewrite (reuse old Snakemake QC workflow from git history; old part-05 backup was in a previous session's scratchpad `old_part05/` — may be gone, use `git show 87c221b:05_Reproducible_Work/02_Workflows_Snakemake/...`), then 06/02–06/04.
-2. 07/01–07/02 rewrite; 07/03–07/05 write-only (MLST, pan-genome, Snippy).
-3. Verify `envs/r_packages.yml` and `envs/workflow.yml` solve online when conda is reachable.
-4. At course end: full link check with user's VPN (`_tools/check_links.sh`).
+1. Part 08 (AMR, virulence, phylogeny): agree a plan with the user (write-only like 07/03-05?), then write.
+2. Parts 09, 10.
+3. Verify env files online (r_packages, workflow, metagenomics, bacterial_genomics) when conda is reachable; dry-run the 06/01 Snakefile.
+4. At course end: full link check with user's VPN (`_tools/check_links.sh`), incl. new YouTube links in 07/03-05.

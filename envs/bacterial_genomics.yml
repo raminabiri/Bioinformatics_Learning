@@ -1,0 +1,19 @@
+# Environment for part 07 (Bacterial genomics): the light tools that the lessons run.
+# Create once:   conda env create -f envs/bacterial_genomics.yml
+# Then:          conda activate bacterial_genomics
+# Versions used in the lessons (2026-10-15): Pyrodigal 3.7.1, ARAGORN 1.2.41, tRNAscan-SE 2.0.13.
+# Heavy tools (SPAdes/Shovill, QUAST, CheckM2, Bakta, Prokka, mlst, Panaroo, Snippy) are only described in
+# the lessons; install each in its own environment from Bioconda, following its documentation.
+# Not yet solved online: conda.anaconda.org was unreachable from the course server (2026-10-21).
+name: bacterial_genomics
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - pyrodigal=3.7.1
+  - barrnap
+  - aragorn=1.2.41
+  - trnascan-se=2.0.13
+  - seqkit=2.13.0
+  - python
+  - biopython

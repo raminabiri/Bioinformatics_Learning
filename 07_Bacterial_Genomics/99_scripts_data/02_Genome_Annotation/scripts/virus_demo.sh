@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Module 04/02, lesson 2 — an ORF-based gene caller on a eukaryotic RNA virus (SARS-CoV-2 reference NC_045512.2).
+# part 07, module 02, lesson 2 — an ORF-based gene caller on a eukaryotic RNA virus (SARS-CoV-2 reference NC_045512.2).
 # Downloads ~30 kb FASTA + ~15 kb GFF3 from NCBI, runs Pyrodigal in meta mode (code 1), compares with RefSeq. ~2 s.
-# Run from the module folder:  cd 07_Bacterial_Genomics/02_Genome_Annotation && bash scripts/virus_demo.sh
+# Run inside the project folder:  cd ~/genomes && bash <course>/07_Bacterial_Genomics/99_scripts_data/02_Genome_Annotation/scripts/virus_demo.sh
 set -euo pipefail
-OUT=work_light/sarscov2
+OUT=annotation/sarscov2
 mkdir -p $OUT
 [ -s $OUT/sc2.fna ] || curl -s -o $OUT/sc2.fna \
   "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_045512.2&rettype=fasta&retmode=text"
@@ -18,4 +18,4 @@ grep -oE 'Note=[^;]*frameshift[^;]*' $OUT/sc2.gff3 | sort -u
 echo "== Pyrodigal (meta mode, code 1)"
 pyrodigal -i $OUT/sc2.fna -p meta -g 1 -f gff -o $OUT/pyrodigal.gff
 grep -v '^#' $OUT/pyrodigal.gff | awk -F'\t' '{print $4, $5, $7, ($5-$4+1)/3-1 " aa"}'
-python3 scripts/compare_genecalls.py $OUT/sc2.gff3 $OUT/pyrodigal.gff | head -8
+python3 "$(dirname "$0")/compare_genecalls.py" $OUT/sc2.gff3 $OUT/pyrodigal.gff | head -8
