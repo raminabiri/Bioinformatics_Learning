@@ -50,9 +50,10 @@ P=~/Bioinformatics_Learning-main/04_R_Packages/99_scripts_data
 # composition.R: percentage of reads from each genus in one sample, as a table and a bar chart   ①
 # Same job as composition.py (part 03, module 06), written in R with ggplot2.
 # Usage: Rscript composition.R ground_truth.tsv minigut_sample2 composition_R.png                ②
+# Optional 4th argument: where to write the genus table (default: <sample>_genus_R.tsv here).
 
 args <- commandArgs(trailingOnly = TRUE)                                                        ③
-if (length(args) != 3) {
+if (length(args) < 3 || length(args) > 4) {
   cat("Usage: Rscript composition.R <ground_truth.tsv> <sample> <output.png>\n")
   quit(status = 1)
 }
@@ -81,7 +82,7 @@ ggsave(png_file, p, ...)
 <details>
 <summary>✋ امتحان کن: اسکریپت چند ورودی می‌خواهد و چه فایل‌هایی می‌سازد؟</summary>
 
-سه ورودی: جدول، نام نمونه و نام فایل PNG (بخش ③، `length(args) != 3`). دو خروجی: فایل PNG با نامی که خودتان دادید، و جدول `<نمونه>_genus_R.tsv` (نامش در اسکریپت از روی نام نمونه ساخته می‌شود: `paste0(sample, "_genus_R.tsv")`).
+سه ورودی لازم: جدول، نام نمونه و نام فایل PNG؛ و یک ورودی چهارم **اختیاری** (خط Usage و `length(args) < 3 || length(args) > 4`). دو خروجی: فایل PNG با نامی که خودتان دادید، و جدول ترکیب. اگر ورودی چهارم را ندهید، نام جدول `<نمونه>_genus_R.tsv` است (`paste0(sample, "_genus_R.tsv")`)؛ گردش کار Snakemake بخش ۰۵ ورودی چهارم را به کار می‌برد.
 
 </details>
 
@@ -445,8 +446,8 @@ Rscript my_composition.R ground_truth.tsv minigut_sample2 blue.png
 <div dir="ltr">
 
 ```text
-35:  geom_col(fill = "seagreen") +
-35:  geom_col(fill = "steelblue") +
+36:  geom_col(fill = "seagreen") +
+36:  geom_col(fill = "steelblue") +
 ...
 saved minigut_sample2_genus_R.tsv and blue.png 
 ```

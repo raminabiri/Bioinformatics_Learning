@@ -1,137 +1,40 @@
-# PROGRESS — Bioinformatics course (Persian, MSc/PhD level)
+# PROGRESS — Bioinformatics course (Persian, for biologists new to bioinformatics)
 
 ## 1. Current goal
-(Status legend added 2026-10-15: ✍️ = written + commands checked against docs, heavy steps not run; STYLE_GUIDE §5.1.)
-Rebuild the whole course to the standard in `STYLE_GUIDE.md`: every lesson tested on real course data with real outputs, exercises + detailed solutions, verified live references + videos at the end. Work part by part; user says "ادامه" to continue.
-User rules: ask before heavy downloads (state what/size/time); course is introductory (practice data/DBs, and lessons must say real work needs the full DB).
+Rewrite the course part by part in the new step-by-step format (STYLE_GUIDE.md; memory: deep-explanation-style): dissect every command, real outputs only, strict prerequisites (nothing used before taught), exercises with a hint under each title + detailed solutions, refs (docs + Coursera + edX + YouTube), RTL. User says "ادامه" to continue. Commit+push every 3 modules.
+**Now:** part 05 done & pushed (2026-10-21). Next: part 06/01 Read QC rewrite.
 
-## 2. Done so far (2026-10-14)
-- ✅ **00_Orientation**: 01 Landscape, 02 Databases (+ `scripts/gene_tour.sh`, `scripts/project_summary.sh`).
-- ✅ **01_Computing_Foundations**, all 5 modules rewritten and tested:
-  - 01 Bash: E. coli data via `data/download.sh`, plus `scripts/fasta_stats.sh`.
-  - 02 Conda: offline env test, plus `scripts/record_versions.sh`.
-  - 03 Formats: `scripts/make_examples.sh` builds real FASTA/FASTQ/GFF/GB/BED/SAM/VCF and the wgsim truth file.
-  - 04 Git: `scripts/git_demo.sh` with TZ-pinned dates, so hashes are reproducible.
-  - 05 Workflows: `workflow/Snakefile`, `config.yaml`, `Snakefile_solution`.
-- ✅ **03/01 Read QC** (`run_qc.sh`, `check.sh` 18/18).
-- ✅ **03/02 Host removal** (wgsim spike-in, `make_spiked_sample.sh`, `run_host_removal.sh`, `check.sh` 8/8).
-- 🟢 **03/03 Profiling**: Kraken2/Bracken with the PRACTICE DB (45 genomes) are tested; `evaluate_profile.py`; `check.sh` 4/4. The MetaPhlAn/HUMAnN section is intro only and untested.
-- ✅ **02/01 Python/Biopython** (2026-10-14): lesson + 5 exercises + solutions; scripts `cds_table.py`, `gc_outliers.py`, `codon_usage.py`, `entrez_tour.py`. Fixed lesson error: `translate(table=11)` alone gives V for GTG starts; only `cds=True` gives M.
-- ✅ **03/04 16S** (2026-10-15): lesson + 6 exercises + solutions + scripts, `check.sh` 14/14, links OK. Facts below kept for reference.
-  - Done files: `README.md` (✅ text already written), `data/download.sh` (md5-checked, incl. SILVA V4 refs, user approved 20 MB), `scripts/{train_classifier.sh,run_16s.sh,check.sh}`. Outputs: `06_Metagenomics/work/04_16s/` (+ exploratory runs in `work/04_16s_explore/`, incl. `variants/`, `taxonomy-vsearch.qza`).
-  - Env: `export PATH=/data/MicrobiomePipeline/qiime2_env/bin:$PATH` (QIIME 2 2026.7, framework "rachis", sklearn 1.7.1); `UNIFRAC_USE_GPU=N` needed (else `Accelerator Fatal Error … -acc=gpu` from `ssu`).
-  - 2026.7 API changes: dada2 needs `--o-base-transition-stats`; `feature-table summarize` uses `--m-metadata-file` + `--o-feature-frequencies/--o-sample-frequencies/--o-summary`.
-  - Old classifiers refused: `The scikit-learn version (1.4.2) used to generate this artifact does not match … (1.7.1)`. Species-level training hit 12.4 GB (killed: user's genomepipe H. pylori job shares RAM) → trained GENUS-level (67,689 → 8,415 classes; 8 min, 5.5 GB) = `data/db/silva-138-99-515-806-genus-nb.qza`.
-  - Facts: demux 46,712/135,487 reads (34.5%) assigned; 60,234 unassigned have perfect barcodes (other studies on the run); 75 samples in metadata, 71 got reads (0–1,442). Quality: median Q33 at pos 1–11 vs 37–39 after; pos 151 median 25 → trim-left 13, trunc 150. Fragment 253 bp (vsearch merge 92%), overlap 47; trunc 120+120 → "No features remain".
-  - DADA2 (trim13/trunc150): 46,712 → filt 41,834 → denoised 33,558 → merged 16,438 → nonchim 16,438; 414 ASVs, modal len 227. Low merge = low depth + 0 mismatch rule: mm2 19,871 (531 ASVs); pseudo 18,872 (466); pseudo+mm2 23,276 (739); trunc-r 130 19,672 (509); trunc 0 16,015 (386).
-  - Taxonomy: NB genus 368/414 ASVs to genus (details still to extract); vsearch: 379 to genus, phyla Actinobacteriota 170, Proteobacteria 65, Chloroflexi 39, Acidobacteriota 28.
-  - Diversity depth 150 seed 42 → 46/71 samples. Faith PD veg p=0.025 (H 5.01), Shannon veg p=0.036, observed p=0.13; transect all ns. UniFrac PERMANOVA veg F=3.77 p=0.001; transect F=1.57 p=0.058; Bray veg/transect p=0.001. PERMDISP veg p=0.842. Faith vs elevation Spearman 0.388 p=0.0077; vs pH −0.099 p=0.51. adonis elevation+vegetation: elevation R² 0.070 p=0.001, vegetation R² 0.030 p=0.092 → CONFOUNDING (vegetated sites all ≥2,687 m).
-  - Videos verified live: QIIME 2 XIyZWpfcZ6U, PUsvtJgpNtE; Galaxy ISocxcJZEjw; Brown wV5_z7rR6yw; ISB ZFiZTZXhdJ4. Docs: amplicon-docs.qiime2.org/en/latest/, docs.qiime2.org/2024.10/tutorials/atacama-soils/.
-- ✍️ **04/01 Assembly** (2026-10-15): lesson + 6 exercises (4 on labelled hypothetical data) + solutions + `scripts/repeat_report.py` (real: k-mer repeats 2.83% k21 / 1.79% k127; cutting at 7 rrn + 50 IS → 50 contigs, N50 173,810; IS alone N50 224,159, rRNA alone 2,497,193). SPAdes/Shovill/QUAST/CheckM2 NOT installed and not run; options checked against official READMEs/manuals. Links OK.
-- ✍️ **04/02 Annotation** (2026-10-15): 3 lessons (prokaryote / phage+virus / eukaryote, per user: course is broad with microbial emphasis) + 7 exercises + solutions; scripts `light_annotation.sh`, `compare_genecalls.py`, `virus_demo.sh`, `yeast_demo.sh` (all light, real). Key real facts: Pyrodigal vs RefSeq E. coli 96.0% same stop, 230 start diffs, 171 missed (157 <100 aa), selenoproteins + dnaX slippage; barrnap 22/22 rRNA; tRNAscan 89 vs RefSeq 86 (extras = tRNA remnants at CP4-6/DLP12 borders + ssrA tmRNA); 12 cryptic prophages (GC 47.4%, 14% unknown vs 1.9%, 34/145 pseudogenes, integrases at borders); SARS-CoV-2: pp1ab missed, 284 nt of nsp12 uncovered, E/ORF7b/ORF10 missed; yeast chrI: 159 predicted vs 94 real, all 3 intron genes wrong. BRAKER3 is deprecated → BRAKER4 (Snakemake). PHROGs website unreachable from server (link removed). Not committed yet.
-- ⚠️ **New rule (user, 2026-10-15):** we only teach — do NOT run heavy analyses/downloads ourselves. Write lessons completely and in detail. Light commands on existing small data are OK; heavy steps = commands + explanation, outputs only from cited official docs or clearly labelled as examples (never invented). Status for such modules: ✍️ نوشته‌شده. (The earlier approval to download isolate data for part 04 is no longer needed.)
-- ⚪ Designed only (README with objectives and outline): 02/02, 02/03, 03/04 lesson, parts 04, 05, 06, 07.
-- `_tools/`: `check_links.sh` (retries a 403 without the fake user-agent; sourceforge needs this) (YouTube oEmbed, Crossref, HTTP), `check_internal_links.py`, `yt_search.sh`.
+## 2. Done so far
+- ✅ 00 Orientation, 01 Linux (10 modules), 02 BioLinux (5), 03 Python (6) — new format, pushed (b5afb1b and earlier).
+- ✅ **04_R_Packages** (2026-10-20, pushed 87c221b). User decision: R language + statistics = SEPARATE course; no R/RStudio install lessons. Modules: 01_Install_Packages · 02_Run_Rscript · 03_Bioc_Examples (DESeq2 on simulated E. coli counts, seed 42, TP 88/FP 5/FN 12; vegan; ggtree woodmouse) · 04_R_in_Pipelines (run_all.sh, set -e, logs).
+- ✅ **05_Reproducible_Work** (2026-10-21, pushed): 01_Git_Basics · 02_Git_Branches_GitHub (local bare repo as fake GitHub) · 03_Snakemake_First (count reads per accession = ground_truth.tsv) · 04_Snakemake_Pipeline (config.yaml, params/log, Python+R scripts, merge, check_truth; 7 exercises all run for real in scratchpad `p4/` and `doctor/`).
+  - Real Snakemake 9 behavior found: inputs < 1 MB are checksummed (`--max-checksum-file-size`, default 1MB), so `touch names.tsv` triggers nothing; FASTQ (~3 MB) still follows mtime. Lesson 04 table + exercise 1 explain it.
+  - `diversity.R` (part 04) silently treats any level ≠ genus as organism; exercise 04/4 teaches a `sys.exit` config check in the Snakefile instead of changing the part-04 script.
+- Old part-05 content (Snakemake QC workflow with fastp/FastQC/bowtie2, old Git lesson) backed up in scratchpad `old_part05/` and in git history; reuse QC workflow when rewriting 06/01.
 
-## 3. Files changed (main)
-- Root: `README.md` (roadmap + status), `STYLE_GUIDE.md`, `.gitignore`, `envs/bioinfo_course.yml`, `envs/README.md`, `_templates/module/*`, `_tools/*`.
-- Every module folder follows: `README.md` + `01_lesson*.md`, `02_exercises.md`, `03_solutions.md` (+ `scripts/`).
-- `06_Metagenomics/data/`: `download.sh` (incl. chr1 region), `ground_truth.tsv`, `ground_truth_species.tsv`, `README.md`.
-- `06_Metagenomics/03_Taxonomic_Functional_Profiling/practice_db_genomes.tsv` + `scripts/{build_practice_db.sh,run_profile.sh,evaluate_profile.py,check.sh}`.
-- `03_Python/02_Biopython/{01_lesson.md,scripts/cds_table.py}`.
-- Removed: superseded `04_scripts.md` in 01/04 and 01/05 (the copy in 01/05 had the wrong content). Original course is in `/data/bioinformatics_learning_backup_2026-10-12.tar.gz`.
-- Outside git (ignored): `work/`, `data/raw/`, `data/host/`, 01/01 `data/ecoli_k12.*`, 01/03 `data/`, 01/05 `results/ logs/ .snakemake/`.
+## 3. Files changed
+- Part 05 committed with composition.R 4th arg, 04/02 lesson+solutions, envs/workflow.yml, READMEs. Untracked user files left alone: `Bioinformatics_Course_ColorCoded.xlsx`, `advanced.odt`.
 
 ## 4. Key decisions and rejected approaches
-- **File naming:** `README.md` stays unnumbered so GitHub renders it; other files are `01_lesson`, `02_exercises`, `03_solutions` (user choice). Rejected `00_README.md` because GitHub would not render it.
-- **Part order:** programming moved to 02, before the domain parts; Dify moved to 07/06.
-- **Metagenomics data:** nf-core/test-datasets `mag` (simulated, known composition). Rejected the old data: SARS-CoV-2 amplicon mislabelled as gut (archived in `data/_archive_sarscov2_amplicon/`).
-- **fastp:** `--cut_front --cut_tail`. Rejected `--cut_right`, which drops 10.8% of reads on minigut.
-- **Host removal:** `samtools view -f 12 -F 256`. Rejected `--un-conc`, which leaks discordant pairs and single-mate pairs.
-- **Kraken2:** custom practice DB (other strains + decoy species; Candida excluded on purpose). Rejected the Standard DB (8–80 GB; network ~150 KB/s).
-- **Conda:** Miniforge + conda-forge > bioconda + strict, no `defaults` (Bioconda docs).
-- **Tools:** conda.anaconda.org is unreachable, so tools were installed from official sources into `~/opt/course_tools/bin`:
-  - fastqc, fastp, bowtie2, multiqc, kraken2, bracken
-  - symlinks: seqkit, samtools, wgsim, bcftools, bgzip, tabix
-- **Environments:**
-  - Python: `genomepipe_tools` (Py 3.13, Bio 1.88, pandas 3.0.5, seaborn)
-  - R: `deg_r` (R 4.6.1, ggplot2, dplyr, vegan); system R has DESeq2
-  - Snakemake: `snakemake` (9.25.2)
-  - QIIME 2 2026.7: `/data/MicrobiomePipeline/qiime2_env`
-  - SILVA 138 and GG2 classifiers: `/data/MicrobiomePipeline/database/`
-
-- ✅ **BioLinux + Python rewritten in the new format (2026-10-20), one commit.** User: «بایولینوکس، پایتون و بایوپایتون را کامل کن، بعد کامیت و پوش»; link checks deferred until the whole course is done (user turns on VPN then; don't ask before).
-  - 02_BioLinux: 01_Conda_Bioconda · 02_Sequence_Formats · 03_Annotation_Formats (data rpoB.gb/.gff3/.bed) · 04_Align_Variant_Formats (resistant-strain BAM/VCF tracked; provenance `make_examples.sh`; rpoB H526Y C→T 4,182,820; tyrU 4175500; thiF 4193210; 1-bp del rpoC 4,189,000) · 05_Data_Download (moved from 03). Old 02_Bio_File_Formats removed.
-  - 03_Python: 01_Python_Start · 02_Python_Lists_Loops · 03_Python_Functions_Files · 04_Biopython_Seq · 05_Biopython_GenBank (data `rpo_region.gb` = NC_000913.3:4175000-4190000 via Entrez, placeholder email) · 06_Pandas (3 PNGs in `99_scripts_data/06_Pandas/images`). Old 01_Python_Basics, 02_Biopython, 03_Pandas and their scripts removed (git history keeps them).
-  - Facts found by running (old lesson was wrong): rpoB translate(table=11) ends `DE*` (not `IE*`); `Seq("GTGAAAAAGATGCAG").translate(table=11, cds=True)` raises `Final codon 'CAG' is not a stop codon` (needs a stop: `…CAGTAA` → MKKMQ). cds_check: 4300 CDS, starts ATG/GTG/TTG/ATT/CTG = 3876/338/80/4/2, stops TAA/TGA/TAG = 2753/1242/305, internal stop = fdnG, fdoG, fdhF (Sec); ATT starts incl. infC. genes.tsv: 146 genes length%3≠0 = 145 RNA genes + prfB; 1319 y-genes (29.3%); longest yeeJ 7020.
-  - envs/bioinfo_course.yml pins samtools=1.20 (lesson outputs) and matplotlib-base=3.11.1; dry-run solve OK offline.
-  - `_tools/check_internal_links.py` now skips fenced code. Render check (gh api /markdown): pre == ltr in all 56 changed files.
-
-- ✅ **Part 04 rebuilt as 04_R_Packages (2026-10-20).** User: R language + statistics will be a SEPARATE course; here only "how to run bioinformatics R packages"; no lessons on installing R or RStudio. Old 04_R_Statistics/01_R_Stats (design-only README) removed; folder renamed via git mv.
-  - Modules: 01_Install_Packages (Rscript -e, packageVersion, CRAN vs Bioconductor, conda r-*/bioconductor-*, install.packages, BiocManager) · 02_Run_Rscript (composition.R = R twin of composition.py; read Usage/library/outputs; Error/Calls/Warning; > out 2> err; --vanilla; sessionInfo) · 03_Bioc_Examples (3 lessons: DESeq2, vegan, ggtree; 04_exercises, 05_solutions) · 04_R_in_Pipelines (exit codes 0/1/2, loops, run_all.sh with set -euo pipefail, logs, realpath/dirname).
-  - Scripts in 04_R_Packages/99_scripts_data/: check_packages.R, composition.R, make_counts.py (simulated NB counts, seed 42, 4290 E. coli genes × 3 WT + 3 RifR, 100 random true DE genes), run_deseq2.R (settings block padj_cutoff), compare_truth.py, diversity.R ([organism|genus]), make_tree.R (ape woodmouse NJ, root No305, negative branches → 0), plot_tree.R, run_all.sh. Images in 02/03 images/.
-  - Real facts: DESeq2 1.52 padj<0.05: 47 up / 46 down = 93; vs truth TP 88, FP 5, FN 12 (missed = low baseMean or |LFC|≈1); padj<0.01: 45/39, TP 82 FP 2 FN 18; 2 genes all-zero → NA; crp b3357 LFC 1.32 (true 1.72); rpoB b3987 padj 0.98 (not in truth). vegan organism level: Bray = 1 (E. coli named differently in the 2 samples); genus: richness 18, Bray 0.969 (hand-checked). ggtree 4.2 prints a ggplot2 `size` deprecation warning (harmless). Broken Newick → "no semicolon(s)" warning, tips 0.
-  - Env: system R 4.6.1 used for outputs (bspm/r2u enabled: install.packages("vegan") went via apt and installed r-cran-vegan + r-cran-permute SYSTEM-WIDE, 2026-10-20). Real source-install output captured with `Rscript --vanilla` into a scratch lib (permute). New `envs/r_packages.yml` (r-base=4.5, deseq2>=1.50, ggtree>=4.0, vegan>=2.7…). Without pins the offline dry-run picked bioconductor-ggtree 1.2.12; with pins the offline cache lacks r-aplot (exists on conda-forge) → online solve NOT yet verified. Bioconda lags: deseq2 1.50.2 vs Bioc 1.52.0.
-  - Prereq notes: realpath, dirname, tail -n +2 first taught in 04/04. Snakemake `script:` only mentioned (part 05).
-  - Checks: rtl_wrap, persian_words, check_internal_links (0 broken), gh-api render pre==ltr in all 19 files. YouTube refs verified via oEmbed 2026-10-20; Coursera/edX via WebSearch index.
+- Part 05 Snakemake uses ONLY taught tools (Bash, seqkit, Python, R scripts of part 04). Rejected old fastp/FastQC/bowtie2 workflow: those tools are taught in part 06 (prereq rule).
+- R scripts called via `shell: "Rscript …"`, not `script:` — so part-04 scripts stay usable outside Snakemake.
+- `[.]` instead of `\.` in Snakefile regex (Python SyntaxWarning `"\." is an invalid escape sequence`); no `head` after `zcat` in rules (pipefail → exit 141).
+- Part 04 env `envs/r_packages.yml` pins >= versions (unpinned solve picked bioconductor-ggtree 1.2.12).
+- File naming: README.md unnumbered; 01_lesson, 02_exercises, 03_solutions; scripts/data in `<part>/99_scripts_data/<module>/`.
+- Never send user's email to external APIs; heavy jobs/downloads are not run (write + cite docs, label hypothetical).
 
 ## 5. Known bugs / caveats (exact messages)
-- `mamba env create -f envs/bioinfo_course.yml` fails: `Could not resolve host: conda.anaconda.org` / `SSL connect error … Operation too slow`.
-- With `set -o pipefail`, `zcat … | head` exits **141** (SIGPIPE); fixed in `run_profile.sh` with `set +o pipefail` on that line.
-- Snakemake 9.25.2: a deleted intermediate file, or a sample newly added to config, gives `Nothing to be done (all requested files are present and up to date).` while the final target is up to date. Request the file explicitly or use `--forcerun` (documented in 01/05).
-- `datasets download genome accession --inputfile acc.txt` hangs at `Collecting 45 genome records … 0%`. Workaround: download one accession at a time (in `build_practice_db.sh`).
-- `_tools/check_links.sh` sometimes reports `FAIL 000` for YouTube (timeouts); rerun gives 200.
-- FastQC prints `application/gzip` lines; harmless.
-- 85 empty `README.md` files inside `.git/` (pre-existing since 2026-10-04); untouched.
-- Git: pushed 2026-10-15 as commit 3c7ead4 to origin/main (repo is PUBLIC). `advanced.odt` and `Bioinformatics_Course_ColorCoded.xlsx` deliberately left untracked (personal files, never tracked before). FIXED 2026-10-19: empty files `.git/refs/{,heads/,remotes/,tags/,remotes/origin/}README.md` made `git fetch` fail with `fatal: bad object refs/README.md`. They were moved (not deleted) to the session scratchpad. The user had pushed 270d160 (a web edit to old 00/01) on 2026-10-16; the batch-1 commit was rebased on it and pushed as 6834e1c.
-
-- ✅ **Linux split into small modules (2026-10-20).** The user approved the awk pilot style ("ادامه بده").
-  - New layout of 01_Linux: 01_Setup_Computer · 02_Files_Folders ✅ · 03_Looking_at_Files ✅ · 04_Pipes_Redirection ✅ · 05_grep ✅ · 06_Cut_Sort_Uniq ✅ · 07_awk ✅ (pilot lesson moved here; its inline exercises became 02_exercises with 8 exercises) · 08_Sed_Tr ✅ · 09_Variables_Loops ✅ · 10_Scripts ✅. **Part 01 complete (2026-10-20).**
-  - The old 02_Bash module was removed. A backup of its text is in the scratchpad at `old_bash/`, and git history (commit 3c54372) keeps it too. Reuse it for 05/06/08/09/10.
-  - Data and scripts now live in `01_Linux/99_scripts_data/{data,scripts}`, shared by all modules.
-  - ⚠️ Tool env (2026-10-20): in my shell grep = ugrep wrapper, find = bfs, awk = conda gawk. Lesson outputs from 05 onward use /usr/bin/grep (GNU 3.11) and /usr/bin/mawk (Ubuntu default). The awk lesson was re-run with mawk; the only difference is division by zero (mawk prints -nan silently, gawk exits fatally), and the lesson now shows both.
-  - Prerequisite notes: zless is taught in 03 (no pipe yet), zcat|head in 04; grep -oE in 05; sort|uniq in 06.
-- 🧪 **Deep-explanation pilot (2026-10-19), waiting for user verdict.** The user said Linux/BioLinux/Python/Biopython code lacked detailed explanation.
-  - New lesson `01_Linux/02_Bash/03_lesson_awk.md`, with every new command dissected: numbered parts diagram, a table with "what / what if missing", step-by-step build-up, a trace table, real wrong outputs (= vs ==, double quotes, division by zero), a command cheat card, and mini exercises with collapsible answers.
-  - awk was removed from lesson 2. The strand question is now answered with grep|cut|sort|uniq.
-  - Files renumbered: 04_lesson_scripts, 05_exercises, 06_solutions.
-  - If approved: split Linux into ~9 small lessons in this style, then do the same for BioLinux, Python and Biopython.
-- RTL fix (commit ef5011d): GitHub applies dir="auto" per block, so `_tools/rtl_wrap.py` now adds RLM (U+200F) to Persian lines that start with Latin text, and wraps quoted and list-item code fences in div ltr. It was applied to all 114 md files and is idempotent.
-- 🔁 **RESTRUCTURE (user-approved, 2026-10-19).** Strict prerequisite rule (STYLE_GUIDE §2.1): nothing is used before it is taught.
-  - New parts: 00 Orientation (browser only) · 01_Linux · 02_BioLinux · 03_Python · 04_R_Statistics · 05_Reproducible_Work · 06_Metagenomics · 07_Bacterial_Genomics · 08_AMR_Virulence_Phylogeny · 09_Structural_Bioinformatics · 10_Advanced.
-  - Old → new mapping:
-    - 01_CF/01_Bash_Linux → 01_Linux/02_Bash
-    - 01_CF/02 → 02_BioLinux/01_Conda_Bioconda
-    - 01_CF/03 → 02_BioLinux/02_Bio_File_Formats
-    - 00/02 lesson 2 + exercises 5–8 → 02_BioLinux/03_Data_Download
-    - 02_PDA/01 → 03_Python/02_Biopython
-    - 02_PDA/02 → 03_Python/03_Pandas
-    - 02_PDA/03 → 04_R_Statistics/01_R_Stats
-    - 01_CF/04 → 05_Reproducible_Work/01_Git_GitHub
-    - 01_CF/05 → 05_Reproducible_Work/02_Workflows_Snakemake
-    - 03..07 → 06..10
-  - Scripts and data are in `<part>/99_scripts_data/<module>/`, because GitHub lists folders first. This is done for parts 00–05; parts 06/07 still keep `scripts/` inside each module, and these move when each module is rewritten.
-  - New modules written:
-    - 00/03_Web_Tools: ExPASy, Needle, Clustal Omega, BLAST, built on the RpoB RRDR story. Needle E. coli vs Mtb: 625/1451 (43.1%), score 2949.5. Biopython PairwiseAligner with BLOSUM62, gap 10/0.5, end gaps 0 reproduces Needle exactly. RRDR 507–533: 21/27 columns identical in 4 species; D516/H526/S531 conserved. Mtb UniProt S456 = clinical S450; S. aureus H481 ↔ E. coli H526.
-    - 01_Linux/01_Setup_Computer: WSL/mac/Ubuntu/ssh, first commands, course ZIP via curl.
-    - 03_Python/01_Python_Basics: README design only.
-  - Bash data download now needs only curl. NCBI FTP + nf-core files have the same md5 as before. FASTQs are in `data/fastq`, with `R=fastq`, and ground_truth.tsv is copied into the Bash data folder.
-  - Tools: `rename_paths.py` was one-off and was not committed (it is in the scratchpad).
-  - Old-part refs ("بخش ۰۳"→"۰۶" etc.) were renumbered. Ambiguous refs to old parts ۰۱/۰۲ in not-yet-rewritten modules are still to be fixed at their rewrite.
-  - Three decimals were wrongly changed by renumbering and were fixed (۴۰٫۰۵٪, ۰٫۰۴, ۱٫۰۵). All decimals in moved files were verified against HEAD.
-  - ⚠️ I sent the user's email to the EBI REST API once (Needle job). Don't do this again; run tools locally or ask.
-- ✅ **New-format rewrite, batch 1 (2026-10-19):**
-  - 00/01, 00/02 (split into 01_lesson_browse + 02_lesson_download, 03_exercises, 04_solutions), and 01/01 Bash (split into 01_lesson_files, 02_lesson_text_tools, 03_lesson_scripts, 04_exercises, 05_solutions; new `scripts/count_reads.sh`).
-  - All RTL-wrapped, Persian words applied, Coursera/edX/YouTube refs.
-  - Tools added: `_tools/rtl_wrap.py` (idempotent; wraps file in div rtl and code fences in div ltr), `_tools/persian_words.py` (safe replacements + lists manual ones).
-  - STYLE_GUIDE §1, §3, §4, §7 (RTL), §8 (word list) and checklist rewritten.
-  - User rules: commit+push after every 3 modules. Technical/biological terms (بیوانفورماتیک، کامپیوتر، ژن، رید…) stay; معمولاً → در بسیاری از موارد.
-  - Link facts: Coursera returns 451 from this server and from WebFetch, so its URLs are verified via WebSearch index. YouTube is unreachable 2026-10-19, so old oEmbed dates are kept. alphafold.ebi.ac.uk now gives 403 to curl/WebFetch. vincebuffalo.com timed out.
-- 🔄 **FORMAT CHANGE (user, 2026-10-19):** user said lessons are not learnable (dense expert notes, jargon tables, test numbers, no intuition/examples). New audience: knows basic + molecular biology, NOT bioinformatics. New lesson format (pilot = 00/01, rewritten 2026-10-19): «در یک نگاه» goals → story (rifampicin-resistant E. coli, rpoB) → plain concepts + analogy → small worked example → «✋ امتحان کن» <details> boxes after each section → 3 common mistakes → «برای کنجکاوها» optional box → summary → glossary → refs. Exercises: strictly lesson-based, runnable (browser/calc), **راهنمایی right under each exercise title** (user request). Verification numbers go to solutions, not lesson body. WAITING for user feedback on pilot before updating STYLE_GUIDE §1/§3 and rewriting other lessons.
+- conda.anaconda.org unreachable from server: `Could not resolve host: conda.anaconda.org`. Env files only dry-run solved with the offline cache.
+- `envs/workflow.yml` with strict priority: `package snakemake-minimal-9.25.2-pyhdfd78af_0 is excluded by strict repo priority`; solves with `CONDA_CHANNEL_PRIORITY=flexible` (documented in yml + 05/03 lesson). With python=3.13: `pulp … requires python_abi =3.14` (offline cache).
+- `envs/r_packages.yml` offline: `nothing provides r-aplot needed by bioconductor-ggtree-4.0.4` (cache gap; r-aplot exists on conda-forge).
+- System R uses bspm/r2u: `install.packages("vegan")` installed r-cran-vegan + r-cran-permute system-wide via apt (2026-10-20).
+- Snakemake shell + `zcat … | head` → exit 141 (SIGPIPE under pipefail).
+- `_tools/check_links.sh` sometimes `FAIL 000` for YouTube (timeouts); rerun.
+- Coursera returns 451 from server; URLs taken from WebSearch index. Full link check deferred to course end (user's VPN).
+- In my shell grep=ugrep, awk=gawk, find=bfs: use /usr/bin/grep and /usr/bin/mawk for lesson outputs.
 
 ## 6. Next steps (priority order)
-0. **Continue new-format rewrite in course order** (dissection style, strict prerequisites, real outputs only, /usr/bin/grep + /usr/bin/mawk for outputs; commit+push every 3 modules unless the user says otherwise): 05/01 Git (part 04 done 2026-10-20), 05/02 Snakemake (add a note/rule running an R script, linking to 04/04), 05/02 Snakemake (check prerequisites), then 06/01–06/04, 07/01–07/02 (move scripts into 99_scripts_data and retest).
-1. 07/03 MLST, 07/04 pan-genome, 07/05 Snippy — write-only per the new rule; short non-bacterial notes where relevant.
-2. Verify `envs/r_packages.yml` solves online when conda is reachable.
-3. When the user says the whole course is done: full link check with the user's VPN on (`_tools/check_links.sh`), incl. Coursera/YouTube.
-4. After each module: update root `README.md` status, run `python3 _tools/check_internal_links.py` and the gh-api render check.
+1. Part 06/01 Read QC rewrite (reuse old Snakemake QC workflow from git history; old part-05 backup was in a previous session's scratchpad `old_part05/` — may be gone, use `git show 87c221b:05_Reproducible_Work/02_Workflows_Snakemake/...`), then 06/02–06/04.
+2. 07/01–07/02 rewrite; 07/03–07/05 write-only (MLST, pan-genome, Snippy).
+3. Verify `envs/r_packages.yml` and `envs/workflow.yml` solve online when conda is reachable.
+4. At course end: full link check with user's VPN (`_tools/check_links.sh`).

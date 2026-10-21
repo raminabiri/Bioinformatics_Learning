@@ -174,7 +174,7 @@ file big.png
 
 ```text
 composition_R.png: PNG image data, 840 x 720, 8-bit/color RGB, non-interlaced
-39:ggsave(png_file, p, width = 10, height = 6, dpi = 120)
+40:ggsave(png_file, p, width = 10, height = 6, dpi = 120)
 ...
 saved minigut_sample2_genus_R.tsv and big.png 
 big.png: PNG image data, 1200 x 720, 8-bit/color RGB, non-interlaced

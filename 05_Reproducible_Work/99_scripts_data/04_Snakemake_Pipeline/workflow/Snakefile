@@ -1,0 +1,96 @@
+# Snakefile (part 05, module 04): from FASTQ to composition charts and diversity
+#   FASTQ --count_reads--> counts/ --make_table--> tables/ --composition--> plots/
+#                                                  tables/ --merge_tables--> all_samples.tsv --diversity--> diversity/
+#                                                                                            --check_truth--> check/
+#   FASTQ --seqkit_stats--> stats/
+# Run in a folder that contains this Snakefile, config.yaml, names.tsv, ground_truth.tsv, scripts/ and fastq/:
+#   snakemake -n ; snakemake -c 2
+
+configfile: "config.yaml"
+
+SAMPLES = config["samples"]
+FASTQ = config["fastq_dir"]
+
+
+rule all:
+    input:
+        expand("plots/{sample}_composition.png", sample=SAMPLES),
+        "diversity/diversity_alpha.tsv",
+        "check/ground_truth_check.txt",
+        "stats/seqkit_stats.tsv",
+
+
+rule count_reads:
+    input:
+        FASTQ + "/{sample}_R1.fastq.gz",
+    output:
+        "counts/{sample}.tsv",
+    shell:
+        "zcat {input} | awk 'NR%4==1' | grep -oE '^@[A-Z]+_?[0-9]+[.][0-9]+' | cut -c2- "
+        "| sort | uniq -c | sort -k1,1nr > {output}"
+
+
+rule make_table:
+    input:
+        counts="counts/{sample}.tsv",
+        names=config["names"],
+    output:
+        "tables/{sample}.tsv",
+    shell:
+        "python3 scripts/make_table.py {input.counts} {input.names} {wildcards.sample} {output}"
+
+
+rule composition:
+    input:
+        "tables/{sample}.tsv",
+    output:
+        png="plots/{sample}_composition.png",
+        tsv="plots/{sample}_genus.tsv",
+    log:
+        "logs/composition/{sample}.log",
+    shell:
+        "Rscript --vanilla scripts/composition.R {input} {wildcards.sample} {output.png} {output.tsv} > {log} 2>&1"
+
+
+rule merge_tables:
+    input:
+        expand("tables/{sample}.tsv", sample=SAMPLES),
+    output:
+        "tables/all_samples.tsv",
+    shell:
+        "awk 'FNR > 1 || NR == 1' {input} > {output}"
+
+
+rule diversity:
+    input:
+        "tables/all_samples.tsv",
+    output:
+        "diversity/diversity_alpha.tsv",
+        "diversity/diversity_bray.tsv",
+        "diversity/diversity_rarecurve.png",
+    params:
+        level=config["diversity_level"],
+    log:
+        "logs/diversity.log",
+    shell:
+        "Rscript --vanilla scripts/diversity.R {input} diversity/diversity {params.level} > {log} 2>&1"
+
+
+rule check_truth:
+    input:
+        mine="tables/all_samples.tsv",
+        truth=config["ground_truth"],
+    output:
+        "check/ground_truth_check.txt",
+    shell:
+        "diff <(cut -f1-3 {input.mine} | sort) <(cut -f1-3 {input.truth} | sort) "
+        "&& echo 'identical: sample, read_pairs and accession match the ground truth' > {output}"
+
+
+rule seqkit_stats:
+    input:
+        expand(FASTQ + "/{sample}_{read}.fastq.gz", sample=SAMPLES, read=["R1", "R2"]),
+    output:
+        "stats/seqkit_stats.tsv",
+    shell:
+        "seqkit stats -T {input} > {output}"

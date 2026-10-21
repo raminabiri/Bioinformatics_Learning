@@ -1,0 +1,18 @@
+# Environment for part 05 (Git + Snakemake), modules 03 and 04.
+# Create once:   CONDA_CHANNEL_PRIORITY=flexible conda env create -f envs/workflow.yml
+# (2026-10-21: with the course setting channel_priority=strict, the solver refused bioconda's
+#  snakemake-minimal: "excluded by strict repo priority"; with flexible priority it solved.)
+# Then:          conda activate workflow
+# Lesson outputs were produced with Snakemake 9.25.2 (Python 3.14), seqkit 2.13.0,
+# R 4.6.1 + ggplot2 4.0.3 + vegan 2.7.6 (git comes with the operating system).
+name: workflow
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - snakemake-minimal=9.25.2
+  - seqkit=2.13.0
+  - python=3.14
+  - r-base=4.5
+  - r-ggplot2>=4.0
+  - r-vegan>=2.7

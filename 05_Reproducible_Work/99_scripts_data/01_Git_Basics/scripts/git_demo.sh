@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Reproduce the Git session of the lesson in a throw-away folder (does not touch your global git config).
-# Usage: bash git_demo.sh /path/to/ecoli_k12.gff [workdir]
+# Usage: bash git_demo.sh ~/Bioinformatics_Learning-main/01_Linux/99_scripts_data/data/ecoli_k12.gff [workdir]
 # Commit dates/author are fixed so the commit hashes match the lesson exactly.
 set -euo pipefail
 GFF=$(realpath "${1:?Usage: git_demo.sh /path/to/ecoli_k12.gff [workdir]}")
@@ -37,4 +37,11 @@ echo "== run current version";  bash scripts/count_genes.sh "$GFF"
 git tag -a v1.0-thesis-ch2 -m "Version used for thesis chapter 2"
 echo "== run an OLD version without changing the working tree"
 bash <(git show HEAD~2:scripts/count_genes.sh) "$GFF"
+git branch -d add-trna
+echo "== fix a commit message (amend), then undo the commit safely (revert)"
+echo "# Usage: bash count_genes.sh file.gff" >> scripts/count_genes.sh
+git commit -qam "Add usge note"
+git commit -q --amend -m "Add usage note"
+git revert --no-edit HEAD > /dev/null
+git log --oneline
 echo "Demo repository: $W/ecoli_project"

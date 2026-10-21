@@ -1,9 +1,10 @@
 # composition.R: percentage of reads from each genus in one sample, as a table and a bar chart
 # Same job as composition.py (part 03, module 06), written in R with ggplot2.
 # Usage: Rscript composition.R ground_truth.tsv minigut_sample2 composition_R.png
+# Optional 4th argument: where to write the genus table (default: <sample>_genus_R.tsv here).
 
 args <- commandArgs(trailingOnly = TRUE)
-if (length(args) != 3) {
+if (length(args) < 3 || length(args) > 4) {
   cat("Usage: Rscript composition.R <ground_truth.tsv> <sample> <output.png>\n")
   quit(status = 1)
 }
@@ -27,7 +28,7 @@ by_genus <- by_genus[order(by_genus$percent), ]
 by_genus$percent <- round(by_genus$percent, 2)
 
 print(by_genus, row.names = FALSE)
-out_tsv <- paste0(sample, "_genus_R.tsv")
+out_tsv <- if (length(args) == 4) args[4] else paste0(sample, "_genus_R.tsv")
 write.table(by_genus, out_tsv, sep = "\t", quote = FALSE, row.names = FALSE)
 
 by_genus$genus <- factor(by_genus$genus, levels = by_genus$genus)

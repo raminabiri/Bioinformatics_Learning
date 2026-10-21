@@ -1,0 +1,9 @@
+# config.yaml: everything you may change, in one place (part 05, module 04)
+samples:
+  - minigut
+  - minigut_sample2
+
+fastq_dir: fastq              # folder with <sample>_R1.fastq.gz and <sample>_R2.fastq.gz
+names: names.tsv              # accession -> organism lookup table
+ground_truth: ground_truth.tsv
+diversity_level: genus        # organism or genus (diversity.R, part 04)

@@ -1,0 +1,33 @@
+# Snakefile (part 05, module 03): first workflow
+# For every sample: count reads per bacterium from the FASTQ read names.
+# For all FASTQ files together: a seqkit summary table.
+# Run in a folder that contains fastq/ (the FASTQ files of part 01):
+#   snakemake -n        (dry run: what would be done?)
+#   snakemake -c 1      (run with 1 CPU core)
+
+SAMPLES = ["minigut", "minigut_sample2"]
+
+
+rule all:
+    input:
+        expand("counts/{sample}.tsv", sample=SAMPLES),
+        "stats/seqkit_stats.tsv",
+
+
+rule count_reads:
+    input:
+        "fastq/{sample}_R1.fastq.gz",
+    output:
+        "counts/{sample}.tsv",
+    shell:
+        "zcat {input} | awk 'NR%4==1' | grep -oE '^@[A-Z]+_?[0-9]+[.][0-9]+' | cut -c2- "
+        "| sort | uniq -c | sort -k1,1nr > {output}"
+
+
+rule seqkit_stats:
+    input:
+        expand("fastq/{sample}_{read}.fastq.gz", sample=SAMPLES, read=["R1", "R2"]),
+    output:
+        "stats/seqkit_stats.tsv",
+    shell:
+        "seqkit stats -T {input} > {output}"
