@@ -1,0 +1,13 @@
+# Environment for part 08, module 04 (phylogenetics). R packages (ape, ggtree) come from envs/r_packages.yml.
+# Create once:   conda env create -f envs/phylo.yml
+# Then:          conda activate phylo
+# Versions used in the lessons (2026-10-24): MAFFT 7.525. IQ-TREE (3.1.4 on Bioconda; commands iqtree and
+# iqtree3) is described in lesson 2 but was not run on the course server.
+# Not yet solved online: conda.anaconda.org was unreachable from the course server (2026-10-24).
+name: phylo
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - mafft>=7.5
+  - iqtree>=3

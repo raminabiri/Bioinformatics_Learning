@@ -1,0 +1,16 @@
+# Environment for part 08, modules 01-03 (resistance, virulence, mobile elements).
+# Create once:   conda env create -f envs/amr.yml   then   amrfinder -u   (downloads the database)
+# Then:          conda activate amr
+# Versions used in the lessons (2026-10-24): AMRFinderPlus 4.2.7 (database 2026-08-07.1), BLAST+ 2.17.0.
+# BLAST+ comes in as a dependency of AMRFinderPlus; it is listed so that makeblastdb/blastn are explicit.
+# RGI, ABRicate, Kleborate, MOB-suite and MinCED are only described in the lessons; install each in its own
+# environment from Bioconda, following its documentation.
+# Not yet solved online: conda.anaconda.org was unreachable from the course server (2026-10-24).
+name: amr
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - ncbi-amrfinderplus>=4.2
+  - blast>=2.16
+  - python>=3.10
