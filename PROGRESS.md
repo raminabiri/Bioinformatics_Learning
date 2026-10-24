@@ -49,7 +49,8 @@ Rewrite the course part by part in the new step-by-step format (STYLE_GUIDE.md; 
 - In my shell grep=ugrep, awk=gawk, find=bfs: use /usr/bin/grep and /usr/bin/mawk for lesson outputs.
 
 ## 6. Next steps (priority order)
-1. Part 09 (later, with user): intro level only — see memory course-roadmap-2026-10.
-2. Parts 09, 10.
-3. Verify env files online (r_packages, workflow, metagenomics, bacterial_genomics) when conda is reachable; dry-run the 06/01 Snakefile.
-4. At course end: full link check with user's VPN (`_tools/check_links.sh`), incl. new YouTube links in 07/03-05.
+1. Part 09 (in a few weeks, with the user): intro + a little practical only — PDB/AlphaFold DB, a small Vina docking, MD concepts as an entry point to MD.
+2. Separate full courses, planned with the user before writing: (a) structural bioinformatics at professional level (theory + practice; the 1 GB rule does not apply; heavy runs planned separately; the user will introduce an expert reviewer); (b) NGS + third-generation sequencing, wet lab + bioinformatics (topics of 10/02–10/04 move here).
+3. Part 10 (Advanced) is NOT written now; it becomes course version 2 (much more complete). Mark it "نسخه‌ی ۲" in README when the user agrees on wording.
+4. Verify env files online (r_packages, workflow, metagenomics, bacterial_genomics, amr, phylo) when conda is reachable; dry-run the 06/01 Snakefile.
+5. At course end: full link check with user's VPN (`_tools/check_links.sh`), incl. YouTube links of 07/03-05 and all of part 08 (taken from WebSearch on 2026-10-24, YouTube unreachable from server). Re-search a YouTube video on CRISPR bacterial immunity for 08/03 lesson 2 (now only PBS NOVA "How CRISPR Works in Nature", not on YouTube).
