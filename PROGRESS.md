@@ -2,7 +2,7 @@
 
 ## 1. Current goal
 Rewrite the course part by part in the new step-by-step format (STYLE_GUIDE.md; memory: deep-explanation-style): dissect every command, real outputs only, strict prerequisites (nothing used before taught), exercises with a hint under each title + detailed solutions, refs (docs + Coursera + edX + YouTube), RTL. User says "ادامه" to continue. Commit+push every 3 modules.
-**Now (2026-10-24):** part 08 COMPLETE (4 modules) and pushed. Next: part 09 = intro + a little practical (PDB/AlphaFold DB, small Vina docking, MD concepts as an entry to MD), written in a few weeks; then the two separate expert courses (structural bioinformatics, NGS + 3rd-gen; user has an expert reviewer). Part 10 → course v2. See memory course-roadmap-2026-10.
+**Now (2026-10-25):** part 09 (structural, INTRO level) written: modules 01-04. Missing: 09/03 solutions file (two safety-classifier stops while writing it — needs a different, shorter structure). Full narrative report of every session is now in SESSION_LOG.md (keep it updated — user asked for complete reports).
 **Rules from user (2026-10-24):** run only commands needing < 1 GB RAM, otherwise code-only; word ضراوت → بیماری‌زایی (added to STYLE_GUIDE §8, replaced course-wide); a video URL + reference URL (📺/📄 lines) under EVERY technique section, plus the end-of-lesson list.
 
 ## 2. Done so far
@@ -21,6 +21,11 @@ Rewrite the course part by part in the new step-by-step format (STYLE_GUIDE.md; 
   - New envs/amr.yml, envs/phylo.yml (not solved online).
 - Old part-05 content (Snakemake QC workflow with fastp/FastQC/bowtie2, old Git lesson) backed up in scratchpad `old_part05/` and in git history; reuse QC workflow when rewriting 06/01.
 
+- ✅ **09_Structural_Bioinformatics** (2026-10-24/25). INTRO level by user decision. Restructured 5 modules → 4 (dropped 05_Visualization, folded PyMOL into 01; renamed 01→01_Protein_Structure, 02→02_Small_Molecules, 04→04_Molecular_Dynamics_Intro). Shared data = RNAP + rifampicin (5UAC wild type, 5UAL S531L, 5UAH D516V; Molodtsov 2017) + AlphaFold AF-P0A8V2-F1 + 1L2Y for MD. New envs/structural.yml.
+  - 01: gemmi struct_info.py (14 pocket residues incl. D516/H526/S531 → ties to 08/01), PyMOL rif_pocket.pml, af_compare.py (mean pLDDT 90.1, CA RMSD 1.39 A). AlphaFold DB + its Google Cloud mirror return 403 from this server → model taken from RCSB models.rcsb.org as BinaryCIF, converted with a scratch msgpack decoder; pLDDT matches RCSB's own 90.05.
+  - 02: PubChem + ChEMBL + RDKit; all rifamycins break 2-4 Lipinski rules yet are oral drugs. RDKit numbers match ChEMBL exactly. ZINC site unreachable → doc-only.
+  - 03: full Vina pipeline. WT redocking 1.55 A (pass), S531L 8.42 A (fail, correct pose rank 5). With exhaustiveness 32 (2 cores, ~3 min, user-approved): WT rank-2 pose reaches 1.00 A, mutant still fails → the limit is SCORING, not search (lesson section 7.1). Vina needs 1.3 GB for rifampicin regardless of settings; 434 MB for trimethoprim.
+  - 04: OpenMM/mdtraj on Trp-cage, implicit solvent. 100 ps = 190 s, 336 MB (2 threads). KEY FINDING: same seed twice gives different results (RMSD 2.12 vs 2.30) — MD on CPU is not bit-wise reproducible, unlike Vina. Three runs → only patterns are reportable (TRP6 always least mobile 0.49-0.61; termini most mobile). 200 ps run: ASN1 RMSF 1.99 → 3.11, i.e. RMSF not converged. explicit_water_cost.py: 304 → 4810 atoms.
 ## 3. Files changed
 - Part 05 committed with composition.R 4th arg, 04/02 lesson+solutions, envs/workflow.yml, READMEs. Untracked user files left alone: `Bioinformatics_Course_ColorCoded.xlsx`, `advanced.odt`.
 
@@ -49,7 +54,7 @@ Rewrite the course part by part in the new step-by-step format (STYLE_GUIDE.md; 
 - In my shell grep=ugrep, awk=gawk, find=bfs: use /usr/bin/grep and /usr/bin/mawk for lesson outputs.
 
 ## 6. Next steps (priority order)
-1. Part 09 (in a few weeks, with the user): intro + a little practical only — PDB/AlphaFold DB, a small Vina docking, MD concepts as an entry point to MD.
+1. Write 09/03 solutions file (03_Molecular_Docking/03_solutions.md): the only missing piece of part 09. Two attempts were stopped by a safety classifier mid-write; use a different, shorter structure and do not reproduce the earlier text.
 2. Separate full courses, planned with the user before writing: (a) structural bioinformatics at professional level (theory + practice; the 1 GB rule does not apply; heavy runs planned separately; the user will introduce an expert reviewer); (b) NGS + third-generation sequencing, wet lab + bioinformatics (topics of 10/02–10/04 move here).
 3. Part 10 (Advanced) is NOT written now; it becomes course version 2 (much more complete). Mark it "نسخه‌ی ۲" in README when the user agrees on wording.
 4. Verify env files online (r_packages, workflow, metagenomics, bacterial_genomics, amr, phylo) when conda is reachable; dry-run the 06/01 Snakefile.
