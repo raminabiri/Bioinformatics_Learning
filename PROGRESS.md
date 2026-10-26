@@ -63,7 +63,7 @@ Rewrite the course part by part in the step-by-step format of STYLE_GUIDE.md: di
 - In this shell `grep` is ugrep, `awk` is gawk, `find` is bfs — use `/usr/bin/grep` and `/usr/bin/mawk` when capturing lesson outputs.
 
 ## 6. Next steps (priority order, one session each)
-1. **Version 2 is scaffolded (2026-10-26), not written.** Parts 11–25 (`NN_V2_…`, 71 module READMEs) and `V2_ROADMAP.md`. Part 10's six module plans were moved into parts 16 and 21–25; `10_Advanced/README.md` is now a pointer. Do not start writing v2 lessons without the user choosing the order.
+1. **Version 2 is scaffolded (2026-10-26), not written.** Parts 11–22 (`NN_V2_…`, 46 module READMEs) and `V2_ROADMAP.md`. User removed single-cell, human variant and long-read parts (→ separate NGS course; clinical interpretation → separate medical-genomics course). Part 10's modules 01/05/06 live in parts 20–22; `10_Advanced/README.md` is now a pointer. Do not start writing v2 lessons without the user choosing the order.
 2. Real runs of part 07 (nothing run in v1) — needs coordination with genomepipe and user approval.
 3. Optionally upgrade 08/04 lesson 2 to real IQ-TREE runs (IQ-TREE 3 is installed but not in PATH).
 4. Plan the separate courses with the user (names in `V2_ROADMAP.md`); structural and NGS first, with the expert reviewer.
