@@ -10,7 +10,7 @@
 | :---: | :--- | :--- | :---: |
 | 01 | [ساختار سه‌بعدی پروتئین](01_Protein_Structure/) | ‏gemmi، PyMOL، AlphaFold DB | ✅ اجرا شده |
 | 02 | [مولکول‌های کوچک](02_Small_Molecules/) | ‏PubChem، ChEMBL، RDKit | ✅ اجرا شده |
-| 03 | [داکینگ مولکولی](03_Molecular_Docking/) | ‏AutoDock Vina، Open Babel، PDBFixer | ✅ درس و تمرین‌ها |
+| 03 | [داکینگ مولکولی](03_Molecular_Docking/) | ‏AutoDock Vina، Open Babel، PDBFixer | ✅ اجرا شده |
 | 04 | [دینامیک مولکولی (مقدماتی)](04_Molecular_Dynamics_Intro/) | ‏OpenMM، mdtraj؛ GROMACS از مستندات | ✅ اجرا شده |
 
 ## داده‌ی مشترک بخش
