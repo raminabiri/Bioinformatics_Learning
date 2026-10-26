@@ -178,6 +178,9 @@ FASTQ = config["fastq_dir"]
 
 **چرا مهم است؟** برای داده‌ی تازه، همکارتان **تنها `config.yaml`** را عوض می‌کند و به Snakefile دست نمی‌زند. همان جداسازی «بلوک تنظیم» در اسکریپت DESeq2 بخش ۰۴، ولی برای کل گردش کار.
 
+> 📺 **فیلم:** *An introduction to snakemake: a tool for automating and streamlining your analyses*: https://www.youtube.com/watch?v=tUTcfoMQl98 (UC Berkeley)
+> 📄 **مرجع:** Snakemake, *Configuration*: https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html
+
 ---
 
 ## ۴. قاعده‌ها، یکی‌یکی
@@ -555,6 +558,9 @@ total               5
 | نمونه حذف شد | قاعده‌های «همه‌ی نمونه‌ها» (`Set of input files has changed`) |
 | یک فایل ورودی تازه‌تر | همه‌ی کارهای پایین‌دست آن فایل (برای فایل‌های کوچک‌تر از ۱ مگابایت، تنها اگر **محتوا** عوض شده باشد؛ تمرین ۱) |
 
+> 📺 **فیلم:** *Introducing Snakemake*: https://www.youtube.com/watch?v=NNPBDOBHlxo (Edinburgh Genomics Training)
+> 📄 **مرجع:** Mölder F, et al. (2021). *Sustainable data analysis with Snakemake.* F1000Research 10:33. https://doi.org/10.12688/f1000research.29032.2
+
 ---
 
 ## ۷. سه اشتباه رایج
@@ -736,6 +742,9 @@ rule name:
 - Mölder F, et al. (2021). *Sustainable data analysis with Snakemake.* F1000Research 10:33. https://doi.org/10.12688/f1000research.29032.2
 - Snakemake documentation, *Configuration*: https://snakemake.readthedocs.io/en/stable/snakefiles/configuration.html
 - Snakemake documentation, *Rules* (params، log، external scripts): https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html
+
+**کتاب**
+- ‏Buffalo V (2015). *Bioinformatics Data Skills*. O'Reilly. (فصل ۱۲: خط لوله، کار موازی و تکرارپذیری)
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University). دوره‌ای ویژه‌ی Snakemake در Coursera نیافتیم؛ نزدیک‌ترین: https://www.coursera.org/learn/genomic-tools

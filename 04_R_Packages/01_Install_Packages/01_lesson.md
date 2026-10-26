@@ -511,6 +511,9 @@ The following objects are masked from ‘package:base’:
 
 ‏(۸۴ خط پیام.) این‌ها **خطا نیستند**: می‌گویند DESeq2 چه بسته‌های دیگری را با خود باز کرد. **تنها خطی که با `Error` آغاز شود خطاست.** اسکریپت‌های آماده‌ی این بخش این پیام‌ها را با `suppressPackageStartupMessages` خاموش می‌کنند تا خروجی خوانا بماند.
 
+> 📺 **فیلم:** *How to install bioconductor packages in R*: https://www.youtube.com/watch?v=wWib2La9oc0 · *Download Bioconductor (BiocManager installer) & Get Started*: https://www.youtube.com/watch?v=RZMFgHRhGck
+> 📄 **مرجع:** Bioconductor, *Installing Bioconductor*: https://bioconductor.org/install/
+
 ---
 
 ## ۶. سه اشتباه رایج
@@ -587,6 +590,10 @@ Rscript -e 'BiocManager::version()'                 # Bioconductor version for t
 - BiocManager vignette: https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html
 - ‏Bioconda, *Using Bioconda* (نام‌گذاری `bioconductor-…`): https://bioconda.github.io/
 - ‏R Core Team, *R Installation and Administration*، بخش Add-on packages: https://cran.r-project.org/doc/manuals/r-release/R-admin.html#Add_002don-packages
+
+**کتاب**
+- ‏Gentleman R (2008). *R Programming for Bioinformatics*. CRC Press. (فصل بسته‌ها و Bioconductor)
+- Wickham H, Çetinkaya-Rundel M, Grolemund G (2023). *R for Data Science*, 2nd ed. O'Reilly.
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Bioconductor for Genomic Data Science* (Johns Hopkins University، هفته‌ی ۱: نصب Bioconductor): https://www.coursera.org/learn/bioconductor

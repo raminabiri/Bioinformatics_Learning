@@ -187,6 +187,9 @@ saved minigut_genus_R.tsv and minigut.png
 
 </details>
 
+> 📺 **فیلم:** *RT3 R tips: Run R code from command line*: https://www.youtube.com/watch?v=lMr4u-b0TbI (Yi Li)
+> 📄 **مرجع:** R Core Team, *An Introduction to R*، پیوست B: https://cran.r-project.org/doc/manuals/r-release/R-intro.html
+
 ---
 
 ## ۴. وقتی چیزی درست پیش نمی‌رود: خواندن خطاها
@@ -471,6 +474,9 @@ grep -n "title" my_composition.R
 
 </details>
 
+> 📺 **فیلم:** *run r script from linux command line with arguments*: https://www.youtube.com/watch?v=mheCAcfa1tg (Yi Li)
+> 📄 **مرجع:** ggplot2 documentation: https://ggplot2.tidyverse.org/
+
 ---
 
 ## ۷. سه اشتباه رایج
@@ -540,6 +546,10 @@ cp script.R my_script.R; sed -i 's/seagreen/steelblue/' my_script.R   # change a
 **مستند رسمی**
 - ‏R Core Team, *An Introduction to R*، پیوست B «Invoking R from the command line» (Rscript): https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Invoking-R-from-the-command-line
 - ggplot2 documentation: https://ggplot2.tidyverse.org/
+
+**کتاب**
+- Wickham H, Çetinkaya-Rundel M, Grolemund G (2023). *R for Data Science*, 2nd ed. O'Reilly.
+- Wickham H (2016). *ggplot2: Elegant Graphics for Data Analysis*, 2nd ed. Springer.
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *R Programming* (Johns Hopkins University). دوره‌ی کامل زبان R است؛ برای این درس تنها هفته‌ی ۱ (اجرای R و خواندن داده) مرتبط است: https://www.coursera.org/learn/r-programming

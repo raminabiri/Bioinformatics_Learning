@@ -91,6 +91,9 @@ awk -F'\t' '$3 == "sequence_feature"' $G/ecoli_k12.gff | grep 'cryptic prophage'
 
 **این ۱۲ ناحیه را چه کسی یافت؟** بازبینی دستی و آزمایش در طول دهه‌ها. در ژنوم تازه‌ی یک ایزوله، ابزارهایی مانند **geNomad** این کار را می‌کنند (بخش ۴). پروفاژهای فرسوده (مانند PR-G، ۱۶۲ باز) برای ابزارها کمابیش **نادیدنی**‌اند: ژن نشانگر ندارند.
 
+> 📺 **فیلم:** *Basics of phage genome annotation & classification*: https://www.youtube.com/watch?v=wO1w1Z1Or1w (Evelien Adriaenssens)
+> 📄 **مرجع:** Camargo AP, et al. (2024). *Identification of mobile genetic elements with geNomad.* Nature Biotechnology 42:1303–1312.
+
 ---
 
 ## ۴. گام ۲: ابزارهای فاژ (از مستندات)
@@ -149,6 +152,9 @@ pharokka run -i phage.fasta -o pharokka_out -d pharokka_db -t 8 --dnaapler
 </div>
 
 ‏`--dnaapler` ژنوم را چنان می‌چرخاند که از ژن **TerL** آغاز شود (قرارداد). ‏**Phold** برای ژن‌هایی که Pharokka «unknown function» گذاشته، از **همانندی ساختاری** (ساختار پیش‌بینی‌شده و Foldseek) بهره می‌برد؛ روال پیشنهادی: نخست Pharokka، سپس Phold روی GenBank آن.
+
+> 📺 **فیلم:** *Protein Structure-Informed Bacteriophage Genome Annotation with Phold*: https://www.youtube.com/watch?v=PItR8R_pl7o (George Bouras)
+> 📄 **مرجع:** Bouras G, et al. (2023). *Pharokka.* Bioinformatics 39:btac776. https://doi.org/10.1093/bioinformatics/btac776
 
 ---
 
@@ -272,6 +278,9 @@ v-annotate.pl --mkey sarscov2 --mdir MODELS sequences.fasta vadr_out
 - Nayfach S, et al. (2021). *CheckV assesses the quality and completeness of metagenome-assembled viral genomes.* Nature Biotechnology 39:578–585. https://doi.org/10.1038/s41587-020-00774-7
 - Schäffer AA, et al. (2020). *VADR: validation and annotation of virus sequence submissions to GenBank.* BMC Bioinformatics 21:211. https://doi.org/10.1186/s12859-020-3537-3
 - Pharokka: https://github.com/gbouras13/pharokka · Phold: https://github.com/gbouras13/phold · geNomad: https://github.com/apcamargo/genomad · VADR: https://github.com/ncbi/vadr
+
+**کتاب**
+- Clokie MRJ, Kropinski AM (eds.) (2009). *Bacteriophages: Methods and Protocols, Volume 2: Molecular and Applied Aspects*. Methods Mol Biol 502. Humana Press.
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University). دوره‌ای ویژه‌ی آنوتیشن فاژ در Coursera نیافتیم؛ نزدیک‌ترین: https://www.coursera.org/learn/genomic-tools

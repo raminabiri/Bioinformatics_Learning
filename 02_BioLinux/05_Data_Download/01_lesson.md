@@ -108,6 +108,9 @@ grep -c '>' ncbi_dataset/data/GCF_000005845.2/protein.faa
 پاسخ (2026-10-12): **4300**.
 </details>
 
+> 📺 **فیلم:** *Easy programmatic access to NCBI genome data with NCBI Datasets*: https://www.youtube.com/watch?v=Ru5MzGG_rcE (NCBI)
+> 📄 **مرجع:** O'Leary NA, et al. (2024). *Exploring and retrieving sequence and metadata for species across the tree of life with NCBI Datasets.* Scientific Data. https://doi.org/10.1038/s41597-024-03571-y
+
 ---
 
 ## ۴. پرسیدن از API: فایل‌های خام در ENA
@@ -161,6 +164,9 @@ curl -s https://ftp.sra.ebi.ac.uk/vol1/fastq/ERR688/ERR688359/ERR688359.fastq.gz
 - ‏`curl` فایل را از اینترنت می‌خواند، `zcat` آن را از حالت فشرده باز می‌کند، و `head -n 4000` تنها ۴٬۰۰۰ خط اول را نگه می‌دارد.
 - هر رید در FASTQ چهار خط است، پس ۴٬۰۰۰ خط یعنی **۱٬۰۰۰ رید**.
 - وقتی `head` به خط ۴٬۰۰۰ می‌رسد، لوله را می‌بندد و `curl` هم دانلود را رها می‌کند. اگر پیام `gzip: stdout: Broken pipe` دیدید، نگران نباشید؛ در این حالت پیام عادی است.
+
+> 📺 **فیلم:** *Nucleotide sequencing data submission and retrieval at the ENA*: https://www.youtube.com/watch?v=1qvG9mtxSYo (EMBL-EBI)
+> 📄 **مرجع:** ENA Portal API: https://www.ebi.ac.uk/ena/portal/api/
 
 ---
 
@@ -224,6 +230,9 @@ curl -s "https://rest.uniprot.org/uniprotkb/search?query=gene_exact:rpoB+AND+org
 
 گام‌های دیگر پاسخ را به شکل **JSON** می‌گیرند: قالبی متنی که داده را به شکل `"نام": مقدار` و تودرتو نگه می‌دارد. برای برداشتن یک تکه از JSON، اسکریپت ابزار **`jq`** را به کار می‌برد؛ برای نمونه در گام ۶، `jq -r '.[0] | "model=\(.entryId)  mean_pLDDT=\(.globalMetricValue)"'` یعنی «از نخستین مدخل، شناسه‌ی مدل و میانگین pLDDT را چاپ کن». نوشتن `jq` در این دوره لازم نیست؛ تنها بدانید کارش «`grep` و `cut` برای JSON» است.
 
+> 📺 **فیلم:** *EMBL-EBI, programmatically: UniProt*: https://www.youtube.com/watch?v=r7bq_HVO98Y (EMBL-EBI)
+> 📄 **مرجع:** UniProt REST API: https://www.uniprot.org/help/api
+
 ---
 
 ## ۶. سه اشتباه رایج
@@ -267,6 +276,9 @@ curl -s "https://rest.uniprot.org/uniprotkb/search?query=gene_exact:rpoB+AND+org
 - UniProt REST API: https://www.uniprot.org/help/api
 - KEGG REST API: https://www.kegg.jp/kegg/rest/keggapi.html
 - O'Leary NA, et al. (2024). Exploring and retrieving sequence and metadata for species across the tree of life with NCBI Datasets. *Scientific Data*. https://doi.org/10.1038/s41597-024-03571-y
+
+### کتاب
+- ‏Buffalo V (2015). *Bioinformatics Data Skills*. O'Reilly. (فصل ۶: داده‌ی بیوانفورماتیک؛ دانلود و وارسی درستی فایل‌ها)
 
 ### فیلم‌های آموزشی
 

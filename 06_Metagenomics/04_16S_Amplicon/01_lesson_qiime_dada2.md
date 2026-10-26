@@ -164,6 +164,9 @@ Imported emp as EMPPairedEndDirFmt to emp-paired-end-sequences.qza
 
 این فایل‌ها **۱۳۵٬۴۸۷** جفت رید ۱۵۱ بازی دارند.
 
+> 📺 **فیلم:** *An introduction to QIIME 2*: https://www.youtube.com/watch?v=XIyZWpfcZ6U · *Semantic types and data formats in QIIME 2*: https://www.youtube.com/watch?v=PUsvtJgpNtE
+> 📄 **مرجع:** Bolyen E, et al. (2019). *QIIME 2.* Nature Biotechnology 37:852–857. https://doi.org/10.1038/s41587-019-0209-9
+
 ---
 
 ## ۴. گام ۲: جدا کردن نمونه‌ها (*demultiplex*)
@@ -322,6 +325,9 @@ qiime dada2 denoise-paired --i-demultiplexed-seqs demux.qza \
 
 **صفر کایمرا** هم از همین است: کایمرا در DADA2 یعنی ASVی که از دو ASV **پرشمارتر در همان نمونه** ساخته شده باشد. در نمونه‌های چند صد ریدی، «والد»های پرشمار کم‌اند و شناختن کایمرا کمابیش ناشدنی است. صفر این‌جا یعنی «شناخته نشد»، نه «نبود».
 
+> 📺 **فیلم:** *GTN Tutorial: Building an amplicon sequence variant (ASV) table from 16S data using DADA2*: https://www.youtube.com/watch?v=ISocxcJZEjw
+> 📄 **مرجع:** Callahan BJ, et al. (2016). *DADA2.* Nature Methods 13:581–583. https://doi.org/10.1038/nmeth.3869
+
 ---
 
 ## ۷. سه اشتباه رایج
@@ -398,6 +404,9 @@ qiime tools export --input-path denoising-stats.qza --output-path exports/stats
 - Neilson JW, et al. (2017). *Significant impacts of increasing aridity on the arid soil microbiome.* mSystems 2:e00195-16. https://doi.org/10.1128/mSystems.00195-16
 - QIIME 2 amplicon documentation: https://amplicon-docs.qiime2.org/en/latest/ · Installation: https://library.qiime2.org/quickstart/amplicon
 - Atacama soils tutorial (this dataset): https://docs.qiime2.org/2024.10/tutorials/atacama-soils/
+
+**کتاب**
+- Beiko RG, Hsiao W, Parkinson J (eds.) (2018). *Microbiome Analysis: Methods and Protocols*. Methods Mol Biol 1849. Humana Press.
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University). دوره‌ای ویژه‌ی QIIME 2 در Coursera نیافتیم؛ نزدیک‌ترین: https://www.coursera.org/learn/genomic-tools

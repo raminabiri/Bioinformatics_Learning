@@ -132,6 +132,9 @@ printf '%d\n' "'F"
 نویسه‌ی `@` یعنی Q31، کیفیتی بسیار رایج. پس **خط کیفیت** هم می‌تواند با `@` آغاز شود، و `grep` آن را هم یک «رید» می‌شمارد. روش درست: شمار خط‌ها ÷ ۴ (بخش ۰۱)، یا `seqkit stats` (بخش ۴ همین درس).
 </details>
 
+> 📺 **فیلم:** *Understanding Phred Scores for FASTQ format*: https://www.youtube.com/watch?v=kgTf8-odrnY
+> 📄 **مرجع:** Cock PJA, et al. (2010). *The Sanger FASTQ file format…* Nucleic Acids Res 38:1767–1771. https://doi.org/10.1093/nar/gkp1137
+
 ---
 
 ## ‏۴. `seqkit stats`: کارت شناسایی فایل‌ها
@@ -370,6 +373,9 @@ seqkit locate -P -p ATG ecoli_k12.fna | tail -n +2 | wc -l
 پاسخ: **76282**، دقیقاً همان عدد `tr -d '\n' | grep -o ATG | wc -l`. ✓
 </details>
 
+> 📺 **فیلم:** *Techniques to manipulate FASTQ files (2)*: https://www.youtube.com/watch?v=wWm7hEqbbaA (SeqKit، seqtk)
+> 📄 **مرجع:** Shen W, et al. (2016). *SeqKit.* PLoS ONE 11:e0163962. https://doi.org/10.1371/journal.pone.0163962
+
 ---
 
 ## ‏۷. `samtools faidx`: هر ناحیه، بی‌درنگ
@@ -530,6 +536,9 @@ ATGAGCGACCTTGCGAGAGAAATTACACCG
 - راهنمای seqkit: https://bioinf.shenwei.me/seqkit/
 - Cock PJA, et al. (2010). The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. *Nucleic Acids Res.* 38(6):1767–1771. https://doi.org/10.1093/nar/gkp1137
 - راهنمای samtools faidx: https://www.htslib.org/doc/samtools-faidx.html
+
+### کتاب
+- ‏Buffalo V (2015). *Bioinformatics Data Skills*. O'Reilly. (فصل ۱۰: کار با داده‌ی توالی؛ FASTA، FASTQ و کیفیت)
 
 ### فیلم‌های آموزشی
 

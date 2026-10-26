@@ -431,6 +431,9 @@ mob_recon --infile ASM.fna --outdir mob_ID          # documented, not run here
 - Siguier P, et al. (2006). *ISfinder: the reference centre for bacterial insertion sequences.* Nucleic Acids Res 34:D32–D36. https://doi.org/10.1093/nar/gkj014
 - NCBI E-utilities: https://www.ncbi.nlm.nih.gov/books/NBK25501/
 
+**کتاب**
+- ‏Craig NL, Chandler M, Gellert M, Lambowitz AM, Rice PA, Sandmeyer SB (eds.) (2015). *Mobile DNA III*. ASM Press. (فصل‌های پلاسمید، IS و اینتگرون)
+
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Whole genome sequencing of bacterial genomes – tools and applications* (DTU): https://www.coursera.org/learn/wgs-bacteria
 - ‏Coursera: *Antimicrobial resistance – theory and methods* (DTU؛ انتقال افقی ژن): https://www.coursera.org/learn/antimicrobial-resistance

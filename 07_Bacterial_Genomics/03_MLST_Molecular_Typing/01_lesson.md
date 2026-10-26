@@ -155,6 +155,9 @@ Anthrax  bcereus  -  glp(24) gmk(1) ilv(~83) pta(1) pur(~71) pyc(37) tpi(41)
 
 </details>
 
+> 📺 **فیلم:** *WGS-based Multilocus Sequence Typing*: https://www.youtube.com/watch?v=QCZk5_W8dII (Canadian Bioinformatics Workshops)
+> 📄 **مرجع:** Maiden MCJ, et al. (1998). *Multilocus sequence typing.* PNAS 95:3140–3145. https://doi.org/10.1073/pnas.95.6.3140
+
 ---
 
 ## ۴. گام ۲: تفسیر برای پرسش شیوع
@@ -165,6 +168,9 @@ Anthrax  bcereus  -  glp(24) gmk(1) ilv(~83) pta(1) pur(~71) pyc(37) tpi(41)
 - گام بعد: SNPها نسبت به یک مرجع (ماژول ۰۵). اختلاف چند SNP = انتقال اخیر بسیار محتمل؛ ده‌ها تا صدها SNP = نه.
 
 و اگر یکی **ST11** بود؟ ST11 و ST258 در یک کمپلکس کلونال‌اند ولی در **یک آلل** فرق دارند؛ کمابیش بی‌گمان **ورود جدا**ست، نه بخشی از همان زنجیره.
+
+> 📺 **فیلم:** *13. Galaxy MLST*: https://www.youtube.com/watch?v=4H-L1DVD3z8 (Sciensano)
+> 📄 **مرجع:** Jolley KA, Bray JE, Maiden MCJ (2018). *Open-access bacterial population genomics: BIGSdb software, the PubMLST.org website and their applications.* Wellcome Open Res 3:124. https://doi.org/10.12688/wellcomeopenres.14826.1
 
 ---
 
@@ -230,6 +236,9 @@ mlst --scheme NAME contigs.fa                     # force a scheme
 - Jolley KA, Bray JE, Maiden MCJ (2018). *Open-access bacterial population genomics: BIGSdb software, the PubMLST.org website and their applications.* Wellcome Open Research 3:124. https://doi.org/10.12688/wellcomeopenres.14826.1
 - Wirth T, et al. (2006). *Sex and virulence in Escherichia coli: an evolutionary perspective.* Molecular Microbiology 60:1136–1151. https://doi.org/10.1111/j.1365-2958.2006.05172.x
 - mlst README: https://github.com/tseemann/mlst · PubMLST: https://pubmlst.org
+
+**کتاب**
+- Robinson DA, Falush D, Feil EJ (eds.) (2010). *Bacterial Population Genetics in Infectious Disease*. Wiley-Blackwell.
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University). دوره‌ای ویژه‌ی MLST در Coursera نیافتیم؛ نزدیک‌ترین: https://www.coursera.org/learn/genomic-tools

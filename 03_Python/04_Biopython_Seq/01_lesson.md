@@ -132,6 +132,9 @@ Seq('MK')
 
 برای ۳۰ باز rpoB، `table=1` و `table=11` یک پاسخ می‌دهند؛ پس چرا `table=11`؟ بخش بعد.
 
+> 📺 **فیلم:** *Bioinformatics with Biopython, Full Course*: https://www.youtube.com/watch?v=ocA2IMe7dpA (Lana Dominkovic)
+> 📄 **مرجع:** Biopython Tutorial & Cookbook, فصل Sequence objects: https://biopython.org/docs/latest/Tutorial/
+
 ---
 
 ## ۳. کدون آغاز GTG: چرا `cds=True` مهم است
@@ -395,6 +398,9 @@ good.fastq  FASTQ   DNA     24,820  3,747,820      151      151      151
 
 </div>
 
+> 📺 **فیلم:** *Parsing FASTQ files with the Biopython SeqIO module*: https://www.youtube.com/watch?v=mDEwKw0w1Qk
+> 📄 **مرجع:** Cock PJA, et al. (2009). *Biopython.* Bioinformatics 25:1422–1423. https://doi.org/10.1093/bioinformatics/btp163
+
 ---
 
 ## ۶. نوشتن FASTA: `SeqRecord` و `SeqIO.write`
@@ -592,6 +598,10 @@ print(CodonTable.unambiguous_dna_by_id[11].start_codons)
 - ‏Biopython Tutorial & Cookbook، فصل‌های «Sequence objects» و «Sequence Input/Output»: https://biopython.org/docs/latest/Tutorial/
 - Cock PJA, et al. (2009). Biopython: freely available Python tools for computational molecular biology and bioinformatics. *Bioinformatics* 25(11):1422–1423. https://doi.org/10.1093/bioinformatics/btp163
 - جدول‌های کد ژنتیکی NCBI: https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi
+
+### کتاب
+- ‏Bassi S (2017). *Python for Bioinformatics*, 2nd ed. CRC Press. (بخش Biopython)
+- Model ML (2009). *Bioinformatics Programming Using Python*. O'Reilly.
 
 ### فیلم‌های آموزشی
 

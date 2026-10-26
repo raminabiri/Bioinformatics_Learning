@@ -163,6 +163,9 @@ Loading database information... done.
 - ‏**۹۵٫۱۵٪ طبقه‌بندی شد**، ‏۴٫۸۵٪ نه. چرا ریدی از *E. coli* یا *B. fragilis* بی‌برچسب بماند، با آنکه هر دو گونه در پایگاه‌اند؟ پاسخ: سویه‌ی پایگاه با سویه‌ی نمونه فرق دارد (تمرین ۱).
 - ۰٫۲ ثانیه: پایگاه کوچک است. با پایگاه Standard، بارگذاری خود پایگاه در حافظه چند دقیقه طول می‌کشد.
 
+> 📺 **فیلم:** *Metagenomic Sequence Classification using KRAKEN*: https://www.youtube.com/watch?v=9o11F1WrHIQ
+> 📄 **مرجع:** Wood DE, Lu J, Langmead B (2019). *Improved metagenomic analysis with Kraken 2.* Genome Biology 20:257. https://doi.org/10.1186/s13059-019-1891-0
+
 ---
 
 ## ۵. گام ۳: خروجی رید به رید (`.kraken`)
@@ -390,6 +393,9 @@ Salmonella enterica	30	0	30	0.00063
 
 ‏*E. coli* با Bracken از ۸۹۸۱ به ۱۲٬۹۲۱ رید رسید (۲۷٪)؛ ولی پاسخ درست ۴۲٪ است. و **۹ گونه** گزارش شده، در نمونه‌ای که تنها **۲ گونه** دارد. درس ۲ این خطاها را می‌سنجد و راه کاستنشان را می‌آزماید.
 
+> 📺 **فیلم:** *#13 Bracken with Jennifer Lu*: https://www.youtube.com/watch?v=xbJ-0wtTzf4 (The Bioinformatics Chat)
+> 📄 **مرجع:** Lu J, et al. (2017). *Bracken.* PeerJ Comput Sci 3:e104. https://doi.org/10.7717/peerj-cs.104
+
 ---
 
 ## ۸. گام ۶: هر دو نمونه با یک اسکریپت
@@ -467,7 +473,7 @@ cut -f 1,6,7 s.bracken                                     # name, reads, fracti
 | ‏LCA (*lowest common ancestor*) | پایین‌ترین گره‌ی مشترک چند تاکسون در درخت |
 | ‏taxid | شناسه‌ی عددی یک تاکسون در NCBI Taxonomy |
 | رتبه (*rank*) | سطح در درخت: گونه، جنس، خانواده، … |
-| سویه (*strain*) | یک جدایه‌ی مشخص از یک گونه، با ژنوم خودش |
+| سویه (*strain*) | یک جدایه‌ی معین از یک گونه، با ژنوم خودش |
 | ‏decoy | گونه‌ی خویشاوندی که در پایگاه هست ولی در نمونه نیست |
 
 ---
@@ -481,6 +487,10 @@ cut -f 1,6,7 s.bracken                                     # name, reads, fracti
 - Pupo GM, et al. (2000). *Multiple independent origins of Shigella clones of Escherichia coli.* PNAS 97(19):10567–10572. https://doi.org/10.1073/pnas.180094797
 - Kraken2 manual: https://github.com/DerrickWood/kraken2/wiki/Manual · Pre-built databases: https://benlangmead.github.io/aws-indexes/k2
 - Bracken: https://github.com/jenniferlu717/Bracken
+
+**کتاب**
+- Nagarajan M (ed.) (2018). *Metagenomics: Perspectives, Methods, and Applications*. Academic Press.
+- Beiko RG, Hsiao W, Parkinson J (eds.) (2018). *Microbiome Analysis: Methods and Protocols*. Methods Mol Biol 1849. Humana Press.
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University). دوره‌ای ویژه‌ی Kraken2 در Coursera نیافتیم؛ نزدیک‌ترین: https://www.coursera.org/learn/genomic-tools

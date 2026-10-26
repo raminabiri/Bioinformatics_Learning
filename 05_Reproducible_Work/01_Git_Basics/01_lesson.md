@@ -371,6 +371,9 @@ nothing to commit, working tree clean
 
 </details>
 
+> 📺 **فیلم:** *Reproducible Research 2026, 02: Version Control with Git*: https://www.youtube.com/watch?v=S0kw9OB2Tf0 (Bioinformatics.ca)
+> 📄 **مرجع:** Blischak JD, Davenport ER, Wilson G (2016). *A Quick Introduction to Version Control with Git and GitHub.* PLoS Comput Biol 12:e1004668. https://doi.org/10.1371/journal.pcbi.1004668
+
 ---
 
 ## ۵. تغییر، دیدن تغییر، ثبت دوباره
@@ -523,6 +526,9 @@ cc62ffa Add gene counting script and .gitignore
 
 </details>
 
+> 📺 **فیلم:** *How Git Works: Explained in 4 Minutes*: https://www.youtube.com/watch?v=e9lnsKot_SQ (ByteByteGo)
+> 📄 **مرجع:** Pro Git, بخش Undoing Things: https://git-scm.com/book/en/v2/Git-Basics-Undoing-Things
+
 ---
 
 ## ۷. سه اشتباه رایج
@@ -646,8 +652,12 @@ git rm --cached file                         # untrack, keep on disk
 
 **مقاله و مستند**
 - Blischak JD, Davenport ER, Wilson G (2016). *A Quick Introduction to Version Control with Git and GitHub.* PLoS Comput Biol 12(1):e1004668. https://doi.org/10.1371/journal.pcbi.1004668
-- ‏Chacon S, Straub B. *Pro Git* (کتاب رایگان)، فصل ۲ «Git Basics»: https://git-scm.com/book/en/v2
 - Software Carpentry, *Version Control with Git*: https://swcarpentry.github.io/git-novice/
+
+**کتاب**
+- ‏Chacon S, Straub B. *Pro Git* (کتاب رایگان)، فصل ۲ «Git Basics»: https://git-scm.com/book/en/v2
+- ‏Chacon S, Straub B (2014). *Pro Git*, 2nd ed. Apress (نسخه‌ی رایگان: https://git-scm.com/book/en/v2). (فصل ۲)
+- ‏Buffalo V (2015). *Bioinformatics Data Skills*. O'Reilly. (فصل ۵: Git برای دانشمندان)
 
 **فیلم و دوره‌ی آموزشی**
 - Coursera: *Version Control with Git* (Atlassian): https://www.coursera.org/learn/version-control-with-git

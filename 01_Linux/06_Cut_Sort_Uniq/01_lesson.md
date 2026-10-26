@@ -319,6 +319,9 @@ cut -f3 small.gff | uniq -c
 
 **هشت ردیف، همه با شمار ۱!** `uniq` تنها خط‌های همانندِ **کنار هم** را می‌بیند، و این‌جا هیچ دو خط همانندی کنار هم نیستند (gene و CDS یکی در میان‌اند). `sort` همانندها را کنار هم می‌گذارد. **`uniq` همیشه پس از `sort`.**
 
+> 📺 **فیلم:** *Sorting & Filtering in Linux (sort, uniq)*: https://www.youtube.com/watch?v=p11n_ao982I
+> 📄 **مرجع:** GNU Coreutils manual (`cut`، `sort`، `uniq`): https://www.gnu.org/software/coreutils/manual/coreutils.html
+
 ---
 
 ## ۶. الگوی طلایی، گام‌به‌گام روی کل فایل
@@ -397,6 +400,9 @@ grep -o -E 'Name=rpo[A-Z]+' ecoli_k12.gff | sort
 
 پاسخ: `Name=rpoA`، `rpoB`، `rpoC`، `rpoD`، `rpoE`، `rpoH`، `rpoN`، `rpoS`، `rpoZ`.
 </details>
+
+> 📺 **فیلم:** *Exploratory data analysis in bash: Using cut, sort, and uniq to count things in messy files (CC023)*: https://www.youtube.com/watch?v=gPX7d3BcZpg (Riffomonas Project)
+> 📄 **مرجع:** Software Carpentry, *The Unix Shell*, درس «Pipes and Filters»: https://swcarpentry.github.io/shell-novice/
 
 ---
 
@@ -489,6 +495,10 @@ cut -f2 ground_truth.tsv | sort | head -n 5
 - ‏GNU Coreutils manual، بخش‌های `cut`، `sort` و `uniq`: https://www.gnu.org/software/coreutils/manual/coreutils.html
 - ‏GFF3 specification (تعریف رسمی ستون‌ها): https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md
 - ‏Software Carpentry — *The Unix Shell*، درس «Pipes and Filters»: https://swcarpentry.github.io/shell-novice/
+
+### کتاب
+- ‏Shotts W (2019). *The Linux Command Line*, 2nd ed. No Starch Press. (فصل ۲۰: پردازش متن)
+- ‏Buffalo V (2015). *Bioinformatics Data Skills*. O'Reilly. (فصل ۷: ابزارهای داده در یونیکس)
 
 ### فیلم‌های آموزشی
 

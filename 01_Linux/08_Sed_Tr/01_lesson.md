@@ -186,6 +186,9 @@ GTAAACCAT
 
 ‏`echo 'ATGGTTTAC'` یک توالی کوتاه را برای آزمودن در لوله می‌گذارد.
 
+> 📺 **فیلم:** *Linux Cut, Paste, Sort, Uniq, Tr, and Egrep*: https://www.youtube.com/watch?v=K4h8QhIAouo
+> 📄 **مرجع:** GNU Coreutils manual (`tr`): https://www.gnu.org/software/coreutils/manual/coreutils.html
+
 ---
 
 ## ‏۳. `sed`: جایگزین کردن متن
@@ -319,6 +322,9 @@ chr	RefSeq	CDS	190	255
 
 `^` الگو را به آغاز خط بست، پس `NC_000913.3`های درون ستون ۹ دست نخوردند. (اگر `small.gff` را ندارید، در ماژول ۰۶ ساخته شد.)
 </details>
+
+> 📺 **فیلم:** *Linux Terminal Basics: Sed*: https://www.youtube.com/watch?v=TFq5YxN7pE0
+> 📄 **مرجع:** GNU sed manual: https://www.gnu.org/software/sed/manual/sed.html
 
 ---
 
@@ -470,7 +476,11 @@ head -n 1 ecoli_k12.fna | sed -E 's/^>([^ ]+) .*/>\1/'
 ### راهنما و درس
 - GNU sed manual: https://www.gnu.org/software/sed/manual/sed.html
 - ‏GNU Coreutils manual، بخش `tr`: https://www.gnu.org/software/coreutils/manual/coreutils.html
+
+### کتاب
 - ‏Buffalo V. *Bioinformatics Data Skills*. O'Reilly, 2015 (فصل ۷، بخش sed): https://vincebuffalo.com/book/
+- Dougherty D, Robbins A (1997). *sed & awk*, 2nd ed. O'Reilly.
+- ‏Shotts W (2019). *The Linux Command Line*, 2nd ed. No Starch Press. (فصل ۲۰: پردازش متن، بخش‌های `tr` و `sed`)
 
 ### فیلم‌های آموزشی
 

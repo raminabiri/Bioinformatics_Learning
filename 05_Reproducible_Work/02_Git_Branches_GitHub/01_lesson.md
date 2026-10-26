@@ -191,6 +191,9 @@ git log --oneline --graph --all
 
 </details>
 
+> 📺 **فیلم:** *Learning Git 04: Branching, Merging, and Resolving Conflicts*: https://www.youtube.com/watch?v=tJPpCxtDRM4
+> 📄 **مرجع:** Pro Git, بخش Branches in a Nutshell: https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell
+
 ---
 
 ## ۴. ادغام و حل تضاد
@@ -339,6 +342,9 @@ Deleted branch add-trna (was a920e2b).
 </div>
 
 ‏`-d` تنها شاخه‌ای را پاک می‌کند که **ادغام شده** باشد؛ commitهایش در تاریخچه می‌مانند (`a920e2b` را در گراف بالا ببینید).
+
+> 📺 **فیلم:** *Resolve Git MERGE CONFLICTS: The Definitive Guide*: https://www.youtube.com/watch?v=Sqsz1-o7nXk
+> 📄 **مرجع:** Pro Git, بخش Basic Branching and Merging: https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
 
 ---
 
@@ -513,6 +519,9 @@ git pull  →  edit  →  git status / git diff  →  git add  →  git commit  
 
 </div>
 
+> 📺 **فیلم:** *Beginner Git and GitHub #8: Create and Push to a Remote Repository on GitHub*: https://www.youtube.com/watch?v=fPciypCNdy0
+> 📄 **مرجع:** Perez-Riverol Y, et al. (2016). *Ten Simple Rules for Taking Advantage of Git and GitHub.* PLoS Comput Biol 12:e1004947. https://doi.org/10.1371/journal.pcbi.1004947
+
 ---
 
 ## ۸. سه اشتباه رایج
@@ -589,9 +598,12 @@ git pull                            # get changes from GitHub
 
 **مقاله و مستند**
 - Perez-Riverol Y, et al. (2016). *Ten Simple Rules for Taking Advantage of Git and GitHub.* PLoS Comput Biol 12(7):e1004947. https://doi.org/10.1371/journal.pcbi.1004947
-- ‏Chacon S, Straub B. *Pro Git*، فصل ۳ «Git Branching»: https://git-scm.com/book/en/v2
 - GitHub Docs, *Managing your personal access tokens*: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
 - ‏GitHub Docs, *Referencing and citing content* (Zenodo و DOI): https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content
+
+**کتاب**
+- ‏Chacon S, Straub B. *Pro Git*، فصل ۳ «Git Branching»: https://git-scm.com/book/en/v2
+- ‏Chacon S, Straub B (2014). *Pro Git*, 2nd ed. Apress (نسخه‌ی رایگان: https://git-scm.com/book/en/v2). (فصل ۳: شاخه‌ها؛ فصل ۶: GitHub)
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Version Control with Git* (Atlassian)، ماژول‌های branching و remote: https://www.coursera.org/learn/version-control-with-git

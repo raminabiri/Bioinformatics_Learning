@@ -127,6 +127,9 @@ Python 3.13.15 | packaged by conda-forge | (main, Sep  2 2026, 22:01:58) [GCC 15
 | به کار بردن | `$n` | `n` |
 | حساب | `$((n * 2))` | `n * 2` |
 
+> 📺 **فیلم:** *Bioinformatics in Python: Intro*: https://www.youtube.com/watch?v=3joOQ3A3KBQ (rebelScience)
+> 📄 **مرجع:** The Python Tutorial, بخش ۳ (An Informal Introduction to Python): https://docs.python.org/3/tutorial/introduction.html
+
 ---
 
 ## ۴. رشته: DNA در پایتون
@@ -312,6 +315,9 @@ False
 
 ‏`"ATG" + "GTT"` دو رشته را **به هم می‌چسباند** (`'ATGGTT'`) و `"AT" * 3` تکرار می‌کند (`'ATATAT'`). ولی **رشته و عدد را نمی‌شود جمع کرد** (بخش ۷).
 
+> 📺 **فیلم:** *Python Tutorial for Beginners 2: Strings*: https://www.youtube.com/watch?v=k9TUPpGqYTo (Corey Schafer)
+> 📄 **مرجع:** The Python Tutorial, بخش ۷.۱ (Fancier Output Formatting): https://docs.python.org/3/tutorial/inputoutput.html
+
 ---
 
 ## ۶. اسکریپت پایتون
@@ -490,6 +496,10 @@ IndexError: string index out of range
 - آموزش رسمی پایتون (The Python Tutorial)، بخش ۳ (An Informal Introduction to Python): https://docs.python.org/3/tutorial/introduction.html
 - Software Carpentry — *Programming with Python*: https://swcarpentry.github.io/python-novice-inflammation/
 - ‏Rosalind — Python Village (تمرین‌های گام‌به‌گام پایتون برای زیست‌شناسان): https://rosalind.info/problems/list-view/?location=python-village
+
+### کتاب
+- ‏Bassi S (2017). *Python for Bioinformatics*, 2nd ed. CRC Press. (فصل‌های نخست: آغاز کار با پایتون)
+- Model ML (2009). *Bioinformatics Programming Using Python*. O'Reilly.
 
 ### فیلم‌های آموزشی
 

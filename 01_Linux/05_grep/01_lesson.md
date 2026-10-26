@@ -69,6 +69,9 @@ grep    'rpoB'    ecoli_k12.gff
 
 **این خروجی یعنی:** `grep` هر خطی را که در جایی از آن `rpoB` هست **کامل** چاپ می‌کند. این‌جا دو خط: خط ژن (`gene`) و خط CDS آن. در ماژول ۰۶ یاد می‌گیرید تنها ستون‌های دلخواه را از این خط‌ها بردارید.
 
+> 📺 **فیلم:** *Linux for Programmers #10: Grep Command & Regular Expressions*: https://www.youtube.com/watch?v=dp-D9HNuVcM
+> 📄 **مرجع:** GNU grep manual: https://www.gnu.org/software/grep/manual/grep.html
+
 ---
 
 ## ۳. گزینه‌ها، یکی‌یکی
@@ -268,6 +271,9 @@ grep -E -c 'Name=rpo[A-Z]+;' ecoli_k12.gff
 | `;` | سپس `;` (پایان مقدار در ستون نهم GFF) |
 
 **۹ خط**: نُه ژنی که نامشان `rpo` و یک یا چند حرف بزرگ است. (خط‌های CDS نامی مانند `Name=NP_418414.1` دارند و شمرده نمی‌شوند.)
+
+> 📺 **فیلم:** *10 Regular Expression Examples Using grep in Linux*: https://www.youtube.com/watch?v=tWx5_AvBnKk
+> 📄 **مرجع:** Shotts W (2019). *The Linux Command Line*, 2nd ed. No Starch Press. فصل ۱۹ (Regular Expressions).
 
 ---
 
@@ -499,7 +505,11 @@ grep -c 'GAATTC' ecoli_k12.fna
 ### راهنما و درس
 - ‏GNU grep manual (راهنمای رسمی): https://www.gnu.org/software/grep/manual/grep.html
 - ‏Software Carpentry — *The Unix Shell*، درس «Finding Things»: https://swcarpentry.github.io/shell-novice/
+
+### کتاب
 - ‏Buffalo V. *Bioinformatics Data Skills*. O'Reilly, 2015 (فصل ۷، بخش grep): https://vincebuffalo.com/book/
+- ‏Shotts W (2019). *The Linux Command Line*, 2nd ed. No Starch Press. (فصل ۱۹: عبارت‌های باقاعده)
+- ‏Friedl JEF (2006). *Mastering Regular Expressions*, 3rd ed. O'Reilly. (برای کنجکاوها)
 
 ### فیلم‌های آموزشی
 

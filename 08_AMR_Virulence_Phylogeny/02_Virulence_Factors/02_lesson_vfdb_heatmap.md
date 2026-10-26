@@ -446,6 +446,9 @@ Rscript amr_vir_heatmap.R PREFIX iso*.amr.tsv
 - ABRicate (README, `abricate-get_db`): https://github.com/tseemann/abricate
 - BLAST Command Line Applications User Manual: https://www.ncbi.nlm.nih.gov/books/NBK279690/
 
+**کتاب**
+- Wilson BA, Winkler ME, Ho BT (2019). *Bacterial Pathogenesis: A Molecular Approach*, 4th ed. ASM Press.
+
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Whole genome sequencing of bacterial genomes – tools and applications* (DTU): https://www.coursera.org/learn/wgs-bacteria
 - ‏edX: دوره‌ای ویژه در edX نیافتیم؛ نزدیک‌ترین: *Microbiology* (SNHU، MicroBachelors): https://www.edx.org/learn/microbiology/southern-new-hampshire-university-microbiology

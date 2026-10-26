@@ -127,6 +127,9 @@ qiime feature-classifier classify-consensus-vsearch --i-query rep-seqs.qza \
 
 این روش آموزش نمی‌خواهد (۱۳ ثانیه): برای هر ASV نزدیک‌ترین توالی‌های مرجع را می‌یابد و تاکسونومی **هم‌رأی** آن‌ها را برمی‌گرداند. همخوانی دو روش: **شاخه** ۴۱۰ از ۴۱۴ (۹۹٪)؛ **جنس** ۳۱۶ از ۳۴۰ ASVی که هر دو تا جنس رفتند (۹۳٪). در سطح بالا هر دو یک داستان می‌گویند؛ در سطح جنس کمابیش ۷٪ ناهمخوانی، که برای جمله‌ای مانند «جنس X در گروه A بیشتر بود» مهم است.
 
+> 📺 **فیلم:** *Analyzing amplicon sequencing data with Qiime 2, Part 1*: https://www.youtube.com/watch?v=ZFiZTZXhdJ4 (Institute for Systems Biology)
+> 📄 **مرجع:** Bokulich NA, et al. (2018). *Optimizing taxonomic classification of marker-gene amplicon sequences with QIIME 2's q2-feature-classifier plugin.* Microbiome 6:90. https://doi.org/10.1186/s40168-018-0470-z
+
 ---
 
 ## ۴. گام ۳: درخت و ژرفای rarefaction
@@ -197,6 +200,9 @@ qiime diversity core-metrics-phylogenetic --i-phylogeny rooted-tree.qza --i-tabl
 | Bray–Curtis | فراوانی، بی درخت (همان بخش ۰۴) |
 | ‏UniFrac بی‌وزن | بود و نبود + فاصله‌ی تبارزایشی؛ حساس به تاکسون‌های **کمیاب** |
 | ‏UniFrac وزن‌دار | فراوانی + فاصله‌ی تبارزایشی؛ زیر اثر تاکسون‌های **چیره** |
+
+> 📺 **فیلم:** *Alpha and beta diversity (clearly explained)*: https://www.youtube.com/watch?v=HyejN4On4Bg
+> 📄 **مرجع:** Lozupone C, Knight R (2005). *UniFrac.* Appl Environ Microbiol 71:8228–8235. https://doi.org/10.1128/AEM.71.12.8228-8235.2005
 
 ---
 
@@ -275,6 +281,9 @@ PERMDISP  F = 0.042  p = 0.842
 </div>
 
 پراکندگی دو گروه فرقی ندارد؛ پس PERMANOVA واقعاً تفاوت **ترکیب** را نشان می‌دهد.
+
+> 📺 **فیلم:** *Microbiome/Metagenome Analysis Workshop: DADA2*: https://www.youtube.com/watch?v=wV5_z7rR6yw (Brown University)
+> 📄 **مرجع:** Anderson MJ (2001). *A new method for non-parametric multivariate analysis of variance.* Austral Ecology 26:32–46.
 
 ---
 
@@ -408,6 +417,10 @@ qiime diversity adonis --i-distance-matrix … --m-metadata-file $M --p-formula 
 - McMurdie PJ, Holmes S (2014). *Waste not, want not: why rarefying microbiome data is inadmissible.* PLoS Comput Biol 10:e1003531. https://doi.org/10.1371/journal.pcbi.1003531
 - Gloor GB, et al. (2017). *Microbiome datasets are compositional: and this is not optional.* Front Microbiol 8:2224. https://doi.org/10.3389/fmicb.2017.02224
 - QIIME 2 forum: https://forum.qiime2.org
+
+**کتاب**
+- Beiko RG, Hsiao W, Parkinson J (eds.) (2018). *Microbiome Analysis: Methods and Protocols*. Methods Mol Biol 1849. Humana Press.
+- ‏Legendre P, Legendre L (2012). *Numerical Ecology*, 3rd ed. Elsevier. (فصل‌های فاصله و آزمون‌های چندمتغیره)
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University). دوره‌ای ویژه‌ی تحلیل میکروبیوم در Coursera نیافتیم؛ نزدیک‌ترین: https://www.coursera.org/learn/genomic-tools

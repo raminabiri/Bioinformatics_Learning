@@ -166,6 +166,9 @@ ls qc/fastqc_raw
 
 اکنون هشت فایل در `qc/fastqc_raw/` هست: یک `.html` و یک `.zip` برای هر FASTQ.
 
+> 📺 **فیلم:** *Using FastQC to check the quality of high throughput sequence*: https://www.youtube.com/watch?v=bz93ReOv87Y (Babraham Bioinformatics)
+> 📄 **مرجع:** FastQC: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
+
 ---
 
 ## ۵. گام ۲: خواندن خلاصه از خط فرمان
@@ -415,6 +418,9 @@ unzip -p qc/fastqc_raw/minigut_sample2_R1_fastqc.zip minigut_sample2_R1_fastqc/f
 
 </details>
 
+> 📺 **فیلم:** *GTN Training: Intro to NGS, Quality Control (Lecture)*: https://www.youtube.com/watch?v=BWonTPS4zB8 (Galaxy Project)
+> 📄 **مرجع:** Galaxy Training, *Quality Control*: https://training.galaxyproject.org/
+
 ---
 
 ## ۸. گام ۵: همه‌ی نمونه‌ها در یک صفحه با MultiQC
@@ -470,6 +476,9 @@ minigut_sample2_R2	0.15204257192013415	40.0	10.0
 - ‏`percent_gc`: R1 و R2 هر نمونه **یک** GC دارند، چنان‌که باید (هر دو از یک قطعه‌ی DNA آمده‌اند). اگر R1 و R2 یک نمونه GC گوناگون داشتند، شاید فایل‌ها میان نمونه‌ها جابه‌جا شده‌اند.
 - ‏`percent_fails`: درصد بخش‌های FAIL، یعنی ۱ از ۱۰ = ۱۰٪ برای نمونه‌ی ۲.
 - این جدول TSV است؛ با pandas (بخش ۰۳) یا R (بخش ۰۴) خوانده می‌شود.
+
+> 📺 **فیلم:** *Introduction to MultiQC*: https://www.youtube.com/watch?v=BbScv9TcaMg (Phil Ewels)
+> 📄 **مرجع:** Ewels P, et al. (2016). *MultiQC.* Bioinformatics 32:3047–3048. https://doi.org/10.1093/bioinformatics/btw354
 
 ---
 
@@ -542,6 +551,10 @@ multiqc qc/fastqc_raw -o qc/multiqc_raw                   # one report for all s
 - MultiQC documentation: https://docs.seqera.io/multiqc
 - Quince C, et al. (2017). *Shotgun metagenomics, from sampling to analysis.* Nature Biotechnology 35:833–844. https://doi.org/10.1038/nbt.3935
 - Galaxy Training, *Quality Control*: https://training.galaxyproject.org/training-material/topics/sequence-analysis/tutorials/quality-control/tutorial.html
+
+**کتاب**
+- ‏Wang X (2016). *Next-Generation Sequencing Data Analysis*. CRC Press. (فصل کنترل کیفیت ریدها)
+- Nagarajan M (ed.) (2018). *Metagenomics: Perspectives, Methods, and Applications*. Academic Press.
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University); کار با FASTQ و ابزارهای خط فرمان: https://www.coursera.org/learn/genomic-tools

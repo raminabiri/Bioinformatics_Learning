@@ -149,6 +149,9 @@ funannotate annotate -i fun --cpus 12
 
 چند پیش‌بینی‌گر (AUGUSTUS، GeneMark، SNAP، GlimmerHMM) را اجرا و با EVidenceModeler ترکیب می‌کند؛ خروجی برای **ارسال به NCBI** آماده است، و `annotate` لایه‌های ویژه‌ی قارچ (CAZymes، پروتئازها، پروتئین‌های ترشحی، خوشه‌های antiSMASH) را دارد.
 
+> 📺 **فیلم:** *Gene prediction with BRAKER3*: https://www.youtube.com/watch?v=6U_yXIgVJNg · *GTN Tutorial: Funannotate*: https://www.youtube.com/watch?v=r-wU6BhqIpk
+> 📄 **مرجع:** Gabriel L, et al. (2024). *BRAKER3.* Genome Research 34:769–777. https://doi.org/10.1101/gr.278090.123
+
 ---
 
 ## ۵. گام ۳: کیفیت با BUSCO (از مستندات)
@@ -182,6 +185,9 @@ busco -i genome.fa   -m genome   -l fungi -o busco_genome -c 8     # assembly co
 اسمبلی کمابیش همه‌ی ژن‌ها را دارد (۹۸٪)، ولی آنوتیشن ۱۴٪ آن‌ها را درست پیش‌بینی نکرده؛ **آنوتیشن** ضعیف است، نه اسمبلی. با شواهد بیشتر (RNA-seq، حالت ETP) دوباره پیش‌بینی کنید (تمرین ۶).
 
 </details>
+
+> 📺 **فیلم:** *BUSCO Tutorial: How to do a basic run with BUSCO to assess completeness of genomes*: https://www.youtube.com/watch?v=KtH1f5NrTvU
+> 📄 **مرجع:** Manni M, et al. (2021). *BUSCO update.* Mol Biol Evol 38:4647–4654. https://doi.org/10.1093/molbev/msab199
 
 ---
 
@@ -258,6 +264,9 @@ busco -i genome.fa -m genome -l fungi -o busco_genome -c 8
 - Manni M, et al. (2021). *BUSCO update: novel and streamlined workflows along with broader and deeper phylogenetic coverage.* Molecular Biology and Evolution 38:4647–4654. https://doi.org/10.1093/molbev/msab199
 - Shumate A, Salzberg SL (2021). *Liftoff: accurate mapping of gene annotations.* Bioinformatics 37:1639–1643. https://doi.org/10.1093/bioinformatics/btaa1016
 - BRAKER4: https://github.com/Gaius-Augustus/BRAKER4 · Funannotate: https://funannotate.readthedocs.io · BUSCO: https://busco.ezlab.org
+
+**کتاب**
+- Kollmar M (ed.) (2019). *Gene Prediction: Methods and Protocols*. Methods Mol Biol 1962. Humana Press.
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University). دوره‌ای ویژه‌ی آنوتیشن یوکاریوت در Coursera نیافتیم؛ نزدیک‌ترین: https://www.coursera.org/learn/genomic-tools

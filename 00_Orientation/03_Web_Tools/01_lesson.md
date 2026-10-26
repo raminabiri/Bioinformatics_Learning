@@ -78,6 +78,9 @@ M  V  Y  S  Y  T  E  K  K  R  I  R  K  D  F  G  K  R  P  Q
 از ۶۴ کدون، ۳ تا کدون پایان‌اند. پس در توالی‌ای که برای آن قاب «ساخته نشده»، به‌طور میانگین هر ۲۰ تا ۲۱ کدون یک کدون پایان پیدا می‌شود. تنها قاب درست ژن، صدها کدون بی‌پایان دارد، چون انتخاب طبیعی کدون‌های پایان را از آن بیرون نگه داشته است.
 </details>
 
+> 📺 **فیلم:** *Open Reading Frame Explained*: https://www.youtube.com/watch?v=6X2nqFuafno
+> 📄 **مرجع:** ExPASy Translate: https://web.expasy.org/translate/
+
 ---
 
 ## ۳. هم‌ترازی چیست؟
@@ -159,6 +162,9 @@ RPOB_MYCTU       417 LINIRPVVAAIKEFFGTSQLSQFMDQNNPLSGLTHKRRLSALGPGGLSRE    466
 از ۴۹۲ بشمارید: جایگاه ۵۳۱ چهلمین حرف ردیف بالاست (۵۳۱ − ۴۹۲ + ۱ = ۴۰). حرف‌های ۳۸ تا ۴۰ ردیف بالا `RIS` هستند، پس ۵۳۱ = **S** است. روبه‌رویش در ردیف پایین هم **S** است (حرف‌های ۳۸ تا ۴۰ ردیف پایین `RLS` هستند). جای این S در *M. tuberculosis* برابر ۴۱۷ + ۳۹ = **۴۵۶** است. شمردن دستی خسته‌کننده است؛ در بخش ۵ ابزار راحت‌تری داریم.
 </details>
 
+> 📺 **فیلم:** *Needleman-Wunsch Algorithm: Global Sequence Alignment! (with Example)*: https://www.youtube.com/watch?v=VWzXQhHoepI
+> 📄 **مرجع:** Needleman SB, Wunsch CD (1970). *A general method applicable to the search for similarities in the amino acid sequence of two proteins.* J Mol Biol 48:443–453. https://doi.org/10.1016/0022-2836(70)90057-4
+
 ---
 
 ## ۵. هم‌ترازی چندتایی با Clustal Omega
@@ -206,6 +212,9 @@ sp|P47768|RPOB_STAA8   GSSQLSQFMDQANPLAELTHKRRLSAL
 
 **چرا حفاظت‌شده؟** این ناحیه همان‌جایی است که RNA پلیمراز با RNA تازه‌ساخته کار می‌کند و ریفامپیسین هم همین‌جا می‌نشیند. تغییر در آن یا آنزیم را از کار می‌اندازد (و باکتری می‌میرد)، یا اگر باکتری زنده بماند، دارو دیگر خوب نمی‌چسبد. پس تنها جهش‌هایی می‌مانند که آنزیم را سالم نگه می‌دارند و دارو را دور می‌کنند.
 
+> 📺 **فیلم:** *Multiple Sequence Alignment and Phylogeny using Clustal Omega*: https://www.youtube.com/watch?v=6SaZG0QamcU
+> 📄 **مرجع:** Sievers F, et al. (2011). *Clustal Omega.* Mol Syst Biol 7:539. https://doi.org/10.1038/msb.2011.75
+
 ---
 
 ## ‏۶. BLAST، از نزدیک
@@ -230,6 +239,9 @@ sp|P47768|RPOB_STAA8   GSSQLSQFMDQANPLAELTHKRRLSAL
 
 نه. تنها ۱۵٪ از توالی شما با آن همانند است. ممکن است تنها یک دامنه‌ی مشترک (domain) یا یک تکه‌ی تکراری باشد. باید هم یکسانی بالا باشد و هم پوشش.
 </details>
+
+> 📺 **فیلم:** *Webinar: A Practical Guide to NCBI BLAST*: https://www.youtube.com/watch?v=KLBE0AuH-Sk (NCBI)
+> 📄 **مرجع:** Altschul SF, et al. (1990). *Basic local alignment search tool.* J Mol Biol 215:403–410. https://doi.org/10.1016/S0022-2836(05)80360-2
 
 ---
 
@@ -290,6 +302,10 @@ sp|P47768|RPOB_STAA8   GSSQLSQFMDQANPLAELTHKRRLSAL
 - Sievers F, et al. (2011). Fast, scalable generation of high-quality protein multiple sequence alignments using Clustal Omega. *Mol Syst Biol* 7:539. https://doi.org/10.1038/msb.2011.75
 - NCBI BLAST: https://blast.ncbi.nlm.nih.gov/Blast.cgi
 - Jin DJ, Gross CA (1988). Mapping and sequencing of mutations in the *Escherichia coli rpoB* gene that lead to rifampicin resistance. *J Mol Biol* 202(1):45–58. https://doi.org/10.1016/0022-2836(88)90517-7
+
+### کتاب
+- ‏Pevsner J (2015). *Bioinformatics and Functional Genomics*, 3rd ed. Wiley-Blackwell. (فصل ۳: هم‌ترازی دوتایی؛ فصل ۴: BLAST؛ فصل ۶: هم‌ترازی چندتایی)
+- ‏Durbin R, Eddy S, Krogh A, Mitchison G (1998). *Biological Sequence Analysis*. Cambridge University Press. (فصل ۲: هم‌ترازی دوتایی)
 
 ### فیلم‌های آموزشی
 

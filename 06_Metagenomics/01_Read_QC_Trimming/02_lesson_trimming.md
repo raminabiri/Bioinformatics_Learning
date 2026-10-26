@@ -180,6 +180,9 @@ Insert size peak (evaluated by paired-end reads): 143
 - ‏**Filtering result:** شمارش ریدهای **تکی** (R1 + R2): ۹۹٬۶۹۰ ماند، ۳۰۸ به‌خاطر کیفیت و ۲ به‌خاطر کوتاهی رفتند. 308 + 2 = 310 رید = ۱۵۵ جفت؛ 50000 − 155 = 49845. ✓
 - ‏**Insert size peak 143:** درازای رایج قطعه‌ی DNA؛ از روی هم‌پوشانی دو رید ۱۲۶ بازی برآورد شده است.
 
+> 📺 **فیلم:** *How to run fastp for trimming, filtering, and reports*: https://www.youtube.com/watch?v=zgQ6b0AerKQ (profbiot)
+> 📄 **مرجع:** Chen S, et al. (2018). *fastp.* Bioinformatics 34:i884–i890. https://doi.org/10.1093/bioinformatics/bty560
+
 ---
 
 ## ۴. گام ۲: چرا این راهبرد؟ سه راهبرد را بسنجید
@@ -457,6 +460,9 @@ total                12
 
 ‏(این جدول از اجرای 2026-10-14 همین گردش کار است.) `fastqc_raw` ۴ بار: ۲ نمونه × ۲ رید، با دو wildcard `{sample}` و `{read}`.
 
+> 📺 **فیلم:** *Using MultiQC Reports*: https://www.youtube.com/watch?v=qPbIlO_KWN0 (Phil Ewels)
+> 📄 **مرجع:** MultiQC documentation: https://docs.seqera.io/multiqc
+
 ---
 
 ## ۸. سه اشتباه رایج
@@ -547,6 +553,9 @@ report["filtering_result"]["too_short_reads"]
 - Chen S (2023). *Ultrafast one-pass FASTQ data preprocessing, quality control, and deduplication using fastp.* iMeta 2:e107. https://doi.org/10.1002/imt2.107
 - fastp documentation and code: https://github.com/OpenGene/fastp
 - Python documentation, *json — JSON encoder and decoder*: https://docs.python.org/3/library/json.html
+
+**کتاب**
+- ‏Wang X (2016). *Next-Generation Sequencing Data Analysis*. CRC Press. (فصل پیش‌پردازش و برش ریدها)
 
 **فیلم و دوره‌ی آموزشی**
 - Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University): https://www.coursera.org/learn/genomic-tools

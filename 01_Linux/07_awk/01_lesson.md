@@ -61,6 +61,9 @@ grep -v '^#' ecoli_k12.gff | head -n 8 > small.gff      # همان فایل کو
 
 ⚠️ `$1` در `awk` معنایی جدا از `$R` در Bash دارد. در `awk` نشانه‌ی `$` یعنی «ستونِ شماره‌ی …». به همین دلیل برنامه‌ی `awk` را **همیشه در نقل‌قول تکی** (`'…'`) می‌نویسیم تا Bash به `$`های آن دست نزند (بخش ۹ را ببینید).
 
+> 📺 **فیلم:** *AWK for Bioinformatics*: https://www.youtube.com/watch?v=RK4eHs_DyGo
+> 📄 **مرجع:** GNU Awk User's Guide: https://www.gnu.org/software/gawk/manual/gawk.html
+
 ---
 
 ## ۳. نخستین دستور: چاپ یک ستون
@@ -569,6 +572,9 @@ reads: 50000 mean length: 126
 
 جداکننده‌ی `-F` این‌جا لازم نیست، چون به ستون‌ها کاری نداریم و با کل خط (`$0`) کار می‌کنیم.
 
+> 📺 **فیلم:** *AWK for Bioinformatics, Part 2*: https://www.youtube.com/watch?v=Ug1rbs4TZuY
+> 📄 **مرجع:** GNU Awk User's Guide, بخش Built-in Variables (`NR`، `NF`): https://www.gnu.org/software/gawk/manual/gawk.html
+
 ---
 
 ## ۱۰. سه اشتباه رایج (با خروجی واقعی‌شان)
@@ -710,10 +716,13 @@ awk -F'\t' '$3=="gene" {l=$5-$4+1; if (l>max) max=l} END{print max}' ecoli_k12.g
 
 ## منابع
 
-### راهنما و کتاب
+### راهنما
 - ‏GNU Awk User's Guide (راهنمای رسمی): https://www.gnu.org/software/gawk/manual/gawk.html
 - Software Carpentry — *The Unix Shell*: https://swcarpentry.github.io/shell-novice/
+
+### کتاب
 - ‏Buffalo V. *Bioinformatics Data Skills*. O'Reilly, 2015 (فصل ۷، بخش awk): https://vincebuffalo.com/book/
+- ‏Aho AV, Kernighan BW, Weinberger PJ (2023). *The AWK Programming Language*, 2nd ed. Addison-Wesley. (نوشته‌ی سازندگان awk)
 
 ### فیلم‌های آموزشی
 

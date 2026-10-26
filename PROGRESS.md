@@ -5,11 +5,12 @@ Short handoff file. The full narrative of every session (decisions, problems, ve
 ## 1. Current goal
 Rewrite the course part by part in the step-by-step format of STYLE_GUIDE.md: dissect every command, real outputs only, strict prerequisites (nothing used before it is taught), ≥5 exercises with a hint under each title plus detailed solutions, references under every technique, RTL via `_tools/rtl_wrap.py`. The user says "ادامه" to continue; commit and push every 3 modules.
 
-**Now (2026-10-26):** parts 00–09 are **complete** (every module has lesson, exercises and solutions) and pushed. Part 10 is deliberately not written (user: "do not go into advanced topics"; it becomes course v2).
+**Now (2026-10-26):** every lesson in 00–09 now has per-technique 📺/📄 boxes and a book section in منابع (112 boxes added to 00–07). Parts 00–09 are **complete** (every module has lesson, exercises and solutions) and pushed. Part 10 is deliberately not written (user: "do not go into advanced topics"; it becomes course v2).
 
 **Standing rules from the user:**
 - Run only what needs **< 1 GB RAM**; everything heavier is code-only, labelled ✍️ "از مستندات". (2026-10-25: anything under 1 GB may run freely while genomepipe is busy; the 1.3 GB Vina runs wait for a free window and were approved once at ~3 min each on 2 cores.)
 - Glossary: STYLE_GUIDE §8. "ضراوت" → **"بیماری‌زایی"** (replaced course-wide).
+- Glossary extended 2026-10-26: عدم، می‌باشد، اکثر، لذا، توسط، نمودن/گردیدن (formal/Arabic words the user dislikes). `persian_words.py` flags them; course is clean.
 - Under **every technique**: a 📺 video URL and a 📄 reference; at the end of each lesson a منابع list with papers, **books**, and Coursera + edX + YouTube.
 - Do not touch `/data/1/genomepipe` or `genomepipe_tools`.
 
@@ -65,4 +66,4 @@ Rewrite the course part by part in the step-by-step format of STYLE_GUIDE.md: di
 2. Plan the separate **structural bioinformatics** course with the user and the expert reviewer, before writing anything.
 3. Plan the separate **NGS + third-generation sequencing** course (wet lab + bioinformatics); the topics of old 10/02–10/04 move there.
 4. Verify the env files online (`r_packages`, `workflow`, `metagenomics`, `bacterial_genomics`, `amr`, `phylo`, `structural`) once conda is reachable, and dry-run the 06/01 Snakefile. Note: there is no `structural` env on this server; the tools are in the miniforge base env.
-5. At course end: full link check with the user's VPN (`_tools/check_links.sh`), including every YouTube URL in parts 07–09 (two new ones in 09/03 solutions), and re-search a CRISPR-immunity video for 08/03 lesson 2 (currently only a PBS NOVA page, not YouTube).
+5. At course end: full link check (also check book chapter numbers added 2026-10-26) with the user's VPN (`_tools/check_links.sh`), including every YouTube URL in parts 07–09 (two new ones in 09/03 solutions), and re-search a CRISPR-immunity video for 08/03 lesson 2 (currently only a PBS NOVA page, not YouTube).

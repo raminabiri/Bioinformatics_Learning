@@ -459,6 +459,9 @@ cut -f3,7,13,14,17,18 ID.amr.tsv | column -t -s$'\t'
 - Hooper DC, Jacoby GA (2015). *Mechanisms of drug resistance: quinolone resistance.* Ann N Y Acad Sci 1354:12–31. https://doi.org/10.1111/nyas.12830
 - NCBI Pathogen Detection: https://www.ncbi.nlm.nih.gov/pathogens/
 
+**کتاب**
+- ‏Walsh C, Wencewicz T (2016). *Antibiotics: Challenges, Mechanisms, Opportunities*, 2nd ed. ASM Press. (بخش سازوکارهای مقاومت)
+
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Antimicrobial resistance – theory and methods* (Technical University of Denmark، DTU): https://www.coursera.org/learn/antimicrobial-resistance
 - ‏Coursera: *Whole genome sequencing of bacterial genomes – tools and applications* (DTU؛ بخش شناسایی ژن‌های مقاومت): https://www.coursera.org/learn/wgs-bacteria

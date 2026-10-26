@@ -138,6 +138,9 @@ largest start disagreements: stfR (1365 nt), fdnG (636 nt), fdoG (636 nt), insK 
 
 **درس:** حتی برای بهترین ژنوم شناخته‌شده، کمابیش ۴٪ ژن‌ها از دست می‌روند و ۵٪ کدون آغاز نادرست دارند. استثناهای زیستی جایی است که پیش‌بینی خودکار شکست می‌خورد.
 
+> 📺 **فیلم:** *Gene Prediction Approaches and Common Methods for Bacterial Gene Prediction*: https://www.youtube.com/watch?v=q19Ur8bi64k (NPTEL)
+> 📄 **مرجع:** Hyatt D, et al. (2010). *Prodigal.* BMC Bioinformatics 11:119. https://doi.org/10.1186/1471-2105-11-119
+
 ---
 
 ## ۴. گام ۲: RNAها (اجراشده)
@@ -248,6 +251,9 @@ prokka --outdir prokka_out --prefix isolateA --kingdom Bacteria --genus Escheric
 
 برای کار تازه **Bakta**؛ و **نسخه‌ی ابزار و پایگاه** را همیشه گزارش کنید.
 
+> 📺 **فیلم:** *GTN Tutorial: Bacterial Genome Annotation*: https://www.youtube.com/watch?v=VOwplmv0vNs (Bakta) · *GTN Training: Annotation of a Prokaryotic Genome*: https://www.youtube.com/watch?v=B8pIQZPf21Y (Prokka)
+> 📄 **مرجع:** Schwengers O, et al. (2021). *Bakta.* Microbial Genomics 7:000685. https://doi.org/10.1099/mgen.0.000685
+
 ---
 
 ## ۶. سه اشتباه رایج
@@ -318,6 +324,10 @@ prokka --outdir out --prefix X --kingdom Bacteria --locustag X --gram neg --cpus
 - Chan PP, et al. (2021). *tRNAscan-SE 2.0.* Nucleic Acids Research 49:9077–9096. https://doi.org/10.1093/nar/gkab688
 - Laslett D, Canback B (2004). *ARAGORN, a program to detect tRNA genes and tmRNA genes in nucleotide sequences.* Nucleic Acids Research 32:11–16. https://doi.org/10.1093/nar/gkh152
 - Bakta: https://github.com/oschwengers/bakta · Prokka: https://github.com/tseemann/prokka · barrnap: https://github.com/tseemann/barrnap
+
+**کتاب**
+- Kollmar M (ed.) (2019). *Gene Prediction: Methods and Protocols*. Methods Mol Biol 1962. Humana Press.
+- ‏Pevsner J (2015). *Bioinformatics and Functional Genomics*, 3rd ed. Wiley-Blackwell. (فصل ژنوم باکتری‌ها و آرکی‌ها)
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University). دوره‌ای ویژه‌ی آنوتیشن ژنوم باکتری در Coursera نیافتیم؛ نزدیک‌ترین: https://www.coursera.org/learn/genomic-tools

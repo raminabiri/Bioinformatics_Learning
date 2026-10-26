@@ -86,6 +86,9 @@ zcat   fastq/minigut_R1.fastq.gz   |   head   -n 4
 
 **نکته‌ی مهم:** وقتی `head` چهار خط گرفت، کارش تمام است و لوله را می‌بندد. `zcat` هم با دیدن لوله‌ی بسته می‌ایستد. پس حتی روی یک فایل ۱۰ گیگابایتی، این دستور بی‌درنگ تمام می‌شود.
 
+> 📺 **فیلم:** *The Shell, Episode 4: Pipes and Filters*: https://www.youtube.com/watch?v=5crQ2hMCgcs (Software Carpentry)
+> 📄 **مرجع:** Software Carpentry, *The Unix Shell*, درس «Pipes and Filters»: https://swcarpentry.github.io/shell-novice/
+
 ---
 
 ## ۳. شمردن ریدها
@@ -339,6 +342,9 @@ ls: cannot access 'nofile.txt': No such file or directory
 
 **چرا مهم است؟** ابزارهای بیوانفورماتیک در بسیاری از موارد نتیجه را در stdout و **گزارش کار** (پیشرفت، هشدارها، آمار) را در stderr می‌نویسند. با `2> log.txt` گزارش را برای بعد نگه می‌دارید، بی آن‌که با نتیجه درهم شود.
 
+> 📺 **فیلم:** *Unix for Neuroimagers #3: head, tail, and redirection*: https://www.youtube.com/watch?v=JdXFq6lMlX4
+> 📄 **مرجع:** GNU Bash Reference Manual, بخش Redirections: https://www.gnu.org/software/bash/manual/html_node/Redirections.html
+
 ---
 
 ## ۷. سه اشتباه رایج (با خروجی واقعی)
@@ -438,10 +444,13 @@ bash: out.txt: command not found
 
 ## منابع
 
-### درس و کتاب رایگان
+### درس و راهنمای رایگان
 - ‏Software Carpentry — *The Unix Shell*، درس «Pipes and Filters»: https://swcarpentry.github.io/shell-novice/
+
+### کتاب
 - ‏Shotts W. *The Linux Command Line*، فصل ۶ (Redirection): https://linuxcommand.org/tlcl.php
 - ‏Buffalo V. *Bioinformatics Data Skills*. O'Reilly, 2015 (فصل ۳، Unix Data Tools): https://vincebuffalo.com/book/
+- ‏Shotts W (2019). *The Linux Command Line*, 2nd ed. No Starch Press. (فصل ۶: ریختن خروجی و لوله)
 
 ### فیلم‌های آموزشی
 

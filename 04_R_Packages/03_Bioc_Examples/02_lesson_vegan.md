@@ -158,6 +158,9 @@ saved diversity_alpha.tsv diversity_bray.tsv diversity_rarecurve.png
 
 </details>
 
+> 📺 **فیلم:** *Using vegan to calculate alpha diversity metrics within the tidyverse in R*: https://www.youtube.com/watch?v=wq1SXGQYgCs (Riffomonas Project)
+> 📄 **مرجع:** vegan vignette, *Diversity analysis in vegan*: https://cran.r-project.org/web/packages/vegan/vignettes/diversity-vegan.pdf
+
 ---
 
 ## ۵. سطح طبقه‌بندی: گونه یا جنس؟
@@ -228,6 +231,9 @@ saved diversity_genus_alpha.tsv diversity_genus_bray.tsv diversity_genus_rarecur
 
 **چرا مهم است:** نمونه‌ای با ۵۰٬۰۰۰ رید و نمونه‌ای با ۵٬۰۰۰ رید را نمی‌توان مستقیم در غنا سنجید؛ نمونه‌ی پرریدتر موجودات کمیاب بیشتری «می‌بیند». منحنی نادرسازی نشان می‌دهد آیا این خطر هست.
 
+> 📺 **فیلم:** *Vegan R Package Tutorial*: https://www.youtube.com/watch?v=zzoO8f4nkv4
+> 📄 **مرجع:** vegan (CRAN): https://cran.r-project.org/package=vegan
+
 ---
 
 ## ۷. سه اشتباه رایج
@@ -296,6 +302,10 @@ cat diversity_bray.tsv                                      # Bray-Curtis matrix
 - vegan package (CRAN): https://cran.r-project.org/package=vegan
 - vegan vignette *Diversity analysis in vegan*: https://cran.r-project.org/web/packages/vegan/vignettes/diversity-vegan.pdf
 - vegan development site: https://vegandevs.github.io/vegan/
+
+**کتاب**
+- Borcard D, Gillet F, Legendre P (2018). *Numerical Ecology with R*, 2nd ed. Springer.
+- Magurran AE (2004). *Measuring Biological Diversity*. Blackwell.
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Bioconductor for Genomic Data Science* (Johns Hopkins University). دوره‌ای ویژه‌ی vegan در Coursera نیافتیم؛ این نزدیک‌ترین دوره‌ی کار با بسته‌های زیستی R است: https://www.coursera.org/learn/bioconductor

@@ -99,6 +99,9 @@ quast.py shovill_out/contigs.fa -r ecoli_k12.fna -g ecoli_k12.gff -o quast_ref -
 | `Genome fraction (%)` | (با مرجع) درصد بازهای مرجع که پوشیده شده‌اند | در سویه‌ی دیگر هرگز ۱۰۰٪ نیست |
 | `Duplication ratio` | (با مرجع) بازهای هم‌ترازشده‌ی اسمبلی ÷ بازهای پوشیده‌ی مرجع | بالاتر از کمابیش ۱٫۰۵ = هم‌پوشانی کانتیگ‌ها یا آلودگی هم‌گونه |
 
+> 📺 **فیلم:** *Module 18: Assembly Metrics w/ QUAST*: https://www.youtube.com/watch?v=eGlNmC6AuN8 (UNH)
+> 📄 **مرجع:** Gurevich A, et al. (2013). *QUAST.* Bioinformatics 29:1072–1075. https://doi.org/10.1093/bioinformatics/btt086
+
 ---
 
 ## ۵. گام ۳: CheckM2، کامل بودن و آلودگی (از مستندات)
@@ -121,6 +124,9 @@ checkm2 predict --threads 8 --input shovill_out/contigs.fa --output-directory ch
 - ‏*E. coli* گونه‌ای شناخته‌شده است؛ ایزوله‌ی سالم باید **کامل بودن نزدیک ۱۰۰٪** و **آلودگی نزدیک ۰٪** داشته باشد.
 - **آلودگی بالا** = بیشتر **مخلوط** (دو سویه یا دو گونه در کشت، یا آلودگی در آزمایشگاه).
 - **مخلوط دو سویه‌ی یک گونه** آلودگی را کمتر از واقع نشان می‌دهد: ژن‌های کمابیش یکسان در اسمبلی فشرده می‌شوند. نشانه‌های بهتر: طول کل بیشتر از انتظار، و ده‌ها کانتیگ با پوشش کمابیش نیمِ بقیه (تمرین ۴).
+
+> 📺 **فیلم:** *CheckM for Genome Consistency*: https://www.youtube.com/watch?v=sLtSDs3sh6k (Rob Edwards)
+> 📄 **مرجع:** Chklovski A, et al. (2023). *CheckM2.* Nature Methods 20:1203–1212. https://doi.org/10.1038/s41592-023-01940-w
 
 ---
 
@@ -245,6 +251,10 @@ samtools index asm.bam && samtools coverage asm.bam            # meandepth per c
 - Wick RR, et al. (2017). *Unicycler: resolving bacterial genome assemblies from short and long sequencing reads.* PLoS Comput Biol 13:e1005595. https://doi.org/10.1371/journal.pcbi.1005595
 - Kolmogorov M, et al. (2019). *Assembly of long, error-prone reads using repeat graphs.* Nature Biotechnology 37:540–546. https://doi.org/10.1038/s41587-019-0072-8
 - QUAST manual: https://quast.sourceforge.net/docs/manual.html · CheckM2: https://github.com/chklovski/CheckM2
+
+**کتاب**
+- Compeau P, Pevzner P (2015). *Bioinformatics Algorithms: An Active Learning Approach*, 2nd ed. Active Learning Publishers.
+- ‏Wang X (2016). *Next-Generation Sequencing Data Analysis*. CRC Press. (فصل اسمبلی و سنجش کیفیت)
 
 **فیلم و دوره‌ی آموزشی**
 - Coursera: *Genome Sequencing (Bioinformatics II)* (UC San Diego): https://www.coursera.org/learn/genome-sequencing

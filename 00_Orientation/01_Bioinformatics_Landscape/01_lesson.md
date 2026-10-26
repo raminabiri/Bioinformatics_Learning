@@ -72,6 +72,9 @@ M  V  Y  S  Y  T  E  K  K  R  I  R  K  D  F  G  K  R  P  Q
 ‏`ATG` = متیونین (M)، `GTT` = والین (V)، `TAC` = تیروزین (Y). بله، همان `M V Y` است. یعنی کاری که کامپیوتر برای ۱٬۳۴۲ اسیدآمینه‌ی این پروتئین انجام می‌دهد، دقیقاً همان کاری است که شما با جدول کد ژنتیکی می‌کنید.
 </details>
 
+> 📺 **فیلم:** *Different layers and levels of bioinformatics*: https://www.youtube.com/watch?v=rTXR5_dyxQA (Rob Edwards)
+> 📄 **مرجع:** Luscombe NM, Greenbaum D, Gerstein M (2001). *What is bioinformatics? A proposed definition and overview of the field.* Methods Inf Med 40:346–358.
+
 ---
 
 ## ۳. چرا بدون کامپیوتر نمی‌شود؟ مسئله‌ی مقیاس
@@ -164,6 +167,9 @@ BBBBBFFFFFFFFFFFFFFFFFF/FFFFFFF...  ← کیفیت هر باز (هر کاراک�
 **متاژنومیکس و میکروبیوم** (بخش ۰۶)، چون نمونه (مدفوع) مخلوطی از صدها گونه است و پرسش درباره‌ی ترکیب جامعه است، نه یک سویه‌ی خاص.
 </details>
 
+> 📺 **فیلم:** *Intro to Genomics & Bioinformatics: Experimenting with Genomic Data*: https://www.youtube.com/watch?v=r5OQ-4Zmo50 (Stanford)
+> 📄 **مرجع:** Pevsner J (2015). *Bioinformatics and Functional Genomics*, 3rd ed. Wiley-Blackwell. فصل ۱.
+
 ---
 
 ## ۵. مسیر یک پروژه، قدم‌به‌قدم
@@ -239,6 +245,9 @@ BBBBBFFFFFFFFFFFFFFFFFF/FFFFFFF...  ← کیفیت هر باز (هر کاراک�
 
 در کار یعنی: ریدهای خام را در یک آرشیو عمومی مانند **ENA** یا **SRA** ثبت کنید و شناسه‌ی پروژه را در مقاله بیاورید. با این آرشیوها در درس بعد ([دیتابیس‌های زیستی](../02_Biological_Databases/)) کار می‌کنیم.
 
+> 📺 **فیلم:** *The FAIR principles explained*: https://www.youtube.com/watch?v=5OeCrQE3HhE (Maastricht University)
+> 📄 **مرجع:** Sandve GK, et al. (2013). *Ten Simple Rules for Reproducible Computational Research.* PLoS Comput Biol 9:e1003285. https://doi.org/10.1371/journal.pcbi.1003285
+
 ---
 
 ## ۷. سه اشتباه رایج تازه‌کارها
@@ -296,6 +305,10 @@ BBBBBFFFFFFFFFFFFFFFFFF/FFFFFFF...  ← کیفیت هر باز (هر کاراک�
 - ‏EMBL-EBI Training (دوره‌های رایگان آنلاین): https://www.ebi.ac.uk/training/
 - Galaxy Training Network: https://training.galaxyproject.org/
 - ‏Rosalind (تمرین‌های برنامه‌نویسی بیوانفورماتیک، از ساده به سخت): https://rosalind.info/
+
+### کتاب
+- ‏Pevsner J (2015). *Bioinformatics and Functional Genomics*, 3rd ed. Wiley-Blackwell. (فصل ۱: نگاهی به رشته)
+- ‏Lesk AM (2019). *Introduction to Bioinformatics*, 5th ed. Oxford University Press. (فصل ۱)
 
 ### فیلم‌های آموزشی
 

@@ -94,6 +94,9 @@ panaroo -i *.gff -o results --clean-mode strict -a core --aligner mafft --core_t
 
 **پیش از Panaroo:** همه‌ی ژنوم‌ها را با **یک ابزار و یک نسخه‌ی پایگاه** آنوتیت کنید (ماژول ۰۲، اشتباه رایج ۳). مستندات Panaroo یک گام کیفیت هم دارد (`panaroo-qc` با پایگاه Mash) تا ژنوم‌های آلوده یا از گونه‌ی دیگر را پیش از کار پیدا کنید.
 
+> 📺 **فیلم:** *Panaroo Pangenome Masterclass*: https://www.youtube.com/watch?v=r4jOFIlEIA4
+> 📄 **مرجع:** Tonkin-Hill G, et al. (2020). *Producing polished prokaryotic pangenomes with the Panaroo pipeline.* Genome Biology 21:180. https://doi.org/10.1186/s13059-020-02090-4
+
 ---
 
 ## ۴. گام ۲: خروجی‌ها (از مستندات)
@@ -108,6 +111,9 @@ panaroo -i *.gff -o results --clean-mode strict -a core --aligner mafft --core_t
 | ‏`pan_genome_reference.fa` | یک توالی برای هر خوشه (ترتیب ژن‌ها معنا ندارد) |
 | ‏`final_graph.gml` | گراف پن‌ژنوم؛ با Cytoscape دیدنی |
 | ‏`struct_presence_absence.csv` | بود و نبود بازآرایی‌های ژنومی |
+
+> 📺 **فیلم:** *Roary pan genome tutorial*: https://www.youtube.com/watch?v=7UWmi5l_LFM
+> 📄 **مرجع:** Page AJ, et al. (2015). *Roary.* Bioinformatics 31:3691–3693. https://doi.org/10.1093/bioinformatics/btv421
 
 ---
 
@@ -232,6 +238,9 @@ freq = pa.sum(axis=1) / pa.shape[1]
 - Page AJ, et al. (2015). *Roary: rapid large-scale prokaryote pan genome analysis.* Bioinformatics 31:3691–3693. https://doi.org/10.1093/bioinformatics/btv421
 - Tettelin H, et al. (2005). *Genome analysis of multiple pathogenic isolates of Streptococcus agalactiae: implications for the microbial "pan-genome".* PNAS 102:13950–13955. https://doi.org/10.1073/pnas.0506758102
 - Panaroo documentation (source in the repository): https://github.com/gtonkinhill/panaroo/tree/master/docs · Roary: https://sanger-pathogens.github.io/Roary/
+
+**کتاب**
+- Mengoni A, Galardini M, Fondi M (eds.) (2015). *Bacterial Pangenomics: Methods and Protocols*. Methods Mol Biol 1231. Humana Press.
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University). دوره‌ای ویژه‌ی پن‌ژنوم در Coursera نیافتیم؛ نزدیک‌ترین: https://www.coursera.org/learn/genomic-tools

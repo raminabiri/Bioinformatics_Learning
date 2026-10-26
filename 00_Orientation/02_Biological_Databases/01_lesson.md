@@ -60,6 +60,9 @@
 به **UniProt**. GenBank توالی‌ها را همان‌طور که پژوهشگران ثبت کرده‌اند نگه می‌دارد و در بسیاری از موارد توضیح کمی درباره‌ی کار پروتئین دارد. در UniProt کارشناسان آگاهی‌های مقاله‌ها را درباره‌ی کار، جایگاه در سلول و ساختار پروتئین جمع کرده‌اند.
 </details>
 
+> 📺 **فیلم:** *European Nucleotide Archive: An Introduction*: https://www.youtube.com/watch?v=p2-mE45Ezyk (EMBL-EBI) · *A guide to UniProt for students and biological scientists*: https://www.youtube.com/watch?v=_VJVs2dcGPY
+> 📄 **مرجع:** The UniProt Consortium (2025). *UniProt: the Universal Protein Knowledgebase in 2025.* Nucleic Acids Res.
+
 ---
 
 ## ۳. شناسه‌ها: «کد ملی» هر رکورد
@@ -102,6 +105,9 @@
 
 ‏`SAM` یعنی **نمونه** (sample). حرف بعدی `N` است، یعنی در **NCBI** (آمریکا) ثبت شده.
 </details>
+
+> 📺 **فیلم:** *NCBI Minute: How to Quickly Retrieve Sequences from NCBI*: https://www.youtube.com/watch?v=Ahrix9JsaIU
+> 📄 **مرجع:** Sayers EW, et al. (2025). *Database resources of the National Center for Biotechnology Information in 2025.* Nucleic Acids Res.
 
 ---
 
@@ -168,6 +174,9 @@
 در بخش **Sequence databases** شناسه‌ی `NP_418414.1` هست. `NP_` یعنی پروتئین گزینش‌شده‌ی RefSeq، و `.1` یعنی نسخه‌ی یکم.
 </details>
 
+> 📺 **فیلم:** *NCBI Gene Function, Location, and Sequence Information*: https://www.youtube.com/watch?v=rDaF8mc9TAs
+> 📄 **مرجع:** NCBI Gene: https://www.ncbi.nlm.nih.gov/gene/ · UniProt: https://www.uniprot.org
+
 ---
 
 ## ۵. سه اشتباه رایج تازه‌کارها
@@ -224,6 +233,10 @@
 - INSDC (2025). The International Nucleotide Sequence Database Collaboration (INSDC): enhancing global participation. *Nucleic Acids Res.* https://doi.org/10.1093/nar/gkae1058
 - Burley SK, et al. (2025). Updated resources for exploring experimentally-determined PDB structures and Computed Structure Models at the RCSB Protein Data Bank. *Nucleic Acids Res.* https://doi.org/10.1093/nar/gkae1091
 - Varadi M, et al. (2024). AlphaFold Protein Structure Database in 2024. *Nucleic Acids Res.* https://doi.org/10.1093/nar/gkad1011
+
+### کتاب
+- ‏Pevsner J (2015). *Bioinformatics and Functional Genomics*, 3rd ed. Wiley-Blackwell. (فصل ۲: دسترسی به داده‌ی توالی)
+- ‏Lesk AM (2019). *Introduction to Bioinformatics*, 5th ed. Oxford University Press. (فصل پایگاه‌های داده)
 
 ### فیلم‌های آموزشی
 

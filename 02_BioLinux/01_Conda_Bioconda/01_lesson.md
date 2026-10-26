@@ -108,6 +108,9 @@ conda config --set channel_priority strict
 
 ⚠️ **اگر `conda` نمی‌تواند به مخزن وصل شود** (خطاهایی مانند `Could not resolve host: conda.anaconda.org` یا `SSL connect error`)، دسترسی شبکه به مخزن بسته است. روی سرور همین دوره در ۲۰۲۶ چنین شد. راه‌ها: آینه‌ی (mirror) محلی دانشگاه، یا اینترنت دیگری. بخش «کنجکاوها» را ببینید.
 
+> 📺 **فیلم:** *Demystifying Conda (Anaconda, Miniconda and Bioconda) and Virtual Environments*: https://www.youtube.com/watch?v=2bXGm0ZnJ38 (Bioinformagician)
+> 📄 **مرجع:** Miniforge: https://github.com/conda-forge/miniforge
+
 ---
 
 ## ۴. نخستین محیط، از یک فایل
@@ -240,6 +243,9 @@ course_demo              /home/ubuntu/miniforge3/envs/course_demo
 
 `*` کنار محیط **فعال** است. هر محیط یک پوشه در `~/miniforge3/envs/` است.
 </details>
+
+> 📺 **فیلم:** *Conda and Bioconda, the best thing since sliced bread*: https://www.youtube.com/watch?v=x4IghzGI_6Y (Devon Ryan، ISMB 2019)
+> 📄 **مرجع:** Grüning B, et al. (2018). *Bioconda.* Nature Methods 15:475–476. https://doi.org/10.1038/s41592-018-0046-7
 
 ---
 
@@ -460,6 +466,9 @@ You can list all discoverable environments with `conda info --envs`.
 - ‏Bioconda (راهنمای رسمی، شامل تنظیم کانال‌ها): https://bioconda.github.io/
 - Miniforge: https://github.com/conda-forge/miniforge
 - conda — Managing environments: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
+
+### کتاب
+- ‏Buffalo V (2015). *Bioinformatics Data Skills*. O'Reilly. (فصل ۲: سامان دادن پروژه و نرم‌افزار)
 
 ### فیلم‌های آموزشی
 

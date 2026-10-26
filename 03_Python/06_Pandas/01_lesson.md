@@ -97,6 +97,9 @@ dtype: object
 - ‏`shape`: ۴٬۵۰۶ سطر، ۵ ستون.
 - ‏`dtypes`: **نوع** هر ستون. pandas خودش فهمید که `start` و `length` **عدد**ند (`int64`) و `name` متن (`str`). دیگر `int()` لازم نیست (اشتباه ۱ ماژول ۰۳)!
 
+> 📺 **فیلم:** *Python Pandas Tutorial (Part 1): Getting Started with Data Analysis*: https://www.youtube.com/watch?v=ZyhVh-qRZPA (Corey Schafer)
+> 📄 **مرجع:** pandas, *10 minutes to pandas*: https://pandas.pydata.org/docs/user_guide/10min.html
+
 ---
 
 ## ۳. یک ستون و آمار آن
@@ -291,6 +294,9 @@ np.int64(146)
 
 **۱۴۶ ژن** طولی دارند که مضرب ۳ نیست! (`True` هنگام جمع، ۱ شمرده می‌شود.) ۱۴۵ تا از آن‌ها ژن‌های **RNA** اند (۷۲ tRNA، ۷۲ ncRNA و ۱ rRNA؛ با `grep` روی `gene_biotype` در GFF شمرده شد)، که کدون ندارند و طولشان به ۳ ربطی ندارد. جدول `genes.tsv` همه‌ی خط‌های `gene` را دارد، نه تنها ژن‌های پروتئین‌ساز. و یکی، **prfB**، پروتئین‌ساز است: همان ژنی که ریبوزوم هنگام خواندنش یک باز می‌لغزد (ماژول ۰۵).
 
+> 📺 **فیلم:** *Python Pandas Tutorial (Part 8): Grouping and Aggregating*: https://www.youtube.com/watch?v=txMdrV1Ut64 (Corey Schafer)
+> 📄 **مرجع:** pandas, *Group by: split-apply-combine*: https://pandas.pydata.org/docs/user_guide/groupby.html
+
 ---
 
 ## ۶. نمودار: هیستوگرام طول ژن‌ها
@@ -344,6 +350,9 @@ python3 $P/gene_lengths.py genes.tsv gene_lengths.png
 ![هیستوگرام طول ژن‌ها](../99_scripts_data/06_Pandas/images/gene_lengths.png)
 
 **نگاه زیستی:** بیشتر ژن‌ها ۲۰۰ تا ۱٬۵۰۰ باز دارند (پروتئین‌های ۷۰ تا ۵۰۰ آمینواسیدی). دُم بلند سمت راست (چند ژن بالای ۴٬۰۰۰ باز، و yeeJ با ۷٬۰۲۰) میانگین را از میانه بالاتر برده است. **توزیع چوله** (skewed): برای چنین داده‌ای، میانه گزارش بهتری از «ژن معمولی» است.
+
+> 📺 **فیلم:** *Histogram in Python: Matplotlib Tutorial, Pandas Tutorial*: https://www.youtube.com/watch?v=m0y5uqU--YQ
+> 📄 **مرجع:** matplotlib, *Quick start guide*: https://matplotlib.org/stable/users/explain/quick_start.html
 
 ---
 
@@ -591,6 +600,9 @@ KeyError: 'lenght'
 - راهنمای رسمی pandas، «10 minutes to pandas»: https://pandas.pydata.org/docs/user_guide/10min.html
 - راهنمای matplotlib، «Quick start guide»: https://matplotlib.org/stable/users/explain/quick_start.html
 - Data Carpentry — *Data Analysis and Visualization in Python for Ecologists*: https://datacarpentry.github.io/python-ecology-lesson/
+
+### کتاب
+- ‏McKinney W (2022). *Python for Data Analysis*, 3rd ed. O'Reilly. (فصل ۵: آغاز کار با pandas؛ فصل ۹: نمودار؛ فصل ۱۰: گروه‌بندی)
 
 ### فیلم‌های آموزشی
 

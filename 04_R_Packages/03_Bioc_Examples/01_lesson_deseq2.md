@@ -231,6 +231,9 @@ saved deseq2_results.tsv deseq2_MA.png deseq2_PCA.png
 
 **روی‌هم‌رفته ۹۳ ژن «تغییرکرده» گزارش شد.** می‌دانیم ۱۰۰ ژن واقعاً تغییر کرده‌اند؛ بخش ۷ می‌سنجد کدام‌ها درست بودند.
 
+> 📺 **فیلم:** *DESeq2 workflow tutorial: Differential Gene Expression Analysis*: https://www.youtube.com/watch?v=OzNzO8qwwp0 (Bioinformagician)
+> 📄 **مرجع:** Love MI, Huber W, Anders S (2014). *DESeq2.* Genome Biology 15:550. https://doi.org/10.1186/s13059-014-0550-8
+
 ---
 
 ## ۵. خواندن جدول نتیجه
@@ -349,6 +352,9 @@ awk -F'\t' 'NR > 1 && $7 != "NA" && $7 < 0.05 && $3 < -2' deseq2_results.tsv | w
 پاسخ را در فایل پاسخ‌ها (تمرین ۳) بسنجید.
 
 </details>
+
+> 📺 **فیلم:** *StatQuest: DESeq2, part 1, Library Normalization*: https://www.youtube.com/watch?v=UFB993xufUU
+> 📄 **مرجع:** DESeq2 vignette: https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html
 
 ---
 
@@ -535,6 +541,9 @@ awk -F'\t' 'NR>1 && $7!="NA" && $7<0.05 && $3>0' deseq2_results.tsv   # up in th
 - Love MI, Huber W, Anders S (2014). *Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2.* Genome Biology 15:550. https://doi.org/10.1186/s13059-014-0550-8
 - DESeq2 vignette (Bioconductor): https://bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.html
 - DESeq2 package page: https://bioconductor.org/packages/DESeq2/
+
+**کتاب**
+- ‏Holmes S, Huber W (2019). *Modern Statistics for Modern Biology*. Cambridge University Press. (فصل ۸: داده‌ی شمارشی توان‌بالا)
 
 **فیلم و دوره‌ی آموزشی**
 - Coursera: *Bioconductor for Genomic Data Science* (Johns Hopkins University): https://www.coursera.org/learn/bioconductor

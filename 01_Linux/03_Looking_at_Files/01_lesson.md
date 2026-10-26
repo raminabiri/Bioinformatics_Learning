@@ -265,6 +265,9 @@ less -S ecoli_k12.gff
 
 گزینه‌ی `-S` خط‌های بلند را **نمی‌شکند** و بیرون از صفحه نگه می‌دارد. بی آن، هر خط GFF چند خط صفحه را می‌گیرد و ستون‌ها درهم می‌شوند.
 
+> 📺 **فیلم:** *Linux CLI Tutorial: Cat, More, Less, Head and Tail*: https://www.youtube.com/watch?v=gfuDvpi_jYY
+> 📄 **مرجع:** GNU Coreutils manual (`head`، `tail`، `wc`): https://www.gnu.org/software/coreutils/manual/coreutils.html
+
 ---
 
 ## ۷. فایل‌های فشرده: `file` و `zless`
@@ -397,10 +400,13 @@ file sample.fasta host_chr21_region.fa
 
 ## منابع
 
-### درس و کتاب رایگان
+### درس و راهنمای رایگان
 - ‏Software Carpentry — *The Unix Shell*، درس «Working With Files and Directories»: https://swcarpentry.github.io/shell-novice/
+
+### کتاب
 - ‏Shotts W. *The Linux Command Line*، فصل ۳ (Exploring the System): https://linuxcommand.org/tlcl.php
 - ‏Buffalo V. *Bioinformatics Data Skills*. O'Reilly, 2015 (فصل ۳، Inspecting and Manipulating Text Data): https://vincebuffalo.com/book/
+- ‏Shotts W (2019). *The Linux Command Line*, 2nd ed. No Starch Press. (فصل ۳: گشتن در سامانه)
 
 ### فیلم‌های آموزشی
 

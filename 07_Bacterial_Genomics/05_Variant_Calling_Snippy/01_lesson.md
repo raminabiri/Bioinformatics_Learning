@@ -89,6 +89,9 @@ snippy --cpus 8 --outdir iso1_snps --ref ecoli_k12.gbk --R1 iso1_R1.fastq.gz --R
 
 درون Snippy همان گام‌های آشناست: نشاندن ریدها با یک ابزار هم‌ترازی (`snps.bam`؛ بخش ۰۶)، فراخوانی واریانت به VCF (بخش ۰۲)، و آنوتیشن اثر هر واریانت روی ژن‌ها (snpEff).
 
+> 📺 **فیلم:** *EMBL-ABR Training: Genetic Variant Detection using Galaxy Australia*: https://www.youtube.com/watch?v=FB8D3UayLSc
+> 📄 **مرجع:** Snippy: https://github.com/tseemann/snippy
+
 ---
 
 ## ۴. گام ۲: خواندن `snps.tab` (از مستندات)
@@ -122,6 +125,9 @@ plas     3221  mnp     GA    CT     CT:39 CT:0      CDS   +                    E
 | `EFFECT` | اثر (snpEff): `missense_variant` (تغییر اسیدآمینه)، `synonymous_variant`، `stop_gained`، … با تغییر نوکلئوتید (`c.`) و پروتئین (`p.`) |
 
 ‏`p.Lys183Thr` یعنی «اسیدآمینه‌ی ۱۸۳، لیزین، به ترئونین تبدیل شد».
+
+> 📺 **فیلم:** *Variant Annotation and effect prediction with snpeff*: https://www.youtube.com/watch?v=Fcd3e9jT-7I
+> 📄 **مرجع:** Cingolani P, et al. (2012). *SnpEff.* Fly 6:80–92. https://doi.org/10.4161/fly.19695
 
 ---
 
@@ -206,6 +212,9 @@ FastTree -gtr -nt clean.core.aln > clean.core.tree
 
 ‏(Gubbins نواحی بازترکیب را می‌یابد؛ `snp-sites` تنها جایگاه‌های SNP را نگه می‌دارد؛ FastTree درخت می‌سازد. درخت و تفسیرش: بخش ۰۸.)
 
+> 📺 **فیلم:** *Variant Calling: An Overview*: https://www.youtube.com/watch?v=zk821_-Ubx4
+> 📄 **مرجع:** snp-dists: https://github.com/tseemann/snp-dists
+
 ---
 
 ## ۷. گام ۵: «آیا انتقال رخ داده؟»، پاسخ محتاطانه
@@ -286,6 +295,10 @@ snp-sites -c gubbins.filtered_polymorphic_sites.fasta > clean.core.aln
 - Cingolani P, et al. (2012). *A program for annotating and predicting the effects of single nucleotide polymorphisms, SnpEff.* Fly 6:80–92. https://doi.org/10.4161/fly.19695
 - Hooper DC, Jacoby GA (2015). *Mechanisms of drug resistance: quinolone resistance.* Annals of the New York Academy of Sciences 1354:12–31. https://doi.org/10.1111/nyas.12830
 - snp-dists: https://github.com/tseemann/snp-dists
+
+**کتاب**
+- ‏Wang X (2016). *Next-Generation Sequencing Data Analysis*. CRC Press. (فصل یافتن واریانت)
+- Robinson DA, Falush D, Feil EJ (eds.) (2010). *Bacterial Population Genetics in Infectious Disease*. Wiley-Blackwell.
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University)؛ نشاندن ریدها و فراخوانی واریانت: https://www.coursera.org/learn/genomic-tools

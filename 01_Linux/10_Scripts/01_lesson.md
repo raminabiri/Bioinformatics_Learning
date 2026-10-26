@@ -129,6 +129,9 @@ chmod +x hello.sh
 پس از `chmod +x`، `ls -l hello.sh` با `-rwxrwxr-x` آغاز می‌شود و `./hello.sh` کار می‌کند. `./` یعنی «در همین پوشه». در این دوره همیشه `bash script.sh` می‌نویسیم که `x` نمی‌خواهد.
 </details>
 
+> 📺 **فیلم:** *How To Write Bash Scripts In Linux, Part 2: Hello World*: https://www.youtube.com/watch?v=boqC9QenshY (LearnLinuxTV)
+> 📄 **مرجع:** Software Carpentry, *The Unix Shell*, درس «Shell Scripts»: https://swcarpentry.github.io/shell-novice/
+
 ---
 
 ## ۳. ورودی دادن به اسکریپت
@@ -419,6 +422,9 @@ gzip: missing.fastq.gz: No such file or directory
 | `-u` | متغیرِ نبوده خالی می‌شود | خطا: «unbound variable» |
 | `-o pipefail` | تنها خطای آخرین دستور لوله دیده می‌شود | خطای هر دستور لوله دیده می‌شود |
 
+> 📺 **فیلم:** *How To Write Bash Scripts In Linux, Part 6: Exit Codes*: https://www.youtube.com/watch?v=6N4RNPRx0xs (LearnLinuxTV)
+> 📄 **مرجع:** GNU Bash Reference Manual, بخش The Set Builtin: https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
+
 ---
 
 ## ۶. کارهای طولانی
@@ -523,10 +529,13 @@ tmux attach -t analysis    # بازگشت به نشست، حتی فردا
 
 ## منابع
 
-### درس و کتاب رایگان
+### درس و راهنمای رایگان
 - ‏Software Carpentry — *The Unix Shell*، درس «Shell Scripts»: https://swcarpentry.github.io/shell-novice/
-- ‏Shotts W. *The Linux Command Line*، بخش ۴ (Writing Shell Scripts): https://linuxcommand.org/tlcl.php
 - ‏GNU Bash Reference Manual، بخش The Set Builtin: https://www.gnu.org/software/bash/manual/bash.html
+
+### کتاب
+- ‏Shotts W. *The Linux Command Line*، بخش ۴ (Writing Shell Scripts): https://linuxcommand.org/tlcl.php
+- ‏Buffalo V (2015). *Bioinformatics Data Skills*. O'Reilly. (فصل ۱۲: اسکریپت‌نویسی پوسته و خط لوله)
 
 ### فیلم‌های آموزشی
 

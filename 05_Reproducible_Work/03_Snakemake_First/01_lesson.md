@@ -206,6 +206,9 @@ Nothing to be done (all requested files are present and up to date).
 
 خروجی هست و از ورودی تازه‌تر است، پس کاری نیست. **این قلب Snakemake است.**
 
+> 📺 **فیلم:** *Snakemake #1 Writing your first Snakefile*: https://www.youtube.com/watch?v=Gg0SsEs16Jc (actually scientist)
+> 📄 **مرجع:** Snakemake, *Snakemake Tutorial*: https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html
+
 ---
 
 ## ۴. یک قاعده برای همه‌ی نمونه‌ها: wildcard
@@ -396,6 +399,9 @@ fastq/minigut_sample2_R2.fastq.gz	FASTQ	DNA	24993	3773943	151	151.0	151
 تنها فهرست: `SAMPLES = ["minigut", "minigut_sample2", "gut3"]`. قاعده‌ها دست نمی‌خورند. `snakemake -n` نشان می‌دهد `count_reads` **تنها برای gut3** و `seqkit_stats` دوباره (ورودی‌هایش عوض شده) اجرا می‌شوند. در ماژول ۰۴ فهرست نمونه‌ها را به یک فایل تنظیم (`config.yaml`) می‌بریم.
 
 </details>
+
+> 📺 **فیلم:** *An introduction to Snakemake tutorial for beginners (CC248)*: https://www.youtube.com/watch?v=r9PWnEmz_tc (Riffomonas Project)
+> 📄 **مرجع:** Snakemake, *Rules* (`expand`): https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html
 
 ---
 
@@ -640,6 +646,9 @@ rule name:
 - Mölder F, Jablonski KP, Letcher B, et al. (2021). *Sustainable data analysis with Snakemake.* F1000Research 10:33. https://doi.org/10.12688/f1000research.29032.2
 - Snakemake documentation, *Snakemake Tutorial*: https://snakemake.readthedocs.io/en/stable/tutorial/tutorial.html
 - Snakemake documentation, *Rules*: https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html
+
+**کتاب**
+- ‏Buffalo V (2015). *Bioinformatics Data Skills*. O'Reilly. (فصل ۱۲: خط لوله با Make؛ همان منطق قاعده و وابستگی که Snakemake دارد)
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University). دوره‌ای ویژه‌ی Snakemake در Coursera نیافتیم؛ نزدیک‌ترین برای خط لوله در ترمینال: https://www.coursera.org/learn/genomic-tools

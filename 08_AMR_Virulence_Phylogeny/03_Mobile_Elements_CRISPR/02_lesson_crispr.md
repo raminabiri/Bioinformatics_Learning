@@ -60,7 +60,7 @@ leader ─ R ─ S1 ─ R ─ S2 ─ R ─ S3 ─ … ─ R        (R = repeat, 
 
 **یک پیوند با مقاومت:** باکتری‌ای که CRISPR فعال دارد، پلاسمیدها را هم می‌تواند پس بزند. در برخی گونه‌ها (برای نمونه *Enterococcus faecalis*) دیده‌اند سویه‌های بسیار مقاوم در بسیاری از موارد CRISPR-Cas کاملی ندارند.
 
-> 📺 **فیلم:** *How CRISPR Works in Nature* (PBS NOVA؛ این فیلم در YouTube نیست): https://www.pbs.org/wgbh/nova/video/how-crispr-works
+> 📺 **فیلم:** *How CRISPR Works in Nature* (PBS NOVA؛ این فیلم در YouTube نیست): https://www.pbs.org/wgbh/nova/video/how-crispr-works · *Bacterial Adaptive Immunity with CRISPR/Cas9*: https://www.youtube.com/watch?v=MbJ7Hnc2K3Q
 > 📄 **مرجع:** Barrangou R, et al. (2007). *CRISPR provides acquired resistance against viruses in prokaryotes.* Science 315:1709–1712. https://doi.org/10.1126/science.1138140
 
 ---
@@ -243,10 +243,14 @@ minced GENOME.fna out.crisprs out.gff                          # documented, not
 - Couvin D, et al. (2018). *CRISPRCasFinder…* Nucleic Acids Research 46:W246–W251. https://doi.org/10.1093/nar/gky425 · https://crisprcas.i2bc.paris-saclay.fr
 - Bland C, et al. (2007). *CRISPR Recognition Tool (CRT)…* BMC Bioinformatics 8:209. https://doi.org/10.1186/1471-2105-8-209 · MinCED: https://github.com/ctSkennerton/minced
 
+**کتاب**
+- Barrangou R, van der Oost J (eds.) (2013). *CRISPR-Cas Systems: RNA-mediated Adaptive Immunity in Bacteria and Archaea*. Springer.
+
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Whole genome sequencing of bacterial genomes – tools and applications* (DTU): https://www.coursera.org/learn/wgs-bacteria
 - ‏edX: دوره‌ای ویژه‌ی CRISPR باکتریایی در edX نیافتیم؛ نزدیک‌ترین: *Microbiology* (SNHU، MicroBachelors): https://www.edx.org/learn/microbiology/southern-new-hampshire-university-microbiology
-- ویدئو: *How CRISPR Works in Nature* (PBS NOVA): https://www.pbs.org/wgbh/nova/video/how-crispr-works. در جست‌وجوی 2026-10-24 فیلم YouTube قابل اعتمادی ویژه‌ی ایمنی CRISPR در باکتری نیافتیم؛ در وارسی پایان دوره دوباره جست‌وجو می‌شود.
+- ویدئو: *How CRISPR Works in Nature* (PBS NOVA): https://www.pbs.org/wgbh/nova/video/how-crispr-works
+- ‏YouTube: *Bacterial Adaptive Immunity with CRISPR/Cas9*: https://www.youtube.com/watch?v=MbJ7Hnc2K3Q (یافته در جست‌وجوی 2026-10-26؛ در وارسی پایان دوره سنجیده می‌شود)
 
 <sub>تکرار ۲۹ بازی نوع I-E و مختصات ژن‌های cas از آنوتیشن RefSeq ‏K-12 (GCF_000005845.2) در 2026-10-24. نشانی‌ها در وارسی پایان دوره سنجیده می‌شوند.</sub>
 

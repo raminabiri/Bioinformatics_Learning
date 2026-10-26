@@ -165,6 +165,9 @@ True
 
 ‏**`True`**: ترجمه‌ی ما دقیقاً با ترجمه‌ی NCBI برابر است. (`str(p)` لازم است چون `p` یک `Seq` است و `prot` یک رشته.)
 
+> 📺 **فیلم:** *GenBank Tutorial*: https://www.youtube.com/watch?v=JAxpmKg0KL0
+> 📄 **مرجع:** Biopython Tutorial & Cookbook, فصل Sequence annotation objects: https://biopython.org/docs/latest/Tutorial/
+
 ---
 
 ## ۴. اسکریپت: فهرست ژن‌های ناحیه
@@ -307,6 +310,9 @@ same
 ‏(`cmp` دو فایل را بایت‌به‌بایت می‌سنجد و اگر یکی باشند، چیزی چاپ نمی‌کند؛ `&&` تنها در آن صورت `same` را چاپ می‌کند.) پس فایل مخزن همان چیزی است که امروز از NCBI می‌آید. (روزی که NCBI آنوتیشن را به‌روز کند، این دو فایل دیگر یکی نخواهند بود.)
 
 > **قاعده‌های NCBI:** بی کلید API، **بیش از ۳ درخواست در ثانیه** نفرستید؛ در حلقه‌ها میان درخواست‌ها مکث کنید (`import time` و `time.sleep(0.4)`). برای کار بیشتر، کلید API رایگان بگیرید. هرگز کل یک پایگاه داده را با حلقه‌ی `efetch` بارگیری نکنید؛ برای آن، فایل‌های آماده‌ی FTP یا `datasets` (بخش ۰۲) هست.
+
+> 📺 **فیلم:** *Accessing NCBI databases and tools with Biopython (Entrez)*: https://www.youtube.com/watch?v=tl4xqdfIBh0 (Lana Dominkovic)
+> 📄 **مرجع:** NCBI, *Entrez Programming Utilities Help*: https://www.ncbi.nlm.nih.gov/books/NBK25497/
 
 ---
 
@@ -548,6 +554,9 @@ print(result["Count"])
 - راهنمای E-utilities در NCBI (قاعده‌ها و کلید API): https://www.ncbi.nlm.nih.gov/books/NBK25497/
 - راهنمای فرمت GenBank در NCBI: https://www.ncbi.nlm.nih.gov/genbank/samplerecord/
 - Böck A, et al. (1991). Selenocysteine: the 21st amino acid. *Molecular Microbiology* 5(3):515–520. https://doi.org/10.1111/j.1365-2958.1991.tb00722.x
+
+### کتاب
+- ‏Bassi S (2017). *Python for Bioinformatics*, 2nd ed. CRC Press. (بخش Biopython و دسترسی به NCBI)
 
 ### فیلم‌های آموزشی
 

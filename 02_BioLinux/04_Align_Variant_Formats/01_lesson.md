@@ -69,6 +69,9 @@ bowtie2.log  resistant.bam  resistant.bam.bai  resistant.vcf.gz  resistant.vcf.g
 
 اگر ریدهای فراوانی روی یک جا **همان** ناهمسانی را داشته باشند، به احتمال زیاد یک **جهش واقعی** است، نه خطای دستگاه. فایل SAM/BAM جای هر رید و چگونگی هم‌ترازی‌اش را نگه می‌دارد.
 
+> 📺 **فیلم:** *Aligning Sequencing Reads to Reference*: https://www.youtube.com/watch?v=fSnAeYHnPCw
+> 📄 **مرجع:** Li H, Homer N (2010). *A survey of sequence alignment algorithms for next-generation sequencing.* Brief Bioinform 11:473–483. https://doi.org/10.1093/bib/bbq015
+
 ---
 
 ## ‏۳. SAM و BAM
@@ -310,6 +313,9 @@ samtools view resistant.bam | cut -f6 | sort | uniq -c | sort -rn | head -n 3
 - ‏`150M`: همه‌ی ۱۵۰ باز پشت سر هم هم‌ترازند.
 - ‏`95M1D55M`: ۹۵ باز هم‌تراز، سپس **۱ باز از مرجع در رید نیست**، سپس ۵۵ باز دیگر. این ریدها روی **کاهش یک‌بازی** این سویه نشسته‌اند (بخش ۵).
 
+> 📺 **فیلم:** *Understanding Bioinformatics File Formats: SAM/BAM*: https://www.youtube.com/watch?v=vh6l9aPFUgU (Bioinformagician)
+> 📄 **مرجع:** Li H, et al. (2009). *The Sequence Alignment/Map format and SAMtools.* Bioinformatics 25:2078–2079. https://doi.org/10.1093/bioinformatics/btp352
+
 ---
 
 ## ۴. یک ناحیه، و پوشش
@@ -494,6 +500,9 @@ NC_000913.3	4182820	.	C	T
 - ‏`bcftools stats` خلاصه می‌دهد: **۴ واریانت، ۳ SNP، ۱ indel**.
 - ‏`-r` (*region*) تنها ناحیه‌ی **rpoB** (۴٬۱۸۱٬۲۴۵ تا ۴٬۱۸۵٬۲۷۳): **یک واریانت**، در ۴٬۱۸۲٬۸۲۰.
 
+> 📺 **فیلم:** *Understanding File Formats in Bioinformatics: VCF and gVCF*: https://www.youtube.com/watch?v=cBDZSGf9HRE (Bioinformagician)
+> 📄 **مرجع:** Danecek P, et al. (2011). *The variant call format and VCFtools.* Bioinformatics 27:2156–2158. https://doi.org/10.1093/bioinformatics/btr330
+
 ---
 
 ## ۶. از جای ژنومی به کدون: H526Y
@@ -623,11 +632,14 @@ echo $(( (4182820-4181245)/3 + 1 )) $(( (4182820-4181245)%3 + 1 ))
 ## منابع
 
 ### راهنمای رسمی و مقاله
-- مشخصات رسمی SAM و VCF (hts-specs): https://samtools.github.io/hts-specs/
+- ویژگی‌نامه‌ی رسمی SAM و VCF (hts-specs): https://samtools.github.io/hts-specs/
 - Li H, et al. (2009). The Sequence Alignment/Map format and SAMtools. *Bioinformatics* 25(16):2078–2079. https://doi.org/10.1093/bioinformatics/btp352
 - Danecek P, et al. (2021). Twelve years of SAMtools and BCFtools. *GigaScience* 10(2):giab008. https://doi.org/10.1093/gigascience/giab008
 - راهنمای samtools و bcftools: https://www.htslib.org/doc/
 - Jin DJ, Gross CA (1988). Mapping and sequencing of mutations in the *Escherichia coli rpoB* gene that lead to rifampicin resistance. *J Mol Biol* 202(1):45–58. https://doi.org/10.1016/0022-2836(88)90517-7
+
+### کتاب
+- ‏Buffalo V (2015). *Bioinformatics Data Skills*. O'Reilly. (فصل ۱۱: کار با داده‌ی هم‌ترازی؛ SAM و BAM)
 
 ### فیلم‌های آموزشی
 

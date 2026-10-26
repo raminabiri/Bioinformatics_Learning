@@ -115,6 +115,9 @@ done
 - ‏**`--confidence 0.1`** هم مثبت‌های ساختگی و هم خطای فراوانی را کم کرد، بی آنکه گونه‌ی واقعی‌ای از دست برود.
 - بهترین مقدار به **پایگاه و جامعه** وابسته است؛ تمرین ۳ پنج مقدار را می‌آزماید.
 
+> 📺 **فیلم:** *GTN Tutorial: Taxonomic Profiling and Visualization of Metagenomic Data*: https://www.youtube.com/watch?v=jszMnBKm6ig (Galaxy Project)
+> 📄 **مرجع:** Lu J, et al. (2022). *Metagenome analysis using the Kraken software suite.* Nature Protocols 17:2815–2839.
+
 ---
 
 ## ۵. گام ۳: تنها منفی ساختگی، و ریدهای طبقه‌بندی‌نشده
@@ -210,6 +213,9 @@ metaphlan clean_R1.fastq.gz,clean_R2.fastq.gz --input_type fastq --nproc 8 -o sa
 
 **پیوند با بخش ۰۰:** برخی ژن‌ها (مانند gyrA) در هیچ مسیر متابولیکی نیستند؛ پروفایل «تنها مسیر» آن‌ها را نمی‌بیند. برای ژن‌های مقاومت، پایگاه ویژه (CARD، بخش ۰۸) لازم است.
 
+> 📺 **فیلم:** *Introduction to Shotgun Metagenomic Data Analysis with bioBakery*: https://www.youtube.com/watch?v=T4sviwz9DCk (N. Segata) · *Taxonomic, functional, and strain-level profiling with bioBakery 3*: https://www.youtube.com/watch?v=t2KkNtE80ro
+> 📄 **مرجع:** Beghini F, et al. (2021). *Integrating taxonomic, functional, and strain-level profiling of diverse microbial communities with bioBakery 3.* eLife 10:e65088. https://doi.org/10.7554/eLife.65088
+
 ---
 
 ## ۹. سه اشتباه رایج
@@ -276,6 +282,10 @@ bracken -d DB -i S.kreport -o S.genus.bracken -r 125 -l G -t 10                 
 - Blanco-Míguez A, et al. (2023). *Extending and improving metagenomic taxonomic profiling with uncharacterized species using MetaPhlAn 4.* Nature Biotechnology 41:1633–1644. https://doi.org/10.1038/s41587-023-01688-w
 - Beghini F, et al. (2021). *Integrating taxonomic, functional, and strain-level profiling of diverse microbial communities with bioBakery 3.* eLife 10:e65088. https://doi.org/10.7554/eLife.65088
 - MetaPhlAn: https://github.com/biobakery/MetaPhlAn · HUMAnN: https://github.com/biobakery/humann · KrakenTools: https://github.com/jenniferlu717/KrakenTools
+
+**کتاب**
+- Nagarajan M (ed.) (2018). *Metagenomics: Perspectives, Methods, and Applications*. Academic Press.
+- Beiko RG, Hsiao W, Parkinson J (eds.) (2018). *Microbiome Analysis: Methods and Protocols*. Methods Mol Biol 1849. Humana Press.
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University). دوره‌ای ویژه‌ی سنجش پروفایل متاژنوم در Coursera نیافتیم؛ نزدیک‌ترین: https://www.coursera.org/learn/genomic-tools

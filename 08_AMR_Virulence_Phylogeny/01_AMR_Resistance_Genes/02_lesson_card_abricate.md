@@ -296,6 +296,9 @@ abricate --db ncbi --mincov 40 ASM.fna        # research only: see partial genes
 - Bortolaia V, et al. (2020). *ResFinder 4.0 for predictions of phenotypes from genotypes.* J Antimicrob Chemother 75:3491–3500. https://doi.org/10.1093/jac/dkaa345
 - NCBI Reference Gene Catalog: https://www.ncbi.nlm.nih.gov/pathogens/refgene/
 
+**کتاب**
+- ‏Walsh C, Wencewicz T (2016). *Antibiotics: Challenges, Mechanisms, Opportunities*, 2nd ed. ASM Press. (بخش سازوکارهای مقاومت)
+
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Antimicrobial resistance – theory and methods* (DTU): https://www.coursera.org/learn/antimicrobial-resistance
 - ‏Coursera: *Whole genome sequencing of bacterial genomes – tools and applications* (DTU): https://www.coursera.org/learn/wgs-bacteria

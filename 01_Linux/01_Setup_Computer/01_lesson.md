@@ -101,6 +101,9 @@ ssh username@server.university.ac.ir
 ‏`/mnt/c/Users/Sara/Desktop/data.txt`. درایو `C:` به `/mnt/c` تبدیل می‌شود و `\` به `/`. (در لینوکس جداکننده‌ی پوشه‌ها همیشه `/` است.)
 </details>
 
+> 📺 **فیلم:** *How to Install & Run Ubuntu on Windows 11 (WSL/WSL2)*: https://www.youtube.com/watch?v=mbFA7zjD2ps
+> 📄 **مرجع:** Microsoft, *How to install Linux on Windows with WSL*: https://learn.microsoft.com/en-us/windows/wsl/install
+
 ---
 
 ## ۳. نخستین دستورها
@@ -177,6 +180,9 @@ curl 8.20.0 (x86_64-conda-linux-gnu) libcurl/8.20.0 OpenSSL/3.6.4 zlib/1.3.2 zst
 
 پیام `Date: command not found` (یا همانند آن) می‌گیرید. **لینوکس حروف بزرگ و کوچک را جدا می‌داند**: `date` و `Date` دو چیز گوناگون‌اند. این برای نام فایل‌ها هم درست است: `Data.txt` و `data.txt` دو فایل جدا هستند.
 </details>
+
+> 📺 **فیلم:** *The Shell, Episode 1: Introduction*: https://www.youtube.com/watch?v=U3iNcBtycaQ (Software Carpentry)
+> 📄 **مرجع:** Ubuntu, *The Linux command line for beginners*: https://ubuntu.com/tutorials/command-line-for-beginners
 
 ---
 
@@ -303,6 +309,10 @@ _tools
 - Microsoft — *How to install Linux on Windows with WSL*: https://learn.microsoft.com/en-us/windows/wsl/install
 - Ubuntu — *The Linux command line for beginners*: https://ubuntu.com/tutorials/command-line-for-beginners
 - ‏Software Carpentry — *The Unix Shell*، بخش «Setup»: https://swcarpentry.github.io/shell-novice/
+
+### کتاب
+- ‏Shotts W (2019). *The Linux Command Line*, 2nd ed. No Starch Press. (فصل ۱: پوسته چیست؟)
+- ‏Haddock SHD, Dunn CW (2011). *Practical Computing for Biologists*. Sinauer. (بخش خط فرمان)
 
 ### فیلم‌های آموزشی
 

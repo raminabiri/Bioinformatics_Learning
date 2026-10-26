@@ -138,6 +138,9 @@ echo $((7/2))
 
 ⚠️ `$(( ))` تنها با **عدد درست** کار می‌کند: `7/2` می‌شود **۳**، نه ۳٫۵. برای اعشار، همان `awk` ماژول ۰۷ را به کار ببرید.
 
+> 📺 **فیلم:** *How To Write Bash Scripts In Linux, Part 3: Variables*: https://www.youtube.com/watch?v=uQE_4Q-HZZw (LearnLinuxTV)
+> 📄 **مرجع:** GNU Bash Reference Manual, بخش Shell Parameters: https://www.gnu.org/software/bash/manual/bash.html
+
 ---
 
 ## ۳. حلقه‌ی `for`
@@ -193,6 +196,9 @@ sample is minigut_sample2
 | — | فهرست تمام شد | حلقه پایان می‌یابد |
 
 فاصله‌ی آغاز خط بدنه (دو فاصله) تنها برای خوانایی است؛ Bash به آن کاری ندارد.
+
+> 📺 **فیلم:** *How To Write Bash Scripts In Linux, Part 9: For Loops*: https://www.youtube.com/watch?v=HvzI7c3eK5k (LearnLinuxTV)
+> 📄 **مرجع:** Software Carpentry, *The Unix Shell*, درس «Loops»: https://swcarpentry.github.io/shell-novice/
 
 ---
 
@@ -512,10 +518,14 @@ done < samples.txt
 
 ## منابع
 
-### درس و کتاب رایگان
+### درس و راهنمای رایگان
 - ‏Software Carpentry — *The Unix Shell*، درس «Loops»: https://swcarpentry.github.io/shell-novice/
-- ‏Shotts W. *The Linux Command Line*، فصل‌های ۷ (Seeing the World as the Shell Sees It) و ۳۳ (Flow Control: Looping with for): https://linuxcommand.org/tlcl.php
 - GNU Bash Reference Manual: https://www.gnu.org/software/bash/manual/bash.html
+
+### کتاب
+- ‏Shotts W. *The Linux Command Line*، فصل‌های ۷ (Seeing the World as the Shell Sees It) و ۳۳ (Flow Control: Looping with for): https://linuxcommand.org/tlcl.php
+- ‏Buffalo V (2015). *Bioinformatics Data Skills*. O'Reilly. (فصل ۱۲: اسکریپت‌نویسی پوسته برای بیوانفورماتیک)
+- ‏Haddock SHD, Dunn CW (2011). *Practical Computing for Biologists*. Sinauer. (بخش خط فرمان)
 
 ### فیلم‌های آموزشی
 

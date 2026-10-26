@@ -97,6 +97,9 @@ True
 
 (دو مقدار با ویرگول، مانند `min(L), max(L)`، با هم در پرانتز نشان داده می‌شوند؛ به آن **تاپل** می‌گویند.)
 
+> 📺 **فیلم:** *Python Tutorial for Beginners 4: Lists, Tuples, and Sets*: https://www.youtube.com/watch?v=W8KRzm-HUcc (Corey Schafer)
+> 📄 **مرجع:** The Python Tutorial, بخش ۵.۱ (More on Lists): https://docs.python.org/3/tutorial/datastructures.html
+
 ---
 
 ## ۳. حلقه‌ی `for`
@@ -202,6 +205,9 @@ gyrA 2628 875
 
 الگوی رایج: **یک فهرست خالی (`[]`)، سپس در حلقه `.append`**. ۶۰ باز = ۲۰ کدون.
 
+> 📺 **فیلم:** *Python Tutorial for Beginners 7: Loops and Iterations*: https://www.youtube.com/watch?v=6iF8Xb7Z3wQ (Corey Schafer)
+> 📄 **مرجع:** The Python Tutorial, بخش ۴.۲ (`for` Statements): https://docs.python.org/3/tutorial/controlflow.html
+
 ---
 
 ## ۴. تصمیم: `if`، `elif`، `else`
@@ -241,6 +247,9 @@ gyrA 2628 875
 | `<` `>` `<=` `>=` | کوچک‌تر، بزرگ‌تر… |
 | `and` / `or` / `not` | و / یا / نه |
 | `x in L` | عضویت |
+
+> 📺 **فیلم:** *Python Tutorial for Beginners 6: Conditionals and Booleans*: https://www.youtube.com/watch?v=DZwmZ8Usvnk (Corey Schafer)
+> 📄 **مرجع:** The Python Tutorial, بخش ۴.۱ (`if` Statements): https://docs.python.org/3/tutorial/controlflow.html
 
 ---
 
@@ -305,6 +314,9 @@ T 17
 ```
 
 </div>
+
+> 📺 **فیلم:** *Python Tutorial for Beginners 5: Dictionaries*: https://www.youtube.com/watch?v=daefaLgNkw0 (Corey Schafer)
+> 📄 **مرجع:** The Python Tutorial, بخش ۵.۵ (Dictionaries): https://docs.python.org/3/tutorial/datastructures.html
 
 ---
 
@@ -378,6 +390,9 @@ MVYSYTEKKRIRKDFGKRPQ
 
 ‏`code["CAC"]` = `'H'` (هیستیدین) و `code["TAC"]` = `'Y'` (تیروزین). این همان جهش **H526Y** است که در بخش ۰۲ در VCF «سویه‌ی مقاوم» پیدا کردیم: کدون ۵۲۶ rpoB از `CAC` به `TAC`.
 </details>
+
+> 📺 **فیلم:** *From DNA to RNA to Protein using Biopython*: https://www.youtube.com/watch?v=HzRyytIasFg (Lana Dominkovic)
+> 📄 **مرجع:** NCBI, The Genetic Codes: https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi
 
 ---
 
@@ -504,6 +519,10 @@ KeyError: 'TAA'
 - آموزش رسمی پایتون، بخش‌های ۴ (More Control Flow Tools) و ۵ (Data Structures): https://docs.python.org/3/tutorial/controlflow.html
 - ‏Software Carpentry — *Programming with Python*، درس‌های «Repeating Actions with Loops» و «Storing Multiple Values in Lists»: https://swcarpentry.github.io/python-novice-inflammation/
 - Rosalind — Python Village: https://rosalind.info/problems/list-view/?location=python-village
+
+### کتاب
+- ‏Bassi S (2017). *Python for Bioinformatics*, 2nd ed. CRC Press. (فصل‌های ساختارهای داده و کنترل جریان)
+- Model ML (2009). *Bioinformatics Programming Using Python*. O'Reilly.
 
 ### فیلم‌های آموزشی
 

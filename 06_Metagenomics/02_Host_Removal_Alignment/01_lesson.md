@@ -130,6 +130,9 @@ host.1.bt2  host.2.bt2  host.3.bt2  host.4.bt2  host.rev.1.bt2  host.rev.2.bt2
 
 شش فایل `.bt2` با هم «شاخص» را می‌سازند. در گام بعد تنها **پیشوند** (`host/index/host`) را به Bowtie2 می‌دهیم، نه نام یک فایل. برای ۵۰۰ کیلوباز چند ثانیه؛ برای کل ژنوم انسان چند ساعت و ده‌ها گیگابایت حافظه. برای همین در کار واقعی شاخص آماده را دانلود می‌کنند.
 
+> 📺 **فیلم:** *Burrows-Wheeler Transform*: https://www.youtube.com/watch?v=4n7NPk5lwbI · *FM Index*: https://www.youtube.com/watch?v=kvVGj5V65io (Ben Langmead)
+> 📄 **مرجع:** Langmead B, Salzberg SL (2012). *Fast gapped-read alignment with Bowtie 2.* Nature Methods 9:357–359. https://doi.org/10.1038/nmeth.1923
+
 ---
 
 ## ۴. گام ۲: هم‌ترازی نمونه‌ی `minigut`
@@ -192,6 +195,9 @@ cat host/logs/minigut.bowtie2.log
 همان شمار ورودی، **۲۴٬۹۸۸** جفت؛ آن هم ۰٫۰۰٪ هم‌ترازی دارد (اسکریپت بخش ۸ هر دو را نشان می‌دهد).
 
 </details>
+
+> 📺 **فیلم:** *#44 Lockdown Learning Bioinformatics-along: Bowtie2*: https://www.youtube.com/watch?v=_NPsnbSedIA
+> 📄 **مرجع:** Bowtie2 manual: https://github.com/BenLangmead/bowtie2
 
 ---
 
@@ -387,6 +393,9 @@ zcat host/clean/minigut_spiked_R1.fastq.gz | awk 'NR%4==1' \
 
 </details>
 
+> 📺 **فیلم:** *SAM flags explained*: https://www.youtube.com/watch?v=qm4NGV79t4o (Bioinformagician)
+> 📄 **مرجع:** `samtools flags`: https://www.htslib.org/doc/samtools-flags.html
+
 ---
 
 ## ۸. گام ۶: MAPQ پایین، و چرا این‌جا مهم نیست
@@ -520,6 +529,10 @@ samtools view -F 4 -q 30 s.bam | wc -l                       # mapped records wi
 - Bowtie2 manual: https://github.com/BenLangmead/bowtie2 · Pre-built indexes: https://benlangmead.github.io/aws-indexes/bowtie
 - `samtools flags`: https://www.htslib.org/doc/samtools-flags.html · `samtools fastq`: https://www.htslib.org/doc/samtools-fasta.html
 - wgsim: https://github.com/lh3/wgsim
+
+**کتاب**
+- ‏Compeau P, Pevzner P (2015). *Bioinformatics Algorithms: An Active Learning Approach*, 2nd ed. Active Learning Publishers. (فصل «Combinatorial Pattern Matching»: تبدیل Burrows-Wheeler)
+- ‏Buffalo V (2015). *Bioinformatics Data Skills*. O'Reilly. (فصل ۱۱: داده‌ی هم‌ترازی)
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Algorithms for DNA Sequencing* (Johns Hopkins University, Ben Langmead)؛ شاخص و هم‌ترازی ریدها: https://www.coursera.org/learn/dna-sequencing

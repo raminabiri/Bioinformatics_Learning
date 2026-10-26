@@ -297,6 +297,9 @@ awk -F'\t' '$10=="VIRULENCE" || $9=="core"' ID.amr.tsv
 - stxtyper: https://github.com/ncbi/stxtyper · AMRFinderPlus Interpreting results: https://github.com/ncbi/amr/wiki/Interpreting-results
 - NCBI nuccore X07865.1 (phage 933W stx2 operon): https://www.ncbi.nlm.nih.gov/nuccore/X07865.1
 
+**کتاب**
+- Wilson BA, Winkler ME, Ho BT (2019). *Bacterial Pathogenesis: A Molecular Approach*, 4th ed. ASM Press.
+
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Whole genome sequencing of bacterial genomes – tools and applications* (DTU؛ شناسایی ژن‌های بیماری‌زایی و تایپینگ): https://www.coursera.org/learn/wgs-bacteria
 - ‏edX: دوره‌ای ویژه‌ی ژنومیکس بیماری‌زایی در edX نیافتیم؛ نزدیک‌ترین: *Microbiology* (Southern New Hampshire University، برنامه‌ی MicroBachelors): https://www.edx.org/learn/microbiology/southern-new-hampshire-university-microbiology

@@ -136,6 +136,9 @@ contigs: 50  total: 4554258  largest: 360732  N50: 173810  L50: 10
 
 **پیامد زیستی مهم:** ژن‌های مقاومت آنتی‌بیوتیکی بیشتر کنار عناصر IS و روی پلاسمیدها هستند. پس **همان ناحیه‌ای که برای ما مهم است، بیشتر می‌شکند**. پاسخ «این ژن روی کروموزوم است یا پلاسمید؟» با اسمبلی Illumina بیشتر **قطعی نیست** (درس ۲، بخش ۸).
 
+> 📺 **فیلم:** *de Bruijn graph assembly for DNA sequences*: https://www.youtube.com/watch?v=OY9Q_rUCGDw (Rob Edwards)
+> 📄 **مرجع:** Compeau PEC, Pevzner PA, Tesler G (2011). *How to apply de Bruijn graphs to genome assembly.* Nature Biotechnology 29:987–991. https://doi.org/10.1038/nbt.2023
+
 ---
 
 ## ۴. گام ۲: پوشش، پیش از اسمبلی
@@ -186,6 +189,9 @@ spades.py --isolate -1 trim_R1.fastq.gz -2 trim_R2.fastq.gz -o spades_out -t 8 -
 - ‏**`contigs.fasta`**: کانتیگ‌ها، با نام‌هایی مانند `>NODE_1_length_263154_cov_8.9…` (طول و **پوشش k-mer** در خود نام).
 - ‏`scaffolds.fasta`: کانتیگ‌هایی که با جفت ریدها به هم وصل شده‌اند؛ فاصله‌ها با `N` پر شده.
 - ‏**`assembly_graph.gfa`**: خود گراف. با **Bandage** باز کنید تا ببینید کانتیگ‌ها کجا به هم گره خورده‌اند (تکرارها).
+
+> 📺 **فیلم:** *Module 17: Genome Assembly w/ SPAdes*: https://www.youtube.com/watch?v=A84bYOyKA0M (UNH)
+> 📄 **مرجع:** Bankevich A, et al. (2012). *SPAdes.* J Comput Biol 19:455–477. https://doi.org/10.1089/cmb.2012.0021
 
 ---
 
@@ -257,6 +263,9 @@ grep '>' shovill_out/contigs.fa | sed -E 's/.*len=([0-9]+) cov=([0-9.]+).*/\1\t\
 
 ‏(جدولی دو ستونی از طول و پوشش، مرتب از کم‌پوشش‌ترین؛ درس ۲ آن را تفسیر می‌کند.)
 
+> 📺 **فیلم:** *GTN Tutorial: Genome Assembly of a bacterial genome (MRSA) sequenced using Illumina MiSeq*: https://www.youtube.com/watch?v=rRHH77qtZHg (Galaxy Project)
+> 📄 **مرجع:** Shovill: https://github.com/tseemann/shovill
+
 ---
 
 ## ۷. سه اشتباه رایج
@@ -323,6 +332,9 @@ grep '>' shovill_out/contigs.fa | sed -E 's/.*len=([0-9]+) cov=([0-9.]+).*/\1\t\
 - Prjibelski A, et al. (2020). *Using SPAdes de novo assembler.* Current Protocols in Bioinformatics 70:e102. https://doi.org/10.1002/cpbi.102
 - Wick RR, et al. (2015). *Bandage: interactive visualization of de novo genome assemblies.* Bioinformatics 31:3350–3352. https://doi.org/10.1093/bioinformatics/btv383
 - SPAdes manual: https://github.com/ablab/spades/blob/main/docs/running.md · Shovill README: https://github.com/tseemann/shovill
+
+**کتاب**
+- ‏Compeau P, Pevzner P (2015). *Bioinformatics Algorithms: An Active Learning Approach*, 2nd ed. Active Learning Publishers. (فصل ۳: اسمبلی ژنوم و گراف de Bruijn)
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Genome Sequencing (Bioinformatics II)* (UC San Diego)؛ گراف de Bruijn و اسمبلی: https://www.coursera.org/learn/genome-sequencing

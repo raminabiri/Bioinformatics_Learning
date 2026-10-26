@@ -124,6 +124,9 @@ None
 
 ‏`show_gc` نتیجه را **چاپ** کرد ولی **برنگرداند**؛ پس `r` چیزی ندارد: `None` («هیچ»). **تابعی که نتیجه‌اش باید جای دیگری به کار رود، باید `return` کند.** `print` تنها برای نشان دادن به آدم است. (درون تابع `show_gc`، تابع `gc_content` خوانده شد: تابع‌ها می‌توانند یکدیگر را به کار ببرند.)
 
+> 📺 **فیلم:** *Python Tutorial for Beginners 8: Functions*: https://www.youtube.com/watch?v=9Os0o3wzS_I (Corey Schafer)
+> 📄 **مرجع:** The Python Tutorial, بخش ۴.۸ (Defining Functions): https://docs.python.org/3/tutorial/controlflow.html
+
 ---
 
 ## ۳. خواندن یک فایل، خط‌به‌خط
@@ -179,6 +182,9 @@ with open("ecoli_k12.gff") as f:
 | `$5-$4+1` | `int(cols[4]) - int(cols[3]) + 1` |
 
 **ستون‌ها رشته‌اند، نه عدد**، حتی وقتی عدد به نظر می‌رسند. پیش از حساب، `int()` لازم است (بخش ۷).
+
+> 📺 **فیلم:** *Python Tutorial: File Objects, Reading and Writing to Files*: https://www.youtube.com/watch?v=Uh2ebFW8OYM (Corey Schafer)
+> 📄 **مرجع:** The Python Tutorial, بخش ۷.۲ (Reading and Writing Files): https://docs.python.org/3/tutorial/inputoutput.html
 
 ---
 
@@ -540,6 +546,10 @@ if __name__ == "__main__":
 - آموزش رسمی پایتون، بخش ۴.۸ (Defining Functions) و ۷.۲ (Reading and Writing Files): https://docs.python.org/3/tutorial/inputoutput.html
 - ‏Software Carpentry — *Programming with Python*، درس‌های «Creating Functions» و «Command-Line Programs»: https://swcarpentry.github.io/python-novice-inflammation/
 - ‏Rosalind — Python Village (تمرین‌های «Working with Files»): https://rosalind.info/problems/list-view/?location=python-village
+
+### کتاب
+- ‏Bassi S (2017). *Python for Bioinformatics*, 2nd ed. CRC Press. (فصل‌های تابع و کار با فایل)
+- Model ML (2009). *Bioinformatics Programming Using Python*. O'Reilly.
 
 ### فیلم‌های آموزشی
 

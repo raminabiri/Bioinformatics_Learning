@@ -302,6 +302,10 @@ Rscript -e 'library(ape); a <- read.dna("genes_aln.fna", format = "fasta"); prin
 - Paradis E, Schliep K (2019). *ape 5.0.* Bioinformatics 35:526–528. https://doi.org/10.1093/bioinformatics/bty633
 - Bevan ER, Jones AM, Hawkey PM (2017). *Global epidemiology of CTX-M β-lactamases.* J Antimicrob Chemother 72:2145–2155. https://doi.org/10.1093/jac/dkx146
 
+**کتاب**
+- ‏Felsenstein J (2004). *Inferring Phylogenies*. Sinauer. (فصل‌های روش‌های فاصله‌ای و bootstrap)
+- Lemey P, Salemi M, Vandamme AM (eds.) (2009). *The Phylogenetic Handbook*, 2nd ed. Cambridge University Press.
+
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Molecular Evolution (Bioinformatics IV)* (UC San Diego؛ ساختن درخت تکاملی): https://www.coursera.org/learn/molecularevolution
 - ‏edX: *Essentials of Genomics and Biomedical Informatics* (IsraelX؛ یک هفته درباره‌ی هم‌ردیفی چندگانه و درخت فیلوژنی): https://www.edx.org/learn/medicine/israelx-essentials-of-genomics-and-biomedical-informatics

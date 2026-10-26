@@ -99,6 +99,9 @@ gene  (ID=gene-b3987, Name=rpoB)
 ### GTF
 ‏**GTF** نسخه‌ی کهنه‌تر و همانند GFF است که در RNA-seq رایج است. همان ۹ ستون، ولی ستون ۹ به شکل `gene_id "X"; transcript_id "Y";` نوشته می‌شود. ابزارها هر دو را می‌شناسند، ولی جابه‌جا به کار بردنشان خطا می‌دهد.
 
+> 📺 **فیلم:** *Understanding Bioinformatics File Formats: GFF3 and GTF*: https://www.youtube.com/watch?v=2Y7zxh1BiFs (Bioinformagician)
+> 📄 **مرجع:** GFF3 specification: https://github.com/The-Sequence-Ontology/Specifications/blob/master/gff3.md
+
 ---
 
 ## ‏۳. BED، و شماره‌گذاری از صفر
@@ -244,6 +247,9 @@ NC_000913.3	2336792	2339420	gyrA	0	-
 آغاز یکی کم می‌شود (۲٬۳۳۶٬۷۹۲)، پایان همان می‌ماند. طول: ۲٬۳۳۹٬۴۲۰ − ۲٬۳۳۶٬۷۹۲ = ۲٬۶۲۸، همان طول در GFF (پایان − آغاز + ۱). ✓
 </details>
 
+> 📺 **فیلم:** *BED Format and BEDtools a Practical Tutorial*: https://www.youtube.com/watch?v=Cf1xd0GRxu4
+> 📄 **مرجع:** UCSC, BED format: https://genome.ucsc.edu/FAQ/FAQformat.html#format1
+
 ---
 
 ## ‏۴. GenBank: توالی و آنوتیشن در یک فایل
@@ -340,6 +346,9 @@ grep -A 10 '^     CDS' my_rpoB.gb
 
 پس از این‌ها `/translation="MVYSYTEKKRIRKDFGKRPQ…"` می‌آید: **توالی پروتئین**، که در بخش ۰۳ دوره با Biopython از همین فایل می‌خوانیم.
 
+> 📺 **فیلم:** *GenBank Tutorial*: https://www.youtube.com/watch?v=JAxpmKg0KL0
+> 📄 **مرجع:** NCBI, GenBank sample record: https://www.ncbi.nlm.nih.gov/genbank/samplerecord/
+
 ---
 
 ## ۵. سه اشتباه رایج
@@ -406,6 +415,9 @@ grep -A 10 '^     CDS' my_rpoB.gb
 - UCSC — BED format: https://genome.ucsc.edu/FAQ/FAQformat.html#format1
 - ‏NCBI — GenBank sample record (توضیح همه‌ی بخش‌ها): https://www.ncbi.nlm.nih.gov/genbank/samplerecord/
 - NCBI E-utilities (efetch): https://www.ncbi.nlm.nih.gov/books/NBK25499/
+
+### کتاب
+- ‏Buffalo V (2015). *Bioinformatics Data Skills*. O'Reilly. (فصل ۹: کار با داده‌ی بازه‌ای؛ BED و GFF و شماره‌گذاری از صفر)
 
 ### فیلم‌های آموزشی
 

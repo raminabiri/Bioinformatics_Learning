@@ -235,6 +235,10 @@ run_gubbins.py --prefix gubbins_out core_full.aln                         # reco
 - Croucher NJ, et al. (2015). *Gubbins.* Nucleic Acids Res 43:e15. https://doi.org/10.1093/nar/gku1196 · manual: https://github.com/nickjcroucher/gubbins/blob/master/docs/gubbins_manual.md
 - Letunic I, Bork P (2024). *iTOL v6.* Nucleic Acids Res 52:W78–W82. https://doi.org/10.1093/nar/gkae268
 
+**کتاب**
+- ‏Yang Z (2014). *Molecular Evolution: A Statistical Approach*. Oxford University Press. (فصل‌های مدل جایگزینی و درست‌نمایی بیشینه)
+- Felsenstein J (2004). *Inferring Phylogenies*. Sinauer.
+
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Molecular Evolution (Bioinformatics IV)* (UC San Diego): https://www.coursera.org/learn/molecularevolution
 - ‏edX: *Essentials of Genomics and Biomedical Informatics* (IsraelX): https://www.edx.org/learn/medicine/israelx-essentials-of-genomics-and-biomedical-informatics

@@ -102,6 +102,9 @@ saved woodmouse.nwk
 
 همان ساختار بخش ۲، ولی با ۱۵ برگ (نام‌هایی مانند `No304`، شماره‌ی نمونه‌ی موش‌ها) و طول شاخه‌های کوچک (۰٫۰۰۳ = سه جایگزینی در هر هزار جایگاه): این موش‌ها هم‌گونه‌اند و توالی‌هایشان بسیار همانند است. خواندن چنین خطی با چشم ناممکن است؛ برای همین رسمش می‌کنیم.
 
+> 📺 **فیلم:** *1.6 Phylogenetic trees with R/ape*: https://www.youtube.com/watch?v=uAf0DCGynTk (profbiot)
+> 📄 **مرجع:** Paradis E, Schliep K (2019). *ape 5.0.* Bioinformatics 35:526–528. https://doi.org/10.1093/bioinformatics/bty633
+
 ---
 
 ## ۴. رسم
@@ -165,6 +168,9 @@ Rscript $P/03_Bioc_Examples/scripts/plot_tree.R woodmouse.nwk woodmouse_circular
 در صفحه‌ی مستند ggtree («Tree Visualization» در کتاب Data Integration, Manipulation and Visualization of Phylogenetic Trees) فهرست آمده است، از جمله `slanted`، `fan`، `equal_angle` و `daylight`. هر کدام را می‌توانید به‌جای `circular` بدهید؛ برای نمونه `fan` بی‌خطا اجرا می‌شود.
 
 </details>
+
+> 📺 **فیلم:** *R for Bioinformatics: How to Visualize Phylogenetic Trees using ggtree*: https://www.youtube.com/watch?v=3swFCSt2_x4 (Bioinformatics Coach)
+> 📄 **مرجع:** Yu G, et al. (2017). *ggtree.* Methods Ecol Evol 8:28–36. https://doi.org/10.1111/2041-210X.12628
 
 ---
 
@@ -264,9 +270,12 @@ head -c 200 my.treefile                                            # is it Newic
 
 **مستند و مقاله**
 - Yu G, Smith DK, Zhu H, Guan Y, Lam TTY (2017). *ggtree: an R package for visualization and annotation of phylogenetic trees with their covariates and other associated data.* Methods in Ecology and Evolution 8:28–36. https://doi.org/10.1111/2041-210X.12628
-- ‏Yu G. *Data Integration, Manipulation and Visualization of Phylogenetic Trees* (کتاب رایگان ggtree): https://yulab-smu.top/treedata-book/
 - ggtree package page (Bioconductor): https://bioconductor.org/packages/ggtree/
 - Michaux JR et al. (2003). *Mitochondrial phylogeography of the Woodmouse (Apodemus sylvaticus) in the Western Palearctic region.* Molecular Ecology 12:685–697. https://doi.org/10.1046/j.1365-294X.2003.01752.x
+
+**کتاب**
+- ‏Yu G. *Data Integration, Manipulation and Visualization of Phylogenetic Trees* (کتاب رایگان ggtree): https://yulab-smu.top/treedata-book/
+- Paradis E (2012). *Analysis of Phylogenetics and Evolution with R*, 2nd ed. Springer.
 
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Bioconductor for Genomic Data Science* (Johns Hopkins University). دوره‌ای ویژه‌ی ggtree در Coursera نیافتیم؛ نزدیک‌ترین: https://www.coursera.org/learn/bioconductor

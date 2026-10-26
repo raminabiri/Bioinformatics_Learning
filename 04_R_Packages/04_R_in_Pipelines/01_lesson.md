@@ -248,6 +248,9 @@ vegan        2.7.6
 
 </details>
 
+> 📺 **فیلم:** *Tutorial: Create a command line R script with Argparse*: https://www.youtube.com/watch?v=VpXb2PuBKkU (OGGY INFORMATICS)
+> 📄 **مرجع:** GNU Bash manual, *The Set Builtin*: https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
+
 ---
 
 ## ۵. وقتی یک گام شکست می‌خورد
@@ -379,6 +382,9 @@ realpath file.tsv ; dirname /a/b/c.sh                         # full path ; fold
 - GNU Bash manual, *The Set Builtin* (`-e`، `-u`، `-o pipefail`): https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 - ‏R Core Team, *An Introduction to R*، پیوست B «Invoking R from the command line»: https://cran.r-project.org/doc/manuals/r-release/R-intro.html#Invoking-R-from-the-command-line
 - ‏Snakemake documentation, *External scripts* (اجرای R در Snakemake؛ برای بخش ۰۵): https://snakemake.readthedocs.io/en/stable/snakefiles/rules.html#external-scripts
+
+**کتاب**
+- ‏Buffalo V (2015). *Bioinformatics Data Skills*. O'Reilly. (فصل ۱۲: اسکریپت‌نویسی پوسته و خط لوله)
 
 **فیلم و دوره‌ی آموزشی**
 - Coursera: *Command Line Tools for Genomic Data Science* (Johns Hopkins University): https://www.coursera.org/learn/genomic-tools

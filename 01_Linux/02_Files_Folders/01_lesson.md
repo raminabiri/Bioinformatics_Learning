@@ -246,6 +246,9 @@ pwd
 دو پله بالا: یکم به `99_scripts_data`، سپس به **`01_Linux`**. با `pwd` بسنجید.
 </details>
 
+> 📺 **فیلم:** *The Shell, Episode 2: Files and Directories*: https://www.youtube.com/watch?v=qrkvcX4HmYo (Software Carpentry)
+> 📄 **مرجع:** Software Carpentry, *The Unix Shell*, درس «Navigating Files and Directories»: https://swcarpentry.github.io/shell-novice/
+
 ---
 
 ## ۵. ساختن، کپی، جابه‌جایی و پاک کردن
@@ -486,6 +489,9 @@ mkdir -p thesis/{raw,clean}
 با `ls thesis` بسنجید: `clean` و `raw`.
 </details>
 
+> 📺 **فیلم:** *Linux Commands Every Beginner Needs: mkdir, touch, cp, mv & rm*: https://www.youtube.com/watch?v=Ixnwp9uF4r8
+> 📄 **مرجع:** Software Carpentry, *The Unix Shell*, درس «Working With Files and Directories»: https://swcarpentry.github.io/shell-novice/
+
 ---
 
 ## ۶. سه اشتباه رایج (با خروجی واقعی)
@@ -583,10 +589,14 @@ bash: cd: nofolder: No such file or directory
 
 ## منابع
 
-### درس و کتاب رایگان
+### درس و راهنمای رایگان
 - ‏Software Carpentry — *The Unix Shell*، درس‌های «Navigating Files and Directories» و «Working With Files and Directories»: https://swcarpentry.github.io/shell-novice/
-- ‏Shotts W. *The Linux Command Line* (نسخه‌ی رایگان آنلاین)، فصل‌های ۲ تا ۴: https://linuxcommand.org/tlcl.php
 - Ubuntu — *The Linux command line for beginners*: https://ubuntu.com/tutorials/command-line-for-beginners
+
+### کتاب
+- ‏Shotts W. *The Linux Command Line* (نسخه‌ی رایگان آنلاین)، فصل‌های ۲ تا ۴: https://linuxcommand.org/tlcl.php
+- ‏Shotts W (2019). *The Linux Command Line*, 2nd ed. No Starch Press. (فصل ۲: جابه‌جایی؛ فصل ۴: کار با فایل‌ها و پوشه‌ها)
+- ‏Haddock SHD, Dunn CW (2011). *Practical Computing for Biologists*. Sinauer. (بخش خط فرمان)
 
 ### فیلم‌های آموزشی
 

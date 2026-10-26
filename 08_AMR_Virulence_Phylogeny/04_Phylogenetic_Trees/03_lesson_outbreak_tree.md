@@ -307,6 +307,10 @@ iqtree -s outbreak_nj_snps.fasta -m MFP+ASC -B 1000 -alrt 1000 --prefix outbreak
 - Paradis E, Schliep K (2019). *ape 5.0.* Bioinformatics 35:526–528. https://doi.org/10.1093/bioinformatics/bty633
 - Robinson DF, Foulds LR (1981). *Comparison of phylogenetic trees.* Math Biosci 53:131–147. https://doi.org/10.1016/0025-5564(81)90043-2
 
+**کتاب**
+- Lemey P, Salemi M, Vandamme AM (eds.) (2009). *The Phylogenetic Handbook*, 2nd ed. Cambridge University Press.
+- Robinson DA, Falush D, Feil EJ (eds.) (2010). *Bacterial Population Genetics in Infectious Disease*. Wiley-Blackwell.
+
 **فیلم و دوره‌ی آموزشی**
 - ‏Coursera: *Whole genome sequencing of bacterial genomes – tools and applications* (DTU): https://www.coursera.org/learn/wgs-bacteria
 - ‏Coursera: *Molecular Evolution (Bioinformatics IV)* (UC San Diego؛ هفته‌ی ۶: درخت برای ریشه‌یابی یک شیوع ابولا): https://www.coursera.org/learn/molecularevolution
