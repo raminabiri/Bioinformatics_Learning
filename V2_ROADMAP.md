@@ -1,0 +1,67 @@
+<div dir="rtl">
+
+# نقشه‌ی راه نسخه‌ی ۲ دوره
+
+**تاریخ:** 2026-10-26 · **وضعیت:** طرح؛ هیچ درسی هنوز نوشته نشده است.
+
+نسخه‌ی ۱ دوره بخش‌های **۰۰ تا ۰۹** است. نسخه‌ی ۲ از بخش **۱۱** آغاز می‌شود و نام همه‌ی پوشه‌هایش با `NN_V2_` آغاز می‌شود. طرح پیشین بخش ۱۰ در بخش‌های ۱۶ و ۲۱ تا ۲۵ آمده است ([10_Advanced](10_Advanced/)).
+
+## هدف نسخه‌ی ۲
+1. **پایگاه‌های داده:** بیشتر پایگاه‌های NCBI و پایگاه‌های بزرگ جهانی، هر کدام با یک پرسش زیستی واقعی.
+2. **اومیکس:** ترنسکریپتومیکس، تحلیل کارکردی و شبکه، تنظیم بیان (miRNA، عامل رونویسی)، پیوند ژن و دارو، تک‌سلولی، اپی‌ژنومیکس، پروتئومیکس و متابولومیکس.
+3. **هر چه نسخه‌ی ۱ به آن نرسید:** مرورگرهای ژنوم، اسمبلی متاژنوم، ژنومیکس جمعیت، واریانت انسانی، ریدهای بلند، Nextflow و HPC، یادگیری ماشین و مدل‌های زبانی.
+
+## بخش‌ها
+
+| بخش | عنوان | محور | ماژول |
+| :---: | :--- | :--- | :---: |
+| ۱۱ | [پایگاه‌های داده‌ی NCBI](11_V2_NCBI_Databases/) | ‏Entrez و EDirect، Gene و RefSeq، BioProject و SRA Toolkit، GEO، dbSNP و ClinVar، PubMed و PubTator، BLAST+ و Primer-BLAST، Pathogen Detection | ۸ |
+| ۱۲ | [پایگاه‌ها و مرورگرهای ژنومی جهانی](12_V2_Global_Databases_Browsers/) | ‏Ensembl و BioMart، UCSC، IGV، InterPro و HMMER، GO و KEGG و Reactome، GTEx و TCGA و cBioPortal | ۶ |
+| ۱۳ | [ترنسکریپتومیکس با RNA-seq](13_V2_RNAseq_Transcriptomics/) | طراحی، HISAT2 و STAR و Salmon، DESeq2 و edgeR، بازتولید یک مقاله، RNA-seq باکتری | ۵ |
+| ۱۴ | [تحلیل کارکردی و شبکه](14_V2_Functional_Enrichment_Networks/) | ‏Enrichr، g:Profiler، GSEA، STRING، GeneMANIA، Cytoscape، NetworkAnalyst، WGCNA | ۴ |
+| ۱۵ | [تنظیم بیان، miRNA و پیوند ژن و دارو](15_V2_Regulation_miRNA_Drug_Gene/) | ‏miRBase، miRTarBase، TargetScan، JASPAR، MEME، RegulonDB، DGIdb، DrugBank، PharmGKB | ۴ |
+| ۱۶ | [تک‌سلولی و فضایی](16_V2_Single_Cell_Spatial/) | ‏Cell Ranger، Scanpy، Seurat، CellTypist، Squidpy | ۴ |
+| ۱۷ | [اپی‌ژنومیکس](17_V2_Epigenomics/) | ‏ChIP-seq، ATAC-seq، متیلاسیون DNA | ۳ |
+| ۱۸ | [پروتئومیکس، متابولومیکس و چنداومیکس](18_V2_Proteomics_Metabolomics_MultiOmics/) | ‏PRIDE، MetaboAnalyst، HMDB، MOFA2 | ۳ |
+| ۱۹ | [اسمبلی متاژنوم، MAG و ویروم](19_V2_Metagenome_Assembly_Viromics/) | ‏MEGAHIT، MetaBAT2، GTDB-Tk، HUMAnN، geNomad | ۴ |
+| ۲۰ | [ژنومیکس جمعیت و GWAS](20_V2_Population_Genomics_GWAS/) | ‏PLINK، ADMIXTURE، GWAS Catalog، pyseer | ۳ |
+| ۲۱ | [واریانت انسانی و تفسیر بالینی](21_V2_Human_Variant_Clinical/) | ‏BWA-MEM2، GATK، FreeBayes، VEP، ANNOVAR، gnomAD | ۲ |
+| ۲۲ | [توالی‌یابی بلند و اسمبلی هیبرید](22_V2_Long_Read_Hybrid_Assembly/) | ‏Filtlong، Porechop، Flye، Canu، Medaka، Racon، Unicycler | ۲ |
+| ۲۳ | [گردش کار، کانتینر و HPC](23_V2_Workflows_Containers_HPC/) | ‏Docker، Apptainer، Nextflow، nf-core، SLURM | ۳ |
+| ۲۴ | [یادگیری ماشین و مدل‌های زبانی پروتئین](24_V2_Machine_Learning_PLMs/) | ‏scikit-learn، PyTorch، ESM-2، ESMFold | ۳ |
+| ۲۵ | [گردش کار هوشمند با مدل‌های زبانی](25_V2_AI_Pipelines_LLM/) | ‏API مدل‌های زبانی، Dify | ۲ |
+
+**رشته‌ی مشترک:** رشته‌ی باکتریایی نسخه‌ی ۱ (*E. coli*، *rpoB*، مقاومت) ادامه می‌یابد. بیشتر ابزارهای اومیکس (Enrichr، DGIdb، miRNA) برای انسان ساخته شده‌اند و باکتری‌ها miRNA ندارند، پس داده‌ی انسانی **GSE52778** (airway، دگزامتازون؛ پاسخ معلوم: ژن‌های پاسخ به گلوکوکورتیکوئید) به رشته‌ی دوم بدل می‌شود. STRING از *E. coli* K-12 پشتیبانی می‌کند و پل میان دو رشته است.
+
+**دسترسی از سرور (2026-10-26):** ‏STRING، Enrichr، g:Profiler، GEO، GeneMANIA، NetworkAnalyst، miRBase، TargetScan، MetaboAnalyst و PRIDE پاسخ دادند؛ DGIdb با GraphQL پاسخ داد. ‏Reactome و Expression Atlas پاسخ ندادند. ‏Cytoscape و IGV برنامه‌ی رومیزی‌اند و روی لپ‌تاپ هنرجو اجرا می‌شوند.
+
+## ارتقای بخش‌های نسخه‌ی ۱
+ابزارهایی که در فایل Excel دوره (شیت «مقدماتی تا متوسط») آمده‌اند یا در نسخه‌ی ۱ تنها «از مستندات» نوشته شدند:
+
+| بخش نسخه‌ی ۱ | کار نسخه‌ی ۲ |
+| :--- | :--- |
+| ۰۲ | ‏Mamba؛ SRA Toolkit (بخش 11/03) |
+| ۰۳ | ‏NumPy |
+| ۰۶ | ‏Trimmomatic، Cutadapt و Sickle در کنار fastp؛ BWA (بخش ۲۱)؛ HISAT2 و STAR (بخش ۱۳) |
+| ۰۷ | اجرای واقعی همه‌ی ماژول‌ها (در نسخه‌ی ۱ هیچ‌کدام اجرا نشد) |
+| ۰۸ | اجرای واقعی RGI و ABRicate؛ ISfinder، MobileElementFinder و CRISPRCasFinder؛ IQ-TREE و RAxML-NG؛ Gubbins |
+| ۰۹ | ‏SWISS-MODEL، Modeller، ZINC، HADDOCK، SwissDock، GROMACS، AMBER، ChimeraX و Discovery Studio؛ بیشترشان در دوره‌ی جدای بیوانفورماتیک ساختاری |
+
+## دوره‌های جدا (بیرون از این مخزن)
+1. بیوانفورماتیک ساختاری (تخصصی)
+2. ‏NGS و توالی‌یابی نسل سوم (آزمایشگاه و بیوانفورماتیک)
+3. زبان R و آمار زیستی
+4. آمار و طراحی آزمایش برای داده‌های اومیکس
+5. ژنومیکس پزشکی و تفسیر بالینی واریانت
+6. اپیدمیولوژی ژنومیک و فیلودینامیک پاتوژن‌ها
+7. زیست‌شناسی سامانه‌ها و مدل‌سازی متابولیک
+8. شیمی‌انفورماتیک و طراحی دارو به کمک رایانه
+9. یادگیری ماشین و هوش مصنوعی در زیست‌شناسی (تخصصی)
+10. برنامه‌نویسی پیشرفته و توسعه‌ی نرم‌افزار بیوانفورماتیک
+
+بخش‌های نسخه‌ی ۲ مقدمه‌ی کاربردی این موضوع‌هایند؛ دوره‌ی جدا ژرفا و نظریه را می‌دهد.
+
+## قاعده‌های نگارش
+همان [STYLE_GUIDE.md](STYLE_GUIDE.md): گام‌به‌گام، کالبدشکافی هر دستور، خروجی واقعی، داده‌ی با پاسخ معلوم، دست‌کم ۵ تمرین با راهنمایی و پاسخ تشریحی، 📺 و 📄 زیر هر تکنیک، و کتاب در منابع. کارهای سنگین با برچسب ✍️ «از مستندات»، یا با برنامه‌ی جدای رایانه.
+
+</div>

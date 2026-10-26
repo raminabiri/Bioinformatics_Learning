@@ -38,6 +38,7 @@ Rewrite the course part by part in the step-by-step format of STYLE_GUIDE.md: di
 - Working data lives in the session scratchpad (`p08/{amr,phylo}`, `p09/{dock,md}`) and **is wiped between sessions**; rebuild it by rerunning the scripts in `99_scripts_data` (verified to reproduce the same numbers).
 
 ## 4. Key decisions and rejected approaches
+- **Version 2 (2026-10-26):** user wants omics (GEO, STRING, Enrichr, NetworkAnalyst, GeneMANIA, Cytoscape, DGIdb, miRNA DBs, single-cell) and most NCBI databases in v2, folders 11+ named `NN_V2_…`. Human dataset GSE52778 (airway) becomes a second thread because these tools are human-centric and bacteria have no miRNA; STRING bridges to *E. coli*.
 - Part 09 stays **introductory**; a professional structural-bioinformatics course and an NGS/third-generation course are planned separately, with an expert reviewer the user will introduce. Part 10 is deferred to course version 2. Reason: the user wants depth in dedicated courses rather than a shallow pass here.
 - Every part uses **known-answer data** (simulated genomes, a crystal pose for redocking, a simulated outbreak with its true tree) so the learner can check the tool instead of trusting it. Rejected: using real unlabelled datasets, which hide tool error.
 - Tools that are heavy or not installed are written from **official documentation only** and labelled ✍️, with predictions marked as predictions. Rejected: inventing plausible outputs.
@@ -62,8 +63,9 @@ Rewrite the course part by part in the step-by-step format of STYLE_GUIDE.md: di
 - In this shell `grep` is ugrep, `awk` is gawk, `find` is bfs — use `/usr/bin/grep` and `/usr/bin/mawk` when capturing lesson outputs.
 
 ## 6. Next steps (priority order, one session each)
-1. Optionally upgrade 08/04 lesson 2 from doc-only to real runs: **IQ-TREE 3 is installed on this server** (seen running inside genomepipe) but is not in the default PATH; find its env and rerun the CTX-M alignment.
-2. Plan the separate **structural bioinformatics** course with the user and the expert reviewer, before writing anything.
-3. Plan the separate **NGS + third-generation sequencing** course (wet lab + bioinformatics); the topics of old 10/02–10/04 move there.
-4. Verify the env files online (`r_packages`, `workflow`, `metagenomics`, `bacterial_genomics`, `amr`, `phylo`, `structural`) once conda is reachable, and dry-run the 06/01 Snakefile. Note: there is no `structural` env on this server; the tools are in the miniforge base env.
-5. At course end: full link check (also check book chapter numbers added 2026-10-26) with the user's VPN (`_tools/check_links.sh`), including every YouTube URL in parts 07–09 (two new ones in 09/03 solutions), and re-search a CRISPR-immunity video for 08/03 lesson 2 (currently only a PBS NOVA page, not YouTube).
+1. **Version 2 is scaffolded (2026-10-26), not written.** Parts 11–25 (`NN_V2_…`, 71 module READMEs) and `V2_ROADMAP.md`. Part 10's six module plans were moved into parts 16 and 21–25; `10_Advanced/README.md` is now a pointer. Do not start writing v2 lessons without the user choosing the order.
+2. Real runs of part 07 (nothing run in v1) — needs coordination with genomepipe and user approval.
+3. Optionally upgrade 08/04 lesson 2 to real IQ-TREE runs (IQ-TREE 3 is installed but not in PATH).
+4. Plan the separate courses with the user (names in `V2_ROADMAP.md`); structural and NGS first, with the expert reviewer.
+5. Verify the env files online (`r_packages`, `workflow`, `metagenomics`, `bacterial_genomics`, `amr`, `phylo`, `structural`) once conda is reachable. Note: there is no `structural` env on this server; the tools are in the miniforge base env.
+6. At course end: full link check with the user's VPN (`_tools/check_links.sh`), every YouTube URL, and the book chapter numbers added 2026-10-26.
