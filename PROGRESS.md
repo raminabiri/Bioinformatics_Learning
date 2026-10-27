@@ -15,6 +15,7 @@ Write course **version 2** (parts 11–22, folders `NN_V2_…`, plan in `V2_ROAD
 - Commits end with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
 
 ## 2. Done so far
+- ✅ **Windows route (pure Windows, no WSL)** agreed 2026-10-27 (memory `windows-route.md`): `windows/README.md` + `windows/get_k12_genome.py`; pilot module **08/01** `00_lesson_windows.md` + `check_qrdr.py`, Windows hints in exercises, Windows answers in solutions. Web/installer steps ✍️ (user will test later).
 - ✅ **v1 parts 00–06, 08, 09** written and run (09 is introductory by user decision). ✍️ **07** written but nothing run.
 - ✅ All v1 lessons have per-technique 📺/📄 boxes and book sections (cc70d8d). Part 10 is now a pointer to v2/separate courses.
 - ✅ **v2 scaffold**: parts 11–22, 46 module READMEs (310755b, a1c4f63, 0c75968). Separate-course folders in `/data/Education/new/` (not a git repo).
@@ -75,7 +76,8 @@ Write course **version 2** (parts 11–22, folders `NN_V2_…`, plan in `V2_ROAD
 - v1 caveats (still open): AMRFinderPlus DB lacks nucleotide BLAST index (`The BLAST database for AMR_DNA-Escherichia.fa was not found.`); AlphaFold DB 403 from server; VFDB/ZINC time out; `envs/workflow.yml` needs `CONDA_CHANNEL_PRIORITY=flexible`; `grep` here is ugrep (use `/usr/bin/grep` for exact outputs).
 
 ## 6. Next steps (priority order, one session each)
-1. **v2 part 13 (RNA-seq)**: DESeq2 on GSE52778 counts (11/04); compare with Expression Atlas `e52778.tsv` (12/06), incl. the albuterol+dex contrast discrepancy. `deg_r` env has GEOquery 2.80.0, DESeq2 **not** installed → new env.
+1. **Windows route roll-out** (after user feedback on the 08/01 pilot): 08/02–08/04, 07, 06, 09, 03, 04, 11, 12 — one `00_lesson_windows.md` each.
+2. **v2 part 13 (RNA-seq)**: DESeq2 on GSE52778 counts (11/04); compare with Expression Atlas `e52778.tsv` (12/06), incl. the albuterol+dex contrast discrepancy. `deg_r` env has GEOquery 2.80.0, DESeq2 **not** installed → new env.
 3. Optional: if remote BLAST answers on a later day, add the real Swiss-Prot hits to 11/07 §10 (keep the queue story).
 4. v2 part 13 (RNA-seq; DESeq2 on GSE52778 counts from 11/04 — `deg_r` env has GEOquery 2.80.0, DESeq2 **not** installed).
 5. Real runs of v1 part 07 (needs genomepipe coordination and user approval).
