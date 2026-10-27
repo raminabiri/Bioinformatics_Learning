@@ -258,4 +258,28 @@
 - ساختن env برای sra-tools آفلاین شکست خورد (بسته‌های perl در کش نبودند).
 - فیلم‌ها: YouTube از سرور بسته است، ولی noembed.com باز است؛ فهرست وارسی‌شده در scratchpad ‏`p11/videos_verified.txt`.
 
+## جلسه‌ی 2026-10-27 (ادامه) — ماژول‌های 11/04 تا 11/06
+
+### 11/04: GEO
+- ‏GSE52778: ‏`db=gds` ‏۱۸ رکورد (۱ GPL، ۱ GSE، ۱۶ GSM)؛ رقم نخست UID گونه را می‌گوید (1=GPL، 2=GSE، 3=GSM). ‏GPL11154 = HiSeq 2000 انسان، ۱۹۵٬۱۰۱ نمونه.
+- ‏series matrix ‏۳ KB و ۷۷ سطر، بی جدول بیان (GEOquery 2.80.0: Features 0، Samples 16). طرح ۴ فرد × ۴ تیمار.
+- شمارش NCBI: ‏۳۹٬۳۷۶ ژن × ۱۶. اسکریپت `geo_counts.py` (CPM، log2FC جفتی): FKBP5 ‏۳٫۸۴، TSC22D3 ‏۳٫۰۴، DUSP1 ‏۲٫۸۴، PER1 ‏۲٫۹۷، CRISPLD2 ‏۲٫۵۱، ZBTB16 ‏۵٫۸۸، KLF15 ‏۳٫۷۷ (همه ۴/۴)؛ NR3C1 ‏−۱٫۰۶ (۰/۴). ده‌تای بالا: FKBP5، SAMHD1، GPX3، MAOA، SERPINA3، TSC22D3، C7، PER1، CACNB2، DUSP1.
+- آلبوترول: بیشینه PER1 ‏۱٫۸۸؛ ترکیب در برابر Dex: FKBP5 ‏−۱٫۰۶ (۲/۴). اندازه‌ی کتابخانه ۱۹٫۲ تا ۳۹٫۱ میلیون. ‏ERCC در ۷ نمونه، نامتوازن.
+- جست‌وجو: ۱۷۹۶ GSE انسانی dexamethasone، ۷۴۹ RNA-seq؛ کل GDS ‏۴۳۴۸.
+- ‏GEO2R ✍️ (راهنما پشت reCAPTCHA بود؛ ادعاها نرم شدند).
+
+### 11/05: واریانت و بالینی
+- ‏rs113993960: delins، دو آلل (Phe508del و Phe508dup)، GRCh38 7:117559591، GRCh37 7:117199645، SPDI ‏NC_000007.14:117559590:TCTT:T. فراوانی: gnomAD exomes ‏۱٫۲۵٪، GoNL ‏۱٫۹٪، 1000G ‏۰٫۴٪.
+- ‏Variation Services: c.1520_1522del → همان SPDI با هشدار ۳′؛ c.1519_1521del → rs121908745 (Ile507del، VCV000007106، ۴ ستاره)؛ delATC → خطای ۴۰۰. ‏NM_000492.3 جایگاه ۱۶۵۱ و ‏.4 ‏۱۵۸۹ (۶۲ باز UTR).
+- ‏ClinVar: VCV000007105 Pathogenic، practice guideline؛ VCV000634837 هاپلوتایپ با c.3080T>C، expert panel. ‏CFTR: ‏۶۵۲۹ رکورد، ۱۲۹۵ P، ۲۵۹۱ VUS، ۱۱۲ B، ۴۰۸ ناسازگار. ‏NR3C1: ‏۳۶۷، ۲۵ P، ۲۴۶ VUS. ‏G551D (rs75527207) دو آلل، دو VCV.
+- ‏dbVar: CFTR ‏۱۳۵۵، ۲۶۷ copy number loss، همه nstd102. ‏MedGen C0010674 (UID 41393) → ClinVar ‏۵۵۹۷، GTR ‏۵۱۴. ‏GTR: CFTR ‏۳۵۴ آزمون، ۲۳۹ با CF.
+
+### 11/06: ادبیات
+- ‏rifampicin resistance ‏۱۷٬۱۶۹؛ MeSH Rifampin+Drug Resistance, Bacterial ‏۲۹۳۸ (majr ‏۷۱۹). املا: rifampicin ‏۸۳، rifampin ‏۳۳، هر دو ۱۱۵، MeSH ‏۸۴.
+- ‏MeSH D012293 (UID 68012293، ۱۹۷۳، دو درخت D03/D04). ‏xtract روی XML خام پابمد بی `-mixed` ‏۴۴ KB خطا داد.
+- ‏۱۱۵ مقاله: J Bacteriol ‏۱۹، Mol Gen Genet ‏۱۵؛ ۱۹۸۰ها ۳۵.
+- ‏Citation Exporter (RIS، AMA) کار کرد؛ RIS برچسب PY ندارد. ‏Campbell 2001 ‏= PMID 11290327، در PMC نیست؛ Molodtsov = 28009073 = PMC5344776.
+- ‏PMC OA service (`/pmc/utils/oa/oa.fcgi`) ۴۰۴؛ ID Converter به pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1 رفته است. ‏efetch db=pmc کار کرد: S531L ‏۳۶، H526Y ‏۳۴، D516V ‏۲۱، S450L/H445Y/D435V هر کدام ۳.
+- ‏PubTator3: همان سه جهش، ولی ژن RpoB → 888164 (سل) با شماره‌گذاری E. coli. جست‌وجو: S531L ‏۳۷۹، S450L ‏۳۱۹، و «OR» همان ۳۱۹ (بولی نیست).
+
 </div>

@@ -5,7 +5,7 @@ Short handoff file. The full narrative of every session (decisions, problems, ve
 ## 1. Current goal
 Rewrite the course part by part in the step-by-step format of STYLE_GUIDE.md: dissect every command, real outputs only, strict prerequisites (nothing used before it is taught), ≥5 exercises with a hint under each title plus detailed solutions, references under every technique, RTL via `_tools/rtl_wrap.py`. The user says "ادامه" to continue; commit and push every 3 modules.
 
-**Now (2026-10-27):** writing **version 2** in order (user: "continue writing with the same rules"). User (2026-10-27): **write all of part 11 without asking, then commit and push.** Done: 11/01 Entrez_EDirect, 11/02 Gene/RefSeq/Protein/Taxonomy, 11/03 BioProject/BioSample/SRA (committed+pushed together). Next: 11/04 GEO → 11/08, commit after 11/06 and at the end.
+**Now (2026-10-27):** writing **version 2** in order (user: "continue writing with the same rules"). User (2026-10-27): **write all of part 11 without asking, then commit and push.** Done and pushed: 11/01–11/06 (Entrez/EDirect, Gene/RefSeq/IPG/CDD/Taxonomy, BioProject/SRA, GEO, Variation/ClinVar, PubMed/PMC/PubTator3). Next: 11/07 BLAST suite, 11/08 Pathogen/Virus, then final commit.
 
 **Earlier (2026-10-26):** every lesson in 00–09 now has per-technique 📺/📄 boxes and a book section in منابع (112 boxes added to 00–07). Parts 00–09 are **complete** (every module has lesson, exercises and solutions) and pushed. Part 10 is deliberately not written (user: "do not go into advanced topics"; it becomes course v2).
 
@@ -70,10 +70,13 @@ Rewrite the course part by part in the step-by-step format of STYLE_GUIDE.md: di
 - SRA Toolkit: no env had it except `genomepipe_tools` (off limits). `conda create --offline sra-tools=3.4.1` fails (perl deps missing from cache: `OfflineError: EnforceUnusedAdapter called with url …perl-importer…`). Lesson 11/03 ran the binaries straight from the package cache: `PATH=~/miniforge3/pkgs/sra-tools-3.4.1-2_linux_64/bin:$PATH` (prefetch, vdb-validate, fasterq-dump, fastq-dump all work).
 - `pgrep -f`/`pkill -f` with a pattern that also appears in the calling command line kills the calling shell (exit 144). Use `ps aux | grep '[x]yz'`.
 - EDirect pipelines that fetch all links of a human gene (`elink -target nuccore | efetch`) exceed the timeout (hundreds of records): count first, use `linkname` via curl. Helper with retries: scratchpad `r.sh`.
+- PMC OA Service URL `https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi` → 404 (2026-10-27); ID converter moved to `https://pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1/articles/`. Use `efetch db=pmc` for full text.
+- Raw PubMed XML needs `xtract -mixed` (else `UNEXPECTED MIXED CONTENT <i> IN <Reference>` on every record).
+- GEO2R and GEO docs pages are behind reCAPTCHA from the server; GEO2R claims kept soft.
 - Rate-limit JSON error contains the server's public IP in `"api-key"` → redact in lessons.
 
 ## 6. Next steps (priority order, one session each)
-1. **Version 2: writing part 11 in order without asking.** 11/01–11/03 done and pushed 2026-10-27. Next 11/04–11/08. Then the rest of part 11. Scaffold notes: Parts 11–22 (`NN_V2_…`, 46 module READMEs) and `V2_ROADMAP.md`. User removed single-cell, human variant and long-read parts (→ separate NGS course; clinical interpretation → separate medical-genomics course). Part 10's modules 01/05/06 live in parts 20–22; `10_Advanced/README.md` is now a pointer.
+1. **Version 2: writing part 11 in order without asking.** 11/01–11/06 done and pushed 2026-10-27. Next 11/07–11/08. Then the rest of part 11. Scaffold notes: Parts 11–22 (`NN_V2_…`, 46 module READMEs) and `V2_ROADMAP.md`. User removed single-cell, human variant and long-read parts (→ separate NGS course; clinical interpretation → separate medical-genomics course). Part 10's modules 01/05/06 live in parts 20–22; `10_Advanced/README.md` is now a pointer.
 2. Real runs of part 07 (nothing run in v1) — needs coordination with genomepipe and user approval.
 3. Optionally upgrade 08/04 lesson 2 to real IQ-TREE runs (IQ-TREE 3 is installed but not in PATH).
 4. Plan the separate courses with the user (names in `V2_ROADMAP.md`); structural and NGS first, with the expert reviewer.
