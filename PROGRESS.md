@@ -5,7 +5,7 @@ Short handoff file. The full narrative of every session (decisions, problems, ve
 ## 1. Current goal
 Write course **version 2** (parts 11–22, folders `NN_V2_…`, plan in `V2_ROADMAP.md`) in the STYLE_GUIDE.md format: dissect every command, **real outputs only** (dated), known-answer data, strict prerequisites, ≥5 exercises with a «راهنمایی» hint plus detailed solutions, 📺 video + 📄 reference under every technique, منابع with papers + books + Coursera/edX/YouTube, RTL via `_tools/rtl_wrap.py`, wording via `_tools/persian_words.py`, links via `_tools/check_internal_links.py`. Commit + push every 3 modules (and at the end of a part).
 
-**State (2026-10-27, later):** v1 (parts 00–09) complete. v2 part 11 complete. **v2 part 12 modules 01–03 (Ensembl/BioMart, UCSC, IGV) written, run and pushed.** User said "go to 12" and earlier "write to the end without asking" → continue with 12/04–06. **Restructure question deferred:** user asked whether parts 11/12 should come before Linux/Python; decision: finish all of v2 first, then decide (option on the table: a learning-path table + web-first/code-second modules, not renumbering).
+**State (2026-10-27, end of day):** v1 (parts 00–09) complete. v2 parts **11 and 12 complete and pushed** (12 = Ensembl/BioMart, UCSC/liftOver, IGV, InterPro/HMMER, GO/KEGG/Reactome/WikiPathways/MSigDB, GTEx/HPA/Expression Atlas/GDC/cBioPortal). **Next: part 13 (RNA-seq).** User said "go to 12"; ask before starting 13 unless told to continue. **Restructure question deferred:** finish all of v2 first, then decide (option: learning-path table + web-first/code-second modules, not renumbering).
 
 **Standing rules from the user:**
 - Run only what needs **< 1 GB RAM**; heavier work is code-only, labelled ✍️ "از مستندات". Do not touch `/data/1/genomepipe` or the `genomepipe_tools` env.
@@ -18,6 +18,10 @@ Write course **version 2** (parts 11–22, folders `NN_V2_…`, plan in `V2_ROAD
 - ✅ **v1 parts 00–06, 08, 09** written and run (09 is introductory by user decision). ✍️ **07** written but nothing run.
 - ✅ All v1 lessons have per-technique 📺/📄 boxes and book sections (cc70d8d). Part 10 is now a pointer to v2/separate courses.
 - ✅ **v2 scaffold**: parts 11–22, 46 module READMEs (310755b, a1c4f63, 0c75968). Separate-course folders in `/data/Education/new/` (not a git repo).
+- ✅ **v2 part 12, modules 04–06** (2026-10-27):
+  - 04 InterPro API + HMMER (mini Pfam DB from InterPro, `download.sh`): beta-lactamase classes A/C/D in clan CL0013, B in CL0381; class-A hits class-C HMM (E 1e-39) where BLAST sees nothing; hmmsearch on K-12 finds PBPs, not beta-lactamases; KPC-2 lacks PROSITE PS00146; GA misses PhnP/UlaG.
+  - 05 QuickGO (GR 147 annotations, evidence codes, 3-parent DAG, merged GO:0004882), KEGG (no GR pathway, 3/8 genes unmapped; rpoB K03043), Reactome ORA (isoform artifact: NR3C1 = 9 entities), WikiPathways WP2880/WP5503, MSigDB Hallmark overlap.
+  - 06 GTEx v11 (NR3C1 54 tissues), HPA 25.1 (corticotrophs), Expression Atlas E-GEOD-52778 (7 up, NR3C1 down; combined-treatment contrast disagrees with NCBI counts — unresolved, reported), GDC R46 (62% controlled), cBioPortal TP53 52% LUAD, G>T vs C>T signatures, KRAS G12C.
 - ✅ **v2 part 12, modules 01–03** (2026-10-27), env `envs/databases.yml` (ucsc-liftover 502, samtools/bcftools 1.24, hmmer 3.4, igv-reports 1.16.0):
   - 01 Ensembl REST (release 116) + BioMart (jun2026 archive) + `ens_ids.py` (requests, retries): NR3C1 ENST00000394464 = NM_000176.3 (1 ENST ↔ 10 NM; 8 are the same mRNA with different start AUGs); release 114 vs 116 coordinate changes; Ensembl Bacteria rpoB/gyrA.
   - 02 UCSC API (0-based) + hgRenderTracks images + liftOver (F508del 117199645→117559591; 3000 random windows: 315 Deleted all N, 9 Split, 12 to _random; wrong-direction chain gives no error).
@@ -54,6 +58,7 @@ Write course **version 2** (parts 11–22, folders `NN_V2_…`, plan in `V2_ROAD
 - Videos verified with `https://noembed.com/embed?url=…` (YouTube itself is blocked from the server).
 
 ## 5. Known bugs and caveats (exact messages)
+- Part 12/04–06: InterPro returns HTTP 204 (empty body) when a protein has no match → `jq` prints nothing; KEGG `list/hsa04010` → 404 (use `list/pathway/hsa`); GTEx wrong-version gencodeId → `{"data":[]…}` with HTTP 200; GDC facets count a mutation once per transcript; MSigDB search needs login, data.broadinstitute.org unreachable; geneontology.org and igv.org unreachable from server; EBI Job Dispatcher submission (email) blocked by permission classifier.
 - Part 12 (2026-10-27): Ensembl REST often `HTTP 500`/`503` with an HTML page → `jq: parse error: Invalid numeric literal`, `requests.exceptions.JSONDecodeError`; use retries (`scratchpad/p12/ej.sh`, `ens_ids.py`). BioMart 116 (jun2026.archive) answers GET only (POST → `405 Not Allowed`), was "Service unavailable" ~15 min. `rest.ensemblgenomes.org` unreachable (main REST serves bacteria). Fly-side homology needs `compara=multi` (`Could not find a GenomeDB named 'homo_sapiens'`).
 - UCSC `hgTables` via curl → Cloudflare Turnstile page; `hgRenderTracks` ignores `hgt.customText`. Running a downloaded liftOver binary was blocked by the permission classifier → use Bioconda ucsc-liftover.
 - igv.org unreachable from server; headless Chrome screenshots of igv-reports stay blank (igv.js never finishes).
@@ -70,7 +75,7 @@ Write course **version 2** (parts 11–22, folders `NN_V2_…`, plan in `V2_ROAD
 - v1 caveats (still open): AMRFinderPlus DB lacks nucleotide BLAST index (`The BLAST database for AMR_DNA-Escherichia.fa was not found.`); AlphaFold DB 403 from server; VFDB/ZINC time out; `envs/workflow.yml` needs `CONDA_CHANNEL_PRIORITY=flexible`; `grep` here is ugrep (use `/usr/bin/grep` for exact outputs).
 
 ## 6. Next steps (priority order, one session each)
-1. **v2 part 12, modules 04–06** (InterPro/HMMER on P04150 & beta-lactamases, GO/KEGG/Reactome — all APIs answered on 2026-10-27; GTEx (gencodeId ENSG00000113580.14)/HPA/GDC release 46/cBioPortal APIs answered); commit+push at end of part 12.
+1. **v2 part 13 (RNA-seq)**: DESeq2 on GSE52778 counts (11/04); compare with Expression Atlas `e52778.tsv` (12/06), incl. the albuterol+dex contrast discrepancy. `deg_r` env has GEOquery 2.80.0, DESeq2 **not** installed → new env.
 3. Optional: if remote BLAST answers on a later day, add the real Swiss-Prot hits to 11/07 §10 (keep the queue story).
 4. v2 part 13 (RNA-seq; DESeq2 on GSE52778 counts from 11/04 — `deg_r` env has GEOquery 2.80.0, DESeq2 **not** installed).
 5. Real runs of v1 part 07 (needs genomepipe coordination and user approval).

@@ -332,4 +332,32 @@
 - ‏igv-reports: ‏۲٫۲ ثانیه، ۵۶ MB، HTML ‏۱٫۳ MB (بی standalone ‏۳۲ KB). عکس‌برداری با Chrome بی‌سر ناکام (igv.js بار نشد). ‏IGV رومیزی 2.19.8 و batch ✍️ (igv.org از سرور در دسترس نبود).
 - اشتباه‌های پیش‌نویس که با اجرا گرفته شدند: ادعای «bcftools ریدهای MAPQ پایین را کنار می‌گذارد»؛ «۵۵ جایگاه همه زیر ۷٪» (بیشینه ۱۴٪)؛ «سه SNP در tufA» (داده آن را نشان نمی‌داد، تمرین بازنویسی شد)؛ سطر GFF ‏tyrU و فصل کتاب Buffalo (۱۱، نه ۱۰).
 
+## جلسه‌ی 2026-10-27 (ادامه) — بخش ۱۲، ماژول‌های ۰۴ تا ۰۶؛ پایان بخش ۱۲
+
+### 12/04: خانواده و دامنه
+- داده: TEM-1 (P62593)، CTX-M-15 (A0A5R8T042)، KPC-2 (Q9F663)، AmpC (P00811)، OXA-48 (Q6XEC0)، NDM-1 (C7C422)، GR (P04150)؛ InterPro 110.0، Pfam 38.2 (۳۰٬۱۳۴ خانواده؛ InterPro ‏۵۴٬۹۲۲ مدخل، ۱۳ پایگاه عضو).
+- ‏BLAST همه در برابر همه: رده‌ی A با A ‏E 1e-62 تا 1e-89؛ A با C/D تنها نویز (E ≥ 0.14). ‏hmmscan: رده‌ی A با مدل رده‌ی C (PF00144) هم E 1e-36 تا 1e-39. ‏clan: ‏A/C/D در CL0013، B در CL0381.
+- ‏hmmsearch روی پروتئوم K-12 (۴۳۰۰): مدل‌های A و D تنها PBPها (DacA/B/C/D، PbpG، FtsI، MrdA، MrcA/B، PBP-1Bγ، PbpC)؛ C: AmpC، PBP4B، AmpH؛ متالو: GloB/C، آلکیل‌سولفاتاز، فلاورابردوکسین، RNase BN. بی GA: PhnP و UlaG (زیر GA، ولی در InterPro IPR036866).
+- ‏zf-C4: نه سیستئین بیشینه؛ GR C421/424/438/441 و C457/463/473/476 (+C481). ‏CTX-M-15 نقش STSK ‏۷۳–۷۶ (Ser73 = Ambler Ser70). ‏KPC-2 الگوی PS00146 ندارد (جایگاه ۶ ‏S به جای T/V)؛ InterPro برای آن HTTP 204.
+- ‏InterProScan Job Dispatcher (ایمیل) را طبقه‌بند مجوزها رد کرد → ✍️؛ به جایش API ‏entry/all. ‏eggNOG-mapper ✍️ (پایگاه ۵۰ GB).
+
+### ‏12/05: GO و مسیرها
+- ‏QuickGO: GR ‏۱۴۷ آنوتیشن (۸۷ آزمایشی، ۳۴ IEA)؛ «nuclear glucocorticoid receptor activity» تنها IEA/TAS؛ «estrogen response element binding» با IBA. ‏nuclear receptor activity سه پدر دارد (پیش‌نویس دو پدر کشیده بود؛ با paths وارسی و درست شد). ‏GO:0004882 (androgen) به GO:0004879 ادغام شده. FKBP5: ‏۵۷ از ۶۵ MF «protein binding».
+- ‏KEGG: ‏۳۷۲ مسیر انسان؛ NR3C1 تنها hsa04080؛ TSC22D3، KLF15، CRISPLD2 بی مسیر. ‏`list/hsaNNNNN` ‏۴۰۴ می‌دهد → `list/pathway/hsa` و join. ‏eco03020: rpoA/B/C/Z؛ K03043 در ۹۹۷۲ گونه؛ gyrA (K02469) بی مسیر، acrB در eco01501/01503.
+- ‏Reactome 97: GR ‏۸ مسیر؛ ORA هشت ژن: Nuclear Receptor transcription ‏p 8.9e-16 تنها از ۹ ایزوفرم NR3C1؛ بی NR3C1 ‏Circadian clock (PER1، KLF15) p 2.8e-8.
+- ‏WikiPathways: ‏۲۲۱۸ مسیر، ۱۱۳۱ انسان؛ WP2880 (۷۰ ژن، تنها NR3C1 و TSC22D3)؛ WP5503 آسم (۲۶ ژن، NR3C1 و ADRB2).
+- ‏MSigDB 2026.2.Hs: JSON هر مجموعه بی ورود؛ جست‌وجو ورود می‌خواهد؛ data.broadinstitute.org در دسترس نبود. Hallmark: هیچ مجموعه‌ی گلوکوکورتیکوئید؛ FKBP5 در آندروژن/استروژن.
+- اشتباه اجرایی: یک `mkdir -p ../ex` نسبی پوشه‌ی `/data/Education/ex` ساخت؛ دو فایل خراش به scratchpad برده و پوشه پاک شد.
+
+### 12/06: بیان و سرطان
+- ‏GTEx: v7/v8/v10/v11 (GENCODE v19/v26/v39/v47)؛ NR3C1 ‏.14 (v26) و .15 (v47)؛ ۵۴ بافت، ۴٫۹ (پانکراس) تا ۵۲ TPM؛ شناسه‌ی v26 با gtex_v11 پاسخ تهی با HTTP 200. FKBP5 ‏۱٫۴ تا ۱۸۰.
+- ‏HPA 25.1: NR3C1 Low tissue specificity، بیشینه‌ی تک‌سلول کورتیکوتروف‌ها (۱۱۶۸ nCPM)، هسته و سیتوزول.
+- ‏Expression Atlas: E-GEOD-52778؛ دگزامتازون ۷ ژن بالا (ZBTB16 ۵٫۱ … CRISPLD2 ۲٫۴)، NR3C1 ‏−۱؛ ۲۱۴۲ معنادار. آلبوترول ۰. **ترکیب: Atlas تنها ۸۳ ژن (FKBP5 ۰٫۷)، ولی شمارش NCBI با geo_counts.py: FKBP5 ۲٫۷۸، ZBTB16 ۴٫۴۴ در هر ۴ فرد؛ طرح آزمایش Atlas درست بود؛ علت یافت نشد** (در پاسخ تمرین ۲ گزارش شد).
+- ‏GDC Release 46: ۳۳ پروژه‌ی TCGA؛ LUAD ‏۵۸۵ بیمار، ۳۶٬۷۴۰ فایل، ۶۲٪ کنترل‌شده؛ BRCA ‏۶۱٪. ‏facet جهش TP53 هر جهش را روی چند رونوشت می‌شمرد (R175H = R136H = R43H).
+- ‏cBioPortal v7.2.0: TP53 در ۲۹۵/۵۶۶ (۵۲٪) LUAD؛ G>T ‏۴۳٪ (ریه) در برابر C>T ‏۷۱٪ (روده؛ R175H، R282W، R248Q، R273H). KRAS ‏۱۶۸ (۲۹٫۷٪)، G12C ‏۷۰؛ ۶۲ با TP53.
+- ادعاهای وارسی‌نشده‌ی پیش‌نویس برداشته شدند: معنای ستون p-value در Atlas، گفته‌ی Himes درباره‌ی ترکیب، اثر استرس پس از مرگ بر FKBP5. تابع پوسته (`spec()`) با حلقه‌ی for جایگزین شد (قاعده‌ی نسخه‌ی ۱).
+
+### وضعیت
+بخش ۱۲ کامل شد (۶ ماژول). بعدی: بخش ۱۳ (RNA-seq).
+
 </div>
