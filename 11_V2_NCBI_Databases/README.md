@@ -8,7 +8,7 @@
 | :--- | :--- |
 | **پیش‌نیاز** | بخش‌های ۰۰، ۰۲ (ماژول ۰۵) و ۰۳ (ماژول ۰۵) |
 | **داده‌ی مشترک (پیشنهادی)** | ژن *rpoB* از *E. coli* (رشته‌ی نسخه‌ی ۱)، ژن انسانی NR3C1، داده‌ی GEO ‏GSE52778، واریانت شناخته‌شده‌ی CFTR ‏(rs113993960) |
-| **وضعیت** | 🟡 در حال نگارش: ماژول‌های ۰۱ تا ۰۶ اجرا شده (2026-10-27)، بقیه طرح؛ نقشه‌ی کامل در [V2_ROADMAP.md](../V2_ROADMAP.md) |
+| **وضعیت** | ✅ نوشته و اجرا شده (2026-10-27)؛ نقشه‌ی کامل در [V2_ROADMAP.md](../V2_ROADMAP.md) |
 
 | ماژول | عنوان | ابزار و پایگاه | وضعیت |
 | :---: | :--- | :--- | :---: |
@@ -18,7 +18,7 @@
 | ۰۴ | ‏[GEO: داده‌ی بیان ژن](04_GEO/) | ‏GEO (GSE، GSM، GPL، GDS)، GEO2R، جدول شمارش آماده‌ی NCBI، GEOquery (اسکریپت آماده) | ✅ |
 | ۰۵ | [واریانت و پایگاه‌های بالینی](05_Variation_Clinical/) | dbSNP، ClinVar، dbVar، MedGen، GTR، Variation Viewer | ✅ |
 | ۰۶ | ‏[PubMed، PMC و کاوش متن](06_Literature_PubMed_PMC/) | PubMed، MeSH، PMC Open Access، PubTator3، EDirect | ✅ |
-| ۰۷ | ‏[BLAST+ و ابزارهای وابسته](07_BLAST_Suite_Tools/) | BLAST+ (`blastn`، `blastp`، `tblastn`، `makeblastdb`، `-remote`)، ORFfinder، Primer-BLAST، CD-Search | ⚪ طرح |
-| ۰۸ | ‏[Pathogen Detection و NCBI Virus](08_Pathogen_Virus_Resources/) | ‏NCBI Pathogen Detection، Isolates Browser، MicroBIGG-E، NCBI Virus، Datasets برای ویروس‌ها | ⚪ طرح |
+| ۰۷ | ‏[BLAST+ و ابزارهای وابسته](07_BLAST_Suite_Tools/) | BLAST+ (`blastn`، `blastp`، `tblastn`، `makeblastdb`، `-remote`)، ORFfinder، Primer-BLAST، CD-Search | ✅ |
+| ۰۸ | ‏[Pathogen Detection و NCBI Virus](08_Pathogen_Virus_Resources/) | ‏NCBI Pathogen Detection، Isolates Browser، MicroBIGG-E، NCBI Virus، Datasets برای ویروس‌ها | ✅ |
 
 </div>

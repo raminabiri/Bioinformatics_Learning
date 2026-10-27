@@ -5,7 +5,7 @@ Short handoff file. The full narrative of every session (decisions, problems, ve
 ## 1. Current goal
 Rewrite the course part by part in the step-by-step format of STYLE_GUIDE.md: dissect every command, real outputs only, strict prerequisites (nothing used before it is taught), ≥5 exercises with a hint under each title plus detailed solutions, references under every technique, RTL via `_tools/rtl_wrap.py`. The user says "ادامه" to continue; commit and push every 3 modules.
 
-**Now (2026-10-27):** writing **version 2** in order (user: "continue writing with the same rules"). User (2026-10-27): **write all of part 11 without asking, then commit and push.** Done and pushed: 11/01–11/06 (Entrez/EDirect, Gene/RefSeq/IPG/CDD/Taxonomy, BioProject/SRA, GEO, Variation/ClinVar, PubMed/PMC/PubTator3). Next: 11/07 BLAST suite, 11/08 Pathogen/Virus, then final commit.
+**Now (2026-10-27):** writing **version 2** in order (user: "continue writing with the same rules"). User (2026-10-27): **write all of part 11 without asking, then commit and push.** **Part 11 complete (8 modules, all real runs, pushed).** Next v2 part: 12 Global databases/browsers (Ensembl, UCSC, IGV, InterPro, GO/KEGG/Reactome, GTEx/TCGA/cBioPortal) — wait for the user's go-ahead or continue in order if told to.
 
 **Earlier (2026-10-26):** every lesson in 00–09 now has per-technique 📺/📄 boxes and a book section in منابع (112 boxes added to 00–07). Parts 00–09 are **complete** (every module has lesson, exercises and solutions) and pushed. Part 10 is deliberately not written (user: "do not go into advanced topics"; it becomes course v2).
 
@@ -73,10 +73,12 @@ Rewrite the course part by part in the step-by-step format of STYLE_GUIDE.md: di
 - PMC OA Service URL `https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi` → 404 (2026-10-27); ID converter moved to `https://pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1/articles/`. Use `efetch db=pmc` for full text.
 - Raw PubMed XML needs `xtract -mixed` (else `UNEXPECTED MIXED CONTENT <i> IN <Reference>` on every record).
 - GEO2R and GEO docs pages are behind reCAPTCHA from the server; GEO2R claims kept soft.
+- Remote BLAST (`blastp -remote`, URL API) sat in WAITING for 25+ min on 2026-10-27; lesson 11/07 reports this honestly. NCBI asks: ≤1 request/10 s, poll an RID ≤1/min.
+- Pathogen Detection AMR TSV for E. coli is 553 MB (26 min at ~360 KB/s); `scientific_name` = strain name, use `species_taxid`; dates include `missing` and `1900-01-01` placeholders.
 - Rate-limit JSON error contains the server's public IP in `"api-key"` → redact in lessons.
 
 ## 6. Next steps (priority order, one session each)
-1. **Version 2: writing part 11 in order without asking.** 11/01–11/06 done and pushed 2026-10-27. Next 11/07–11/08. Then the rest of part 11. Scaffold notes: Parts 11–22 (`NN_V2_…`, 46 module READMEs) and `V2_ROADMAP.md`. User removed single-cell, human variant and long-read parts (→ separate NGS course; clinical interpretation → separate medical-genomics course). Part 10's modules 01/05/06 live in parts 20–22; `10_Advanced/README.md` is now a pointer.
+1. **Version 2:** part 11 done 2026-10-27. Next part 12 (in order). Then the rest of part 11. Scaffold notes: Parts 11–22 (`NN_V2_…`, 46 module READMEs) and `V2_ROADMAP.md`. User removed single-cell, human variant and long-read parts (→ separate NGS course; clinical interpretation → separate medical-genomics course). Part 10's modules 01/05/06 live in parts 20–22; `10_Advanced/README.md` is now a pointer.
 2. Real runs of part 07 (nothing run in v1) — needs coordination with genomepipe and user approval.
 3. Optionally upgrade 08/04 lesson 2 to real IQ-TREE runs (IQ-TREE 3 is installed but not in PATH).
 4. Plan the separate courses with the user (names in `V2_ROADMAP.md`); structural and NGS first, with the expert reviewer.
