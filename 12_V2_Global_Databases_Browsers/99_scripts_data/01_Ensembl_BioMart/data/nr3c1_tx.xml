@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Query>
+<Query virtualSchemaName="default" formatter="TSV" header="1" uniqueRows="1">
+  <Dataset name="hsapiens_gene_ensembl" interface="default">
+    <Filter name="external_gene_name" value="NR3C1"/>
+    <Attribute name="ensembl_transcript_id"/>
+    <Attribute name="transcript_biotype"/>
+    <Attribute name="transcript_length"/>
+    <Attribute name="transcript_is_canonical"/>
+    <Attribute name="transcript_mane_select"/>
+  </Dataset>
+</Query>

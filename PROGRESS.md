@@ -1,86 +1,78 @@
 # PROGRESS — Bioinformatics course (Persian, for biologists new to bioinformatics)
 
-Short handoff file. The full narrative of every session (decisions, problems, verified numbers) is in **SESSION_LOG.md** — keep it updated, the user asked for complete reports.
+Short handoff file. The full narrative of every session (decisions, problems, verified numbers) is in **SESSION_LOG.md** (Persian) — keep it updated; the user wants complete reports.
 
 ## 1. Current goal
-Rewrite the course part by part in the step-by-step format of STYLE_GUIDE.md: dissect every command, real outputs only, strict prerequisites (nothing used before it is taught), ≥5 exercises with a hint under each title plus detailed solutions, references under every technique, RTL via `_tools/rtl_wrap.py`. The user says "ادامه" to continue; commit and push every 3 modules.
+Write course **version 2** (parts 11–22, folders `NN_V2_…`, plan in `V2_ROADMAP.md`) in the STYLE_GUIDE.md format: dissect every command, **real outputs only** (dated), known-answer data, strict prerequisites, ≥5 exercises with a «راهنمایی» hint plus detailed solutions, 📺 video + 📄 reference under every technique, منابع with papers + books + Coursera/edX/YouTube, RTL via `_tools/rtl_wrap.py`, wording via `_tools/persian_words.py`, links via `_tools/check_internal_links.py`. Commit + push every 3 modules (and at the end of a part).
 
-**Now (2026-10-27):** writing **version 2** in order (user: "continue writing with the same rules"). User (2026-10-27): **write all of part 11 without asking, then commit and push.** **Part 11 complete (8 modules, all real runs, pushed).** Next v2 part: 12 Global databases/browsers (Ensembl, UCSC, IGV, InterPro, GO/KEGG/Reactome, GTEx/TCGA/cBioPortal) — wait for the user's go-ahead or continue in order if told to.
-
-**Earlier (2026-10-26):** every lesson in 00–09 now has per-technique 📺/📄 boxes and a book section in منابع (112 boxes added to 00–07). Parts 00–09 are **complete** (every module has lesson, exercises and solutions) and pushed. Part 10 is deliberately not written (user: "do not go into advanced topics"; it becomes course v2).
+**State (2026-10-27, later):** v1 (parts 00–09) complete. v2 part 11 complete. **v2 part 12 modules 01–03 (Ensembl/BioMart, UCSC, IGV) written, run and pushed.** User said "go to 12" and earlier "write to the end without asking" → continue with 12/04–06. **Restructure question deferred:** user asked whether parts 11/12 should come before Linux/Python; decision: finish all of v2 first, then decide (option on the table: a learning-path table + web-first/code-second modules, not renumbering).
 
 **Standing rules from the user:**
-- Run only what needs **< 1 GB RAM**; everything heavier is code-only, labelled ✍️ "از مستندات". (2026-10-25: anything under 1 GB may run freely while genomepipe is busy; the 1.3 GB Vina runs wait for a free window and were approved once at ~3 min each on 2 cores.)
-- Glossary: STYLE_GUIDE §8. "ضراوت" → **"بیماری‌زایی"** (replaced course-wide).
-- Glossary extended 2026-10-26: عدم، می‌باشد، اکثر، لذا، توسط، نمودن/گردیدن (formal/Arabic words the user dislikes). `persian_words.py` flags them; course is clean.
-- Under **every technique**: a 📺 video URL and a 📄 reference; at the end of each lesson a منابع list with papers, **books**, and Coursera + edX + YouTube.
-- Do not touch `/data/1/genomepipe` or `genomepipe_tools`.
+- Run only what needs **< 1 GB RAM**; heavier work is code-only, labelled ✍️ "از مستندات". Do not touch `/data/1/genomepipe` or the `genomepipe_tools` env.
+- Plain Persian: avoid عدم، می‌باشد، استفاده، دستورالعمل، اکثر، لذا، توسط، نمودن/گردیدن، مثال، عملی… (STYLE_GUIDE §8).
+- **Never** put the NCBI API key (`$NCBI_API_KEY` in ~/.bashrc), the machine email or the server IP in lessons or commits; EDirect stderr prints them → send stderr to a scratch log. Never send the user's email to external services.
+- Never commit the untracked user files `Bioinformatics_Course_ColorCoded.xlsx`, `advanced.odt`.
+- Commits end with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
 
 ## 2. Done so far
-- ✅ **00** Orientation, **01** Linux (10 modules), **02** BioLinux (5), **03** Python (6) — pushed (b5afb1b and earlier).
-- ✅ **04_R_Packages** (87c221b). User decision: R language + statistics are a SEPARATE course; no R/RStudio install lessons.
-- ✅ **05_Reproducible_Work**: Git basics, branches via a local bare repo, first Snakemake workflow, full pipeline with config/params/logs and a ground-truth check.
-- ✅ **06_Metagenomics**: rewritten without new runs; all outputs reused from the 2026-10-12..15 runs and verified by reading those files.
-- ✍️ **07_Bacterial_Genomics**: all 5 modules written, **nothing run** (user asked for no code at the time). Sample outputs come from official docs; exercise tables labelled فرضی. ST10 and ST131 profiles verified via the PubMLST REST API.
-- ✅ **08_AMR_Virulence_Phylogeny** (eade55f, 1f8094a). Data = known-answer simulations on the part-01 K-12 genome plus real public sequences.
-  - 01 AMR: AMRFinderPlus 4.2.7 / DB 2026-08-07.1 recovered exactly the 5 planted features (`tet(A)` as PARTIALX 50.38%); ~80 s, 183 MB. RGI and ABRicate are doc-only.
-  - 02 virulence: stxtyper read the planted operon as `STX2A COMPLETE`; VFDB setA via makeblastdb/blastn shows K-12 itself carries 65 VF genes (the teaching point); heatmap with ggplot2.
-  - 03 mobile elements: real plasmid pEK499 (EU935739.1) → 12 core AMR genes, replicons IncFIA + IncFII, `catB3` truncated by IS26, class 1 integron; `find_crispr.py` finds the K-12 I-E array (12 spacers) next to the cas operon.
-  - 04 phylogeny: MAFFT + NJ/bootstrap on 15 real beta-lactamase genes (5 CTX-M groups at 100%); simulated 20-isolate outbreak with a known true tree → transmission H1→H2 recovered, Robinson-Foulds 4 only from polytomies. IQ-TREE and Gubbins are doc-only.
-- ✅ **09_Structural_Bioinformatics** (1b148be) — **introductory level by user decision**. Restructured 5 modules → 4 (dropped `05_Visualization`, folded PyMOL into module 01). Shared data: RNA polymerase + rifampicin (5UAC wild type, 5UAL S531L, 5UAH D516V; Molodtsov 2017), AlphaFold `AF-P0A8V2-F1`, and 1L2Y for MD.
-  - 01: gemmi + PyMOL; the 14 pocket residues include D516/H526/S531, which ties the structure back to module 08/01. AlphaFold model vs experiment: mean pLDDT 90.1, CA RMSD 1.39 Å.
-  - 02: PubChem + ChEMBL + RDKit; every rifamycin breaks 2–4 Lipinski rules yet several are oral drugs. RDKit numbers match ChEMBL exactly.
-  - 03: full Vina pipeline. Wild-type redocking passes (1.55 Å), S531L fails (8.42 Å, correct pose rank 5). With `--exhaustiveness 32` the wild type finds a 1.00 Å pose but ranks it second → **the limit is scoring, not search** (lesson §7.1). Solutions written 2026-10-26 from 7 real runs (approved by the user): seeds agree (first poses within 0.13 Å); shifted box gives −5.93 / 29.4 Å with no warning; 16 Å box still works; docking from the RDKit conformer fails (8.36 Å, best rank 3 at 2.78 Å) because the macrocycle shape is fixed and differs 2.35 Å from the crystal; rifabutin −7.61 is not comparable.
-  - 04: OpenMM + mdtraj on Trp-cage. Key finding: the same seed run twice gives different results (RMSD 2.12 vs 2.30) — MD on CPU is not bit-wise reproducible, unlike Vina. Only patterns across replicas are reportable (TRP6 always least mobile, 0.49–0.61 Å). A 200 ps run raises ASN1 RMSF from 1.99 to 3.11 Å, i.e. RMSF is not converged.
+- ✅ **v1 parts 00–06, 08, 09** written and run (09 is introductory by user decision). ✍️ **07** written but nothing run.
+- ✅ All v1 lessons have per-technique 📺/📄 boxes and book sections (cc70d8d). Part 10 is now a pointer to v2/separate courses.
+- ✅ **v2 scaffold**: parts 11–22, 46 module READMEs (310755b, a1c4f63, 0c75968). Separate-course folders in `/data/Education/new/` (not a git repo).
+- ✅ **v2 part 12, modules 01–03** (2026-10-27), env `envs/databases.yml` (ucsc-liftover 502, samtools/bcftools 1.24, hmmer 3.4, igv-reports 1.16.0):
+  - 01 Ensembl REST (release 116) + BioMart (jun2026 archive) + `ens_ids.py` (requests, retries): NR3C1 ENST00000394464 = NM_000176.3 (1 ENST ↔ 10 NM; 8 are the same mRNA with different start AUGs); release 114 vs 116 coordinate changes; Ensembl Bacteria rpoB/gyrA.
+  - 02 UCSC API (0-based) + hgRenderTracks images + liftOver (F508del 117199645→117559591; 3000 random windows: 315 Deleted all N, 9 Split, 12 to _random; wrong-direction chain gives no error).
+  - 03 IGV ✍️ + `samtools tview -d T`, mpileup AD/ADF/ADR (4 true variants vs 1451 single-read errors, 0.198% = wgsim 0.002), MAPQ: 224 reads moved to tufA/rRNA copies; igv-reports HTML.
+- ✅ **v2 part 11** (67f2196, 46270b3, 868cdc8), all run on 2026-10-27:
+  - 01 Entrez/E-utilities (curl) + EDirect/xtract/Biopython; rpoB Gene 948488, NP_418414.1 (1342 aa).
+  - 02 RefSeq prefixes, NR3C1 MANE NM_000176.3→NP_000167.1 (777 aa), 11 GR isoforms, IPG (WP_000263098.1, 402,479 records), CDD, Taxonomy, `datasets`.
+  - 03 BioProject PRJEB7774 (312 runs, 595 GB), BioSample, SRA Toolkit on ERR688359 (1,158,189 reads = ENA).
+  - 04 GEO GSE52778: series matrix has no expression; NCBI counts; FKBP5/TSC22D3/ZBTB16 up, NR3C1 down; GEO2R ✍️.
+  - 05 dbSNP/ClinVar/dbVar/MedGen/GTR on rs113993960 (F508del, VCV000007105, 4 stars); HGVS↔SPDI with the Variation API; 3′ rule.
+  - 06 PubMed ATM, MeSH D012293, spelling (83+33→115), citation exporter, PMC full text, PubTator3.
+  - 07 BLAST+: S450↔S531 mapping, tblastn, E-value vs dbsize, primers F1406/R1770 (365 bp), six-frame ORFs, CD-Search API; remote BLAST did not answer within 25 min (reported as is).
+  - 08 Pathogen Detection FTP (591,810 isolates; blaCTX-M-15 13%), SNP clusters, NCBI Virus/Datasets (CCHFV 5471 records, Iran 177).
 
-## 3. Files changed
-- Recent commits: **eade55f** (part 08 + glossary change + `envs/amr.yml`, `envs/phylo.yml`), **1f8094a** (PROGRESS next steps), **1b148be** (part 09: restructure, 4 modules, `envs/structural.yml`, `SESSION_LOG.md`, README updates).
-- Layout: `README.md` unnumbered; lessons `01_lesson*.md`, then exercises, then solutions; scripts and small data in `<part>/99_scripts_data/<module>/scripts|data`; figures in `<module>/images/`.
-- Untracked user files left alone on purpose: `Bioinformatics_Course_ColorCoded.xlsx`, `advanced.odt`.
-- Working data lives in the session scratchpad (`p08/{amr,phylo}`, `p09/{dock,md}`) and **is wiped between sessions**; rebuild it by rerunning the scripts in `99_scripts_data` (verified to reproduce the same numbers).
+## 3. Files changed (part 12 session, 2026-10-27)
+- `12_V2_Global_Databases_Browsers/0[1-3]_*/` — README + `01_lesson.md` + `02_exercises.md` + `03_solutions.md`; part README (status), `99_scripts_data/01_Ensembl_BioMart/{scripts/ens_ids.py,data/*.xml}`, `02_UCSC_Genome_Browser/{data/*.bed,images/*.png}`, `03_IGV_Visualization/scripts/rpoB_snapshots.igv.txt`.
+- `envs/databases.yml` (new) + `envs/README.md`; `V2_ROADMAP.md`, `README.md`, `SESSION_LOG.md`, `PROGRESS.md`; memory `course-roadmap-2026-10.md` (restructure deferred).
+- Scratch: `scratchpad/p12/m01…m03`, helper `p12/ej.sh` (curl + retry until valid JSON).
+
+## 3b. Files changed (part 11 session)
+- `11_V2_NCBI_Databases/0[1-8]_*/` — README + `01_lesson*.md` + exercises + solutions (11/01 has `01_lesson_eutils.md`, `02_lesson_edirect.md`, `03_exercises.md`, `04_solutions.md`; the others have `01_lesson.md`, `02_exercises.md`, `03_solutions.md`).
+- `11_V2_NCBI_Databases/99_scripts_data/`: `01_Entrez_EDirect/scripts/gene_table.py`, `04_GEO/scripts/geo_counts.py`, `07_BLAST_Suite_Tools/scripts/{map_positions.py,six_frames.py}`, `08_Pathogen_Virus_Resources/scripts/amr_summary.py`.
+- `11_V2_NCBI_Databases/README.md` (all ✅), `V2_ROADMAP.md` (status), `README.md` (v2 paragraph + tree), `SESSION_LOG.md`, `PROGRESS.md`; memory `course-roadmap-2026-10.md` + `MEMORY.md`.
+- Scratch data (wiped between sessions): `/tmp/claude-1000/…/scratchpad/p11/m01…m08`, helper `r.sh` (EDirect with timeout + retries), `p11/videos_verified.txt`.
 
 ## 4. Key decisions and rejected approaches
-- **Version 2 (2026-10-26):** user wants omics (GEO, STRING, Enrichr, NetworkAnalyst, GeneMANIA, Cytoscape, DGIdb, miRNA DBs, single-cell) and most NCBI databases in v2, folders 11+ named `NN_V2_…`. Human dataset GSE52778 (airway) becomes a second thread because these tools are human-centric and bacteria have no miRNA; STRING bridges to *E. coli*.
-- Part 09 stays **introductory**; a professional structural-bioinformatics course and an NGS/third-generation course are planned separately, with an expert reviewer the user will introduce. Part 10 is deferred to course version 2. Reason: the user wants depth in dedicated courses rather than a shallow pass here.
-- Every part uses **known-answer data** (simulated genomes, a crystal pose for redocking, a simulated outbreak with its true tree) so the learner can check the tool instead of trusting it. Rejected: using real unlabelled datasets, which hide tool error.
-- Tools that are heavy or not installed are written from **official documentation only** and labelled ✍️, with predictions marked as predictions. Rejected: inventing plausible outputs.
-- Part 05 Snakemake uses only tools already taught (Bash, seqkit, Python, part-04 R scripts). Rejected the old fastp/FastQC/bowtie2 workflow because those tools are taught later, in part 06.
-- R scripts are called as `shell: "Rscript …"`, not Snakemake `script:`, so the part-04 scripts stay usable on their own.
-- `diff` and `column` are not taught in part 01, so exercises use `sort | uniq -u`; `column -t -s$'\t'` is introduced explicitly in 08/01.
-- Never send the user's email to external APIs.
+- Modules 11/02–11/08 use **one lesson file** (not two) to keep parts readable; 11/01 needed two (curl vs EDirect).
+- Big NCBI files are **streamed** (`csv` line by line, ~270 MB RAM) instead of pandas (would exceed 1 GB).
+- Where a web tool has no API (GEO2R, Primer-BLAST, ORFfinder, Isolates Browser, MicroBIGG-E) the lesson gives ✍️ web steps **and** does the same analysis on the server (BLAST+, Biopython, FTP data). Rejected: describing outputs we did not see.
+- Failures and odd behaviour are taught as pitfalls (elink -name ignored, PubTator OR, remote BLAST queue, `xtract -mixed`), not hidden.
+- Unverifiable claims were softened or removed (GEO2R design, NBK3841, ClusteredNR default, ST131 inference).
+- Shell functions and awk `?:` are not taught in v1 → replaced with `for` loops / explained inline.
+- SRA Toolkit run from the conda package cache (`~/miniforge3/pkgs/sra-tools-3.4.1-2_linux_64/bin`) because `genomepipe_tools` is off limits and an offline env build failed.
+- Videos verified with `https://noembed.com/embed?url=…` (YouTube itself is blocked from the server).
 
 ## 5. Known bugs and caveats (exact messages)
-- `conda.anaconda.org` unreachable from the server: `Could not resolve host: conda.anaconda.org`. All env files are only dry-run solved against the offline cache.
-- `envs/workflow.yml` under strict priority: `package snakemake-minimal-9.25.2-pyhdfd78af_0 is excluded by strict repo priority` → needs `CONDA_CHANNEL_PRIORITY=flexible`. With python=3.13: `pulp … requires python_abi =3.14`.
-- `envs/r_packages.yml` offline: `nothing provides r-aplot needed by bioconductor-ggtree-4.0.4` (cache gap only; r-aplot exists on conda-forge).
-- AMRFinderPlus DB on this server lacks the nucleotide BLAST index: `The BLAST database for AMR_DNA-Escherichia.fa was not found.` Worked around in a scratchpad **copy** (`makeblastdb` on `AMR_DNA-*.fa`, run with `-d`); the miniforge install is untouched.
-- AlphaFold DB and its Google Cloud mirror return **403** from this server (`We're sorry, but this service is not available in your location`). The model was taken from `models.rcsb.org` as BinaryCIF; gemmi cannot read BinaryCIF (`Unknown format`) and PyMOL needs msgpack-c, so a small decoder was used in the scratchpad. Resulting mean pLDDT 90.05 matches RCSB's own value.
-- VFDB (`mgc.ac.cn`) and ZINC time out from the server; VFDB and PlasmidFinder data files were taken from the ABRicate GitHub repo (data only). Running ABRicate from a clone was denied by the sandbox classifier ("Code from External"), so ABRicate and RGI stay doc-only.
-- YouTube is unreachable from the server (`curl` returns 000); all video URLs come from WebSearch and still need checking. Coursera returns 451.
-- `obrms` returns `RMSD := inf` when atom order differs → use `rmsd_pdbqt.py` (same order) or `rmsd_graph.py` (graph matching).
-- `gemmi.Structure.get_info` does not exist in 0.7 → use `st.info[...]`. In OpenMM scripts, `from openmm.unit import *` shadows Python's `sum`.
-- `ape::root()` moves bootstrap labels unless `edgelabel = TRUE`, and labels the new root "Root"; NJ can return negative branch lengths (CTX-M-3: −0.00033), explained in 08/04.
-- In PDB format a four-digit residue number touches the chain name (`A1342`), so whitespace-based `awk` reads the wrong column — use fixed columns (this became exercise 09/01-5).
-- Snakemake `shell:` with `zcat … | head` exits 141 (SIGPIPE under pipefail).
-- In this shell `grep` is ugrep, `awk` is gawk, `find` is bfs — use `/usr/bin/grep` and `/usr/bin/mawk` when capturing lesson outputs.
-
-- EDirect 24.0 on this server prints `curl: (56) OpenSSL SSL_read: OpenSSL/3.6.4: error:0A000126:SSL routines::unexpected eof while reading, errno 0` on stderr for most requests, then retries and succeeds. Its error lines include the **NCBI API key and the machine email** → always `2>> err.log` (scratch), never paste stderr into lessons.
-- 2026-10-27: one `esearch` hung for >2 h (NCBI side); wrap every EDirect call in `timeout 90`.
-- EDirect 24.0: `elink -name gene_protein_refseq` is **ignored** when elink reads from a pipe (13 = 13 links for rpoB, 87 for five genes) → use `elink -target protein | efilter -query "refseq[filter]"`. Raw `elink.fcgi&linkname=` works. (Taught as a pitfall in 11/01.)
-- SRA Toolkit: no env had it except `genomepipe_tools` (off limits). `conda create --offline sra-tools=3.4.1` fails (perl deps missing from cache: `OfflineError: EnforceUnusedAdapter called with url …perl-importer…`). Lesson 11/03 ran the binaries straight from the package cache: `PATH=~/miniforge3/pkgs/sra-tools-3.4.1-2_linux_64/bin:$PATH` (prefetch, vdb-validate, fasterq-dump, fastq-dump all work).
-- `pgrep -f`/`pkill -f` with a pattern that also appears in the calling command line kills the calling shell (exit 144). Use `ps aux | grep '[x]yz'`.
-- EDirect pipelines that fetch all links of a human gene (`elink -target nuccore | efetch`) exceed the timeout (hundreds of records): count first, use `linkname` via curl. Helper with retries: scratchpad `r.sh`.
-- PMC OA Service URL `https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi` → 404 (2026-10-27); ID converter moved to `https://pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1/articles/`. Use `efetch db=pmc` for full text.
-- Raw PubMed XML needs `xtract -mixed` (else `UNEXPECTED MIXED CONTENT <i> IN <Reference>` on every record).
-- GEO2R and GEO docs pages are behind reCAPTCHA from the server; GEO2R claims kept soft.
-- Remote BLAST (`blastp -remote`, URL API) sat in WAITING for 25+ min on 2026-10-27; lesson 11/07 reports this honestly. NCBI asks: ≤1 request/10 s, poll an RID ≤1/min.
-- Pathogen Detection AMR TSV for E. coli is 553 MB (26 min at ~360 KB/s); `scientific_name` = strain name, use `species_taxid`; dates include `missing` and `1900-01-01` placeholders.
-- Rate-limit JSON error contains the server's public IP in `"api-key"` → redact in lessons.
+- Part 12 (2026-10-27): Ensembl REST often `HTTP 500`/`503` with an HTML page → `jq: parse error: Invalid numeric literal`, `requests.exceptions.JSONDecodeError`; use retries (`scratchpad/p12/ej.sh`, `ens_ids.py`). BioMart 116 (jun2026.archive) answers GET only (POST → `405 Not Allowed`), was "Service unavailable" ~15 min. `rest.ensemblgenomes.org` unreachable (main REST serves bacteria). Fly-side homology needs `compara=multi` (`Could not find a GenomeDB named 'homo_sapiens'`).
+- UCSC `hgTables` via curl → Cloudflare Turnstile page; `hgRenderTracks` ignores `hgt.customText`. Running a downloaded liftOver binary was blocked by the permission classifier → use Bioconda ucsc-liftover.
+- igv.org unreachable from server; headless Chrome screenshots of igv-reports stay blank (igv.js never finishes).
+- EDirect 24.0 stderr on most calls: `curl: (56) OpenSSL SSL_read: OpenSSL/3.6.4: error:0A000126:SSL routines::unexpected eof while reading, errno 0` (retries succeed; lines contain the API key and email). Some calls hang for hours → always `timeout 60–90` and retry.
+- EDirect: `elink -name gene_protein_refseq` ignored in a pipe → use `efilter -query "refseq[filter]"`.
+- Raw PubMed XML: `UNEXPECTED MIXED CONTENT <i> IN <Reference>` unless `xtract -mixed`.
+- PMC OA service `https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi` → 404; ID converter moved to `https://pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1/articles/`.
+- Remote BLAST (RID `E13YYMUD014`) stayed `Status=WAITING` 25+ min; `blastp -remote` timed out (rc=124). NCBI rules: ≤1 request/10 s, poll an RID ≤1/min.
+- GEO2R/GEO help pages: reCAPTCHA from the server. Coursera often returns 451.
+- Offline conda: `OfflineError: EnforceUnusedAdapter called with url …perl-importer…` (sra-tools); `Could not resolve host: conda.anaconda.org`.
+- `pkill -f`/`pgrep -f` whose pattern matches the calling shell kills it (exit 144) → `ps aux | grep '[x]yz'`.
+- Monitor tasks expire after 5 min and stop any loop inside them → long polls go in `run_in_background` Bash.
+- Pathogen Detection TSV: `scientific_name` is the strain name (use `species_taxid`); dates contain `missing`, `NULL`, `1900-01-01`.
+- v1 caveats (still open): AMRFinderPlus DB lacks nucleotide BLAST index (`The BLAST database for AMR_DNA-Escherichia.fa was not found.`); AlphaFold DB 403 from server; VFDB/ZINC time out; `envs/workflow.yml` needs `CONDA_CHANNEL_PRIORITY=flexible`; `grep` here is ugrep (use `/usr/bin/grep` for exact outputs).
 
 ## 6. Next steps (priority order, one session each)
-1. **Version 2:** part 11 done 2026-10-27. Next part 12 (in order). Then the rest of part 11. Scaffold notes: Parts 11–22 (`NN_V2_…`, 46 module READMEs) and `V2_ROADMAP.md`. User removed single-cell, human variant and long-read parts (→ separate NGS course; clinical interpretation → separate medical-genomics course). Part 10's modules 01/05/06 live in parts 20–22; `10_Advanced/README.md` is now a pointer.
-2. Real runs of part 07 (nothing run in v1) — needs coordination with genomepipe and user approval.
-3. Optionally upgrade 08/04 lesson 2 to real IQ-TREE runs (IQ-TREE 3 is installed but not in PATH).
-4. Plan the separate courses with the user (names in `V2_ROADMAP.md`); structural and NGS first, with the expert reviewer.
-5. Verify the env files online (`r_packages`, `workflow`, `metagenomics`, `bacterial_genomics`, `amr`, `phylo`, `structural`) once conda is reachable. Note: there is no `structural` env on this server; the tools are in the miniforge base env.
-6. At course end: full link check with the user's VPN (`_tools/check_links.sh`), every YouTube URL, and the book chapter numbers added 2026-10-26.
+1. **v2 part 12, modules 04–06** (InterPro/HMMER on P04150 & beta-lactamases, GO/KEGG/Reactome — all APIs answered on 2026-10-27; GTEx (gencodeId ENSG00000113580.14)/HPA/GDC release 46/cBioPortal APIs answered); commit+push at end of part 12.
+3. Optional: if remote BLAST answers on a later day, add the real Swiss-Prot hits to 11/07 §10 (keep the queue story).
+4. v2 part 13 (RNA-seq; DESeq2 on GSE52778 counts from 11/04 — `deg_r` env has GEOquery 2.80.0, DESeq2 **not** installed).
+5. Real runs of v1 part 07 (needs genomepipe coordination and user approval).
+6. Plan the separate courses with the user (folders in `/data/Education/new/`).
+7. Course-end checks with the user's VPN: `_tools/check_links.sh`, every YouTube URL, book chapter numbers.

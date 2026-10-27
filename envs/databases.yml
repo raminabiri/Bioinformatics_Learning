@@ -1,0 +1,20 @@
+# Environment for part 12 (global databases and genome browsers).
+# Create once:   conda env create -f envs/databases.yml
+# Then:          conda activate databases
+# Most of part 12 is web pages and REST APIs (curl, jq, Python requests from the base course env);
+# this environment adds the command-line tools: liftOver (12/02), samtools/bcftools and igv-reports (12/03),
+# HMMER (12/04). IGV desktop is installed on the student's laptop from igv.org, not here.
+# eggNOG-mapper needs a ~50 GB database and is only described in 12/04 (web server).
+name: databases
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python>=3.10
+  - requests
+  - pandas
+  - ucsc-liftover
+  - samtools>=1.20
+  - bcftools>=1.20
+  - hmmer>=3.4
+  - igv-reports

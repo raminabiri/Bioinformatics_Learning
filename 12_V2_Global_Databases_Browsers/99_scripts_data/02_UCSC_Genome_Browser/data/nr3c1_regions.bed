@@ -1,0 +1,3 @@
+track name=myRegions description="NR3C1 promoter and CDS" color=200,0,0
+chr5	143403686	143405686	promoter_2kb	0	-
+chr5	143281888	143400839	CDS_span	0	-

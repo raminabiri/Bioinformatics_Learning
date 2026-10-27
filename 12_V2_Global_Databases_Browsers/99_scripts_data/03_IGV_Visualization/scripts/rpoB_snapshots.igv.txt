@@ -1,0 +1,16 @@
+new
+genome ecoli_k12.fna
+load ecoli_k12.gff
+load resistant.bam
+load resistant.vcf.gz
+snapshotDirectory snapshots
+goto NC_000913.3:4182800-4182840
+sort base NC_000913.3:4182820
+collapse ecoli_k12.gff
+snapshot rpoB_H526Y.png
+goto NC_000913.3:4182805-4182845
+sort base NC_000913.3:4182825
+snapshot error_4182825.png
+goto NC_000913.3:4188980-4189020
+snapshot deletion_4188999.png
+exit

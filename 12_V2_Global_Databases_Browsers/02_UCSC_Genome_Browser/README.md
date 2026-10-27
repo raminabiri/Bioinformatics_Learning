@@ -1,29 +1,32 @@
 <div dir="rtl">
 
-# ماژول ۰۲: مرورگر ژنوم UCSC (UCSC Genome Browser and Table Browser) — نسخه‌ی ۲
+# ماژول ۰۲: مرورگر ژنوم UCSC (UCSC Genome Browser, Table Browser and liftOver) — نسخه‌ی ۲
 
 | | |
 | :--- | :--- |
 | **بخش** | `12_V2_Global_Databases_Browsers` |
-| **ابزار و پایگاه** | UCSC Genome Browser، Table Browser، liftOver |
-| **داده (پیشنهادی)** | ناحیه‌ی NR3C1 در hg38 |
-| **منابع رایانه** | تنها وب و API؛ بی بار روی رایانه |
-| **وضعیت** | ⚪ طرح نسخه‌ی ۲: سرفصل روشن است؛ درس طبق [STYLE_GUIDE](../../STYLE_GUIDE.md) نوشته و اجرا خواهد شد |
+| **پیش‌نیاز** | ماژول [12/01](../01_Ensembl_BioMart/) (`dex_ids.tsv`)؛ BED و شماره‌گذاری از صفر ([02/03](../../02_BioLinux/03_Annotation_Formats/))؛ Conda ([02/01](../../02_BioLinux/01_Conda_Bioconda/))؛ F508del ([11/05](../../11_V2_NCBI_Databases/05_Variation_Clinical/)) |
+| **زمان تقریبی** | ۳ ساعت (یک درس، نزدیک به ۸۰ دقیقه، و تمرین‌ها) |
+| **ابزار** | ‏UCSC Genome Browser (وب)، UCSC REST API، `curl` و `jq`، liftOver 502 (`envs/databases.yml`) |
+| **داده** | ناحیه‌ی NR3C1 و FKBP5 در hg38؛ هشت ژن پاسخ به دگزامتازون (BED)؛ F508del در hg19 و hg38؛ سه پنجره‌ی آزمون liftOver |
+| **منابع رایانه** | درخواست وب؛ liftOver چند ثانیه و کمتر از ۱۰۰ مگابایت |
+| **وضعیت** | ✅ اجرا شده (2026-10-27)؛ Table Browser و بارگذاری ترک خودتان ✍️ |
 
 ## اهداف یادگیری
 پس از این ماژول می‌توانید:
-1. ترک‌ها را بخوانید و نمایش را سفارشی کنید.
-2. با Table Browser داده بیرون بکشید.
-3. مختصات را میان نسخه‌های ژنوم جابه‌جا کنید.
+1. ترک‌ها را در مرورگر UCSC بخوانید و حالت نمایششان را عوض کنید.
+2. با UCSC REST API ترک، توالی و جست‌وجو بگیرید و مختصات 0-based و 1-based را بی‌خطا جابه‌جا کنید.
+3. با Table Browser (یا API) جدول، BED و اگزون‌ها را بیرون بکشید.
+4. ترک خودتان را از یک جدول بسازید.
+5. با liftOver مختصات را میان hg19 و hg38 جابه‌جا کنید و شکست‌های آن را بشناسید.
 
-## سرفصل
-1. ترک‌ها و نمایش
-2. Table Browser
-3. ‏Custom tracks با BED (یادآوری 02/03)
-4. liftOver
+## ترتیب مطالعه
+1. ‏[01_lesson.md](01_lesson.md): درس؛ ترک‌ها و حالت نمایش، اسمبلی‌ها، API، Table Browser، custom track، liftOver.
+2. ‏[02_exercises.md](02_exercises.md): ۷ تمرین؛ زیر عنوان هر تمرین راهنمایی آمده است.
+3. ‏[03_solutions.md](03_solutions.md): پاسخ تشریحی.
 
-## یادداشت نگارش
-- داده‌ی با پاسخ معلوم، خروجی واقعی، و ابزارهای سنگین با برچسب ✍️ «از مستندات».
-- زیر هر تکنیک 📺 فیلم و 📄 مرجع؛ در منابع پایان درس: مقاله، کتاب، Coursera، edX و YouTube.
+## ورودی و خروجی
+- **ورودی:** `dex_ids.tsv` از 12/01؛ [`nr3c1_regions.bed`](../99_scripts_data/02_UCSC_Genome_Browser/data/nr3c1_regions.bed) و [`lift_test_hg19.bed`](../99_scripts_data/02_UCSC_Genome_Browser/data/lift_test_hg19.bed)؛ تصویرهای درس در [`images/`](../99_scripts_data/02_UCSC_Genome_Browser/images/).
+- **خروجی:** `dex_hg38.bed` و `dex_hg19.bed`، `fkbp5_exons.bed`؛ این فایل‌ها را برای ماژول‌های بعدی نگه دارید.
 
 </div>
