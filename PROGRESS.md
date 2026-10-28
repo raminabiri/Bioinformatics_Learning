@@ -15,6 +15,7 @@ Write course **version 2** (parts 11–22, folders `NN_V2_…`, plan in `V2_ROAD
 - Commits end with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
 
 ## 2. Done so far
+- ✅ **v2 part 13, modules 01–02** (2026-10-28): env `envs/rnaseq.yml`; shared data `13_V2_RNAseq_Transcriptomics/99_scripts_data/shared/` (genes.tsv, make_mini_genome.py, simulate_reads.py, make_data.sh); 01 design + FastQC/MultiQC; 02 HISAT2/featureCounts/Salmon/kallisto/tximport vs known answer (`compare_counts.R`, `isoform_share.py`). Output `gene_counts_salmon.tsv` feeds 13/03.
 - ✅ **Windows route (pure Windows, no WSL)** agreed 2026-10-27 (memory `windows-route.md`): `windows/README.md` + `windows/get_k12_genome.py`; pilot module **08/01** `00_lesson_windows.md` + `check_qrdr.py`, Windows hints in exercises, Windows answers in solutions. Web/installer steps ✍️ (user will test later).
 - ✅ **v1 parts 00–06, 08, 09** written and run (09 is introductory by user decision). ✍️ **07** written but nothing run.
 - ✅ All v1 lessons have per-technique 📺/📄 boxes and book sections (cc70d8d). Part 10 is now a pointer to v2/separate courses.
@@ -77,7 +78,8 @@ Write course **version 2** (parts 11–22, folders `NN_V2_…`, plan in `V2_ROAD
 
 ## 6. Next steps (priority order, one session each)
 1. **Windows route roll-out** (after user feedback on the 08/01 pilot): 08/02–08/04, 07, 06, 09, 03, 04, 11, 12 — one `00_lesson_windows.md` each.
-2. **v2 part 13 (RNA-seq)**: DESeq2 on GSE52778 counts (11/04); compare with Expression Atlas `e52778.tsv` (12/06), incl. the albuterol+dex contrast discrepancy. `deg_r` env has GEOquery 2.80.0, DESeq2 **not** installed → new env.
+2. **v2 part 13, modules 03–05**: 03 DESeq2/edgeR/limma on `gene_counts_salmon.tsv` (known answer) + GSE52778 real (PCA donor vs dex; Atlas comparison incl. albuterol+dex discrepancy); 04 reproduce Himes 2014 with Snakemake; 05 bacterial RNA-seq (simulated E. coli SOS response, Bowtie2). Then Windows route roll-out.
+3. (old) **v2 part 13 (RNA-seq)**: DESeq2 on GSE52778 counts (11/04); compare with Expression Atlas `e52778.tsv` (12/06), incl. the albuterol+dex contrast discrepancy. `deg_r` env has GEOquery 2.80.0, DESeq2 **not** installed → new env.
 3. Optional: if remote BLAST answers on a later day, add the real Swiss-Prot hits to 11/07 §10 (keep the queue story).
 4. v2 part 13 (RNA-seq; DESeq2 on GSE52778 counts from 11/04 — `deg_r` env has GEOquery 2.80.0, DESeq2 **not** installed).
 5. Real runs of v1 part 07 (needs genomepipe coordination and user approval).
